@@ -1,5 +1,5 @@
 /* QuantPrep service worker — offline-first */
-const VERSION = "qp-v1";
+const VERSION = "qp-v2";
 const CORE = [
   "./",
   "./index.html",

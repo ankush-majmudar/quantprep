@@ -105,3 +105,15 @@ input,select,textarea{font-family:inherit}
 .tab{flex:1;background:none;border:none;color:var(--tx3);padding:9px 0 7px;font-size:10px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 .tab .ico{font-size:19px;line-height:1}
 .tab.active{color:var(--ac)}
+
+/* ---- typed answer input ---- */
+.ans-row{display:flex;gap:8px;margin:6px 0 2px}
+.ans-input{flex:1;font-size:16px;text-align:left;padding:12px 14px;background:var(--bg3);border:1px solid var(--line);border-radius:12px;color:var(--tx);font-weight:600}
+.ans-input:focus{outline:none;border-color:var(--ac)}
+.ans-input:disabled{opacity:.7}
+.ans-row .btn.sm{flex:0 0 auto}
+.verdict{margin-top:10px;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:700}
+.verdict.ok{background:rgba(63,185,80,.13);border:1px solid rgba(63,185,80,.45);color:#56d364}
+.verdict.no{background:rgba(248,81,73,.12);border:1px solid rgba(248,81,73,.45);color:#ff7b72}
+.verdict.warn{background:rgba(210,153,34,.12);border:1px solid rgba(210,153,34,.4);color:#e3b341}
+.grade.suggest{border-color:var(--ac);box-shadow:0 0 0 2px rgba(79,141,253,.35) inset}

@@ -46,9 +46,10 @@ const GRADE = { again: 0, hard: 1, good: 2, easy: 3 };
 const gradeBase = [0.15, 0.5, 0.85, 1.0];          // target mastery contribution by grade
 const diffMul = { easy: 0.85, medium: 1.0, hard: 1.2 };
 
-function applyAttempt(q, gradeName, conf, secs) {
+function applyAttempt(q, gradeName, conf, secs, typedCorrect = null, typed = null) {
   const g = GRADE[gradeName];
-  const correct = g >= 2;
+  // objective typed answer is ground-truth for "correct"; self-grade still drives scheduling
+  const correct = (typedCorrect === true) || (typedCorrect === null && g >= 2);
   // --- SRS card ---
   const c = S.cards[q.slug] || { ease: 2.3, interval: 0, due: 0, reps: 0, lapses: 0 };
   if (g === 0) { c.ease = Math.max(1.3, c.ease - 0.2); c.interval = 0; c.reps = 0; c.lapses++; }
@@ -60,7 +61,9 @@ function applyAttempt(q, gradeName, conf, secs) {
   S.cards[q.slug] = c;
 
   // --- technique mastery (EMA) ---
-  const target = gradeBase[g] * 100;
+  let target = gradeBase[g] * 100;
+  if (typedCorrect === true) target = Math.max(target, 80);        // verified right => pull up
+  else if (typedCorrect === false) target = Math.min(target, 25);  // verified wrong => pull down
   const dm = diffMul[q.difficulty] || 1;
   const alpha = 0.34;
   const sk = skillsOf(q);
@@ -76,7 +79,7 @@ function applyAttempt(q, gradeName, conf, secs) {
   S.topic[q.topic] = tp;
 
   // --- log + streak + daily ---
-  S.attempts.push({ slug: q.slug, ts: now(), grade: g, conf, correct, secs });
+  S.attempts.push({ slug: q.slug, ts: now(), grade: g, conf, correct, secs, typed, typedCorrect });
   if (S.attempts.length > 4000) S.attempts = S.attempts.slice(-4000);
   bumpDaily();
   save();
@@ -197,6 +200,39 @@ function esc(s) { return (s || "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": 
 function toast(msg) {
   let t = document.querySelector(".toast"); if (!t) { t = document.createElement("div"); t.className = "toast"; document.body.appendChild(t); }
   t.textContent = msg; t.classList.add("show"); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("show"), 1600);
+}
+
+/* ---------------- answer checking ----------------
+   Parses fractions (a/b), decimals, integers, %, with unicode-minus / commas / $.
+   Answers may list several accepted forms separated by ';'. Returns:
+   true = correct, false = wrong, null = couldn't parse user input (non-numeric). */
+function parseNum(raw) {
+  if (raw == null) return null;
+  let s = String(raw).trim().toLowerCase()
+    .replace(/[\s,$]/g, "").replace(/[−–—]/g, "-").replace(/=+$/, "");
+  let pct = false;
+  if (s.endsWith("%")) { pct = true; s = s.slice(0, -1); }
+  if (!s) return null;
+  let v = null;
+  const m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/);   // a/b
+  if (m) { const d = parseFloat(m[2]); if (!d) return null; v = parseFloat(m[1]) / d; }
+  else { const f = parseFloat(s); v = isFinite(f) && /^-?[\d.]+(e-?\d+)?$/.test(s) ? f : null; }
+  if (v == null) return null;
+  return pct ? v / 100 : v;
+}
+function answerVariants(ans) { return String(ans == null ? "" : ans).split(";").map(x => x.trim()).filter(Boolean); }
+function checkAnswer(userRaw, ans) {
+  const u = parseNum(userRaw);
+  if (u === null) return null;
+  for (const vs of answerVariants(ans)) {
+    const v = parseNum(vs);
+    if (v === null) continue;
+    const isInt = Number.isInteger(v) && !/[.\/]/.test(vs);
+    if (isInt) { if (Math.abs(u - v) < 1e-9) return true; continue; }
+    const tol = Math.max(0.01, Math.abs(v) * 0.01);   // tolerant of rounding (e.g. 0.38 ≈ 3/8, 0.33 ≈ 1/3)
+    if (Math.abs(u - v) <= tol) return true;
+  }
+  return false;
 }
 
 /* ---------------- HOME ---------------- */
@@ -332,7 +368,8 @@ function renderQuestion() {
   const s = SESSION; if (!s) return;
   if (s.i >= s.list.length) return renderSessionDone();
   const q = s.list[s.i];
-  s.qStart = now(); s.revealed = false; s.hintLevel = 0; s.conf = null;
+  s.qStart = now(); s.revealed = false; s.hintLevel = 0; s.conf = null; s.typed = null; s.typedCorrect = null;
+  const hasNumericAns = answerVariants(q.answer).some(v => parseNum(v) !== null);
   const hints = (q.hints && q.hints.length === 3) ? q.hints : (q.hint ? [q.hint] : []);
   const sol = q.genSolution || q.siteSolution || "";
   const skchips = skillsOf(q).map(t => `<span class="chip">${esc(TECH[t]?.name||t)}</span>`).join("")
@@ -360,6 +397,15 @@ function renderQuestion() {
           <div class="grade" data-conf="3">Fairly</div>
           <div class="grade" data-conf="4">Certain</div>
         </div>
+
+        <div class="label" style="margin-top:16px">Your answer</div>
+        <div class="ans-row">
+          <input class="ans-input" id="ansIn" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="${hasNumericAns ? "e.g. 3/8, 0.42, 17, 25%" : "type your answer, then reveal"}">
+          <button class="btn sm" id="checkBtn">Check</button>
+        </div>
+        <div id="verdict"></div>
+
         <div class="btn-row" style="margin-top:12px">
           <button class="btn alt" id="hintBtn">💡 Hint</button>
           <button class="btn" id="revealBtn">Reveal answer</button>
@@ -388,6 +434,22 @@ function renderQuestion() {
     h.innerHTML = `<b>Hint ${s.hintLevel + 1}:</b> ${esc(hints[s.hintLevel])}`;
     z.appendChild(h); mathify(h); s.hintLevel++;
   };
+  const checkAndReveal = () => {
+    const inp = document.getElementById("ansIn"); if (!inp) return;
+    const val = (inp.value || "").trim();
+    if (!val) { revealAnswer(q, sol); return; }       // empty -> just reveal
+    const res = checkAnswer(val, q.answer);
+    s.typed = val; s.typedCorrect = res;
+    const v = document.getElementById("verdict");
+    v.innerHTML = res === true ? `<div class="verdict ok">✓ Correct</div>`
+      : res === false ? `<div class="verdict no">✗ Not quite — see the solution below</div>`
+      : `<div class="verdict warn">Couldn't read that as a number — compare with the answer below</div>`;
+    document.getElementById("checkBtn").disabled = true;
+    inp.disabled = true;
+    setTimeout(() => revealAnswer(q, sol), 600);
+  };
+  document.getElementById("checkBtn").onclick = checkAndReveal;
+  document.getElementById("ansIn").onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); checkAndReveal(); } };
   document.getElementById("revealBtn").onclick = () => revealAnswer(q, sol);
   document.getElementById("skipBtn").onclick = () => { s.i++; renderQuestion(); };
   mathify(view());
@@ -399,7 +461,14 @@ function revealAnswer(q, sol) {
   const paywalled = q.solutionPaywalled && !q.genSolution;
   const rv = document.getElementById("reveal");
   rv.className = "reveal";
+  const tc = s.typedCorrect;
+  const verdictTop = tc === true
+      ? `<div class="verdict ok" style="margin-bottom:12px">✓ Your answer <b>${esc(s.typed)}</b> is correct</div>`
+    : tc === false
+      ? `<div class="verdict no" style="margin-bottom:12px">✗ You answered <b>${esc(s.typed)}</b></div>`
+      : "";
   rv.innerHTML = `
+    ${verdictTop}
     <div class="label">Answer</div>
     <div class="answer-box">${esc(q.answer) || "—"}</div>
     ${sol ? `<div class="label" style="margin-top:14px">Worked solution</div><div class="solution">${esc(sol)}</div>`
@@ -414,9 +483,13 @@ function revealAnswer(q, sol) {
       <div class="grade good" data-g="good">Solid<small>normal</small></div>
       <div class="grade easy2" data-g="easy">Easy<small>longer interval</small></div>
     </div>`;
+  // nudge the self-grade that matches the objective result (still fully overridable)
+  if (tc === true) rv.querySelector('[data-g="good"]')?.classList.add("suggest");
+  else if (tc === false) rv.querySelector('[data-g="again"]')?.classList.add("suggest");
   rv.querySelectorAll("[data-g]").forEach(b => b.onclick = () => {
-    applyAttempt(q, b.dataset.g, s.conf || 2, s.secs);
-    if (b.dataset.g !== "again") s.correct++;
+    applyAttempt(q, b.dataset.g, s.conf || 2, s.secs, s.typedCorrect, s.typed);
+    const objOK = (s.typedCorrect === true) || (s.typedCorrect === null && b.dataset.g !== "again");
+    if (objOK) s.correct++;
     s.i++; renderQuestion(); refreshBadges();
   });
   rv.querySelectorAll("[data-sl]").forEach(b => b.onclick = () => {
@@ -565,13 +638,17 @@ function endMM() {
 /* ---------------- STATS ---------------- */
 function renderStats() {
   const a = S.attempts, n = a.length;
-  const correct = a.filter(x => x.correct).length;
+  const ok = x => (x.typedCorrect === true) || (x.typedCorrect == null && x.correct); // objective when available
+  const correct = a.filter(ok).length;
   const acc = n ? Math.round(correct / n * 100) : 0;
   const avgSecs = n ? Math.round(a.reduce((s,x)=>s+(x.secs||0),0)/n) : 0;
+  // typed-answer solve rate (only attempts where an answer was actually checked)
+  const typed = a.filter(x => x.typedCorrect === true || x.typedCorrect === false);
+  const typedAcc = typed.length ? Math.round(typed.filter(x => x.typedCorrect === true).length / typed.length * 100) : null;
   // calibration: among confident (>=3) how often correct; among guesses (<=2)
   const conf = a.filter(x=>x.conf>=3), low = a.filter(x=>x.conf<=2);
-  const confAcc = conf.length?Math.round(conf.filter(x=>x.correct).length/conf.length*100):null;
-  const lowAcc = low.length?Math.round(low.filter(x=>x.correct).length/low.length*100):null;
+  const confAcc = conf.length?Math.round(conf.filter(ok).length/conf.length*100):null;
+  const lowAcc = low.length?Math.round(low.filter(ok).length/low.length*100):null;
   // last 14 days heatmap
   const byDay = {}; a.forEach(x=>{ const d=new Date(x.ts).toISOString().slice(0,10); byDay[d]=(byDay[d]||0)+1; });
   let heat=""; for(let i=13;i>=0;i--){ const d=new Date(Date.now()-i*DAY).toISOString().slice(0,10); const c=byDay[d]||0;
@@ -585,6 +662,15 @@ function renderStats() {
       <div><div class="big">${avgSecs}s</div><div class="mini">avg / question</div></div>
       <div><div class="big">${dueCards().length}</div><div class="mini">reviews due</div></div>
     </div></div>
+
+    <div class="section-title">Solving accuracy (typed answers)</div>
+    <div class="card">
+      ${typedAcc!==null
+        ? `<div class="row spread"><span class="muted">Answers you typed & got right</span><b>${typedAcc}%</b></div>
+           <div class="bar" style="margin-top:10px"><i style="width:${typedAcc}%"></i></div>
+           <div class="mini" style="margin-top:8px">${typed.length} checked answer${typed.length===1?"":"s"}. This is your hardest, most honest metric — it counts only questions you actually solved to a number.</div>`
+        : `<div class="dim">Type your answer and hit <b>Check</b> on questions to track real solve accuracy (not just self-rated recall).</div>`}
+    </div>
 
     <div class="section-title">Activity (14 days)</div>
     <div class="card"><div style="display:grid;grid-template-columns:repeat(14,1fr);gap:4px">${heat}</div></div>
