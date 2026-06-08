@@ -1,0 +1,72 @@
+[
+ {"slug":"ants-on-a-triangle","techniques":["symmetry_prob","casework","sample_space"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Each ant picks one of 2 endpoints: 2³=8 outcomes.",
+           "No collision only if all ants circulate the same way (all clockwise or all counter-clockwise).",
+           "2/8 = 1/4."],
+  "solution":"Each ant chooses one of two adjacent vertices ($2^3=8$ outcomes). No two share a corner only when all three move the same rotational direction — clockwise or counter-clockwise — which is $2$ outcomes. So $P=\\tfrac28=\\tfrac14.$","solution_verified":true},
+
+ {"slug":"marble-runs","techniques":["indicator_vars","linearity_exp"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["Runs = 1 + (number of adjacent pairs with different colors).",
+           "Each of the 99 adjacent pairs differs with probability 2·50·50/(100·99)=50/99.",
+           "E = 1 + 99·(50/99) = 51."],
+  "solution":"The number of runs equals $1$ plus the number of adjacent color changes. Each of the $99$ adjacent pairs has different colors with probability $\\dfrac{2\\cdot50\\cdot50}{100\\cdot99}=\\dfrac{50}{99}$, so by linearity $\\mathbb{E}[\\text{runs}]=1+99\\cdot\\tfrac{50}{99}=51.$","solution_verified":true},
+
+ {"slug":"stages-of-life","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Let A be his age: A(1/4+1/5+1/3) + 13 = A.",
+           "1/4+1/5+1/3 = 47/60, so 13A/60 = 13.",
+           "A = 60."],
+  "solution":"With age $A$, $A(\\tfrac14+\\tfrac15+\\tfrac13)+13=A$. Since $\\tfrac14+\\tfrac15+\\tfrac13=\\tfrac{47}{60}$, the remaining $\\tfrac{13}{60}A=13$, so $A=60.$","solution_verified":true},
+
+ {"slug":"geometrical-progression","techniques":["number_theory","sequences_series","construction"],"primary":"number_theory","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Try 1+r+r²+… for small ratios r>1 and at least 3 terms.",
+           "r=3: 1+3+9+27+81 = 121.",
+           "121 = 11², the smallest such square."],
+  "solution":"Taking ratio $r=3$ with five terms, $1+3+9+27+81=121=11^2$, a perfect square. This is the smallest square achievable by such a progression, so the answer is $121.$","solution_verified":true},
+
+ {"slug":"mile-rate","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Averaging 60 mph over 2 miles needs total time 2 minutes.",
+           "The first mile at 30 mph already takes 2 minutes.",
+           "No time remains for lap 2 ⇒ impossible ⇒ −1."],
+  "solution":"An average of $60$ mph over $2$ miles requires a total time of $2$ minutes, but the first mile at $30$ mph already consumes $2$ minutes. No speed can complete the second lap in zero time, so the answer is $-1.$","solution_verified":true},
+
+ {"slug":"mod-mondays","techniques":["number_theory"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["100 mod 7 = 2.",
+           "Monday = 2, so add 2.",
+           "2 + 2 = 4 (Wednesday)."],
+  "solution":"Since $100\\equiv2\\pmod7$, the day is $2$ past Monday: $2+2=4.$","solution_verified":true},
+
+ {"slug":"bond-practice-v","techniques":["time_value"],"primary":"time_value","difficulty":"easy","firm_style":["finance"],
+  "hints":["The coupon rate (6%) equals the market rate.",
+           "A bond priced at a yield equal to its coupon trades at par.",
+           "Price = par = 1000."],
+  "solution":"With the coupon rate equal to the market yield ($6\\%$), the bond trades at par, so the price equals the face value, $\\$1000.$","solution_verified":true},
+
+ {"slug":"coin-pair-i","techniques":["invariants","casework","ev_betting"],"primary":"invariants","difficulty":"easy","firm_style":["math"],
+  "hints":["Turning a pair changes the head count by ±2 or 0, so its parity is fixed.",
+           "Even initial heads → reach 4; odd → reach 3.",
+           "P(even)=P(odd)=1/2 ⇒ E = ½·4 + ½·3 = 7/2."],
+  "solution":"Flipping two coins changes the number of heads by an even amount, so its parity is invariant. From an even count you can reach $4$ heads, from an odd count $3$. The initial count is even or odd each with probability $\\tfrac12$, so $\\mathbb{E}=\\tfrac12(4)+\\tfrac12(3)=\\tfrac72.$","solution_verified":true},
+
+ {"slug":"beer-barrel-ii","techniques":["construction","casework"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Model states as (barrel, 7-vessel, 5-vessel) and search for the shortest pour sequence.",
+           "Each fill, empty, or transfer between containers counts as one transaction.",
+           "The minimum is 17 transactions."]},
+
+ {"slug":"generous-banker","techniques":["optimal_strategy","sequences_series","ev_betting"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["games"],
+  "hints":["The adversary concentrates on whichever n minimizes pₙn², so you equalize pₙn² across n.",
+           "pₙ ∝ 1/n²; Σ1/n² = π²/6 forces pₙ = (6/π²)/n².",
+           "The guaranteed value is 6/π², so a=6,b=2,ab=12."],
+  "solution":"The opponent will place all mass on the $n$ minimizing $p_n n^2$, so you maximize the minimum by making $p_n n^2$ constant: $p_n\\propto\\tfrac1{n^2}$. Normalizing, $p_n=\\dfrac{6/\\pi^2}{n^2}$ and the guaranteed payout is $p_n n^2=\\dfrac{6}{\\pi^2}$. Thus $a=6,b=2$ and $ab=12.$","solution_verified":true},
+
+ {"slug":"100-lights","techniques":["number_theory","casework"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Bulb k is toggled once per divisor of k.",
+           "It ends on iff k has an odd number of divisors — i.e. k is a perfect square.",
+           "Squares ≤ 100: 1,4,…,100 ⇒ 10."],
+  "solution":"Bulb $k$ is flipped once for each divisor of $k$, so it ends on iff $k$ has an odd number of divisors, which happens exactly for perfect squares. There are $10$ squares ($1^2,\\dots,10^2$) up to $100$, so $10$ lights are on.","solution_verified":true},
+
+ {"slug":"which-sum-first","techniques":["conditional_prob","geometric","sample_space"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Ignore all rolls that aren't a 5 or a 2.",
+           "Sum 5 has 4 ways, sum 2 has 1 way.",
+           "P = 4/(4+1) = 4/5."],
+  "solution":"Conditioning on a decisive roll (sum $5$ or $2$), sum $5$ has $4$ combinations and sum $2$ has $1$, so $P=\\dfrac{4}{4+1}=\\dfrac45.$","solution_verified":true}
+]

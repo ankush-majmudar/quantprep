@@ -1,0 +1,73 @@
+[
+ {"slug":"theater-seating","techniques":["permutations","combinations","casework"],"primary":"permutations","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["No two same-gender adjacent forces strict alternation.",
+           "Two patterns: BGBG… or GBGB…; each has 5!·5! arrangements.",
+           "2·120·120 = 28800."],
+  "solution":"With $5$ boys and $5$ girls, no two of the same gender adjacent means the row must alternate, giving $2$ gender patterns. Each fills with $5!\\cdot5!$ orders, so $2\\cdot120\\cdot120=28800.$","solution_verified":true},
+
+ {"slug":"dart-distance","techniques":["uniform_cont","calculus"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["Radial density on the unit disk is f(r)=2r.",
+           "E[R]=∫₀¹ r·2r dr.",
+           "= 2/3."],
+  "solution":"For a uniform point on the unit disk the radius has density $f(r)=2r$, so $\\mathbb{E}[R]=\\int_0^1 2r^2\\,dr=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"overlapping-segments","techniques":["symmetry_prob","uniform_cont","combinations"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Segments are disjoint iff one pair is exactly the two smallest points.",
+           "The lowest point pairs with the 2nd-lowest with probability 1/3.",
+           "Overlap = 1 − 1/3 = 2/3."],
+  "solution":"The two segments fail to overlap only when one segment's endpoints are the two smallest of the four points, i.e. the lowest point is paired with the second-lowest — probability $\\tfrac13$. So overlap occurs with probability $1-\\tfrac13=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"breakeven-price-ii","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["As the writer you keep the $2.50 premium; you lose once S exceeds K.",
+           "Breakeven when payoff S−K equals the premium.",
+           "12 + 2.50 = 14.50."],
+  "solution":"The writer keeps the $\\$2.50$ premium and starts losing when $S-K$ exceeds it, so breakeven is $K+\\text{premium}=12+2.50=\\$14.50.$","solution_verified":true},
+
+ {"slug":"coloring-components-iii","techniques":["indicator_vars","linearity_exp","recursion"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["A maximal black run of length L contributes ⌊L/5⌋ non-overlapping components.",
+           "Sum the expected contributions over all runs (or count 5-windows minus the overlap correction).",
+           "The exact expectation is 284785/1048576, so p+q=1333361."],
+  "solution":"Each maximal black run of length $L$ yields $\\lfloor L/5\\rfloor$ non-overlapping $5$-components. Summing the expected contribution across all runs of the $20$-cell line gives $\\mathbb{E}=\\dfrac{284785}{1048576}$, so $p+q=1333361.$","solution_verified":true},
+
+ {"slug":"the-price-of-a-garden","techniques":["inequalities","algebra_manipulation"],"primary":"inequalities","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Check the triangle inequality: 55+62 = 117.",
+           "The sides are degenerate — no actual triangle (zero area).",
+           "Cost = 0."],
+  "solution":"Since $55+62=117$, the 'triangle' is degenerate with zero area, so the cost is $\\$0.$","solution_verified":true},
+
+ {"slug":"eight-dice","techniques":["stars_and_bars","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Subtract 1 from each die: yᵢ≥0 with Σyᵢ=4 (upper bound 5 never binds since 4<5).",
+           "Count nonnegative solutions: C(4+7,7).",
+           "C(11,7)=330."],
+  "solution":"Writing each die as $1+y_i$ with $y_i\\ge0$, we need $\\sum y_i=4$ (the cap of $5$ never binds). The count is $\\binom{4+7}{7}=\\binom{11}{7}=330$, so $x=330.$","solution_verified":true},
+
+ {"slug":"uniform-movement","techniques":["uniform_cont","joint_cont"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["Shift to U₁,U₂~U(0,1): E[|X−Y|]=E[|U₁−U₂|].",
+           "The mean absolute difference of two U(0,1) is 1/3.",
+           "= 1/3."],
+  "solution":"Shifting, $\\mathbb{E}[|X-Y|]=\\mathbb{E}[|U_1-U_2|]$ for $U_i\\sim U(0,1)$, which equals $\\tfrac13.$","solution_verified":true},
+
+ {"slug":"better-in-red-i","techniques":["indicator_vars","linearity_exp","symmetry_prob"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["Let Iᵢ indicate face i is red; E[T]=6·E[I₁] by symmetry.",
+           "P(a given face is red)=10²/10³=1/10.",
+           "6·(1/10)=3/5."],
+  "solution":"By symmetry $\\mathbb{E}[T]=6\\,P(\\text{a given face red})$. Each face of the big cube paints $10^2$ of the $10^3$ small cubes, so $P=\\tfrac1{10}$ and $\\mathbb{E}[T]=\\tfrac6{10}=\\tfrac35.$","solution_verified":true},
+
+ {"slug":"straddle-output","techniques":["normal","option_basics","calculus"],"primary":"normal","difficulty":"medium","firm_style":["finance"],
+  "hints":["Straddle value v=E[|S|] for S~N(0,1).",
+           "E[|S|]=√(2/π).",
+           "v²=2/π, so a=2."],
+  "solution":"With $K=0$, the straddle is worth $v=\\mathbb{E}[|S|]=\\sqrt{2/\\pi}$ for $S\\sim N(0,1)$. Then $v^2=\\dfrac2\\pi$, so $a=2.$","solution_verified":true},
+
+ {"slug":"balanced-beans-iii","techniques":["casework","construction"],"primary":"casework","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["The heavy bean is known to be heavier, so each weighing has 3 outcomes locating it among thirds.",
+           "Need 3ᵏ ≥ 18.",
+           "3²=9<18≤27=3³ ⇒ 3 weighings."],
+  "solution":"Since the odd bean is known to be heavier, each weighing's three outcomes narrow it to a third. As $3^2=9<18\\le27=3^3$, the minimum is $3$ weighings.","solution_verified":true},
+
+ {"slug":"strictly-better","techniques":["conditional_prob","total_probability","sample_space"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Condition on Jimmy's j: P(Simon>j)=(3000−j)/3000.",
+           "Average over j=1..1000: (1/1000)Σ(3000−j)/3000.",
+           "Σ(3000−j)=2,499,500 ⇒ 4999/6000."],
+  "solution":"Conditioning on Jimmy's number $j$, $P(\\text{Simon}>j)=\\tfrac{3000-j}{3000}$. Averaging over $j=1..1000$: $\\dfrac{1}{1000\\cdot3000}\\sum_{j=1}^{1000}(3000-j)=\\dfrac{2499500}{3000000}=\\dfrac{4999}{6000}.$","solution_verified":true}
+]

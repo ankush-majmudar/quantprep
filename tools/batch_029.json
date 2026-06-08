@@ -1,0 +1,71 @@
+[
+ {"slug":"atm-option-pricing","techniques":["option_basics"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Consider what a call worth as maturity T → ∞.",
+           "With infinite time the option is almost surely deep in the money; its value approaches the stock price.",
+           "Price ≈ S₀ = 190."],
+  "solution":"As $T\\to\\infty$ an ATM (or any) call's value approaches the underlying price (the discounted strike's present value vanishes and exercise is essentially certain). With $T=1000$ years the call is worth essentially $S_0=190.$","solution_verified":true},
+
+ {"slug":"six-card-sum","techniques":["optimal_strategy","cond_expectation","recursion"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Always guess the more numerous remaining type; expected correct this draw is max(a,j)/(a+j).",
+           "E(a,j)=max(a,j)/(a+j)+ (a/(a+j))E(a−1,j)+(j/(a+j))E(a,j−1).",
+           "Building up from E(1,1)=3/2: E(3,3)=41/10=4.1."],
+  "solution":"Guess the majority type each turn, scoring with probability $\\tfrac{\\max(a,j)}{a+j}$, then recurse: $E(a,j)=\\tfrac{\\max(a,j)}{a+j}+\\tfrac{a}{a+j}E(a-1,j)+\\tfrac{j}{a+j}E(a,j-1)$. Computing up ($E(1,1)=\\tfrac32,\\,E(2,2)=\\tfrac{17}6,\\,E(3,2)=\\tfrac{18}5$) gives $E(3,3)=\\tfrac12+\\tfrac12\\cdot\\tfrac{18}5+\\tfrac12\\cdot\\tfrac{18}5=\\tfrac{41}{10}=4.1.$","solution_verified":true},
+
+ {"slug":"flash-drive-finders","techniques":["ev_betting","optimal_strategy"],"primary":"ev_betting","difficulty":"medium","firm_style":["markets"],
+  "hints":["In units of $5000: prize=100, cost=n; P(found)=1−(0.1)ⁿ.",
+           "Maximize 100(1−0.1ⁿ)−n over integers.",
+           "n=2 gives 97 vs n=1→89, n=3→96.9 ⇒ hire 2."],
+  "solution":"In units of $\\$5000$, the prize is $100$ and each hire costs $1$. With independent finders, $P(\\text{found})=1-(0.1)^n$, so expected payoff is $100(1-0.1^n)-n$. This is $89,97,96.9,\\dots$ for $n=1,2,3$, maximized at $n=2.$","solution_verified":true},
+
+ {"slug":"couple-handshakes","techniques":["combinations"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Count all pairs of the 8 people, then remove the couples.",
+           "C(8,2)=28 total pairs; 4 are couples (no handshake).",
+           "28 − 4 = 24."],
+  "solution":"Among $8$ people there are $\\binom82=28$ pairs; the $4$ couples don't shake, leaving $28-4=24$ handshakes.","solution_verified":true},
+
+ {"slug":"continuous-blackjack","techniques":["optimal_strategy","uniform_cont","recursion"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["math"],
+  "hints":["Let q(x)=P(gambler loses if he stops at sum x) and r(x)=P(loses if he draws again).",
+           "The optimal threshold α satisfies q(α)=r(α), which reduces to e^α=(e+α)/(x+yα).",
+           "Identify the integers x,y from that indifference equation, then compute x²+y²."]},
+
+ {"slug":"sum-leak-i","techniques":["symmetry_prob","linearity_exp"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["By exchangeability E[X_i/S_40] is the same for all i.",
+           "Since Σ_{i=1}^{40} X_i/S_40 = 1, each term has expectation 1/40.",
+           "E[S_20/S_40]=20·(1/40)=1/2 (the moments are red herrings)."],
+  "solution":"By symmetry $\\mathbb{E}[X_i/S_{40}]$ is identical for all $i$, and summing gives $\\sum_{i=1}^{40}\\mathbb{E}[X_i/S_{40}]=\\mathbb{E}[S_{40}/S_{40}]=1$, so each is $\\tfrac1{40}$. Therefore $\\mathbb{E}[S_{20}/S_{40}]=20\\cdot\\tfrac1{40}=\\tfrac12$ (the given moments are irrelevant).","solution_verified":true},
+
+ {"slug":"pizza-passcode","techniques":["stars_and_bars","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["A non-decreasing code is determined by how many of each digit it uses.",
+           "Count multisets of size 7 from 10 digits.",
+           "C(7+10−1, 7)=C(16,7)=11440."],
+  "solution":"A non-decreasing code corresponds to a multiset of $7$ digits chosen from $\\{0,\\dots,9\\}$ (the order is forced). By stars and bars this is $\\binom{7+10-1}{7}=\\binom{16}{7}=11440.$","solution_verified":true},
+
+ {"slug":"strangle-delta","techniques":["option_basics"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Strangle = long put (K=3) + long call (K=5), with spot at 2.",
+           "The K=3 put is in-the-money (delta near −1); the K=5 call is far OTM (delta ≈ 0).",
+           "Net delta is negative ⇒ you want the underlying to fall: −1."],
+  "solution":"A strangle is a long put (here $K=3$) plus a long call ($K=5$). At $S_0=2$ the put is in-the-money with delta near $-1$, while the call is far out-of-the-money with delta $\\approx0$. The net delta is negative, so you'd prefer the underlying to go down: $-1.$","solution_verified":true},
+
+ {"slug":"triangular-selection-i","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["There are C(8,3)=56 possible triangles.",
+           "Whatever Matt picks, Aaron matches it with probability 1/56.",
+           "Answer 1/56."],
+  "solution":"There are $\\binom83=56$ possible triangles. Given Matt's choice, Aaron picks the same one with probability $\\tfrac1{56}.$","solution_verified":true},
+
+ {"slug":"coin-flipper-ruin","techniques":["gamblers_ruin","martingale"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["math"],
+  "hints":["Jason's balance is a fair random walk; use the martingale/optional-stopping argument.",
+           "P(Jason ruined)·0 + P(Vishnu ruined)·1500 = 500 (Jason's start).",
+           "Solve: P(Jason first)=2/3."]},
+
+ {"slug":"shiny-pennies","techniques":["combinations","complementary_count","negbinom"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Complement: the 3rd shiny appears within the first 4 draws ⟺ all 3 shiny are among the first 4.",
+           "P(3 shiny in first 4)=C(3,3)C(4,1)/C(7,4)=4/35.",
+           "Answer 1−4/35=31/35."],
+  "solution":"The third shiny appears by draw $4$ iff all $3$ shiny pennies are among the first $4$ drawn: $\\dfrac{\\binom33\\binom41}{\\binom74}=\\dfrac{4}{35}$. So it takes more than $4$ draws with probability $1-\\tfrac4{35}=\\tfrac{31}{35}.$","solution_verified":true},
+
+ {"slug":"extrinsic-value-ii","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Intrinsic value of a put = max(K−S, 0).",
+           "I=max(15−17,0)=0; E=price−intrinsic=7.2−0=7.2.",
+           "I²+E²=0+51.84=51.84."],
+  "solution":"The put is out-of-the-money: intrinsic value $I=\\max(15-17,0)=0$. Extrinsic value $E=P_0-I=7.2$. So $I^2+E^2=0+7.2^2=51.84.$","solution_verified":true}
+]

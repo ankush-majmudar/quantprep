@@ -1,0 +1,73 @@
+[
+ {"slug":"positive-25","techniques":["stars_and_bars"],"primary":"stars_and_bars","difficulty":"easy","firm_style":["math"],
+  "hints":["Set x+y+z=25 with each ≥1 (ordered).",
+           "Stars and bars on positive integers: C(25−1, 3−1).",
+           "C(24,2)=276."],
+  "solution":"We count ordered positive solutions of $x+y+z=25$. By stars and bars, that is $\\binom{25-1}{3-1}=\\binom{24}{2}=276.$","solution_verified":true},
+
+ {"slug":"put-arbitrage","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["Vertical bound: P(high K) − P(low K) ≤ (K_high−K_low)·Z.",
+           "Here 5.9−2.1=3.8 > (17−14)(0.9)=2.7 — the K=17 put is too expensive.",
+           "Sell P(17), buy P(14), buy 3 bonds: 0 Stock −1 Put(17) +1 Put(14) +3 Bonds."],
+  "solution":"For puts, $P(K_{\\text{high}})-P(K_{\\text{low}})\\le (K_{\\text{high}}-K_{\\text{low}})Z_0$. Here $5.9-2.1=3.8$ exceeds $(17-14)(0.9)=2.7$, so the $K=17$ put is overpriced. Arbitrage: sell the $K=17$ put, buy the $K=14$ put (net $+3.8$), and buy $3$ bonds ($-2.7$) to cover the at-most-$3$ payoff difference. Position: $0$ Stock $-1$ Put$(17)$ $+1$ Put$(14)$ $+3$ Bonds, locking in $1.1$ risk-free.","solution_verified":true},
+
+ {"slug":"coefficient-sum","techniques":["combinations","sequences_series"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["The coefficient of C(k,3) is (15−k); write 15−k as a count and swap sums.",
+           "Σ_{k=3}^{14}(15−k)C(k,3)=Σ_{j=4}^{15}Σ_{k=3}^{j−1}C(k,3)=Σ_{j=4}^{15}C(j,4).",
+           "By hockey stick = C(16,5)=4368."],
+  "solution":"The term with $\\binom{k}{3}$ has coefficient $15-k$. Writing $15-k=\\sum_{j=k+1}^{15}1$ and switching order, the sum is $\\sum_{j=4}^{15}\\sum_{k=3}^{j-1}\\binom{k}{3}=\\sum_{j=4}^{15}\\binom{j}{4}$ (hockey stick), which is again $\\binom{16}{5}=4368.$","solution_verified":true},
+
+ {"slug":"salary-covariance","techniques":["covariance","correlation"],"primary":"covariance","difficulty":"easy","firm_style":["math"],
+  "hints":["Cov = ρ·σ_M·σ_F.",
+           "= 0.85·13·11.",
+           "= 121.55."],
+  "solution":"$\\mathrm{Cov}(M,F)=\\rho\\,\\sigma_M\\sigma_F=0.85\\times13\\times11=121.55$ (thousand-dollars squared).","solution_verified":true},
+
+ {"slug":"american-call-arbitrage","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"easy","firm_style":["finance"],
+  "hints":["An American call is always worth at least the European (more rights), and equal when there are no dividends.",
+           "Here American (3.15) < European (3.21): buy American, sell European.",
+           "Credit = 3.21 − 3.15 = 0.06, risk-free (you never early-exercise without dividends)."],
+  "solution":"An American call is worth at least as much as the otherwise-identical European call; with no dividends they're equal (early exercise is never optimal). Here the American ($3.15$) is cheaper than the European ($3.21$), so buy the American and sell the European for a $3.21-3.15=0.06$ credit. The payoffs match at expiry, so the $0.06$ is risk-free.","solution_verified":true},
+
+ {"slug":"the-arithmetical-cabby","techniques":["number_theory"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Remainder 1 under 2,3,4,5,6 means n−1 is divisible by lcm(2..6)=60.",
+           "So n=60k+1, and also 11 | n.",
+           "60k+1≡0 mod 11 ⇒ k≡2 ⇒ smallest n=121."],
+  "solution":"Since dividing by $2,3,4,5,6$ leaves remainder $1$, $n-1$ is a multiple of $\\mathrm{lcm}(2,\\dots,6)=60$, so $n=60k+1$. Also $11\\mid n$: $60k+1\\equiv5k+1\\equiv0\\pmod{11}\\Rightarrow k\\equiv2\\pmod{11}$. The smallest is $k=2$, giving $n=121$ ($=11^2$).","solution_verified":true},
+
+ {"slug":"game-arbitrage","techniques":["arbitrage"],"primary":"arbitrage","difficulty":"hard","firm_style":["finance"],
+  "hints":["Exactly 2 teams advance, so the four contracts' payoffs always sum to 2.",
+           "Buying all four costs 0.84+0.73+0.25+0.15=1.97 but pays exactly 2.",
+           "Short 2 bonds (+2), buy all contracts (−1.97): risk-free credit 0.03."],
+  "solution":"Since exactly $2$ of the $4$ teams advance, the four contracts always pay a total of $2$. Their combined price is $0.84+0.73+0.25+0.15=1.97$. Buy all four ($-1.97$) and short $2$ bonds ($+2$): you collect $2-1.97=0.03$ now, and at expiry the contracts pay $2$ exactly covering the bonds. Risk-free credit $=0.03.$","solution_verified":true},
+
+ {"slug":"rook-on-a-chessboard","techniques":["zero_sum","invariants","backward_induction"],"primary":"zero_sum","difficulty":"medium","firm_style":["games"],
+  "hints":["Think in terms of distance still to travel up vs left; find the losing (P) positions.",
+           "The squares on the main diagonal (equal remaining up- and left-distance) are losing for the player to move.",
+           "The start has equal distances (7 and 7), so it's a P-position ⇒ go second."],
+  "solution":"Track the remaining up-distance and left-distance to the top-left corner. A position with these two equal is a losing position for the player about to move: any move makes them unequal, and the opponent can always restore equality (mirror the move). The start needs $7$ up and $7$ left — equal — so it is a losing position for the first player. You should go $\\textbf{second}$ ($2$).","solution_verified":true},
+
+ {"slug":"likely-targets","techniques":["normal","optimal_strategy","calculus"],"primary":"normal","difficulty":"hard","firm_style":["math"],
+  "hints":["Tiny targets ⇒ maximize the sum of N(μ,4) densities at the two target centers.",
+           "With σ=2 large relative to the gap, the sum has a single peak at the midpoint of the targets.",
+           "Midpoint of −1 and 3 is μ=1."],
+  "solution":"For radius $\\varepsilon\\to0$, the hit probability is proportional to the density at each target, so maximize $g(\\mu)=\\varphi\\!\\big(\\tfrac{x_A-\\mu}{2}\\big)+\\varphi\\!\\big(\\tfrac{x_B-\\mu}{2}\\big)$. With standard deviation $2$ (large vs. the separation $4$), $g$ is unimodal with its peak at the midpoint of the targets, $\\mu=\\tfrac{-1+3}{2}=1.$","solution_verified":true},
+
+ {"slug":"couples-reunited","techniques":["indicator_vars","linearity_exp"],"primary":"indicator_vars","difficulty":"easy","firm_style":["math"],
+  "hints":["Indicator per couple: paired with their spouse.",
+           "For any person, P(matched to their spouse)=1/17 (17 possible partners).",
+           "E=9·(1/17)=9/17."],
+  "solution":"Let $I_i=1$ if couple $i$ is paired. For a given person, the partner is uniform over the other $17$, so $P(I_i=1)=\\tfrac1{17}$. By linearity over $9$ couples, $\\mathbb{E}=9\\cdot\\tfrac1{17}=\\tfrac9{17}.$","solution_verified":true},
+
+ {"slug":"prime-janitors","techniques":["number_theory","parity"],"primary":"number_theory","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Door d is toggled once for each distinct prime dividing it; it starts open.",
+           "It stays open iff ω(d) (number of distinct prime factors) is even (including ω(1)=0).",
+           "Odd ω: 35 prime powers (ω=1) + 8 numbers with ω=3 = 43; open = 100−43 = 57."],
+  "solution":"Door $d$ is toggled once per distinct prime factor of $d$, starting open, so it ends open iff $\\omega(d)$ (its number of distinct prime factors) is even (with $\\omega(1)=0$). For $d\\le100$, $\\omega\\le3$. Count odd $\\omega$: $\\omega=1$ are prime powers — $25$ primes plus $10$ higher powers $=35$; $\\omega=3$ are $\\{30,60,90,42,84,66,78,70\\}=8$. So $43$ doors close and $100-43=57$ stay open.","solution_verified":true},
+
+ {"slug":"casino-war","techniques":["symmetry_prob","conditional_prob"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["By symmetry P(you higher)=P(dealer higher); the rest is a tie.",
+           "P(tie in rank)=3/51=1/17.",
+           "P(you win)=(1−1/17)/2=8/17."],
+  "solution":"By symmetry $P(\\text{you higher})=P(\\text{dealer higher})$, and the remaining probability is a rank tie. Given your card, $3$ of the other $51$ share its rank, so $P(\\text{tie})=\\tfrac3{51}=\\tfrac1{17}$. Hence $P(\\text{win})=\\tfrac{1-1/17}{2}=\\tfrac{8}{17}.$","solution_verified":true}
+]

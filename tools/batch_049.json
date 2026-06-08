@@ -1,0 +1,71 @@
+[
+ {"slug":"median-roll","techniques":["symmetry_prob","order_statistics","cond_expectation"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The die is symmetric under v ↔ 7−v, and so is the median.",
+           "A symmetric distribution about 3.5 has mean 3.5.",
+           "E[median]=7/2."],
+  "solution":"Replacing each face $v$ by $7-v$ leaves the dice distribution unchanged and maps the median to $7-\\text{median}$. So the median is symmetric about $3.5$ and $\\mathbb{E}[\\text{median}]=\\tfrac72.$","solution_verified":true},
+
+ {"slug":"hasty-horseman","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Army speed 1, horseman s. Forward trip: 50/(s−1); back trip: 50/(s+1); total time = 50 (army walks 50).",
+           "1/(s−1)+1/(s+1)=1 ⇒ s²−2s−1=0 ⇒ s=1+√2.",
+           "Distance = 50s = 50(1+√2) ⇒ a=50,b=1,c=2, abc=100."],
+  "solution":"Let the army move at speed $1$ and the horseman at $s$. The forward and back legs take $\\tfrac{50}{s-1}$ and $\\tfrac{50}{s+1}$, summing to the total time $50$: $\\tfrac1{s-1}+\\tfrac1{s+1}=1\\Rightarrow s^2-2s-1=0\\Rightarrow s=1+\\sqrt2$. The horseman travels $50s=50(1+\\sqrt2)$, so $abc=50\\cdot1\\cdot2=100.$","solution_verified":true},
+
+ {"slug":"clarences-bread","techniques":["cond_expectation","symmetry_prob","recursion"],"primary":"cond_expectation","difficulty":"hard","firm_style":["math"],
+  "hints":["Each large loaf becomes two smalls (one eaten immediately, one returned to be eaten later).",
+           "Use a 'first ace' argument on the successive appearances of the large loaves to count smalls eaten between them.",
+           "Sum the contributions plus the small eaten from each large."]},
+
+ {"slug":"thick-coin","techniques":["construction","uniform_cont","calculus"],"primary":"construction","difficulty":"hard","firm_style":["math"],
+  "hints":["Inscribe the coin (cylinder, radius 1, thickness h) in a concentric sphere; 'side' = the spherical zone between the two faces.",
+           "By Archimedes, zone area ∝ height, so P(side)=h/(2R) with R=√(1+(h/2)²).",
+           "h/(2√(1+h²/4))=1/3 ⇒ 8h²=4 ⇒ h=1/√2 ⇒ k=2."],
+  "solution":"Inscribe the coin in a concentric sphere; landing on its side corresponds to a spherical zone of height $h$, whose area is proportional to $h$ (Archimedes). So $P(\\text{side})=\\dfrac{h}{2R}$ with $R=\\sqrt{1+(h/2)^2}$. Setting $\\dfrac{h}{2\\sqrt{1+h^2/4}}=\\dfrac13$ gives $9h^2=4+h^2$, so $h^2=\\tfrac12$ and $h=\\tfrac1{\\sqrt2}$, i.e. $k=2.$","solution_verified":true},
+
+ {"slug":"infected-dinner-ii","techniques":["construction","casework","sequences_series"],"primary":"construction","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Group the 1000 people into bubbles; within a bubble everyone meets everyone over many rounds, while bubbles are paired across rounds.",
+           "Arrange so the infection spreads as slowly as possible (the worst case), placing the last healthy person far from the source.",
+           "Carefully count the rounds to reach the last person."]},
+
+ {"slug":"first-pair","techniques":["conditional_prob","sample_space"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The first card fixes the rank; the second must match it.",
+           "3 of the remaining 51 cards share the rank.",
+           "3/51 = 1/17."],
+  "solution":"Whatever the first card is, $3$ of the remaining $51$ cards share its rank, so $P=\\tfrac3{51}=\\tfrac1{17}.$","solution_verified":true},
+
+ {"slug":"cheese-lover-ii","techniques":["inequalities","exponential","variance_props"],"primary":"inequalities","difficulty":"easy","firm_style":["math"],
+  "hints":["T₁₀₀ has mean 25000 and variance 100·250²=6.25×10⁶.",
+           "Chebyshev: P(T>30000)≤P(|T−25000|>5000)≤Var/5000².",
+           "= 6.25×10⁶/2.5×10⁷ = 1/4."],
+  "solution":"$T_{100}$ has mean $25000$ and variance $100\\cdot250^2=6.25\\times10^6$. By Chebyshev, $P(T>30000)\\le P(|T-25000|>5000)\\le\\dfrac{6.25\\times10^6}{5000^2}=\\dfrac14.$","solution_verified":true},
+
+ {"slug":"mcqueen-speeding","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["When A finishes (1000m), B is at 800, so v_B/v_A=4/5; similarly v_C/v_B=4/5.",
+           "v_C/v_A=(4/5)²=16/25, so C is at 1000·16/25=640.",
+           "Distance left = 1000−640 = 360 m."],
+  "solution":"When A finishes, B has gone $800$m, so $v_B/v_A=\\tfrac45$; likewise $v_C/v_B=\\tfrac45$. Thus $v_C/v_A=\\tfrac{16}{25}$, putting C at $640$m. C is $1000-640=360$ meters from finishing.","solution_verified":true},
+
+ {"slug":"largest-inscribed-circle","techniques":["algebra_manipulation","calculus"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["math"],
+  "hints":["Inradius r = Area/s. With sides 16,16,24, s=28 and Area=48√7 (Heron).",
+           "r=48√7/28=12√7/7, so area=πr²=144π/7.",
+           "p+q=144+7=151."],
+  "solution":"With $s=28$, Heron gives Area $=\\sqrt{28\\cdot12\\cdot12\\cdot4}=48\\sqrt7$. The inradius is $r=\\tfrac{\\text{Area}}{s}=\\tfrac{48\\sqrt7}{28}=\\tfrac{12\\sqrt7}{7}$, so the incircle area is $\\pi r^2=\\dfrac{144\\pi}{7}$. Hence $p+q=144+7=151.$","solution_verified":true},
+
+ {"slug":"soccer-bets","techniques":["arbitrage","algebra_manipulation","number_theory"],"primary":"arbitrage","difficulty":"easy","firm_style":["markets"],
+  "hints":["Equal profit means equal gross returns: 3A=4B=11C.",
+           "Smallest whole-dollar bets: set each to lcm(3,4,11)=132 ⇒ A=44,B=33,C=12.",
+           "Total staked 89, return 132, profit 132−89=43."],
+  "solution":"For equal profit in every outcome the gross returns must match: $3A=4B=11C$. The smallest whole-dollar bets set each to $\\mathrm{lcm}(3,4,11)=132$, giving $A=44,B=33,C=12$ (total $\\$89$). The guaranteed return is $\\$132$, so the profit is $132-89=\\$43.$","solution_verified":true},
+
+ {"slug":"77-multiple-i","techniques":["number_theory"],"primary":"number_theory","difficulty":"easy","firm_style":["math","speed"],
+  "hints":["70000/77 ≈ 909.1, round up to 910.",
+           "77·910.",
+           "= 70070."],
+  "solution":"$70000/77\\approx909.1$, so the next multiple uses $910$: $77\\cdot910=70070.$","solution_verified":true},
+
+ {"slug":"illegible-dice","techniques":["construction","number_theory","sample_space"],"primary":"construction","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["To make the sum uniform on 1–12 with a normal 1–6 die, the other die must shift by 0 or 6.",
+           "Faces {0,0,0,6,6,6} give sums 1–6 and 7–12 each with probability 1/12.",
+           "Sum of faces = 3·0+3·6 = 18."],
+  "solution":"For the sum to be uniform on $1$–$12$, the illegible die must have faces $\\{0,0,0,6,6,6\\}$: adding $0$ gives sums $1$–$6$ and adding $6$ gives $7$–$12$, each value with probability $\\tfrac1{12}$. The face sum is $3(0)+3(6)=18.$","solution_verified":true}
+]

@@ -1,0 +1,73 @@
+[
+ {"slug":"9-for-1","techniques":["symmetry_prob","linearity_exp"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Because k is uniform on 0..8, each digit is equally likely a 1 or a 9.",
+           "So E[each digit]=(1+9)/2=5.",
+           "E[X]=5·11111111=55555555."],
+  "solution":"Choosing $k$ uniformly makes each digit symmetric between $1$ and $9$, so $\\mathbb{E}[\\text{digit}]=5$. Hence $\\mathbb{E}[X]=5(10^7+\\cdots+1)=5\\cdot11111111=55555555.$","solution_verified":true},
+
+ {"slug":"coin-toss-game-i","techniques":["geometric","symmetry_prob","recursion"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["A first flip can't win; from each player's second flip on, they complete the pair w.p. 1/2.",
+           "From turn 3 it's alternating Bernoulli(1/2) trials, Alice first.",
+           "P = 1/2 + (1/4)P ⇒ P = 2/3."],
+  "solution":"Nobody can win on a first flip; thereafter each own-flip completes the H-and-T pair with probability $\\tfrac12$. From Alice's second flip onward the winners alternate as Bernoulli$(\\tfrac12)$ trials with Alice first: $P=\\tfrac12+\\tfrac14P$, giving $P=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"dice-labels","techniques":["permutations","combinations","casework"],"primary":"permutations","difficulty":"medium","firm_style":["math"],
+  "hints":["There are 6! labelings, but the rotation group of a cube has 24 elements.",
+           "Distinct labelings = 6!/24.",
+           "720/24 = 30."],
+  "solution":"There are $6!$ ways to assign the numbers, but $24$ rotations of the cube identify equivalent labelings, so the count is $\\dfrac{6!}{24}=\\dfrac{720}{24}=30.$","solution_verified":true},
+
+ {"slug":"paying-bail","techniques":["recursion","geometric","cond_expectation"],"primary":"recursion","difficulty":"medium","firm_style":["markets"],
+  "hints":["You must draw 5 real bills in a row (a fake resets progress); each draw is real w.p. 1/2.",
+           "Expected draws for k consecutive successes = (p^{−k}−1)/(1−p).",
+           "(2⁵−1)/(1/2) = 31·2 = 62."],
+  "solution":"You need $5$ real bills in a row, each real with probability $\\tfrac12$; a fake resets. The expected number of draws for $k$ consecutive successes is $\\dfrac{p^{-k}-1}{1-p}=\\dfrac{2^5-1}{1/2}=62.$","solution_verified":true},
+
+ {"slug":"half-cycle","techniques":["linearity_exp","permutations","sequences_series"],"primary":"linearity_exp","difficulty":"hard","firm_style":["math"],
+  "hints":["The expected number of k-cycles in a random permutation is 1/k.",
+           "Sum over k=n+1..2n: Σ1/k → ln(2n)−ln(n).",
+           "Limit = ln 2, so q=2."],
+  "solution":"A random permutation has $\\tfrac1k$ expected $k$-cycles, so $\\mathbb{E}[C_n]=\\sum_{k=n+1}^{2n}\\tfrac1k\\to\\ln(2n)-\\ln(n)=\\ln2$. Thus $q=2.$","solution_verified":true},
+
+ {"slug":"nearest-circular-neighbor","techniques":["order_statistics","uniform_cont","linearity_exp"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["Fix X₁; P(nearest arc L≥x)=(1−x/π)^{19} for x∈(0,π).",
+           "E[L]=∫₀^π (1−x/π)^{19}dx = π/20 radians.",
+           "In degrees: 180/20 = 9."],
+  "solution":"Fixing $X_1$, no other point lies within arc $x$ on either side with probability $(1-\\tfrac{x}{\\pi})^{19}$, so $\\mathbb{E}[L]=\\int_0^\\pi(1-\\tfrac{x}{\\pi})^{19}dx=\\tfrac{\\pi}{20}$ radians $=\\tfrac{180}{20}=9^\\circ.$","solution_verified":true},
+
+ {"slug":"game-time","techniques":["combinations","gamblers_ruin","sequences_series"],"primary":"combinations","difficulty":"hard","firm_style":["math"],
+  "hints":["Each $5 adds change, each $10 needs change: it's a balanced-ballot (Dyck path) condition.",
+           "P(every prefix has #fives ≥ #tens) = 1/(n+1) with n=19.",
+           "= 1/20."],
+  "solution":"The cashier can always make change iff in every prefix the number of \\$5 bills is at least the number of \\$10 bills — a balanced ballot condition. With $n=19$ of each, the probability is the Catalan ratio $\\dfrac1{n+1}=\\dfrac1{20}.$","solution_verified":true},
+
+ {"slug":"bet-size-i","techniques":["optimal_strategy","ev_betting"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["finance"],
+  "hints":["Kelly fraction f* = p − q/b.",
+           "p=0.75, q=0.25, b=1.",
+           "0.75 − 0.25 = 0.5."],
+  "solution":"The Kelly criterion gives $f^*=p-\\dfrac{q}{b}=0.75-\\dfrac{0.25}{1}=0.5$, i.e. bet $50\\%$ of the bankroll.","solution_verified":true},
+
+ {"slug":"price-an-option","techniques":["option_basics","arbitrage"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["min(S_T,25) = S_T − max(S_T−25,0).",
+           "Replicate: long the underlying, short the K=25 call.",
+           "21 − 0.7 = 20.3."],
+  "solution":"Since $\\min(S_T,25)=S_T-\\max(S_T-25,0)$, replicate by holding the underlying and shorting the $K=25$ call: price $=S_0-C_{25}=21-0.7=20.3.$","solution_verified":true},
+
+ {"slug":"confident-double-heads","techniques":["bayes","conditional_prob"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["P(double | n heads) = 1/(1 + 19/2ⁿ).",
+           "Require this ≥ 0.95 ⇒ 2ⁿ > 361.",
+           "n = 9 (2⁹=512)."],
+  "solution":"By Bayes, $P(\\text{double}\\mid n\\text{ heads})=\\dfrac{1}{1+19/2^n}$. Requiring $\\ge\\tfrac{19}{20}$ gives $2^n>361$, so the minimum is $n=9.$","solution_verified":true},
+
+ {"slug":"pricing-a-forward","techniques":["arbitrage","time_value","option_basics"],"primary":"arbitrage","difficulty":"easy","firm_style":["finance"],
+  "hints":["The forward replicates as long underlying minus K zero-coupon bonds.",
+           "Price = S₀ − K·e^{−rT} = 3 − 2e^{−0.04}.",
+           "≈ 3 − 1.9216 = 1.08."],
+  "solution":"A forward is replicated by holding the asset and borrowing the present value of $K$: price $=S_0-Ke^{-rT}=3-2e^{-0.04}\\approx3-1.9216=1.08.$","solution_verified":true},
+
+ {"slug":"straddle-price","techniques":["option_basics","normal"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["ATM straddle ≈ 2·S·σ·√T/√(2π).",
+           "= 2·20·0.4·√0.36 / 2.5066.",
+           "= 9.6/2.5066 ≈ 3.83."],
+  "solution":"An at-the-money straddle is approximately $2S\\sigma\\sqrt{T}/\\sqrt{2\\pi}=\\dfrac{2(20)(0.4)\\sqrt{0.36}}{2.5066}=\\dfrac{9.6}{2.5066}\\approx3.83.$","solution_verified":true}
+]

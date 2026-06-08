@@ -1,0 +1,72 @@
+[
+ {"slug":"acceptancerejection-sampling","techniques":["uniform_cont","calculus","geometric"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["Choose a = max of f on [0,1]; f'(x)=0 at x=2/3 gives a=16/9.",
+           "Acceptance probability = (area under f)/(rectangle area)=1/(1·16/9)=9/16.",
+           "Expected rejects per accept = (1−p)/p = (7/16)/(9/16) = 7/9."],
+  "solution":"The tightest rectangle uses $a=\\max f=f(\\tfrac23)=\\tfrac{16}{9}$. Each point is accepted with probability $\\dfrac{\\int_0^1 f}{1\\cdot a}=\\dfrac{1}{16/9}=\\dfrac9{16}$. The number of rejects before an accept is geometric with mean $\\dfrac{1-p}{p}=\\dfrac{7/16}{9/16}=\\dfrac79.$","solution_verified":true},
+
+ {"slug":"skewed","techniques":["symmetry_prob","pdf_cdf","variance_props"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["The density is a Laplace distribution, symmetric about μ.",
+           "Symmetric distributions have zero third central moment.",
+           "Skewness = 0."],
+  "solution":"The density $f(x)=\\tfrac{\\lambda}2 e^{-\\lambda|x-\\mu|}$ is symmetric about $\\mu$, so all odd central moments vanish. Hence the skewness $\\mathbb{E}[((X-\\mu_X)/\\sigma_X)^3]=0.$","solution_verified":true},
+
+ {"slug":"take-and-roll-ii","techniques":["optimal_strategy","cond_expectation","geometric"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["markets"],
+  "hints":["Each take must be preceded by a roll, so a 'cycle' = (rolls until ≥n) + 1 take.",
+           "Cycle length 20/(21−n)+1 actions; #cycles=100/(cycle); take value averages (20+n)/2.",
+           "Maximize over n: n=6 gives (300/7)·13 = 3900/7."],
+  "solution":"Since each take needs a fresh roll, a cycle is (roll until $\\ge n$) then take, of length $\\tfrac{20}{21-n}+1$ actions, each yielding a take worth $\\tfrac{20+n}2$. Expected payout $=\\dfrac{100}{\\tfrac{20}{21-n}+1}\\cdot\\dfrac{20+n}{2}$, maximized at $n=6$: $\\dfrac{300}{7}\\cdot13=\\dfrac{3900}{7}.$","solution_verified":true},
+
+ {"slug":"increasing-chains","techniques":["indicator_vars","linearity_exp","permutations"],"primary":"indicator_vars","difficulty":"easy","firm_style":["math"],
+  "hints":["There are n−5 possible starting positions for a 6-chain; each is increasing with probability 1/6!.",
+           "E[#6-chains]=(n−5)/720.",
+           "Set =1: n−5=720 ⇒ n=725."],
+  "solution":"Each of the $n-5$ starting positions gives an increasing $6$-chain with probability $\\tfrac1{6!}=\\tfrac1{720}$, so $\\mathbb{E}=\\tfrac{n-5}{720}$. Setting this to $1$ gives $n=725.$","solution_verified":true},
+
+ {"slug":"no-heads","techniques":["poisson","law_total_exp","sequences_series"],"primary":"poisson","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on N: P(no heads | N=n)=(1/2)ⁿ.",
+           "Sum: Σ (1/2)ⁿ·2ⁿe^{−2}/n! = e^{−2}Σ1/n! = e^{−2}·e.",
+           "= e^{−1}, so a=−1."]},
+
+ {"slug":"uniform-equilibrium-i","techniques":["zero_sum","optimal_strategy"],"primary":"zero_sum","difficulty":"easy","firm_style":["games"],
+  "hints":["Player 1 wants the numbers far apart; Player 2 wants them close.",
+           "From any pure pair, one player can profitably deviate (P1 to an endpoint, P2 toward P1).",
+           "No pure-strategy equilibrium exists ⇒ 0."],
+  "solution":"Player 1 maximizes $|a-b|$ and Player 2 minimizes it. For any fixed $(a,b)$, Player 2 can move toward $a$ to reduce the distance, or Player 1 can move to an endpoint to increase it — so no pair is stable. There are $0$ pure-strategy Nash equilibria.","solution_verified":true},
+
+ {"slug":"ols-review-iii","techniques":["regression","variance_props"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["x̄=0, ȳ=1; S_xy=7, S_xx=10 ⇒ β₁=0.7, β₀=1.",
+           "Residuals 0.4,−0.3,0,−0.7,0.6 ⇒ SSE=1.10.",
+           "s²=SSE/(n−2)=1.10/3=11/30."],
+  "solution":"Here $\\bar x=0,\\bar y=1$, $S_{xy}=7$, $S_{xx}=10$, so $\\hat\\beta_1=0.7,\\hat\\beta_0=1$. The residuals are $0.4,-0.3,0,-0.7,0.6$ with $\\text{SSE}=1.10$, so $s^2=\\dfrac{1.10}{5-2}=\\dfrac{11}{30}.$","solution_verified":true},
+
+ {"slug":"counting-odds","techniques":["number_theory","sequences_series"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Odd and divisible by 3 means ≡3 (mod 6).",
+           "Count 3,9,15,…,2019.",
+           "(2019−3)/6 + 1 = 337."],
+  "solution":"Numbers that are odd and divisible by $3$ are exactly those $\\equiv3\\pmod6$: $3,9,\\dots,2019$. Their count is $\\dfrac{2019-3}{6}+1=337.$","solution_verified":true},
+
+ {"slug":"builders","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Scale to 600 units: Alice 5/min, Bob 6/min. After 40 min they've built 440, leaving 160.",
+           "Three together finish 160 in 10 min: (5+6+c)·10=160 ⇒ c=5.",
+           "Charlie alone: 600/5 = 120 min."],
+  "solution":"Take the pipe as $600$ units: Alice builds $5$/min, Bob $6$/min. In $40$ min they finish $440$, leaving $160$, done in $10$ more minutes by all three: $(5+6+c)\\cdot10=160\\Rightarrow c=5$. So Charlie alone needs $600/5=120$ minutes.","solution_verified":true},
+
+ {"slug":"basketball-practice-ii","techniques":["symmetry_prob","recursion","cond_expectation"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Starting 1 make, 1 miss, the made-fraction is a martingale fixed at 1/2 (Pólya urn).",
+           "So the expected fraction made over 100 attempts is 1/2.",
+           "E[made]=100·(1/2)=50."],
+  "solution":"This is a Pólya urn: the running fraction made is a martingale equal to its start $\\tfrac12$. Hence the expected number made in $100$ attempts is $100\\cdot\\tfrac12=50.$","solution_verified":true},
+
+ {"slug":"double-data-trouble-v","techniques":["regression","variance_props","linear_algebra"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["Doubling data: X'=2X so (X'ᵀX')⁻¹=(1/4)(XᵀX)⁻¹; but the y's (and errors) also double, so σ'²=4σ².",
+           "Var(β')=σ'²(X'ᵀX')⁻¹=4σ²·(1/4)(XᵀX)⁻¹.",
+           "= σ²(XᵀX)⁻¹ = Var(β) ⇒ c=1."],
+  "solution":"With $X'=2X$, $(X'^TX')^{-1}=\\tfrac14(X^TX)^{-1}$. But doubling the data also doubles the responses and errors, so $\\sigma'^2=4\\sigma^2$. Hence $\\mathrm{Var}(\\hat\\beta')=4\\sigma^2\\cdot\\tfrac14(X^TX)^{-1}=\\sigma^2(X^TX)^{-1}=\\mathrm{Var}(\\hat\\beta)$, giving $c=1.$","solution_verified":true},
+
+ {"slug":"8-card-heart","techniques":["variance_props","indicator_vars","covariance"],"primary":"variance_props","difficulty":"easy","firm_style":["math"],
+  "hints":["Number of hearts is hypergeometric (n=8, K=13, N=52).",
+           "Var = n·(K/N)(1−K/N)·(N−n)/(N−1).",
+           "= 8·(1/4)(3/4)·(44/51) = 22/17."],
+  "solution":"The count of hearts is hypergeometric, with $\\mathrm{Var}=n\\cdot\\tfrac{K}{N}\\big(1-\\tfrac{K}{N}\\big)\\cdot\\tfrac{N-n}{N-1}=8\\cdot\\tfrac14\\cdot\\tfrac34\\cdot\\tfrac{44}{51}=\\dfrac{22}{17}.$","solution_verified":true}
+]

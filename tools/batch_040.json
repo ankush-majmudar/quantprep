@@ -1,0 +1,72 @@
+[
+ {"slug":"exponential-maximum-asymptotic","techniques":["order_statistics","exponential","sequences_series"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["P(M_n ≤ ln n)=P(all X_i ≤ ln n)=(1−e^{−ln n})ⁿ.",
+           "= (1−1/n)ⁿ → e^{−1}.",
+           "= 1/e ⇒ b=1."],
+  "solution":"$P(M_n\\le\\ln n)=\\prod P(X_i\\le\\ln n)=(1-e^{-\\ln n})^n=(1-\\tfrac1n)^n\\to e^{-1}=\\tfrac1e$. So $b=1.$","solution_verified":true},
+
+ {"slug":"uniform-triangle","techniques":["uniform_cont","symmetry_prob","joint_cont"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["A triangle fails iff one side exceeds the sum of the other two; the three failure events are disjoint.",
+           "Each has probability 1/6 by symmetry (e.g. P(X>Y+Z)=1/6).",
+           "1 − 3·(1/6) = 1/2."],
+  "solution":"No triangle forms iff one length exceeds the other two combined; these three events are disjoint and each has probability $\\tfrac16$ (e.g. $P(X>Y+Z)=\\tfrac16$). So $P(\\text{triangle})=1-3\\cdot\\tfrac16=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"bivariate-covariance","techniques":["covariance","normal","transformations"],"primary":"covariance","difficulty":"medium","firm_style":["math"],
+  "hints":["Write X=Z₁, Y=ρZ₁+√(1−ρ²)Z₂ with Z₁,Z₂ IID N(0,1).",
+           "Cov(X,Y²)=E[Z₁Y²]; expand Y² — all terms involve odd moments of Z₁ (or E[Z₂])=0.",
+           "Cov(X,Y²)=0."],
+  "solution":"With $X=Z_1$, $Y=\\rho Z_1+\\sqrt{1-\\rho^2}Z_2$: $\\mathbb{E}[XY^2]=\\rho^2\\mathbb{E}[Z_1^3]+2\\rho\\sqrt{1-\\rho^2}\\mathbb{E}[Z_1^2 Z_2]+(1-\\rho^2)\\mathbb{E}[Z_1 Z_2^2]=0$ (each term has $\\mathbb{E}[Z_1^3]=0$ or $\\mathbb{E}[Z_2]=0$). Since $\\mathbb{E}[X]=0$, $\\mathrm{Cov}(X,Y^2)=0.$","solution_verified":true},
+
+ {"slug":"3-heads-3-tails-i","techniques":["negbinom","symmetry_prob","cond_expectation"],"primary":"negbinom","difficulty":"easy","firm_style":["math"],
+  "hints":["By symmetry the answer is twice the expected tosses for Anna (3 heads) to win.",
+           "Anna wins in 3,4,5 tosses with probabilities 1/8, 3/16, 6/32.",
+           "2·(3·1/8+4·3/16+5·6/32)=2·66/32=33/8."]},
+
+ {"slug":"30-side-difference","techniques":["order_statistics","linearity_exp","sample_space"],"primary":"order_statistics","difficulty":"easy","firm_style":["math"],
+  "hints":["For two IID uniforms on 1..n, E[|X−Y|]=(n²−1)/(3n).",
+           "Plug n=30.",
+           "(900−1)/90 = 899/90."],
+  "solution":"For two independent uniform rolls on $1,\\dots,n$, $\\mathbb{E}[|X-Y|]=\\dfrac{n^2-1}{3n}$. With $n=30$ this is $\\dfrac{899}{90}.$","solution_verified":true},
+
+ {"slug":"redblue-die-match","techniques":["binomial","conditional_prob","sample_space"],"primary":"binomial","difficulty":"easy","firm_style":["math"],
+  "hints":["Fix the red value; each blue matches it independently with probability 1/6.",
+           "Exactly one of two blues matches: C(2,1)(1/6)(5/6).",
+           "= 10/36 = 5/18."],
+  "solution":"Given the red value, each blue die matches it with probability $\\tfrac16$. Exactly one of the two blues matching is $\\binom21\\tfrac16\\cdot\\tfrac56=\\tfrac{10}{36}=\\tfrac{5}{18}.$","solution_verified":true},
+
+ {"slug":"ramen-bowl","techniques":["linearity_exp","recursion","sequences_series"],"primary":"linearity_exp","difficulty":"hard","firm_style":["math"],
+  "hints":["With n noodles (2n ends), each join closes a loop with probability 1/(2k−1) when 2k ends remain.",
+           "E[circles]=Σ_{k=1}^{100} 1/(2k−1).",
+           "≈ 1+1/3+…+1/199 ≈ 3.28 → 3."],
+  "solution":"When $2k$ ends remain, picking a first end, the chance its partner is its own other end (closing a loop) is $\\tfrac1{2k-1}$. By linearity $\\mathbb{E}[\\text{circles}]=\\sum_{k=1}^{100}\\tfrac1{2k-1}\\approx3.28$, which rounds to $3.$","solution_verified":true},
+
+ {"slug":"option-dice-i","techniques":["ev_betting","option_basics"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["Underlying = product of two dice; call pays max(X−30,0).",
+           "Only X=36 (6×6) exceeds 30, paying 6.",
+           "6·(1/36) = 1/6."],
+  "solution":"The call on the product pays $\\max(X-30,0)$, nonzero only when $X=36$ (the roll $6,6$), paying $6$. So the price is $6\\cdot\\tfrac1{36}=\\tfrac16.$","solution_verified":true},
+
+ {"slug":"crossing-pairs","techniques":["combinations","recursion","symmetry_prob"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Count non-crossing perfect matchings of 6 points vs all matchings.",
+           "Non-crossing matchings = Catalan C₃ = 5; total matchings = 5!! = 15.",
+           "5/15 = 1/3."],
+  "solution":"The number of non-crossing perfect matchings of $6$ points on a circle is the Catalan number $C_3=5$, out of $5!!=15$ total matchings. So $P=\\tfrac{5}{15}=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"circular-delete","techniques":["recursion","number_theory","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["After the first pass, the survivors are the even numbers; the pattern repeats on a halved set.",
+           "The last number deleted is the highest power of 2 within the range.",
+           "Largest power of 2 ≤ 2000 is 1024."],
+  "solution":"Each pass deletes every other number, so after the first pass only multiples of $2$ remain, then multiples of $4$, and so on. The number surviving longest (last deleted) is the largest power of $2$ in range, $2^{10}=1024.$","solution_verified":true},
+
+ {"slug":"the-perfect-hedge-ii","techniques":["optimal_strategy","variance_props","correlation"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["finance"],
+  "hints":["Use the hedge weights from ρ=−1: w₁=σ₂/(σ₁+σ₂)≈0.341, w₂≈0.659.",
+           "Portfolio return = 0.04w₁ + 0.02w₂.",
+           "≈ 0.0136+0.0132 = 0.0268 (2.68%)."],
+  "solution":"The risk-free weights are $w_1=\\dfrac{\\sigma_2}{\\sigma_1+\\sigma_2}\\approx0.341$, $w_2\\approx0.659$. The portfolio's expected return is $0.04(0.341)+0.02(0.659)\\approx0.0268$, i.e. $2.68\\%.$","solution_verified":true},
+
+ {"slug":"variance-of-uniform","techniques":["uniform_cont","variance_props"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["E[X]=1/2; compute E[X²]=∫₀¹x²dx=1/3.",
+           "Var=E[X²]−(E[X])²=1/3−1/4.",
+           "= 1/12."],
+  "solution":"$\\mathbb{E}[X]=\\tfrac12$ and $\\mathbb{E}[X^2]=\\int_0^1x^2dx=\\tfrac13$, so $\\mathrm{Var}(X)=\\tfrac13-\\tfrac14=\\tfrac1{12}.$","solution_verified":true}
+]

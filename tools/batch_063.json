@@ -1,0 +1,71 @@
+[
+ {"slug":"skater-boy","techniques":["linearity_exp","variance_props","symmetry_prob"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Write position as a sum of 16 unit vectors in random directions.",
+           "E[|ΣVᵢ|²]=ΣE[|Vᵢ|²]+cross terms; cross terms vanish by symmetry.",
+           "= 16·1 = 16."],
+  "solution":"The displacement is $\\sum_{i=1}^{16}V_i$ of unit vectors in independent uniform directions. Then $\\mathbb{E}[|\\sum V_i|^2]=\\sum\\mathbb{E}[|V_i|^2]+\\sum_{i\\ne j}\\mathbb{E}[V_i\\cdot V_j]=16+0=16.$","solution_verified":true},
+
+ {"slug":"socks-and-shelves","techniques":["bayes","conditional_prob"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["P(2 gray | top)=0.4²=0.16; P(2 gray | bottom)=0.7²=0.49.",
+           "Both shelves equally likely a priori.",
+           "0.16/(0.16+0.49) = 16/65."],
+  "solution":"By Bayes with equal priors, $P(\\text{top}\\mid 2\\text{ gray})=\\dfrac{0.4^2}{0.4^2+0.7^2}=\\dfrac{0.16}{0.65}=\\dfrac{16}{65}.$","solution_verified":true},
+
+ {"slug":"gambling-addiction","techniques":["cond_expectation","sequences_series","conditional_prob"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["P(lose game n)=(n+1)/(n+2); P(W≥k)=Π telescopes to 2/(k+1).",
+           "E[W]=Σ_{k≥1} P(W≥k)=Σ 2/(k+1).",
+           "This harmonic series diverges ⇒ infinite ⇒ −1."],
+  "solution":"Losing game $n$ has probability $\\tfrac{n+1}{n+2}$, so $P(W\\ge k)=\\prod_{n=1}^{k-1}\\tfrac{n+1}{n+2}=\\tfrac{2}{k+1}$. Then $\\mathbb{E}[W]=\\sum_{k\\ge1}\\tfrac{2}{k+1}=\\infty$, so the answer is $-1.$","solution_verified":true},
+
+ {"slug":"student-appointment","techniques":["permutations","combinations"],"primary":"permutations","difficulty":"easy","firm_style":["math"],
+  "hints":["Total schedules = anagrams of 111222333444555 = 15!/(3!)⁵ = 168168000.",
+           "Subtract those with the restricted student in slot 1: a fraction 3/15 of the total.",
+           "168168000·(1−1/5) = 134534400."],
+  "solution":"Total schedules are anagrams of $111222333444555$: $\\dfrac{15!}{(3!)^5}=168168000$. The restricted student occupies slot 1 in a fraction $\\tfrac{3}{15}=\\tfrac15$ of these, so the count is $168168000\\cdot\\tfrac45=134534400.$","solution_verified":true},
+
+ {"slug":"corner-meet","techniques":["markov_chain","conditional_prob","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["From each inner square, track the random up-left/up-right walk to the top row, reflecting at the side edges.",
+           "Compute the corner-reaching probability from each of the 9 starting squares.",
+           "Average over the uniform starting square."]},
+
+ {"slug":"egg-drop-ii","techniques":["recursion","casework","combinations"],"primary":"recursion","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["With k eggs and d drops, the max testable floors satisfy f(d,k)=f(d−1,k−1)+f(d−1,k)+1.",
+           "This equals C(d,1)+C(d,2)+C(d,3) for 3 eggs.",
+           "Evaluate at d=9."]},
+
+ {"slug":"meek-mill","techniques":["bayes","conditional_prob"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["P(perform & Philly)=0.8·0.1=0.08; P(perform & Baltimore)=0.2·0.8=0.16.",
+           "P(Philly | perform)=0.08/(0.08+0.16).",
+           "= 1/3."],
+  "solution":"By Bayes, $P(\\text{Philly}\\mid\\text{perform})=\\dfrac{0.8\\cdot0.1}{0.8\\cdot0.1+0.2\\cdot0.8}=\\dfrac{0.08}{0.24}=\\dfrac13.$","solution_verified":true},
+
+ {"slug":"divisible-dice","techniques":["symmetry_prob","conditional_prob","number_theory"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Condition on the first 9 dice summing to x.",
+           "The last die is uniform on 1–6, hitting each residue mod 6 exactly once.",
+           "So the total is uniform mod 6 ⇒ 1/6."],
+  "solution":"Whatever the first nine dice sum to, the tenth die is uniform on $\\{1,\\dots,6\\}$, taking each residue mod $6$ exactly once. Hence the total is uniform mod $6$, and the probability of divisibility is $\\tfrac16.$","solution_verified":true},
+
+ {"slug":"abc-sum","techniques":["symmetry_prob","combinations","algebra_manipulation"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["0.abcabc… = (100a+10b+c)/999, summed over distinct ordered (a,b,c).",
+           "Each digit position sums to 72·(0+…+9)=3240 over the 720 triples.",
+           "111·3240/999 = 360."],
+  "solution":"Each repeating decimal equals $\\tfrac{100a+10b+c}{999}$. Over the $10\\cdot9\\cdot8=720$ distinct ordered triples, each position's digits sum to $72(0+1+\\cdots+9)=3240$, so the total is $\\dfrac{111\\cdot3240}{999}=360.$","solution_verified":true},
+
+ {"slug":"rng-on-rng","techniques":["optimal_strategy","uniform_cont","cond_expectation"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["markets"],
+  "hints":["Stop when a draw exceeds threshold T; T solves the indifference V=E[max(x,V)]−0.02.",
+           "0.5V²−V+0.48=0 ⇒ V=0.8 (the threshold).",
+           "First draw is free, so payout=∫₀¹max(x,0.8)dx = 0.64+0.18 = 0.82."],
+  "solution":"The continuation value $V$ (with the \\$0.02 fee) satisfies $V=\\int_0^1\\max(x,V)\\,dx-0.02$, i.e. $0.5V^2-V+0.48=0$, giving threshold $V=0.8$. Since the first draw is free, the expected payout is $\\int_0^1\\max(x,0.8)\\,dx=0.64+0.18=0.82.$","solution_verified":true},
+
+ {"slug":"racecar-speed","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Equal-distance laps: average speed is the harmonic mean.",
+           "3 / (1/100 + 1/150 + 1/200), and 1/100+1/150+1/200 = 13/600.",
+           "= 1800/13."],
+  "solution":"With equal lap distances the average speed is the harmonic mean: $\\dfrac{3}{\\tfrac1{100}+\\tfrac1{150}+\\tfrac1{200}}=\\dfrac{3}{13/600}=\\dfrac{1800}{13}.$","solution_verified":true},
+
+ {"slug":"significant-others","techniques":["hypothesis_test","regression","correlation"],"primary":"hypothesis_test","difficulty":"hard","firm_style":["stats"],
+  "hints":["For no-intercept regression, t = r√(n−1)/√(1−r²) under H₀.",
+           "r=1/(10√3) gives r/√(1−r²)=1/√299, so t=√((n−1)/299).",
+           "Need t≥1.645 ⇒ n−1≥1.645²·299≈809.1 ⇒ n=811."],
+  "solution":"The test statistic is $t=\\dfrac{r\\sqrt{n-1}}{\\sqrt{1-r^2}}$. With $r=\\tfrac1{10\\sqrt3}$, $r^2=\\tfrac1{300}$ and $\\dfrac{r}{\\sqrt{1-r^2}}=\\dfrac1{\\sqrt{299}}$, so $t=\\sqrt{\\tfrac{n-1}{299}}$. Requiring $t\\ge1.645$ gives $n-1\\ge1.645^2\\cdot299\\approx809.1$, so $n=811.$","solution_verified":true}
+]

@@ -1,0 +1,72 @@
+[
+ {"slug":"ferry-stops","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Each stop maps x → x/4 + 7; apply it 3 times.",
+           "After 3 stops the count is (x+588)/64; need it integer with all stages integer.",
+           "x=52 works: 52→20→12→10, smallest final = 10."],
+  "solution":"Each stop sends $x\\mapsto\\tfrac x4+7$. After three stops the count is $\\tfrac{x}{64}+\\tfrac{147}{16}=\\tfrac{x+588}{64}$. Taking $x=52$ keeps every stage integral: $52\\to20\\to12\\to10$. The smallest possible final count is $10.$","solution_verified":true},
+
+ {"slug":"rain-chance-i","techniques":["independence","complementary_count"],"primary":"independence","difficulty":"easy","firm_style":["math"],
+  "hints":["No rain = dry both days; use independence.",
+           "P(dry Sat)=0.6, P(dry Sun)=0.3.",
+           "0.6·0.3=0.18."],
+  "solution":"By independence, $P(\\text{no rain})=P(\\text{dry Sat})\\,P(\\text{dry Sun})=0.6\\times0.3=0.18.$","solution_verified":true},
+
+ {"slug":"poisson-process-covariance","techniques":["poisson","covariance"],"primary":"poisson","difficulty":"easy","firm_style":["math"],
+  "hints":["Write N(15)=(N(15)−N(5))+N(5) and use independent increments.",
+           "Cov(N(5),N(15))=Var(N(5)).",
+           "=5·5=25."],
+  "solution":"Since increments are independent, $\\mathrm{Cov}(N(5),N(15))=\\mathrm{Cov}(N(5),N(5))=\\mathrm{Var}(N(5))=5\\cdot5=25.$","solution_verified":true},
+
+ {"slug":"midrange","techniques":["exponential","order_statistics","symmetry_prob"],"primary":"exponential","difficulty":"medium","firm_style":["math"],
+  "hints":["Range=|X₁−X₂|, midpoint=(X₁+X₂)/2; the condition becomes max > 3·min.",
+           "P(max>3min)=2P(X₂>3X₁) by symmetry.",
+           "∫e^{−x}e^{−3x}dx=1/4, times 2 = 1/2."],
+  "solution":"The range is $O_2-O_1$ and the midpoint $\\tfrac{X_1+X_2}{2}=\\tfrac{O_1+O_2}{2}$; the condition $O_2-O_1>\\tfrac{O_1+O_2}{2}$ simplifies to $O_2>3O_1$, i.e. $\\max>3\\min$. By symmetry $P=2P(X_2>3X_1)=2\\int_0^\\infty e^{-x}e^{-3x}dx=2\\cdot\\tfrac14=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"min-card","techniques":["symmetry_prob","sample_space","cond_expectation"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The replacement is a uniform card from the 48 not originally selected.",
+           "By symmetry that card is marginally uniform over the deck.",
+           "E[rank]=(1+…+13)/13=7."],
+  "solution":"The replacement card is drawn uniformly from the $48$ cards not initially selected. By symmetry over which $4$ were selected, the replacement is marginally a uniformly random card of the deck, so its expected rank is $\\tfrac{1+2+\\dots+13}{13}=7.$","solution_verified":true},
+
+ {"slug":"fair-bounty-ii","techniques":["ev_betting","order_statistics","symmetry_prob"],"primary":"ev_betting","difficulty":"medium","firm_style":["markets"],
+  "hints":["Expected doors opened to reach the first of 2 'money' doors among 7 is (7+1)/(2+1) (First-Ace).",
+           "= 8/3 openings, each costing x; fair means cost = $200.",
+           "x·(8/3)=200 ⇒ x=75."],
+  "solution":"By the 'First Ace' argument, the $2$ money doors split the $5$ empties into $3$ gaps, so the expected number of doors opened to hit the first money door is $\\tfrac{7+1}{2+1}=\\tfrac83$. Fairness requires $x\\cdot\\tfrac83=200$, so $x=75.$","solution_verified":true},
+
+ {"slug":"cube-slice","techniques":["casework","construction"],"primary":"casework","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Focus on the center sub-cube of the 3×3×3.",
+           "Its 6 faces are all interior, each requiring a separate cut (repositioning can't create two opposite faces in one cut).",
+           "So at least 6 cuts; 6 suffice."],
+  "solution":"Consider the central $1\\times1\\times1$ cube. Each of its $6$ faces is an internal surface that must be produced by a distinct cut (no single planar cut can form two opposite faces of it, even with rearranging). Hence at least $6$ cuts are needed, and $6$ (two per axis) suffice.","solution_verified":true},
+
+ {"slug":"diverse-distributions","techniques":["algebra_manipulation","uniform_cont","exponential"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["math"],
+  "hints":["Mean of U(0,λ) is λ/2; mean of Exp(λ) is 1/λ.",
+           "Set λ/2 = 1/λ.",
+           "λ²=2."],
+  "solution":"Equating means, $\\tfrac{\\lambda}{2}=\\tfrac1\\lambda$, so $\\lambda^2=2.$","solution_verified":true},
+
+ {"slug":"ols-review-i","techniques":["regression","covariance"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["x̄=0, ȳ=1.5. Compute S_xy and S_xx.",
+           "S_xy=−6, S_xx=10 ⇒ β₁=−0.6; β₀=ȳ−β₁x̄=1.5.",
+           "β₀+β₁=1.5−0.6=0.9."],
+  "solution":"Here $\\bar x=0,\\bar y=1.5$. Then $S_{xy}=\\sum x_i(y_i-\\bar y)=-6$ and $S_{xx}=\\sum x_i^2=10$, so $\\hat\\beta_1=-0.6$ and $\\hat\\beta_0=\\bar y-\\hat\\beta_1\\bar x=1.5$. Their sum is $1.5-0.6=0.9.$","solution_verified":true},
+
+ {"slug":"swift-betting","techniques":["optimal_strategy","ev_betting","uniform_cont"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["P(stop before 234x)=x; profit is −2x then, +x otherwise.",
+           "Expected profit = x(−2x)+(1−x)x = x−3x².",
+           "Maximize: 1−6x=0 ⇒ x=1/6."]},
+
+ {"slug":"modified-rng","techniques":["cond_variance","cond_expectation","uniform_cont"],"primary":"cond_variance","difficulty":"medium","firm_style":["math"],
+  "hints":["X~U(0,1), Y|X~U(X,1): E[Y|X]=(X+1)/2, Var(Y|X)=(1−X)²/12.",
+           "E[Y]=3/4; Var(Y)=E[(1−X)²]/12+Var((X+1)/2)=1/36+1/48=7/144.",
+           "E[Y]/Var(Y)=(3/4)/(7/144)=108/7."],
+  "solution":"With $E[Y\\mid X]=\\tfrac{X+1}2$ and $\\mathrm{Var}(Y\\mid X)=\\tfrac{(1-X)^2}{12}$: $E[Y]=E[\\tfrac{X+1}2]=\\tfrac34$, and $\\mathrm{Var}(Y)=E\\big[\\tfrac{(1-X)^2}{12}\\big]+\\mathrm{Var}\\big(\\tfrac{X+1}2\\big)=\\tfrac1{36}+\\tfrac1{48}=\\tfrac{7}{144}$. Hence $\\dfrac{E[Y]}{\\mathrm{Var}(Y)}=\\dfrac{3/4}{7/144}=\\dfrac{108}{7}.$","solution_verified":true},
+
+ {"slug":"squid-game-ii","techniques":["binomial","conditional_prob"],"primary":"binomial","difficulty":"medium","firm_style":["math"],
+  "hints":["Each of the 10 tiles produces an elimination (first attempt wrong) independently w.p. 1/2.",
+           "Contestant i wins iff exactly i−1 eliminations occur: p_i = C(10,i−1)/2^10.",
+           "Maximized at i−1=5: C(10,5)/1024 = 252/1024 = 63/256."],
+  "solution":"Each tile causes exactly one elimination if its first guess is wrong (probability $\\tfrac12$), independently across the $10$ tiles. Contestant $i$ wins iff there are exactly $i-1$ eliminations, so $p_i=\\dfrac{\\binom{10}{i-1}}{2^{10}}$. This is largest at $i-1=5$: $\\dfrac{\\binom{10}{5}}{1024}=\\dfrac{252}{1024}=\\dfrac{63}{256}.$","solution_verified":true}
+]

@@ -1,0 +1,72 @@
+[
+ {"slug":"digit-halving","techniques":["number_theory","algebra_manipulation"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Let the number be 10a+b with digit product ab = (10a+b)/2.",
+           "Rearrange: b(2a−1)=10a ⇒ b=10a/(2a−1).",
+           "a=3 gives b=6 ⇒ 36 (3·6=18=36/2)."],
+  "solution":"Let the number be $10a+b$ with $ab=\\tfrac{10a+b}{2}$. Then $2ab=10a+b\\Rightarrow b(2a-1)=10a\\Rightarrow b=\\tfrac{10a}{2a-1}$. Testing digits, $a=3$ gives $b=6$, so the number is $36$ (and $3\\cdot6=18=36/2$).","solution_verified":true},
+
+ {"slug":"statistical-test-review-i","techniques":["hypothesis_test","binomial","normal"],"primary":"hypothesis_test","difficulty":"easy","firm_style":["math"],
+  "hints":["Under H₀, X~Binom(36,½): mean 18, sd 3. Reject if x≤14 or x≥22.",
+           "α=P(|X−18|≥4); approximate with continuity correction.",
+           "2·Φ((14.5−18)/3)=2·Φ(−1.167)≈0.243."],
+  "solution":"Under $H_0$, $X\\sim\\mathrm{Binom}(36,\\tfrac12)$ with mean $18$, sd $3$. The rejection region $|x-18|\\ge4$ is $x\\le14$ or $x\\ge22$. With a normal approximation and continuity correction, $\\alpha=2\\,P(X\\le14)\\approx2\\,\\Phi\\!\\big(\\tfrac{14.5-18}{3}\\big)=2\\,\\Phi(-1.167)\\approx0.243.$","solution_verified":true},
+
+ {"slug":"boys-with-girls","techniques":["indicator_vars","linearity_exp"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["There are 24 adjacent pairs in a row of 25; use an indicator per pair.",
+           "P(a given pair is one boy + one girl)=2·(15/25)(10/24)=1/2.",
+           "E=24·(1/2)=12."],
+  "solution":"In a row of $25$ there are $24$ adjacent pairs. A given pair is a boy–girl pair with probability $2\\cdot\\tfrac{15}{25}\\cdot\\tfrac{10}{24}=\\tfrac12$. By linearity, $\\mathbb{E}=24\\cdot\\tfrac12=12.$","solution_verified":true},
+
+ {"slug":"uniform-order-i","techniques":["symmetry_prob","order_statistics"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The event is that X₁ is the largest of the 4 IID values X₁,X₂,X₁₀,X₁₅.",
+           "By symmetry each is equally likely to be the max.",
+           "P=1/4."],
+  "solution":"$X_1>\\max\\{X_2,X_{10},X_{15}\\}$ means $X_1$ is the largest of those $4$ IID uniforms. By symmetry each is equally likely to be the maximum, so the probability is $\\tfrac14.$","solution_verified":true},
+
+ {"slug":"close-couples","techniques":["indicator_vars","linearity_exp","symmetry_prob"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["Seats alternate sexes; fix a husband — his two neighbours are women's seats.",
+           "His wife occupies one of the n women's seats; P(she's adjacent)=2/n.",
+           "E=n·(2/n)=2."],
+  "solution":"With seats alternating by sex, each husband has exactly two adjacent women's seats out of $n$. His wife is equally likely in any of the $n$ women's seats, so $P(\\text{couple }i\\text{ together})=\\tfrac2n$. By linearity, $\\mathbb{E}[N]=n\\cdot\\tfrac2n=2.$","solution_verified":true},
+
+ {"slug":"hitting-mgf","techniques":["optional_stopping","martingale","brownian","cond_expectation"],"primary":"optional_stopping","difficulty":"medium","firm_style":["math"],
+  "hints":["Use the exponential martingale Z_t=e^{θB_t−θ²t/2} and optional stopping at T_a, where B_{T_a}=±a.",
+           "Symmetry gives cosh(θa)·E[e^{−θ²T/2}]=1, so with λ=θ²/2: E[e^{−λT_a}]=1/cosh(a√(2λ)).",
+           "Note 1/cosh(4·ln2)=32/257 (since cosh(4ln2)=(2⁴+2⁻⁴)/2=257/32)."]},
+
+ {"slug":"circular-birthdays","techniques":["permutations","symmetry_prob","sample_space"],"primary":"permutations","difficulty":"easy","firm_style":["math"],
+  "hints":["Circular seatings of 7 people: (7−1)!=720.",
+           "Age order occurs in exactly 2 ways (clockwise or counterclockwise).",
+           "P=2/720=1/360."],
+  "solution":"There are $(7-1)!=720$ distinct circular arrangements. Age order around the table occurs in exactly $2$ of them (increasing clockwise or counterclockwise), so $P=\\tfrac{2}{720}=\\tfrac1{360}.$","solution_verified":true},
+
+ {"slug":"find-the-triangle","techniques":["algebra_manipulation","casework"],"primary":"algebra_manipulation","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Four consecutive integers are three sides plus one height.",
+           "Try sides 13,14,15 (a classic Heronian triangle) with the height to side 14.",
+           "Area=84 (Heron), and height to base 14 is 12 — so {12,13,14,15} are consecutive. Area=84."],
+  "solution":"Take sides $13,14,15$. By Heron's formula with $s=21$, the area is $\\sqrt{21\\cdot8\\cdot7\\cdot6}=\\sqrt{7056}=84$. The height to the base $14$ is $\\frac{2\\cdot84}{14}=12$. So the four consecutive whole numbers are $12,13,14,15$ (height $12$, sides $13,14,15$), and the area is $84.$","solution_verified":true},
+
+ {"slug":"terminating-sum","techniques":["sequences_series","number_theory"],"primary":"sequences_series","difficulty":"hard","firm_style":["math"],
+  "hints":["1/k terminates iff k=2^a·5^b (a,b≥0).",
+           "Σ 1/k³ factors as a product of two geometric series.",
+           "(Σ 8^{−a})(Σ 125^{−b})=(8/7)(125/124)=250/217."],
+  "solution":"$1/k$ terminates iff $k=2^a5^b$ with $a,b\\ge0$. Then\n$$\\sum_{k\\in S}\\frac1{k^3}=\\Big(\\sum_{a\\ge0}\\frac1{8^a}\\Big)\\Big(\\sum_{b\\ge0}\\frac1{125^b}\\Big)=\\frac{8}{7}\\cdot\\frac{125}{124}=\\frac{1000}{868}=\\frac{250}{217}.$$","solution_verified":true},
+
+ {"slug":"managerial-oversight","techniques":["poisson","exponential"],"primary":"poisson","difficulty":"medium","firm_style":["math"],
+  "hints":["Poisson thinning: thank-you cards from each firm are Poisson with rate λ·p.",
+           "Rates: 6·(1/6)=1 and 10·(1/5)=2; combined rate 3.",
+           "Expected inter-arrival time = 1/3."],
+  "solution":"By Poisson thinning, thank-you cards arrive as Poisson processes of rates $6\\cdot\\tfrac16=1$ and $10\\cdot\\tfrac15=2$. The superposition has rate $1+2=3$, so the expected time between carded clients is $\\tfrac13.$","solution_verified":true},
+
+ {"slug":"cylindrical-intersection","techniques":["calculus"],"primary":"calculus","difficulty":"medium","firm_style":["math"],
+  "hints":["This is the Steinmetz solid of two perpendicular cylinders.",
+           "Each horizontal cross-section (fixed y) is a square of side 2√(1−y²).",
+           "V=∫_{−1}^1 (2√(1−y²))² dy = 4∫_{−1}^1(1−y²)dy = 16/3."],
+  "solution":"Model the cylinders as $x^2+y^2\\le1$ and $y^2+z^2\\le1$. At fixed $y$, the cross-section is a square $|x|,|z|\\le\\sqrt{1-y^2}$ with area $(2\\sqrt{1-y^2})^2=4(1-y^2)$. So\n$$V=\\int_{-1}^{1}4(1-y^2)\\,dy=4\\Big(2-\\tfrac23\\Big)=\\frac{16}{3}.$$","solution_verified":true},
+
+ {"slug":"bolt-variance-i","techniques":["hypothesis_test"],"primary":"hypothesis_test","difficulty":"easy","firm_style":["math"],
+  "hints":["Testing a variance uses the chi-square statistic.",
+           "χ² = (n−1)s²/σ₀² = 11·0.0003/0.0002.",
+           "= 11·1.5 = 16.5."],
+  "solution":"For a variance test the statistic is $\\chi^2=\\dfrac{(n-1)s^2}{\\sigma_0^2}=\\dfrac{11\\cdot0.0003}{0.0002}=11\\cdot1.5=16.5.$","solution_verified":true}
+]

@@ -1,0 +1,72 @@
+[
+ {"slug":"red-tower","techniques":["recursion","sequences_series","combinations"],"primary":"recursion","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the last block (1-tall or 2-tall): T_n=T_{n−1}+T_{n−2}.",
+           "With T_1=1, T_2=2 this is the Fibonacci sequence.",
+           "T_12 = F_13 = 233."],
+  "solution":"Let $T_n$ be the number of height-$n$ towers. The top block is $1$-tall (leaving $T_{n-1}$) or $2$-tall (leaving $T_{n-2}$), so $T_n=T_{n-1}+T_{n-2}$ with $T_1=1,T_2=2$. This gives $2,3,5,8,13,21,34,55,89,144,233$, so $T_{12}=233.$","solution_verified":true},
+
+ {"slug":"put-option-price-estimate","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"hard","firm_style":["finance"],
+  "hints":["A vanilla put = ∫ of binary puts: max(K−S,0)=∫_0^K 1(S≤k)dk.",
+           "Approximate (lower bound) with binary puts at the strikes below K, each times the spacing 2.5.",
+           "2.5·(0.64+0.42+0.31+0.20)=2.5·1.57=3.925."],
+  "solution":"A vanilla put satisfies $\\max(K-S,0)=\\int_0^K\\mathbf 1(S\\le k)\\,dk$, so it's a sum of binary puts. Using the binary puts strictly below $15$ as a lower step approximation with spacing $2.5$: $2.5\\,(0.64+0.42+0.31+0.20)=2.5\\cdot1.57=3.925.$","solution_verified":true},
+
+ {"slug":"highest-drawn-card","techniques":["order_statistics","combinations","tail_sum"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["P(max ≤ v)=C(4v,4)/C(52,4) (there are 4v cards of value ≤ v).",
+           "Use E[max]=Σ_{v=0}^{12} P(max>v)=13 − Σ_{v=0}^{12} C(4v,4)/C(52,4).",
+           "= 13 − 554918/270725 ≈ 10.95."],
+  "solution":"With $4v$ cards of value at most $v$, $P(\\max\\le v)=\\dfrac{\\binom{4v}{4}}{\\binom{52}{4}}$. Then $\\mathbb{E}[\\max]=\\sum_{v=0}^{12}P(\\max>v)=13-\\dfrac{\\sum_{v=0}^{12}\\binom{4v}{4}}{\\binom{52}{4}}=13-\\dfrac{554918}{270725}\\approx10.95.$","solution_verified":true},
+
+ {"slug":"4-before-2","techniques":["conditional_prob","geometric"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Only sums of 4 (prob 3/36) and 2 (prob 1/36) matter; other rolls are ignored.",
+           "Condition on a decisive roll.",
+           "P=3/(3+1)=3/4."],
+  "solution":"A sum of $4$ has probability $\\tfrac3{36}$ and a sum of $2$ has $\\tfrac1{36}$; all other rolls are irrelevant. Conditioning on a decisive roll, $P(4\\text{ first})=\\dfrac{3}{3+1}=\\dfrac34.$","solution_verified":true},
+
+ {"slug":"rowdy-root","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["The product of four consecutive integers plus 1 is a perfect square.",
+           "n(n+1)(n+2)(n+3)+1=(n²+3n+1)².",
+           "n=120: 120²+3·120+1=14761."],
+  "solution":"For consecutive integers, $n(n+1)(n+2)(n+3)+1=(n^2+3n+1)^2$. With $n=120$, $n^2+3n+1=14400+360+1=14761$, so the square root is $14761.$","solution_verified":true},
+
+ {"slug":"infinite-maturity","techniques":["option_basics","time_value"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["A European option can only be exercised at maturity.",
+           "With maturity → ∞, that payoff is received infinitely far away; its present value is discounted to 0.",
+           "Value = 0."],
+  "solution":"A European call can only be exercised at maturity, and with infinite maturity that payoff arrives infinitely far in the future. Under positive interest rates its present value (discounted by $e^{-rT}$) tends to $0$, so the option is worth $0.$","solution_verified":true},
+
+ {"slug":"spacious-uniform-values-i","techniques":["uniform_cont","order_statistics","joint_cont"],"primary":"uniform_cont","difficulty":"hard","firm_style":["math"],
+  "hints":["For n uniform points all pairwise ≥ d apart, P = (1−(n−1)d)^n.",
+           "Here n=101, d=1/1000, so (n−1)d=100/1000=1/10.",
+           "P=(9/10)^101 ⇒ a=9,b=10,c=101 ⇒ a+b+c=120."],
+  "solution":"For $n$ uniform points on $(0,1)$ to be pairwise at least $d$ apart, the probability is $(1-(n-1)d)^n$ (subtract the mandatory gaps and rescale). With $n=101$, $d=\\tfrac1{1000}$: $(1-\\tfrac{100}{1000})^{101}=(\\tfrac9{10})^{101}$. So $a=9,b=10,c=101$ and $a+b+c=120.$","solution_verified":true},
+
+ {"slug":"parking-rush","techniques":["conditional_prob","symmetry_prob","casework"],"primary":"conditional_prob","difficulty":"hard","firm_style":["math"],
+  "hints":["All 12 times (3 execs + 9 employees) are iid uniform, so every arrival order is equally likely.",
+           "Simon parks only if a spot is free when he arrives; track free spots as a reflected walk (execs add, parking employees subtract, floored at 0).",
+           "Condition on Simon's rank and the counts of execs vs employees before him."]},
+
+ {"slug":"die-to-number","techniques":["number_theory","sample_space"],"primary":"number_theory","difficulty":"easy","firm_style":["math"],
+  "hints":["Divisibility by 8 depends only on the last 3 digits (each 1–6).",
+           "Need 4d₁+2d₂+d₃≡0 (mod 8); since 4d₁+2d₂ is even, exactly the pairs with it ≢0 work, one d₃ each.",
+           "27 of 36 (d₁,d₂) pairs work ⇒ 27/216 = 1/8."],
+  "solution":"Only the last three digits matter: need $100d_1+10d_2+d_3\\equiv4d_1+2d_2+d_3\\equiv0\\pmod 8$. Since $4d_1+2d_2$ is even, for each $(d_1,d_2)$ there's a valid $d_3\\in\\{1,\\dots,6\\}$ exactly when $4d_1+2d_2\\not\\equiv0\\pmod8$, which holds for $27$ of the $36$ pairs (each giving one $d_3$). So $P=\\tfrac{27}{216}=\\tfrac18.$","solution_verified":true},
+
+ {"slug":"coin-flipping-competition-ii","techniques":["geometric","independence","sequences_series"],"primary":"geometric","difficulty":"hard","firm_style":["math"],
+  "hints":["T,G,P IID Geom(1/2); sum (1/2)^{t+g+p} over t≤g≤p.",
+           "Collapse the geometric sums innermost-out.",
+           "Result: (8/3)Σ(1/8)^t = (8/3)(1/7) = 8/21."],
+  "solution":"With $T,G,P\\sim\\mathrm{Geom}(\\tfrac12)$, $P(T\\le G\\le P)=\\sum_{t\\le g\\le p}(\\tfrac12)^{t+g+p}$. Summing over $p\\ge g$ gives $(\\tfrac12)^{g-1}$; then over $g\\ge t$ gives $\\tfrac83(\\tfrac14)^t$; then over $t\\ge1$: $\\tfrac83\\cdot\\dfrac{1/8}{7/8}=\\dfrac{8}{21}.$","solution_verified":true},
+
+ {"slug":"tennis-deuces","techniques":["combinations"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Deuce means each player has won 3 points.",
+           "Total 6 points, choose which 3 the first player won.",
+           "C(6,3)=20."],
+  "solution":"Reaching $40$–$40$ means each player has won $3$ points, so $6$ points were played and we choose which $3$ the first player won: $\\binom63=20.$","solution_verified":true},
+
+ {"slug":"intersecting-chords","techniques":["indicator_vars","linearity_exp","combinations"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["Use an indicator for each pair of chords intersecting.",
+           "Four random points pair into chords; they cross with probability 1/3.",
+           "E = C(10,2)·(1/3) = 45/3 = 15."],
+  "solution":"Two chords come from $4$ random points; of the $3$ ways to pair $4$ points into two chords, exactly $1$ makes them cross, so each pair intersects with probability $\\tfrac13$. By linearity over $\\binom{10}{2}=45$ pairs, the expected number of intersections is $45\\cdot\\tfrac13=15.$","solution_verified":true}
+]

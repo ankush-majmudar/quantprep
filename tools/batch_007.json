@@ -1,0 +1,73 @@
+[
+ {"slug":"collecting-toys-ii","techniques":["indicator_vars","linearity_exp"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["Attach an indicator to each of the 5 toy types: 1 if you collect it.",
+           "E[distinct] = 5·P(a given toy appears in ≥1 of 7 boxes) = 5·(1−(4/5)⁷).",
+           "5·(1−16384/78125) = 61741/15625."],
+  "solution":"Let $I_i=1$ if toy $i$ is collected. By symmetry each toy is missed in all $7$ boxes with probability $(4/5)^7$, so $\\mathbb{E}[I_i]=1-(4/5)^7$. By linearity,\n$$\\mathbb{E}[\\text{distinct}]=5\\Big(1-\\big(\\tfrac45\\big)^7\\Big)=5\\Big(1-\\tfrac{16384}{78125}\\Big)=\\tfrac{61741}{15625}.$$","solution_verified":true},
+
+ {"slug":"coefficient-swap","techniques":["regression","correlation","covariance"],"primary":"regression","difficulty":"medium","firm_style":["math"],
+  "hints":["Both slopes involve the same correlation r: β_x=r·σ_y/σ_x and β_y=r·σ_x/σ_y.",
+           "From β_x=1 and σ_y/σ_x=√(20/10)=√2, get r=1/√2.",
+           "β_y = r·σ_x/σ_y = (1/√2)/√2 = 1/2."],
+  "solution":"For simple regression, $\\beta_x=r\\dfrac{\\sigma_y}{\\sigma_x}$ and $\\beta_y=r\\dfrac{\\sigma_x}{\\sigma_y}$. With $\\sigma_x=\\sqrt{10},\\sigma_y=\\sqrt{20}$, $\\dfrac{\\sigma_y}{\\sigma_x}=\\sqrt2$, so $\\beta_x=r\\sqrt2=1\\Rightarrow r=\\tfrac{1}{\\sqrt2}$. Then $\\beta_y=r\\dfrac{\\sigma_x}{\\sigma_y}=\\dfrac{1}{\\sqrt2}\\cdot\\dfrac{1}{\\sqrt2}=\\tfrac12.$ (Also note $\\beta_x\\beta_y=r^2$.)","solution_verified":true},
+
+ {"slug":"exercise-gamma","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Recall Black–Scholes gamma for an ATM option and how it scales with the underlying price.",
+           "Gamma = φ(d₁)/(Sσ√T); ATM means S=K, so gamma ∝ 1/(K·σ√T).",
+           "Lowest strike has highest gamma ⇒ K=10."],
+  "solution":"Black–Scholes gamma is $\\Gamma=\\dfrac{\\varphi(d_1)}{S\\sigma\\sqrt T}$. For ATM options $S=K$ and $d_1$ is essentially the same across them, so $\\Gamma\\propto \\dfrac{1}{K}$. The smallest strike therefore has the largest gamma: $K=10.$","solution_verified":true},
+
+ {"slug":"make-your-martingale-iv","techniques":["ito","martingale","brownian"],"primary":"ito","difficulty":"easy","firm_style":["math"],
+  "hints":["Apply Itô to W_t^{10}; the dt term must be cancelled by a_t.",
+           "d(W^{10}) = 10W⁹dW + ½·10·9·W⁸ dt = 10W⁹dW + 45W⁸ dt.",
+           "So a_t = 45W⁸ ⇒ A=45, B=8, AB=360."],
+  "solution":"By Itô, $d(W_t^{10})=10W_t^{9}\\,dW_t+\\tfrac12\\cdot10\\cdot9\\,W_t^{8}\\,dt=10W_t^{9}dW_t+45W_t^{8}dt.$ Then $dX_t=10W_t^{9}dW_t+(45W_t^{8}-a_t)dt$ is driftless (a martingale) iff $a_t=45W_t^{8}$. So $A=45,\\,B=8$ and $AB=360.$","solution_verified":true},
+
+ {"slug":"paired-values-i","techniques":["parity","casework","combinations"],"primary":"parity","difficulty":"medium","firm_style":["math"],
+  "hints":["A product is odd only when both factors are odd; with three odds total, you can have at most one odd product.",
+           "The sum is odd ⟺ exactly one of the three pairs is odd·odd.",
+           "Count: 3 pair-slots × (6 ways to place 2 odds) × (4! for the rest)=432 of 720 ⇒ 3/5."],
+  "solution":"A pair's product is odd iff both numbers are odd. There are three odd values $\\{1,3,5\\}$, so at most one pair can be odd·odd, and the sum of the three products is odd iff exactly one pair is odd·odd.\n\nChoose which of the 3 pairs is the odd·odd one (3 ways), fill it with 2 of the 3 odds in order ($3\\cdot2=6$ ways); the remaining $1$ odd $+3$ evens fill the other four slots in $4!=24$ ways (no further odd·odd possible). Favorable $=3\\cdot6\\cdot24=432$ out of $6!=720$, giving $\\tfrac{432}{720}=\\tfrac35.$","solution_verified":true},
+
+ {"slug":"the-weight-of-the-fish","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Let t,h,b be tail, head, body; write each relation as an equation.",
+           "t=9, h=t+b/2, b=h+t. Substitute to solve for b.",
+           "b=18+b/2 ⇒ b=36, h=27, total=9+27+36=72."],
+  "solution":"Let $t,h,b$ be the tail, head, body weights. Given $t=9$, $h=t+\\tfrac{b}{2}$, and $b=h+t$. Substituting $h$: $b=(9+\\tfrac{b}{2})+9=18+\\tfrac{b}{2}\\Rightarrow \\tfrac{b}{2}=18\\Rightarrow b=36$. Then $h=9+18=27$, and the fish weighs $t+h+b=9+27+36=72$ ounces.","solution_verified":true},
+
+ {"slug":"shuffled-deck","techniques":["number_theory","sequences_series"],"primary":"number_theory","difficulty":"hard","firm_style":["math"],
+  "hints":["Track one card: position x maps to 2x mod 53 each shuffle.",
+           "The deck returns when 2^k ≡ 1 (mod 53), i.e. k = multiplicative order of 2 mod 53.",
+           "Since 2^26 ≡ −1 (mod 53), the order is 52 ⇒ 52 shuffles."],
+  "solution":"Label positions $1$–$52$. This out-shuffle sends position $x$ to $2x \\bmod 53$ (and $0$ never occurs since $53$ is prime). After $k$ shuffles a card is at $2^k x \\bmod 53$, so the deck is restored when $2^k\\equiv1\\pmod{53}$ — the multiplicative order of $2$ mod $53$. Now $2^{13}\\equiv30$ and $2^{26}\\equiv30^2\\equiv-1\\pmod{53}$, so the order is $52$. Hence $52$ shuffles are needed.","solution_verified":true},
+
+ {"slug":"digit-sum","techniques":["basic_counting","number_theory"],"primary":"basic_counting","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Pad numbers to 6 digits: consider 000000–999999, then add 1,000,000 separately.",
+           "Across 000000–999999 each of 6 positions shows each digit 0–9 exactly 100000 times.",
+           "6·100000·45 = 27,000,000; plus the '1' from 1,000,000 ⇒ 27,000,001."],
+  "solution":"Write every number from $000000$ to $999999$ with six digits. In each of the $6$ positions, each digit $0$–$9$ appears exactly $100000$ times, contributing $100000\\cdot(0+1+\\dots+9)=100000\\cdot45$. Over all positions that is $6\\cdot100000\\cdot45=27{,}000{,}000$ (this includes $000000$, which adds $0$, i.e. it covers $1$–$999999$). Finally $1{,}000{,}000$ adds digit sum $1$, giving $27{,}000{,}001.$","solution_verified":true},
+
+ {"slug":"king-activity","techniques":["combinations","sample_space","order_statistics"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["X = position of the 5th king among 520 cards (40 kings) — negative hypergeometric. Maximize P(X=k), not E[X].",
+           "P(X=k) ∝ C(k−1,4)·C(520−k,35); examine the ratio P(k+1)/P(k).",
+           "Ratio ≥1 ⟺ k≤53.3, and P(54)>P(53)>… so the mode is k=54."],
+  "solution":"$X$, the position of the $5$th king, satisfies $P(X=k)\\propto\\binom{k-1}{4}\\binom{520-k}{35}$ (4 kings in the first $k-1$ cards, a king at $k$, 35 kings after). Compare consecutive terms:\n$$\\frac{P(X=k+1)}{P(X=k)}=\\frac{k}{k-4}\\cdot\\frac{485-k}{520-k}.$$\nThis exceeds $1$ iff $k(485-k)\\ge(k-4)(520-k)$, i.e. $2080\\ge39k$, i.e. $k\\le53.3$. So the probabilities increase through $k=54$ and decrease after, making the mode $k=54.$","solution_verified":true},
+
+ {"slug":"incomplete-deck","techniques":["number_theory"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Translate to congruences: n≡1 (mod 3), n≡3 (mod 5), n≡3 (mod 4), with n≤52.",
+           "n≡3 mod 4 and mod 5 ⇒ n≡3 (mod 20): n∈{3,23,43}.",
+           "Only 43 satisfies n≡1 (mod 3)."],
+  "solution":"We need $n\\equiv1\\ (\\mathrm{mod}\\ 3)$, $n\\equiv3\\ (\\mathrm{mod}\\ 5)$, $n\\equiv3\\ (\\mathrm{mod}\\ 4)$, with $n\\le52$. The last two give $n\\equiv3\\ (\\mathrm{mod}\\ 20)$, so $n\\in\\{3,23,43\\}$. Of these only $43$ satisfies $n\\equiv1\\ (\\mathrm{mod}\\ 3)$. So the deck has $43$ cards.","solution_verified":true},
+
+ {"slug":"variance-of-sum-of-bm","techniques":["brownian","variance_props"],"primary":"brownian","difficulty":"easy","firm_style":["math"],
+  "hints":["Rewrite W₁+W₂ using independent increments.",
+           "W₁+W₂ = 2W₁ + (W₂−W₁), and W₁ ⟂ (W₂−W₁).",
+           "Var = 4·Var(W₁) + Var(W₂−W₁) = 4·1 + 1 = 5."],
+  "solution":"Write $W_1+W_2=2W_1+(W_2-W_1)$. The increment $W_2-W_1$ is independent of $W_1$, with $\\mathrm{Var}(W_1)=1$ and $\\mathrm{Var}(W_2-W_1)=1$. Hence $\\mathrm{Var}(W_1+W_2)=4\\cdot1+1=5.$","solution_verified":true},
+
+ {"slug":"2-below-i","techniques":["zero_sum","optimal_strategy"],"primary":"zero_sum","difficulty":"medium","firm_style":["games"],
+  "hints":["Note n+3 dominates n (beats everything n beats, plus n+2), so play is pushed to the top few values.",
+           "On {98,99,100} the win rule is a cycle: 100 beats 99, 99 beats 98, but 98 beats 100 (since 98 = 100−2).",
+           "Optimal is uniform 1/3 on {98,99,100}; Var of uniform on three consecutive integers = 2/3."],
+  "solution":"Selecting $n+3$ weakly dominates $n$: it beats everything $n$ beats and also beats $n+2$ (via the 'two below' rule). Iterating pushes all weight to the top, leaving $\\{98,99,100\\}$. Among these the outcomes cycle: $100$ beats $99$ (higher), $99$ beats $98$ (higher), but $98$ beats $100$ since $98=100-2$. This is rock–paper–scissors, so the optimal mixed strategy is uniform $\\tfrac13$ on each. The variance of a uniform distribution on three consecutive integers $\\{98,99,100\\}$ equals that of $\\{-1,0,1\\}$: $\\tfrac{(-1)^2+0+1^2}{3}=\\tfrac23.$","solution_verified":true}
+]

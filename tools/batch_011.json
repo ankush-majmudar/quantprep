@@ -1,0 +1,71 @@
+[
+ {"slug":"geometric-pgf","techniques":["geometric","sequences_series"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["Apply LOTUS: p(z)=E[z^X]=Σ_k z^k P(X=k) with P(X=k)=(1−p)^{k−1}p.",
+           "It's a geometric series: p(z)=pz/(1−(1−p)z).",
+           "At p=2/3, z=1/3: (2/9)/(1−1/9)=(2/9)/(8/9)=1/4."],
+  "solution":"By LOTUS, $p(z)=\\sum_{k\\ge1}z^k(1-p)^{k-1}p=\\dfrac{pz}{1-(1-p)z}$. At $p=\\tfrac23,\\,z=\\tfrac13$: numerator $\\tfrac23\\cdot\\tfrac13=\\tfrac29$, denominator $1-\\tfrac13\\cdot\\tfrac13=\\tfrac89$, so $p(\\tfrac13)=\\dfrac{2/9}{8/9}=\\dfrac14.$","solution_verified":true},
+
+ {"slug":"absolute-normal-difference","techniques":["normal","transformations","pdf_cdf"],"primary":"normal","difficulty":"medium","firm_style":["math"],
+  "hints":["Y−X is normal; find its variance via independence.",
+           "W=Y−X~N(0,5)=√5·Z, and E|Z|=√(2/π) for standard normal Z.",
+           "E|W|=√5·√(2/π)=√(10/π)=(10/π)^{1/2}, so K=10,b=1/2,bK=5."],
+  "solution":"By independence $W=Y-X\\sim N(0,1+4)=N(0,5)$, so $W=\\sqrt5\\,Z$ with $Z\\sim N(0,1)$. Since $\\mathbb{E}|Z|=\\sqrt{2/\\pi}$,\n$$\\mathbb{E}|Y-X|=\\sqrt5\\,\\mathbb{E}|Z|=\\sqrt5\\sqrt{\\tfrac{2}{\\pi}}=\\sqrt{\\tfrac{10}{\\pi}}=\\Big(\\tfrac{10}{\\pi}\\Big)^{1/2}.$$\nSo $K=10,\\,b=\\tfrac12$ and $bK=5.$","solution_verified":true},
+
+ {"slug":"diagonal-eigenvalue","techniques":["linear_algebra"],"primary":"linear_algebra","difficulty":"medium","firm_style":["math"],
+  "hints":["Write A = J + 29I where J is the 30×30 all-ones matrix.",
+           "J has eigenvalues 30 (mult 1) and 0 (mult 29); add 29 to each ⇒ A has 59 (mult 1), 29 (mult 29).",
+           "A is symmetric so geometric=algebraic mult. λ+g=[59+1,29+29]=[60,58]; norm²=60²+58²=6964."],
+  "solution":"Write $A=J+29I$ with $J$ the all-ones $30\\times30$ matrix. $J$ has eigenvalue $30$ (multiplicity $1$, eigenvector $\\mathbf 1$) and $0$ (multiplicity $29$). Adding $29I$ shifts these to $59$ (mult $1$) and $29$ (mult $29$). Being symmetric, geometric multiplicities equal algebraic ones, so $g=(1,29)$. Then $\\lambda+g=(60,58)$ and $\\|\\lambda+g\\|^2=60^2+58^2=3600+3364=6964.$","solution_verified":true},
+
+ {"slug":"negative-correlated-sum","techniques":["variance_props","covariance","correlation"],"primary":"variance_props","difficulty":"easy","firm_style":["math"],
+  "hints":["Var(X+Y)=Var X+Var Y+2Cov, with Cov=ρσ_Xσ_Y.",
+           "Cov=(−3/8)(3)(4)=−4.5; Var=9+16−9=16.",
+           "SD=√16=4."],
+  "solution":"$\\mathrm{Cov}(X,Y)=\\rho\\sigma_X\\sigma_Y=-\\tfrac38\\cdot3\\cdot4=-4.5$. Then $\\mathrm{Var}(X+Y)=9+16+2(-4.5)=16$, so the standard deviation is $\\sqrt{16}=4.$","solution_verified":true},
+
+ {"slug":"bridge-crossing","techniques":["optimal_strategy","casework"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Send the two fastest to ferry the lantern; don't let the two slowest cross separately.",
+           "Cross the two slowest (10,5) together to avoid paying both.",
+           "1&2→(2), 1 back(1), 10&5→(10), 2 back(2), 1&2→(2): total 17."],
+  "solution":"Label times Grace $1$, Frank $2$, Emma $5$, David $10$. Optimal plan: Grace+Frank cross ($2$), Grace returns ($1$), David+Emma cross ($10$), Frank returns ($2$), Grace+Frank cross ($2$). Total $=2+1+10+2+2=17$ minutes. The trick is to send the two slowest together so you pay $10$ only once.","solution_verified":true},
+
+ {"slug":"generational-wealth-ii","techniques":["optimal_strategy","order_statistics","uniform_cont"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["With n draws, payout = E[max] − cost = (1−1/(n+1)) − 0.05(n−1).",
+           "Maximize over n: derivative gives (n+1)²=20, so n≈3.47.",
+           "Check n=3 and n=4: both give 13/20."]},
+
+ {"slug":"curious-multiplicand","techniques":["number_theory"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Think about the repeating decimal of 1/7.",
+           "142857 is the repetend of 1/7; multiplying by 1–6 cyclically permutes its digits.",
+           "So 142857 — each product uses only {1,4,2,8,5,7}."],
+  "solution":"The number $142857$ is the repeating block of $1/7$. Multiplying it by $1,2,3,4,5,6$ gives cyclic permutations of the same six digits ($142857,285714,428571,571428,714285,857142$), so no new digit ever appears. The answer is $142857.$","solution_verified":true},
+
+ {"slug":"basic-die-game-v","techniques":["optimal_strategy","cond_expectation","ev_betting"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["Rerolling yields net E = 3.5 − 1 = 2.5, so keep any value above 2.5.",
+           "Reroll only on a 1 or 2; otherwise keep.",
+           "E = (1/6)[2.5 + 2.5 + 3+4+5+6] = 23/6."],
+  "solution":"A reroll has expected net payout $3.5-1=2.5$, so Alice keeps her roll iff it exceeds $2.5$, i.e. she rerolls only on a $1$ or $2$. Then\n$$\\mathbb{E}=\\tfrac16\\big(\\underbrace{2.5+2.5}_{\\text{reroll on }1,2}+3+4+5+6\\big)=\\tfrac16(23)=\\tfrac{23}{6}.$$","solution_verified":true},
+
+ {"slug":"thorough-frog","techniques":["markov_chain","gamblers_ruin","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["You want pad 50 to be the LAST distinct pad visited.",
+           "On a cycle, by a gambler's-ruin/symmetry argument every non-start pad is equally likely to be the last visited.",
+           "There are 99 such pads, so the probability is 1/99."],
+  "solution":"The event is that pad $50$ is the last of all pads to be visited. For a symmetric random walk on a cycle of $100$ pads started at $0$, a standard gambler's-ruin argument shows each of the $99$ non-start pads is equally likely to be the last one visited. Hence the probability is $\\dfrac{1}{99}.$","solution_verified":true},
+
+ {"slug":"hand-meet","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["The minute hand gains on the hour hand at a constant relative rate.",
+           "Minute hand 360°/hr, hour hand 30°/hr ⇒ relative 330°/hr.",
+           "Meet again after 360/330 = 12/11 hours."],
+  "solution":"The minute hand moves $360^\\circ$/hr and the hour hand $30^\\circ$/hr, so the minute hand gains $330^\\circ$/hr. They meet again when it has gained a full $360^\\circ$: $\\dfrac{360}{330}=\\dfrac{12}{11}$ hours.","solution_verified":true},
+
+ {"slug":"simulation-scheme-i","techniques":["recursion","cond_expectation","geometric"],"primary":"recursion","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the first 2 flips: decided w.p. 3/4, restart (TT) w.p. 1/4.",
+           "E[N] = (3/4)·2 + (1/4)(2 + E[N]).",
+           "Solve: E[N] = 8/3."]},
+
+ {"slug":"repetitious-game-i","techniques":["law_total_exp","recursion","cond_expectation"],"primary":"law_total_exp","difficulty":"easy","firm_style":["math"],
+  "hints":["Track states by current progress toward HH; condition on the next flip(s).",
+           "Let E be from scratch: a T resets, H then T resets with one more, H then H ends.",
+           "E = ½(E+1) + ¼(E+2) + ¼(2) ⇒ E = 6."],
+  "solution":"Let $E$ be the expected flips from scratch. On the first flip: tails (½) wastes one flip and resets; heads (½) then either heads (¼ overall) ends after $2$ flips, or tails (¼ overall) wastes $2$ and resets. So\n$$E=\\tfrac12(E+1)+\\tfrac14(E+2)+\\tfrac14(2)\\;\\Rightarrow\\;E=6.$$","solution_verified":true}
+]

@@ -1,0 +1,73 @@
+[
+ {"slug":"specific-card-pull-i","techniques":["symmetry_prob","combinations","conditional_prob"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Only the 2♥ and the 12 face cards (K,Q,J) matter — 13 cards.",
+           "The condition is that the 2♥ comes before all 12 face cards.",
+           "By symmetry the 2♥ is first among these 13 with probability 1/13."],
+  "solution":"The only relevant cards are the $2\\heartsuit$ and the $12$ face cards. We need the $2\\heartsuit$ to precede all of them, i.e. be first among these $13$ equally likely orderings: probability $\\tfrac1{13}.$","solution_verified":true},
+
+ {"slug":"price-an-option-ii","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["Rewrite max(3S,15)=15+3·max(S−5,0).",
+           "That's 15 bonds plus 3 calls at K=5.",
+           "15·0.9 + 3·4.2 = 13.5+12.6 = 26.1."],
+  "solution":"$\\max(3S_T,15)=15+3\\max(S_T-5,0)$, replicated by $15$ bonds and $3$ calls struck at $5$. Its price is $15(0.9)+3(4.2)=13.5+12.6=26.1.$","solution_verified":true},
+
+ {"slug":"poker-hands-iv","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Pick the pair's rank & suits, then 3 distinct other ranks each with one suit.",
+           "13·C(4,2)·C(12,3)·4³ over C(52,5).",
+           "= 1098240/2598960 = 352/833."],
+  "solution":"Choose the pair's rank ($13$) and $2$ suits ($\\binom42=6$); then $3$ distinct other ranks ($\\binom{12}3$) each with one of $4$ suits. So $P=\\dfrac{13\\cdot6\\cdot\\binom{12}3\\cdot4^3}{\\binom{52}5}=\\dfrac{1098240}{2598960}=\\dfrac{352}{833}.$","solution_verified":true},
+
+ {"slug":"single-double-sum","techniques":["recursion","algebra_manipulation","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Match P(value=v) for one roll with P(sum=v) for two rolls, for v=2..6.",
+           "This forces p_2=p_1², p_3=2p_1³, p_4=5p_1⁴, p_5=14p_1⁵, p_6=42p_1⁶ (Catalan numbers).",
+           "Normalization Σp=1 gives coefficients 1,1,2,5,14,42 summing to 65."],
+  "solution":"Equating one-roll and two-roll probabilities for $2,\\dots,6$ gives $p_2=p_1^2$, $p_3=2p_1^3$, $p_4=5p_1^4$, $p_5=14p_1^5$, $p_6=42p_1^6$ — the Catalan numbers. The normalization $\\sum p_i=1$ reads $\\sum_{k=1}^6 c_k p_1^k=1$ with $(c_k)=(1,1,2,5,14,42)$, whose sum is $65.$","solution_verified":true},
+
+ {"slug":"1900-age","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["If x is the age at death, birth year = 29x and death year = 30x.",
+           "Need death year <1945 and birth year in the 1800s: x=64 ⇒ born 1856, died 1920.",
+           "His 1900 birthday age = 1900−1856 = 44."],
+  "solution":"If $x$ is his age at death, the birth year is $29x$ and the death year $30x$. Requiring a death before $1945$ and a 19th-century birth gives $x=64$: born $1856$, died $1920$. On his $1900$ birthday he turned $1900-1856=44.$","solution_verified":true},
+
+ {"slug":"triangular-change","techniques":["calculus"],"primary":"calculus","difficulty":"easy","firm_style":["math"],
+  "hints":["Perimeter P = AC+AB+BC; differentiate.",
+           "dP/dt = 3 + (−2) + (−2).",
+           "= −1 units/sec (lengths irrelevant)."],
+  "solution":"The perimeter's rate is the sum of the side rates: $\\dfrac{dP}{dt}=3+(-2)+(-2)=-1$ units per second (the current lengths don't matter).","solution_verified":true},
+
+ {"slug":"competitive-sampling","techniques":["optimal_strategy","uniform_cont","zero_sum"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["games"],
+  "hints":["This is symmetric; both reroll below a threshold k, aiming to win not to maximize value.",
+           "Indifference at the threshold yields k²+k−1=0.",
+           "k=(√5−1)/2 ≈ 0.618."],
+  "solution":"By symmetry both players reroll when below a threshold $k$. The optimal $k$ is where you're indifferent between keeping $k$ and rerolling against the opponent's same strategy, which reduces to $k^2+k-1=0$. The positive root is $k=\\dfrac{\\sqrt5-1}{2}\\approx0.618.$","solution_verified":true},
+
+ {"slug":"too-many-primes-to-count","techniques":["symmetry_prob","binomial"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Each roll is 'prime' (2,3,5) with probability 1/2.",
+           "With equal rolls each would lead with probability 1/2; the extra roll breaks ties symmetrically.",
+           "P(player 2 leads) = 1/2."],
+  "solution":"Each roll is prime with probability $\\tfrac12$. With the same number of rolls, by symmetry each player leads with equal probability and ties split evenly; giving player 2 one extra roll exactly balances this, so $P(\\text{player 2 has more})=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"overlapping-subsets","techniques":["binomial","indicator_vars","variance_props"],"primary":"binomial","difficulty":"medium","firm_style":["math"],
+  "hints":["Each element is in A∩B with probability 1/4 (independently).",
+           "N ~ Binom(20, 1/4): E[N]=5, Var(N)=20·(1/4)(3/4)=15/4.",
+           "Var/E = (15/4)/5 = 3/4."],
+  "solution":"Each of the $20$ elements is in $A\\cap B$ independently with probability $\\tfrac12\\cdot\\tfrac12=\\tfrac14$, so $N\\sim\\mathrm{Binom}(20,\\tfrac14)$ with $\\mathbb{E}[N]=5$ and $\\mathrm{Var}(N)=20\\cdot\\tfrac14\\cdot\\tfrac34=\\tfrac{15}4$. Thus $\\dfrac{\\mathrm{Var}(N)}{\\mathbb{E}[N]}=\\dfrac{15/4}{5}=\\dfrac34.$","solution_verified":true},
+
+ {"slug":"big-smalls","techniques":["optimal_strategy","cond_expectation","ev_betting"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["games"],
+  "hints":["Bob's gain picking x: lose Y if x>Y, gain x if x<Y.",
+           "E[Z_x] = −(x−1)x/200 + x(100−x)/100 = x(201−3x)/200.",
+           "Maximize: x=33 or 34 give 3366/200 = 16.83."],
+  "solution":"If Bob picks $x$, he loses $Y$ when $x>Y$ and gains $x$ when $x<Y$: $\\mathbb{E}[Z_x]=-\\dfrac{(x-1)x}{200}+\\dfrac{x(100-x)}{100}=\\dfrac{x(201-3x)}{200}$. Maximizing over integers gives $x=33$ or $34$, both yielding $\\dfrac{3366}{200}=16.83.$","solution_verified":true},
+
+ {"slug":"combinatorial-electrician","techniques":["indicator_vars","linearity_exp","combinations"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["There are C(12,4) candidate 4-circuits; use an indicator for each.",
+           "A 4-circuit needs all C(4,2)=6 wires active: probability (1/2)⁶.",
+           "E = C(12,4)/64 = 495/64."],
+  "solution":"There are $\\binom{12}{4}=495$ sets of $4$ bulbs, each forming a complete circuit iff all $\\binom42=6$ connecting wires are active, probability $(\\tfrac12)^6=\\tfrac1{64}$. By linearity, $\\mathbb{E}=\\dfrac{495}{64}.$","solution_verified":true},
+
+ {"slug":"unknown-starter","techniques":["optimal_strategy","cond_expectation","casework"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["games"],
+  "hints":["WLOG cards are 1,2,3; the strategy can only use the difference of the first two cards (n is unknown).",
+           "After flipping: on difference +2 keep (it's the max); on a −1 difference take the third; otherwise stay/decide to maximize.",
+           "Averaging the six orderings gives 14/6=7/3=n+4/3, so c=4/3."],
+  "solution":"Take the cards as $1,2,3$ (shift by $n-1$). Since $n$ is unknown, decisions can only use the observed difference of the first two cards. Flipping the first card (staying yields only $2$), then for each ordered pair choosing optimally on the difference: outcomes are $2,3,3,1,3,2$ for $(1,2),(2,3),(2,1),(3,2),(1,3),(3,1)$, averaging $\\tfrac{14}{6}=\\tfrac73$. So the expected payout is $n+\\tfrac43$, giving $c=\\tfrac43.$","solution_verified":true}
+]

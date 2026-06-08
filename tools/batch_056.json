@@ -1,0 +1,230 @@
+[
+ {
+  "slug": "extra-coin",
+  "techniques": [
+   "symmetry_prob",
+   "binomial"
+  ],
+  "primary": "symmetry_prob",
+  "difficulty": "easy",
+  "firm_style": [
+   "math"
+  ],
+  "hints": [
+   "Compare only the first n coins of each: P(Emilia more)=P(Ron more)=a, P(tie)=b.",
+   "If already ahead/behind on n coins, the extra coin can't change it; only a tie is broken by it (heads, prob 1/2).",
+   "a + b/2 = a + (1−2a)/2 = 1/2."
+  ],
+  "solution": "On the first $n$ coins each, let $a=P(\\text{Emilia ahead})=P(\\text{Ron ahead})$ and $b=P(\\text{tie})$, with $2a+b=1$. Emilia's last coin only matters on a tie, which she wins w.p. $\\tfrac12$. So $P=a+\\tfrac b2=a+\\tfrac{1-2a}{2}=\\tfrac12.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "fish-slice",
+  "techniques": [
+   "uniform_cont",
+   "joint_cont",
+   "complementary_count"
+  ],
+  "primary": "uniform_cont",
+  "difficulty": "medium",
+  "firm_style": [
+   "math"
+  ],
+  "hints": [
+   "Let X~U(0,½) (left) and Y~U(½,1) (right); want Y−X>1/3.",
+   "Writing p=X, q=Y−½ (both U(0,½)), the event is p−q<1/6.",
+   "P(p−q≥1/6)=(1/18)/(1/4)=2/9, so the answer is 7/9."
+  ],
+  "solution": "Scale $L=1$ with $X\\sim U(0,\\tfrac12)$ and $Y\\sim U(\\tfrac12,1)$. Setting $p=X,\\,q=Y-\\tfrac12$ (both $U(0,\\tfrac12)$), $Y-X>\\tfrac13\\Leftrightarrow p-q<\\tfrac16$. The complementary region $p\\ge q+\\tfrac16$ has area $\\tfrac1{18}$ out of $\\tfrac14$, i.e. probability $\\tfrac29$. So $P=1-\\tfrac29=\\tfrac79.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "trinomial-call-pricing-i",
+  "techniques": [
+   "option_basics",
+   "ev_betting"
+  ],
+  "primary": "option_basics",
+  "difficulty": "easy",
+  "firm_style": [
+   "finance"
+  ],
+  "hints": [
+   "Only the +30% branch finishes in the money: S=10.4, payoff 2.4.",
+   "The flat and −50% branches pay 0.",
+   "Price = 0.2·2.4 = 0.48."
+  ],
+  "solution": "The call pays only on the $+30\\%$ move ($S=10.4$, payoff $2.4$); the flat and $-50\\%$ outcomes pay $0$. So the price is $0.2\\times2.4=0.48.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "matching-die-trio",
+  "techniques": [
+   "conditional_prob",
+   "combinations",
+   "casework"
+  ],
+  "primary": "conditional_prob",
+  "difficulty": "medium",
+  "firm_style": [
+   "math"
+  ],
+  "hints": [
+   "Condition on the original pattern: all distinct, one pair, or all same.",
+   "Each pattern's reproduction probability: 6/216, 3/216, 1/216 respectively.",
+   "(120·6 + 90·3 + 6·1)/216² = 996/46656 = 83/3888."
+  ],
+  "solution": "By pattern: all-distinct originals (prob $\\tfrac{120}{216}$) re-match w.p. $\\tfrac6{216}$; one-pair (prob $\\tfrac{90}{216}$) w.p. $\\tfrac3{216}$; all-same (prob $\\tfrac6{216}$) w.p. $\\tfrac1{216}$. Total $=\\dfrac{120\\cdot6+90\\cdot3+6\\cdot1}{216^2}=\\dfrac{996}{46656}=\\dfrac{83}{3888}.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "swapping-x-and-y",
+  "techniques": [
+   "regression",
+   "covariance"
+  ],
+  "primary": "regression",
+  "difficulty": "easy",
+  "firm_style": [
+   "stats"
+  ],
+  "hints": [
+   "β(Y on X)=S_xy/S_xx; β(X on Y)=S_xy/S_yy.",
+   "Here S_xx=2 < S_yy=50 (y-values are more spread out).",
+   "Dividing by a larger denominator decreases β ⇒ −1."
+  ],
+  "solution": "$\\beta_{Y|X}=\\tfrac{S_{xy}}{S_{xx}}$ while $\\beta_{X|Y}=\\tfrac{S_{xy}}{S_{yy}}$. Since the $y$'s are more spread ($S_{yy}=50>S_{xx}=2$), the slope shrinks, so $\\beta$ decreases: answer $-1.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "slippery-ladder-ii",
+  "techniques": [
+   "calculus",
+   "algebra_manipulation"
+  ],
+  "primary": "calculus",
+  "difficulty": "medium",
+  "firm_style": [
+   "math"
+  ],
+  "hints": [
+   "x=50cosθ ⇒ dx/dt = −50 sinθ·dθ/dt.",
+   "At x=30, y=40 so sinθ=40/50=0.8.",
+   "dθ/dt = −4/(50·0.8) = −1/10 rad/min (decreasing at 1/10)."
+  ],
+  "solution": "From $x=50\\cos\\theta$, $\\tfrac{dx}{dt}=-50\\sin\\theta\\,\\tfrac{d\\theta}{dt}$. At $x=30$, $y=40$, so $\\sin\\theta=0.8$ and $\\tfrac{d\\theta}{dt}=-\\dfrac{4}{50(0.8)}=-\\dfrac1{10}$ rad/min — decreasing at $\\tfrac1{10}.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "prime-subset",
+  "techniques": [
+   "number_theory",
+   "optimal_strategy",
+   "construction"
+  ],
+  "primary": "number_theory",
+  "difficulty": "hard",
+  "firm_style": [
+   "brainteaser"
+  ],
+  "hints": [
+   "Each prime may appear in at most one element; pick elements to maximize the total.",
+   "Use big primes 11,13,17,19,23,29 directly; for {2,3,5,7} prefer 28=2²·7, 27, 25 over the bare primes.",
+   "1+28+27+25+11+13+17+19+23+29 = 193."
+  ],
+  "solution": "Pairwise-coprimality means each prime is used by at most one element. Take the large primes $11,13,17,19,23,29$ as-is, and for the small primes use $28=2^2\\cdot7$, $27=3^3$, $25=5^2$ (better than the bare primes), plus $1$. The sum is $1+28+27+25+11+13+17+19+23+29=193.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "measuring-water",
+  "techniques": [
+   "construction",
+   "number_theory",
+   "casework"
+  ],
+  "primary": "construction",
+  "difficulty": "medium",
+  "firm_style": [
+   "brainteaser"
+  ],
+  "hints": [
+   "Track states (7-vessel, 11-vessel); each fill/empty/pour is one transaction.",
+   "Repeatedly fill the 7 and pour into the 11, emptying the 11 when full.",
+   "The minimum is 14 transactions."
+  ]
+ },
+ {
+  "slug": "dice-game",
+  "techniques": [
+   "cond_expectation",
+   "geometric",
+   "ev_betting"
+  ],
+  "primary": "cond_expectation",
+  "difficulty": "medium",
+  "firm_style": [
+   "markets"
+  ],
+  "hints": [
+   "Payout = (number of 1–3 rolls) if you end on a 4/5, else 0.",
+   "Stops are 4/5 (cash, prob 2/3 of stops) or 6 (bust); E[continues]=1 (geometric, p=1/2).",
+   "E = (2/3)·1 = 2/3."
+  ],
+  "solution": "Each roll continues (1–3) w.p. $\\tfrac12$, so the number of continues before stopping has mean $1$. A stop is a cash-out (4/5) w.p. $\\tfrac23$ and a bust (6) w.p. $\\tfrac13$, independent of the count. The payout is the count if cashed, else $0$, so $\\mathbb{E}=\\tfrac23\\cdot1=\\tfrac23.$",
+  "solution_verified": true
+ },
+ {
+  "slug": "call-option-change",
+  "techniques": [
+   "option_basics",
+   "calculus"
+  ],
+  "primary": "option_basics",
+  "difficulty": "medium",
+  "firm_style": [
+   "finance"
+  ],
+  "hints": [
+   "An ATM call has delta ≈ 0.5.",
+   "Use the Taylor expansion ΔC ≈ δ·ΔS + ½Γ·(ΔS)².",
+   "Add the change to the initial price 2.3."
+  ]
+ },
+ {
+  "slug": "fleeing-flea",
+  "techniques": [
+   "algebra_manipulation",
+   "construction",
+   "calculus"
+  ],
+  "primary": "algebra_manipulation",
+  "difficulty": "medium",
+  "firm_style": [
+   "brainteaser"
+  ],
+  "hints": [
+   "Unfold the box into a flat plane to straighten the path along the surface.",
+   "Compare √((a+b)²+c²) over the three ways of pairing the sides.",
+   "Divide the shortest distance by the speed 2.5 and round."
+  ]
+ },
+ {
+  "slug": "options-gamma",
+  "techniques": [
+   "option_basics",
+   "arbitrage"
+  ],
+  "primary": "option_basics",
+  "difficulty": "easy",
+  "firm_style": [
+   "finance"
+  ],
+  "hints": [
+   "Put-call parity: C − P = S − Ke^{−rt}, which is linear in S.",
+   "The linear term has zero second derivative, so Γ_call = Γ_put.",
+   "Γ_put = 0.02."
+  ],
+  "solution": "By put-call parity $C-P=S-Ke^{-rt}$, whose second derivative in $S$ is zero. Hence the call and put share the same gamma: $\\Gamma_{\\text{put}}=0.02.$",
+  "solution_verified": true
+ }
+]

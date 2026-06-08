@@ -1,0 +1,72 @@
+[
+ {"slug":"carded-pair","techniques":["cond_expectation","symmetry_prob","conditional_prob"],"primary":"cond_expectation","difficulty":"hard","firm_style":["math"],
+  "hints":["Only the 8 'key' cards (4 kings, 4 aces) matter; the m-th key card sits at expected deck position m·53/9.",
+           "Stop index T among keys: if the first key is a king, T=2; if it's an ace, T = index of the first king.",
+           "E[T]=½·2+½·(13/5)=23/10, so E[cards]=53/9·23/10=1219/90."],
+  "solution":"Among the $8$ key cards ($4$K, $4$A), the $m$-th key lands at expected deck position $m\\cdot\\tfrac{53}{9}$ (the $8$ keys split $44$ others into $9$ gaps). Let $T$ be the stopping index among keys: if the first key is a king ($\\tfrac12$), the next key ends it ($T=2$); if it's an ace ($\\tfrac12$), we stop at the first king, whose index is $1+\\tfrac{8}{5}=\\tfrac{13}{5}$. So $\\mathbb{E}[T]=\\tfrac12\\cdot2+\\tfrac12\\cdot\\tfrac{13}{5}=\\tfrac{23}{10}$, and $\\mathbb{E}[\\text{cards}]=\\tfrac{53}{9}\\cdot\\tfrac{23}{10}=\\tfrac{1219}{90}.$","solution_verified":true},
+
+ {"slug":"mossels-dice-problem","techniques":["conditional_prob","geometric","cond_expectation"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Conditioning on the whole sequence being even changes the distribution (don't just say Geom(1/3)).",
+           "P(N=n, all even)=(2/6)^{n−1}(1/6); P(all even)=1/4.",
+           "E[N | all even]=Σ n(1/3)^{n−1}(1/6) ÷ (1/4)=3/2."],
+  "solution":"Let $N$ be the roll of the first $6$. For 'all rolls even', the first $n-1$ must be in $\\{2,4\\}$: $P(N=n,\\text{even})=(\\tfrac26)^{n-1}\\tfrac16$, and $P(\\text{all even})=\\tfrac{1/6}{1-1/3}=\\tfrac14$. Then $\\mathbb{E}[N\\mid\\text{even}]=\\dfrac{\\sum_n n(\\tfrac13)^{n-1}\\tfrac16}{1/4}=\\tfrac23\\cdot\\dfrac1{(1-1/3)^2}=\\tfrac32.$","solution_verified":true},
+
+ {"slug":"threeway-tile","techniques":["recursion","combinations","sequences_series"],"primary":"recursion","difficulty":"hard","firm_style":["math"],
+  "hints":["Let t(n) be tilings of 3×n; set up a coupled recursion with the 'bumpy' shape s(n).",
+           "t(n)=t(n−2)+2s(n−1), s(n)=t(n−1)+s(n−2), giving t(n)=4t(n−2)−t(n−4).",
+           "t(0)=1,t(2)=3,t(4)=11,t(6)=41,t(8)=153."],
+  "solution":"With the standard coupled recursion for $3\\times n$ domino tilings, $t(n)=4\\,t(n-2)-t(n-4)$ with $t(0)=1,t(2)=3$. This yields $3,11,41,153$, so $t(8)=153.$","solution_verified":true},
+
+ {"slug":"annies-coin","techniques":["geometric","recursion","conditional_prob"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["Annie wins on turn 1 with prob 1/3, or both miss and the game resets.",
+           "p = 1/3 + (2/3)(3/5)p.",
+           "Solve: p = 5/9."]},
+
+ {"slug":"the-perfect-hedge-i-","techniques":["variance_props","correlation","optimal_strategy"],"primary":"variance_props","difficulty":"medium","firm_style":["finance"],
+  "hints":["With ρ=−1, the portfolio sd is |w₁σ₁ − w₂σ₂|; set it to 0.",
+           "w₁σ₁ = (1−w₁)σ₂ with σ₁=√0.15, σ₂=0.2.",
+           "w₁ = σ₂/(σ₁+σ₂)=0.2/(0.387+0.2)≈0.34."],
+  "solution":"For $\\rho=-1$ the portfolio standard deviation is $|w_1\\sigma_1-w_2\\sigma_2|$, zero when $w_1\\sigma_1=(1-w_1)\\sigma_2$. With $\\sigma_1=\\sqrt{0.15}\\approx0.387$ and $\\sigma_2=\\sqrt{0.04}=0.2$, $w_1=\\dfrac{\\sigma_2}{\\sigma_1+\\sigma_2}=\\dfrac{0.2}{0.587}\\approx0.34.$","solution_verified":true},
+
+ {"slug":"building-blocks","techniques":["combinations","complementary_count","sample_space"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Choose 5 of 21 blocks; count selections using exactly 2 colors.",
+           "Pick the 2 colors (C(3,2)=3); from their 14 blocks choose 5 using both: C(14,5)−2C(7,5).",
+           "3·(2002−42)=5880 over C(21,5)=20349."],
+  "solution":"There are $\\binom{21}{5}=20349$ equally likely selections. For exactly two colors: choose the pair ($\\binom32=3$) and pick $5$ of their $14$ blocks using both colors, $\\binom{14}5-2\\binom75=2002-42=1960$. So favorable $=3\\cdot1960=5880$ and $P=\\dfrac{5880}{20349}.$","solution_verified":true},
+
+ {"slug":"jellybean-jar-ii","techniques":["casework","combinations","conditional_prob"],"primary":"casework","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition needs the first two and last two pairs to have the same colour multiset: GG/GG, YY/YY, or {G,Y}/{G,Y}.",
+           "Count ordered draws (16·15·14·13): GGGG=360, YYYY=5040, mixed=4·(6·5)(10·9)=10800.",
+           "(360+5040+10800)/43680 = 135/364."],
+  "solution":"The first two and last two must share the same colour multiset. Counting ordered draws from $6$G,$10$Y: all green $6{\\cdot}5{\\cdot}4{\\cdot}3=360$; all yellow $5040$; and the mixed case (each pair one G one Y) $4\\cdot(6{\\cdot}5)(10{\\cdot}9)=10800$. Total $16200$ over $16{\\cdot}15{\\cdot}14{\\cdot}13=43680$, giving $\\tfrac{135}{364}.$","solution_verified":true},
+
+ {"slug":"coin-on-chess-board","techniques":["uniform_cont","sample_space"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["The coin (radius 1/2) stays inside a 2×2 square iff its center is ≥1/2 from each edge.",
+           "That center region is a 1×1 square inside the 2×2.",
+           "P = 1²/2² = 1/4."],
+  "solution":"The coin lies entirely within a square iff its center is at least $\\tfrac12$ inch from every edge, i.e. inside a concentric $1\\times1$ region of the $2\\times2$ square. So $P=\\dfrac{1^2}{2^2}=\\dfrac14.$","solution_verified":true},
+
+ {"slug":"circular-charlie","techniques":["combinations","conditional_prob"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["The 14 boys create 14 gaps; the girls fill 10 of them (C(14,10) ways).",
+           "Charlie stays between two boys iff both of his adjacent gaps are empty.",
+           "C(12,10)/C(14,10)=66/1001=6/91."],
+  "solution":"The girls occupy $10$ of the $14$ gaps between boys, $\\binom{14}{10}$ ways. Charlie remains between two boys iff his two adjacent gaps are both empty, i.e. all $10$ girls go in the other $12$ gaps: $\\dfrac{\\binom{12}{10}}{\\binom{14}{10}}=\\dfrac{66}{1001}=\\dfrac{6}{91}.$","solution_verified":true},
+
+ {"slug":"a-low-median","techniques":["order_statistics","binomial","uniform_cont"],"primary":"order_statistics","difficulty":"easy","firm_style":["math"],
+  "hints":["The median of 3 is < 2/3 iff at least 2 of the 3 values are < 2/3.",
+           "Each value < 2/3 with probability 2/3.",
+           "C(3,2)(2/3)²(1/3)+(2/3)³ = 12/27+8/27 = 20/27."],
+  "solution":"The median of three is below $\\tfrac23$ iff at least two values are below $\\tfrac23$ (each with probability $\\tfrac23$): $\\binom32(\\tfrac23)^2(\\tfrac13)+(\\tfrac23)^3=\\tfrac{12}{27}+\\tfrac{8}{27}=\\tfrac{20}{27}.$","solution_verified":true},
+
+ {"slug":"clockwise-murder","techniques":["recursion","number_theory","sequences_series"],"primary":"recursion","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["This is the Josephus problem with step 2; person 1 always wins when N is a power of 2.",
+           "Writing N=X+L with X the largest power of 2 ≤N, the survivor is 2L+1=2N−2X+1.",
+           "So a=2, b=−2, c=1 ⇒ a+2b+3c=2−4+3=1."],
+  "solution":"In the Josephus problem (every second person killed), if $N=2^k$ then person $1$ survives. Writing $N=X+L$ with $X=2^{\\lfloor\\log_2 N\\rfloor}$, the survivor is $2L+1=2(N-X)+1=2N-2X+1$. Matching $aN+bX+c$: $a=2,b=-2,c=1$, so $a+2b+3c=2-4+3=1.$","solution_verified":true},
+
+ {"slug":"light-switch","techniques":["uniform_cont","conditional_prob"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["Cycle length = 40+4+40 = 84 s with 3 switch instants.",
+           "A 4-s interval catches a switch if its start falls in the 4 s before a switch: three length-4 windows.",
+           "Total favorable 12 s of 84 ⇒ 12/84 = 1/7."],
+  "solution":"The cycle is $40+4+40=84$ seconds with three switch instants. A $4$-second interval contains a switch iff its start lies in the $4$ seconds before one of them; these three length-$4$ windows are disjoint, totaling $12$ seconds. So $P=\\dfrac{12}{84}=\\dfrac17.$","solution_verified":true}
+]

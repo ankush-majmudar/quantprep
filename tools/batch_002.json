@@ -1,0 +1,54 @@
+[
+ {"slug":"modified-even-coins","techniques":["total_probability","conditional_prob","parity"],"primary":"total_probability","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the one special coin — the fair one.",
+           "Even total = (fair H and odd among the rest) or (fair T and even among the rest).",
+           "If p = P(even among the n−1), the answer is ½p + ½(1−p) = ½, regardless of λ."]},
+
+ {"slug":"repeated-flipper","techniques":["symmetry_prob","recursion"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Think about how the game can possibly end.",
+           "It ends on a round where the surviving coins are all-tails (lose) or all-heads (win).",
+           "Those two terminal patterns are equally likely on that final round, so P(win)=½."]},
+
+ {"slug":"the-sum-is-right","techniques":["symmetry_prob","order_statistics","uniform_cont"],"primary":"symmetry_prob","difficulty":"hard","firm_style":["math"],
+  "hints":["Use the symmetry X ↦ 1−X of the uniform distribution.",
+           "Replacing each X by 1−X turns min into 1−max and max into 1−min.",
+           "That maps {U+V>1} to {U+V<1} with equal probability, so each is ½."]},
+
+ {"slug":"say-50","techniques":["backward_induction","work_backwards"],"primary":"backward_induction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Find the 'checkmate' totals you want to land on, working back from 50.",
+           "If you say 39 you can always complement to 50 (you+opponent add 11 per round).",
+           "Back up by 11s: 50,39,28,17,6. Say 6 first, then mirror to keep adding 11."]},
+
+ {"slug":"petersburg-paradox","techniques":["geometric","ev_betting"],"primary":"ev_betting","difficulty":"easy","firm_style":["math","markets"],
+  "hints":["Write the payout as an expectation over N, the flip of the first head.",
+           "N ~ Geom(½), payout 2^N, so E = Σ 2^n·(1/2)^n.",
+           "Each term equals 1, so the sum diverges → fair value is infinite (enter −1)."]},
+
+ {"slug":"ten-ten","techniques":["optimal_strategy","ev_betting","cond_expectation"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["Roll again only while the expected change from one more roll is positive.",
+           "One more roll: 1/10 chance lose everything (current total k), 9/10 chance gain avg 5.",
+           "Stop when expected gain 0: solve E = (9/10)(5+E) ⇒ E=45, so k=45."]},
+
+ {"slug":"coin-flipping-competition-iii","techniques":["geometric","independence","symmetry_prob"],"primary":"geometric","difficulty":"hard","firm_style":["math"],
+  "hints":["T,G,P are IID Geom(½); write the joint PMF and the ordered region T<G<P.",
+           "Sum innermost over p>g, then g>t (geometric tails collapse nicely).",
+           "You get (1/3)Σ_t 1/8^t = (1/3)(1/7) = 1/21."]},
+
+ {"slug":"make-your-martingale-i","techniques":["martingale","cond_expectation"],"primary":"martingale","difficulty":"medium","firm_style":["math"],
+  "hints":["Impose the martingale condition E[M_{n+1} | F_n] = M_n.",
+           "M_{n+1}=M_n·e^{X_{n+1}+c}, and X is ±1 equally likely, so E[e^{X+c}]=e^c·(e+e^{-1})/2.",
+           "Set that to 1: c = −log(½e^1 + ½e^{-1}), so a=½,b=1,c=½,d=−1 and a+b+c+d=1."],
+  "solution":"Apply the martingale condition $\\mathbb{E}[M_{n+1}\\mid\\mathcal{F}_n]=M_n$. Since $M_{n+1}=M_n e^{X_{n+1}+c}$ and $M_n$ is $\\mathcal{F}_n$-measurable,\n$$\\mathbb{E}[M_{n+1}\\mid\\mathcal{F}_n]=M_n\\,e^{c}\\,\\mathbb{E}[e^{X_{n+1}}]=M_n\\,e^{c}\\cdot\\tfrac{1}{2}\\big(e^{1}+e^{-1}\\big).$$\nFor this to equal $M_n$ we need $e^{c}\\cdot\\tfrac12(e+e^{-1})=1$, i.e.\n$$c=-\\log\\!\\Big(\\tfrac12 e^{1}+\\tfrac12 e^{-1}\\Big).$$\nMatching the form $-\\log(ae^{b}+ce^{d})$ gives $a=\\tfrac12,\\,b=1,\\,c=\\tfrac12,\\,d=-1$, so $a+b+c+d=1$.","solution_verified":true},
+
+ {"slug":"sum1","techniques":["construction","work_backwards"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Rearrange xy = x+y into x = y/(y−1).",
+           "You need both x and y written with only the digit 1 — try a repunit for y.",
+           "Take y=11 ⇒ x=11/10=1.1 (all ones). Then xy = 1.1×11 = 12.1 (and indeed x+y=12.1)."],
+  "solution":"From $xy=x+y$ we get $x(y-1)=y$, so $x=\\dfrac{y}{y-1}$. We need both numbers to use only the digit $1$. Try the repunit $y=11$: then $x=\\dfrac{11}{10}=1.1$, which uses only $1$s. Check: $x+y=1.1+11=12.1$ and $xy=1.1\\times 11=12.1$. Both conditions hold, so $xy=12.1$.","solution_verified":true},
+
+ {"slug":"6040-split","techniques":["conditional_prob","sample_space","total_probability"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Let a be the 40-die value and b the 60-die value; you want P(b>a).",
+           "Condition on a (uniform on 1..40): P(b>a)=(60−a)/60.",
+           "Average: (1/40)Σ_{a=1}^{40}(60−a)/60 = 1580/2400 = 79/120."],
+  "solution":"Let $a$ be the value of the $40$-sided die and $b$ the value of the $60$-sided die, independent and uniform. Condition on $a$: given $a$, the $60$-die exceeds it with probability $\\dfrac{60-a}{60}$ (values $a+1,\\dots,60$). Averaging over $a\\in\\{1,\\dots,40\\}$,\n$$\\mathbb{P}[b>a]=\\frac{1}{40}\\sum_{a=1}^{40}\\frac{60-a}{60}=\\frac{1}{2400}\\sum_{a=1}^{40}(60-a).$$\nNow $\\sum_{a=1}^{40}(60-a)=\\sum_{k=20}^{59}k=\\dfrac{(20+59)\\cdot 40}{2}=1580$, giving $\\dfrac{1580}{2400}=\\dfrac{79}{120}.$","solution_verified":true}
+]

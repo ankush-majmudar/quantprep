@@ -1,0 +1,72 @@
+[
+ {"slug":"mean-difference","techniques":["variance_props","covariance","linearity_exp"],"primary":"variance_props","difficulty":"medium","firm_style":["math"],
+  "hints":["E[(A₁−Ā)²]=Var(A₁−Ā)+(E[A₁−Ā])².",
+           "E[A₁]=1, μ̄=10 ⇒ mean part (−9)²=81; A₁−Ā=(9/10)A₁−(1/10)Σ_{i≥2}A_i.",
+           "Var=(81/100)100+(9/100)100=90; total 90+81=171."],
+  "solution":"$\\mathbb{E}[(A_1-\\bar A)^2]=\\mathrm{Var}(A_1-\\bar A)+(\\mathbb{E}[A_1-\\bar A])^2$. Here $\\mathbb{E}[A_1]=1$, $\\bar\\mu=\\tfrac1{10}\\sum(2i-1)=10$, so the mean term is $(1-10)^2=81$. Writing $A_1-\\bar A=\\tfrac9{10}A_1-\\tfrac1{10}\\sum_{i=2}^{10}A_i$ with independent variance-$100$ terms: $\\mathrm{Var}=\\tfrac{81}{100}(100)+\\tfrac{9}{100}(100)=90$. Total $=90+81=171.$","solution_verified":true},
+
+ {"slug":"water-measurement","techniques":["construction","casework","number_theory"],"primary":"construction","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["You have 7- and 11-pint vessels and want exactly 2 pints, minimizing fill/empty/pour transactions.",
+           "Since gcd(7,11)=1, 2 is reachable; repeatedly pour 7 into 11 and reset to step the remainder.",
+           "Track states (a,b) and count moves to first reach a 2 in some vessel."]},
+
+ {"slug":"cheese-lover-i","techniques":["inequalities","exponential","linearity_exp"],"primary":"inequalities","difficulty":"easy","firm_style":["math"],
+  "hints":["E[T₁₀₀]=100·250=25000.",
+           "Markov: P(T>26000) ≤ E[T]/26000.",
+           "= 25000/26000 = 25/26."],
+  "solution":"Each block has mean $250$, so $\\mathbb{E}[T_{100}]=25000$. By Markov's inequality, $P(T_{100}>26000)\\le\\dfrac{25000}{26000}=\\dfrac{25}{26}.$","solution_verified":true},
+
+ {"slug":"die-multiple-i","techniques":["conditional_prob","geometric","cond_expectation"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Stop when the running sum is even; condition on the first roll's parity.",
+           "Even first (1/2): done in 1. Odd first (1/2): need a later odd to flip parity, Geom(1/2) more rolls (mean 2).",
+           "E=½·1+½·(1+2)=2."],
+  "solution":"If the first roll is even (prob $\\tfrac12$) the sum is even and we stop. If odd, we need a subsequent odd roll to make the sum even, which takes a further $\\mathrm{Geom}(\\tfrac12)$ rolls (mean $2$). So $E=\\tfrac12(1)+\\tfrac12(1+2)=2.$","solution_verified":true},
+
+ {"slug":"lapping","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Lap rates: 1/6 and 1/9 laps per minute.",
+           "Lapping = gaining a full lap at the relative rate 1/6 − 1/9 = 1/18.",
+           "Time = 1/(1/18) = 18 minutes."],
+  "solution":"Lauda gains on Hunt at $\\tfrac16-\\tfrac19=\\tfrac1{18}$ lap per minute. To gain a full lap takes $\\dfrac{1}{1/18}=18$ minutes.","solution_verified":true},
+
+ {"slug":"company-purchase-ii","techniques":["time_value"],"primary":"time_value","difficulty":"medium","firm_style":["finance"],
+  "hints":["This is a growing perpetuity: value = CF/(r − g).",
+           "= 100/(0.10 − 0.05).",
+           "= 100/0.05 = 2000."],
+  "solution":"A growing perpetuity is worth $\\dfrac{\\text{CF}}{r-g}=\\dfrac{100}{0.10-0.05}=\\dfrac{100}{0.05}=2000.$","solution_verified":true},
+
+ {"slug":"optimal-bidders-i","techniques":["optimal_strategy","order_statistics","uniform_cont"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Payout = E[max of n U(500,1000)] − 5n = 500 + 500n/(n+1) − 5n.",
+           "Maximize: derivative 500/(n+1)² − 5 = 0 ⇒ (n+1)²=100 ⇒ n=9.",
+           "f(9)=1000 − 50 − 45 = 905."],
+  "solution":"With $n$ bidders, $\\mathbb{E}[\\max]=500+\\tfrac{500n}{n+1}$, so the payout is $f(n)=1000-\\tfrac{500}{n+1}-5n$. Setting $f'(n)=\\tfrac{500}{(n+1)^2}-5=0$ gives $n+1=10$, $n=9$, and $f(9)=1000-50-45=905.$","solution_verified":true},
+
+ {"slug":"stranded-at-sea","techniques":["poisson","exponential"],"primary":"poisson","difficulty":"easy","firm_style":["math"],
+  "hints":["P(no boat in an hour)=1−0.737856=0.262144=0.8⁶.",
+           "For a Poisson process, P(none in 10 min)=P(none in hour)^{1/6}=0.8.",
+           "P(≥1 in 10 min)=1−0.8=0.2."],
+  "solution":"$P(\\text{no boat in an hour})=1-0.737856=0.262144=0.8^6$. Over $10$ minutes ($\\tfrac16$ hour) the no-boat probability is $0.8^{6\\cdot(1/6)}=0.8$, so $P(\\ge1\\text{ boat in 10 min})=1-0.8=0.2.$","solution_verified":true},
+
+ {"slug":"greedy-bob","techniques":["variance_props","cond_variance","indicator_vars"],"primary":"variance_props","difficulty":"medium","firm_style":["math"],
+  "hints":["Y=I·X with I~Bernoulli(1/2) (heads) and X independent (mean 12, var 2).",
+           "E[Y²]=E[I²]E[X²]=0.5·(2+144)=73; E[Y]=0.5·12=6.",
+           "Var(Y)=73−36=37."],
+  "solution":"$Y=IX$ with $I\\sim\\mathrm{Bernoulli}(\\tfrac12)$ independent of $X$ ($\\mathbb{E}[X]=12$, $\\mathrm{Var}(X)=2$). Then $\\mathbb{E}[Y]=\\tfrac12\\cdot12=6$ and $\\mathbb{E}[Y^2]=\\tfrac12\\,\\mathbb{E}[X^2]=\\tfrac12(2+144)=73$, so $\\mathrm{Var}(Y)=73-36=37.$","solution_verified":true},
+
+ {"slug":"stack-double","techniques":["recursion","algebra_manipulation","sequences_series"],"primary":"recursion","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Total money is always 8.96. The i-th flipper, just after paying out, holds 1.28/2^{7−i}; before flipping he holds 4.48+0.64/2^{7−i}.",
+           "Earlier heads double his initial, so x_i=(4.48+0.64/2^{7−i})/2^{i−1}.",
+           "x=(4.49,2.25,1.13,0.57,0.29,0.15,0.08); Σx²=26.9374 ⇒ 269374."],
+  "solution":"The pot is always $\\$8.96$. Player $i$ (the $i$-th to flip), right after paying everyone, holds $\\tfrac{1.28}{2^{7-i}}$, so before flipping he holds $S_i=4.48+\\tfrac{0.64}{2^{7-i}}$. Since the earlier $i-1$ heads doubled his initial stake, $x_i=S_i/2^{i-1}$, giving $x=(4.49,2.25,1.13,0.57,0.29,0.15,0.08)$. Then $\\sum x_i^2=26.9374$, so $10000\\sum x_i^2=269374.$","solution_verified":true},
+
+ {"slug":"9-appearance","techniques":["basic_counting","number_theory"],"primary":"basic_counting","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Count digit 9 over 000–999 (1000 numbers, 3 positions).",
+           "Each position shows 9 in 1/10 of numbers: 100 times per position.",
+           "3·100=300; 1000 adds none ⇒ 300."],
+  "solution":"Writing numbers $000$–$999$, each of the $3$ digit positions is a $9$ in exactly $\\tfrac1{10}$ of the $1000$ numbers, i.e. $100$ times. Total $3\\cdot100=300$, and $1000$ contributes no $9$s, so $300.$","solution_verified":true},
+
+ {"slug":"2030-split-ii","techniques":["conditional_prob","order_statistics","sample_space"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Alice wins iff A > max(B₁,B₂); ties go to Bob. P(max<a)=[P(B<a)]².",
+           "Sum (1/30)Σ_{a=1}^{30}[P(B<a)]², with P(B<a)=(a−1)/20 for a≤21 and 1 beyond.",
+           "Σ=6.175+10=16.175=647/40 ⇒ P=647/1200."],
+  "solution":"Alice wins iff her roll beats both of Bob's, $A>\\max(B_1,B_2)$, with $P(\\max<a)=\\big(P(B<a)\\big)^2$. Then $P(W)=\\tfrac1{30}\\sum_{a=1}^{30}\\big(P(B<a)\\big)^2$ where $P(B<a)=\\tfrac{a-1}{20}$ for $a\\le21$ and $1$ for $a>20$. The sum is $\\tfrac1{400}\\sum_{k=0}^{19}k^2+10=6.175+10=\\tfrac{647}{40}$, so $P(W)=\\tfrac1{30}\\cdot\\tfrac{647}{40}=\\tfrac{647}{1200}.$","solution_verified":true}
+]

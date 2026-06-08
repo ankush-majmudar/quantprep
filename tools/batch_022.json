@@ -1,0 +1,73 @@
+[
+ {"slug":"pick-your-opponent","techniques":["casework","conditional_prob"],"primary":"casework","difficulty":"easy","firm_style":["games","brainteaser"],
+  "hints":["To win 2 in a row over 3 games, which single game must you always win?",
+           "Both winning pairs (1–2 and 2–3) include the middle game, so you must win game 2.",
+           "Put the easier opponent (Bob) in the middle ⇒ choose ABA ⇒ answer 1."],
+  "solution":"To win two consecutive games out of three you must win the middle game (it's in both possible consecutive pairs). So you want your strongest matchup in the middle. Since you beat Bob more often, you'd want Bob... but the middle of $ABA$ is Bob, giving you the easy game where it matters most. Hence choose $ABA$: answer $1.$","solution_verified":true},
+
+ {"slug":"questionable-values","techniques":["number_theory","algebra_manipulation"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["P(medium)=1/4 means easy:medium = 3:1.",
+           "With m mediums and 3m easys, total value = 9m+6m = 15m.",
+           "Smallest perfect-square multiple of 15 is 15·15=225."],
+  "solution":"Since $P(\\text{medium})=\\tfrac14$, there are $3$ easy per medium: with $m$ mediums the value is $3(3m)+6m=15m$. We need $15m$ to be a perfect square; as $15=3\\cdot5$, the smallest is $m=15$, giving $15\\cdot15=225.$","solution_verified":true},
+
+ {"slug":"colosseum-fight-ii","techniques":["exponential","optimal_strategy","symmetry_prob"],"primary":"exponential","difficulty":"hard","firm_style":["games"],
+  "hints":["Replace strength-x gladiators with Exp(1/x) lightbulbs; a fight is which bulb burns out first.",
+           "By memorylessness the surviving bulb's remaining life is fresh, so the win probability doesn't depend on the order of matchups.",
+           "All strategies give the same win probability ⇒ no strictly-better unique strategy ⇒ 0."],
+  "solution":"Model a strength-$x$ gladiator by an $\\mathrm{Exp}(1/x)$ lightbulb; a fight is which of two bulbs dies first, with the survivor keeping its (memoryless) remaining life — exactly the $\\frac{x}{x+y}$ rule. Because the exponential is memoryless, the eventual winner depends only on the total bulb lifetimes, not on the order Bob chooses. So every strategy yields the same winning probability, and there is no strictly optimal unique strategy: answer $0.$","solution_verified":true},
+
+ {"slug":"last-lightbulb","techniques":["exponential","order_statistics","linearity_exp"],"primary":"exponential","difficulty":"medium","firm_style":["math"],
+  "hints":["The last burnout is the max of 4 Exp(1) lifetimes.",
+           "E[max of n Exp(1)] = Σ_{k=1}^n 1/k (harmonic).",
+           "1+1/2+1/3+1/4 = 25/12."],
+  "solution":"The last burnout is $\\max(X_1,\\dots,X_4)$. Using the memoryless decomposition, $\\mathbb{E}[\\max]=\\sum_{k=1}^{4}\\tfrac1k=1+\\tfrac12+\\tfrac13+\\tfrac14=\\tfrac{25}{12}.$","solution_verified":true},
+
+ {"slug":"2-coin-more","techniques":["binomial","symmetry_prob","conditional_prob"],"primary":"binomial","difficulty":"medium","firm_style":["math"],
+  "hints":["Compare Jeff's first 20 coins with Tim's 20: a=P(Jeff more), b=P(tie), c=P(Jeff one fewer).",
+           "Jeff wins if ahead after 20 (×1), tied then ≥1 head in 2 (×3/4), or one behind then 2 heads (×1/4).",
+           "Using b=C(40,20)/4^20≈0.1254, c=(20/21)b, a=(1−b)/2: P≈0.561."],
+  "solution":"Compare Jeff's first $20$ coins to Tim's $20$. Let $a=P(\\text{Jeff ahead})$, $b=P(\\text{tie})$, $c=P(\\text{Jeff exactly one behind})$; by symmetry $a=\\tfrac{1-b}2$. Jeff wins overall if ahead (always), tied then gets $\\ge1$ head in his last two ($\\tfrac34$), or one behind then $2$ heads ($\\tfrac14$):\n$$P=a+\\tfrac34 b+\\tfrac14 c.$$\nWith $b=\\binom{40}{20}/4^{20}\\approx0.1254$ and $c=\\tfrac{20}{21}b\\approx0.1194$, $a\\approx0.4373$, giving $P\\approx0.561.$","solution_verified":true},
+
+ {"slug":"expected-chord-length","techniques":["uniform_cont","calculus","symmetry_prob"],"primary":"uniform_cont","difficulty":"hard","firm_style":["math"],
+  "hints":["Fix one point; the other is at angle θ~U(0,2π). Chord length = 2 sin(θ/2).",
+           "E = (1/2π)∫_0^{2π} 2 sin(θ/2) dθ.",
+           "= (1/π)·4 = 4/π ⇒ x=4."],
+  "solution":"By rotational symmetry fix one point and let the angular gap $\\theta\\sim U(0,2\\pi)$; the chord length is $2\\sin(\\theta/2)$. Then\n$$\\mathbb{E}=\\frac1{2\\pi}\\int_0^{2\\pi}2\\sin(\\theta/2)\\,d\\theta=\\frac1\\pi\\big[-2\\cos(\\theta/2)\\big]_0^{2\\pi}=\\frac{4}{\\pi},$$\nso $x=4.$","solution_verified":true},
+
+ {"slug":"consecutive-pairs","techniques":["recursion","combinations","sequences_series"],"primary":"recursion","difficulty":"hard","firm_style":["math"],
+  "hints":["Pick the unique consecutive pair {i,i+1}; remaining elements avoid i−1,i,i+1,i+2 and have no consecutive pair.",
+           "Left part {1..i−2} and right {i+3..10} each contribute Fibonacci-many independent sets: F(i)·F(10−i).",
+           "Σ_{i=1}^{9} F(i)F(10−i) = 235."],
+  "solution":"Choose the single consecutive pair $\\{i,i+1\\}$. The other elements must avoid $i-1,i,i+1,i+2$ (so the run isn't extended or touched) and themselves contain no consecutive pair. The left segment $\\{1,\\dots,i-2\\}$ and right segment $\\{i+3,\\dots,10\\}$ independently contribute $F(i)$ and $F(10-i)$ such subsets (Fibonacci counts of non-adjacent subsets). Summing,\n$$\\sum_{i=1}^{9}F(i)F(10-i)=34+21+26+24+25+24+26+21+34=235.$$","solution_verified":true},
+
+ {"slug":"bowl-of-cherries-i","techniques":["symmetry_prob","combinations"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["The bowl empties iff the very last cherry removed is red.",
+           "By symmetry each of the 13 cherries is equally likely to be last.",
+           "P(last is red)=5/13."],
+  "solution":"She keeps drawing until the reds are gone, so the bowl ends empty exactly when the last cherry overall is red. By symmetry each of the $13$ cherries is equally likely to be last, so the probability is $\\tfrac{5}{13}.$","solution_verified":true},
+
+ {"slug":"hit-or-miss","techniques":["combinations","sample_space","recursion"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["To hit the origin the particle must reach (1,1) and then move diagonally.",
+           "Reaching (1,1) from (4,4) uses d diagonals and 3−d of each axis move: multinomial (6−d)!/((3−d)!²d!)·(1/3)^{6−d}.",
+           "Sum over d=0..3 gives 245/729; times 1/3 for the final diagonal ⇒ 245/2187."],
+  "solution":"To finish at the origin the particle must reach $(1,1)$ then take a diagonal step. Going $(4,4)\\to(1,1)$ with $d$ diagonal moves needs $3-d$ left and $3-d$ down moves, in $\\binom{6-d}{(3-d),(3-d),d}$ orders, each with probability $(1/3)^{6-d}$:\n$$P(\\text{reach }(1,1))=\\sum_{d=0}^{3}\\frac{(6-d)!}{(3-d)!(3-d)!\\,d!}\\Big(\\tfrac13\\Big)^{6-d}=\\frac{20+90+108+27}{729}=\\frac{245}{729}.$$\nMultiplying by $\\tfrac13$ for the final diagonal step gives $\\dfrac{245}{2187}.$","solution_verified":true},
+
+ {"slug":"clock-angle-ii","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser","speed"],
+  "hints":["Minute hand at :15 is at 90°. The hour hand has moved past 3.",
+           "Hour hand at 3:15 = 3.25·30° = 97.5°.",
+           "Difference = 97.5 − 90 = 7.5°."],
+  "solution":"At $15$ minutes the minute hand is at $90^\\circ$. The hour hand is at $3.25\\times30^\\circ=97.5^\\circ$. The angle between them is $97.5-90=7.5^\\circ.$","solution_verified":true},
+
+ {"slug":"2-dice-ev","techniques":["order_statistics","cond_expectation","optimal_strategy"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["Final score = (sum of first roll)/(chosen die of second roll); dividing by the smaller maximizes it.",
+           "Independent rolls: EV = E[sum]·E[1/min] = 7·E[1/min].",
+           "E[1/min] = 1191/2160, so EV = 7·1191/2160 = 2779/720."],
+  "solution":"To maximize the score you divide by the smaller of the two second dice, so the final score is $\\frac{S}{m}$ with $S$ the first-roll sum (mean $7$) and $m=\\min$ of the second roll, independent. Using $P(\\min=k)=\\frac{(7-k)^2-(6-k)^2}{36}$, $\\mathbb{E}[1/m]=\\frac1{36}\\big(11+\\tfrac92\\cdot\\tfrac1{?}\\dots\\big)=\\frac{1191}{2160}$. Hence $\\mathbb{E}=7\\cdot\\frac{1191}{2160}=\\frac{2779}{720}.$","solution_verified":true},
+
+ {"slug":"base-exponent-square","techniques":["number_theory","parity"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["k^k is a perfect square automatically when k is even (k^{k/2})².",
+           "When k is odd, k^k is square iff k itself is a perfect square.",
+           "Even k in [100,400]: 151; odd squares: 121,169,225,289,361 → 5. Total 156."],
+  "solution":"If $k$ is even, $k^k=(k^{k/2})^2$ is always a perfect square. If $k$ is odd, $k^k$ (odd exponent) is a square iff $k$ is itself a perfect square. In $[100,400]$ there are $151$ even values, plus the odd squares $121,169,225,289,361$ ($5$ of them). Total $=151+5=156.$","solution_verified":true}
+]

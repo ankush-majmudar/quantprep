@@ -1,0 +1,73 @@
+[
+ {"slug":"playlist","techniques":["symmetry_prob","combinations"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Only the relative order of the 4 DaBaby and 6 Rae songs matters.",
+           "All Rae before the 2nd DaBaby ⟺ at least 3 DaBaby songs come after the last Rae.",
+           "Favorable D-position sets: 7 of C(10,4)=210 ⇒ 1/30."],
+  "solution":"Among the $4$ DaBaby ($D$) and $6$ Rae ($R$) songs, the event is that the $2$nd $D$ falls after the last $R$, i.e. at least $3$ $D$'s trail all $R$'s. Counting $D$-position sets in $\\binom{10}{4}=210$: all four trailing ($1$) plus exactly three trailing with one $D$ among the first six ($6$) gives $7$, so $P=\\tfrac{7}{210}=\\tfrac1{30}.$","solution_verified":true},
+
+ {"slug":"defining-correlation","techniques":["correlation"],"primary":"correlation","difficulty":"easy","firm_style":["stats"],
+  "hints":["Correlation is invariant to positive scaling and shifts.",
+           "8X scales positively; +7 is a shift.",
+           "Correlation stays 0.56."],
+  "solution":"Correlation is unchanged by positive scaling and additive shifts, so $\\mathrm{corr}(8X,Y+7)=\\mathrm{corr}(X,Y)=0.56.$","solution_verified":true},
+
+ {"slug":"even-doubles","techniques":["geometric","sequences_series","symmetry_prob"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["After the first flip, each new flip stops the game (matches previous) w.p. 1/2.",
+           "P(stop at toss k) = (1/2)^{k−1} for k≥2.",
+           "Σ_{k even} (1/2)^{k−1} = (1/2)/(1−1/4) = 2/3."],
+  "solution":"The game stops at toss $k$ if the first $k-1$ flips alternate and the $k$-th matches the previous, with probability $(\\tfrac12)^{k-1}$ for $k\\ge2$. Summing over even $k$: $\\tfrac12+\\tfrac18+\\cdots=\\dfrac{1/2}{1-1/4}=\\dfrac23.$","solution_verified":true},
+
+ {"slug":"chess-tournament-i","techniques":["symmetry_prob","combinations"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["The top two meet in the final iff they start in opposite halves of the 128-player bracket.",
+           "Given player 1's slot, 64 of the other 127 slots are in the opposite half.",
+           "64/127."],
+  "solution":"The two strongest players reach the final iff they are in different halves of the draw. Fixing the top seed, $64$ of the remaining $127$ positions lie in the opposite half, so $P=\\tfrac{64}{127}.$","solution_verified":true},
+
+ {"slug":"presidential-options","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["markets"],
+  "hints":["Trump wins ⟺ he wins all three states, so 'PA Republican' pays 1 whenever 'Trump yes' does — and sometimes more.",
+           "Short Trump-yes (+0.17) and buy PA-Republican (−0.16); payoffs never net negative.",
+           "Net credit = 0.17 − 0.16 = 0.01."],
+  "solution":"Since Trump wins only if he wins all three states, 'PA Republican' pays $\\$1$ in every state where 'Trump yes' pays $\\$1$, and possibly more. Shorting Trump-yes (credit $0.17$) and buying PA-Republican (cost $0.16$) is never net-negative at expiry, for a riskless credit of $0.17-0.16=\\$0.01.$","solution_verified":true},
+
+ {"slug":"chess-tournament-iii","techniques":["conditional_prob","combinations","sequences_series"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Need x₁,x₂ in different sub-brackets: prob 2^{n−1}/(2ⁿ−1).",
+           "Each wins its own n−1 rounds (each as favorite, prob p): p^{n−1} each; then x₂ beats x₁ w.p. 1−p.",
+           "n=4,p=3/4: (8/15)(27/64)²(1/4) = 243/10240."],
+  "solution":"They meet in the final with probability $\\dfrac{2^{n-1}}{2^n-1}$. Each then wins its own $n-1$ rounds as the favorite ($p^{n-1}$ each), and $x_2$ beats $x_1$ with probability $1-p$. So the probability is $\\dfrac{2^{n-1}}{2^n-1}p^{2(n-1)}(1-p)$; at $n=4,p=\\tfrac34$: $\\dfrac{8}{15}\\big(\\tfrac{27}{64}\\big)^2\\tfrac14=\\dfrac{243}{10240}.$","solution_verified":true},
+
+ {"slug":"limiting-values-i","techniques":["cond_expectation","sample_space"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["The paid value is uniform on {2,3,4,5,6} (conditioned on not being 1).",
+           "Average those five values.",
+           "(2+3+4+5+6)/5 = 4."],
+  "solution":"The last roll is uniform on $\\{2,3,4,5,6\\}$, so the fair value is $\\dfrac{2+3+4+5+6}{5}=4.$","solution_verified":true},
+
+ {"slug":"dual-die-view","techniques":["markov_chain","cond_expectation","recursion"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Let e_i be expected rounds from i distinct faces; each round rolls 2 dice gaining 0, 1, or 2 new faces.",
+           "e_i = 1 + P₀e_i + P₁e_{i+1} + P₂e_{i+2}, with the gain probabilities from i.",
+           "Solving down from e₆=0 gives e₀ = 70219/9240."],
+  "solution":"Let $e_i$ be the expected rounds with $i$ faces collected. Rolling two dice from state $i$ gains $0,1,2$ new faces with probabilities $\\tfrac{i^2}{36},\\,\\tfrac{(6-i)(1+2i)}{36},\\,\\tfrac{(6-i)(5-i)}{36}$, giving $e_i=1+P_0e_i+P_1e_{i+1}+P_2e_{i+2}$. Solving from $e_6=0$ yields $e_0=\\dfrac{70219}{9240}.$","solution_verified":true},
+
+ {"slug":"choose-your-profit","techniques":["optimal_strategy","sequences_series","ev_betting"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["After n rolls the payout is αⁿ with probability (5/6)ⁿ, else 0.",
+           "Expected payout (5/6)ⁿαⁿ is constant (=1) only if α(5/6)=1.",
+           "α = 6/5."],
+  "solution":"After $n$ rolls the expected payout is $\\alpha^n(\\tfrac56)^n$. For this to stay constant at the starting value $1$ for all $n$, we need $\\tfrac56\\alpha=1$, i.e. $\\alpha=\\tfrac65.$","solution_verified":true},
+
+ {"slug":"minimal-variance","techniques":["variance_props","calculus","optimal_strategy"],"primary":"variance_props","difficulty":"easy","firm_style":["math"],
+  "hints":["Var(Y)=25c²+100(1−c)² by independence.",
+           "Differentiate: 50c−200(1−c)=0.",
+           "250c=200 ⇒ c=4/5."],
+  "solution":"By independence $\\mathrm{Var}(Y)=25c^2+100(1-c)^2$. Setting the derivative $50c-200(1-c)=0$ gives $250c=200$, so $c=\\tfrac45.$","solution_verified":true},
+
+ {"slug":"new-question","techniques":["recursion","combinations","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Count length-n sequences whose first HH is at the end: these number F_{n−1} (Fibonacci).",
+           "P = F_{n−1}/2ⁿ.",
+           "n=10: F₉=34, so 34/1024 = 17/512."],
+  "solution":"The number of length-$n$ sequences in which the first 'HH' occurs exactly at the end is the Fibonacci number $F_{n-1}$, so $P=\\dfrac{F_{n-1}}{2^n}$. For $n=10$, $F_9=34$, giving $\\dfrac{34}{1024}=\\dfrac{17}{512}.$","solution_verified":true},
+
+ {"slug":"red-card-deal","techniques":["martingale","optimal_strategy","symmetry_prob"],"primary":"martingale","difficulty":"medium","firm_style":["games"],
+  "hints":["The fraction of red cards remaining is a martingale.",
+           "Any stopping rule has expected success equal to the starting red fraction.",
+           "= 26/52 = 1/2; no strategy beats it."],
+  "solution":"The proportion of red cards remaining in the deck is a martingale, so by optional stopping every strategy yields expected win probability equal to the initial red fraction, $\\tfrac{26}{52}=\\tfrac12$. No rule can do better, so the answer is $\\tfrac12.$","solution_verified":true}
+]

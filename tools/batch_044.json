@@ -1,0 +1,72 @@
+[
+ {"slug":"alternating-sum","techniques":["algebra_manipulation","sequences_series"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser","speed"],
+  "hints":["Pair consecutive terms and use a²−b²=(a+b)(a−b).",
+           "Each pair (2k)²−(2k−1)² = 4k−1; or each n²−(n−1)²=2n−1.",
+           "Sum of all integers 1..100 = 5050."],
+  "solution":"Each pair $n^2-(n-1)^2=2n-1$, so the expression telescopes to $\\sum_{n=1}^{100}n=\\dfrac{100\\cdot101}{2}=5050.$","solution_verified":true},
+
+ {"slug":"cone-combo","techniques":["uniform_cont","calculus","complementary_count"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["Complement: the point is in the top portion (height >1), itself a small cone.",
+           "Top cone has radius 1/2, height 1: volume (1/3)π(1/2)²·1 = π/12, vs full 2π/3.",
+           "1 − (π/12)/(2π/3) = 1 − 1/8 = 7/8."]},
+
+ {"slug":"positively-normal","techniques":["symmetry_prob","normal","uniform_cont"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["(X,Y) is radially symmetric, so the angle is uniform.",
+           "Y>0 is the upper half (180°); Y>√3X within it is the arc from 60° to 180° (120°).",
+           "120/180 = 2/3."],
+  "solution":"By radial symmetry the direction angle is uniform. The event $Y>0$ is the upper half-plane ($180^\\circ$), and within it $Y>\\sqrt3X$ corresponds to angles from $60^\\circ$ to $180^\\circ$ ($120^\\circ$). So the conditional probability is $\\tfrac{120}{180}=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"lognormal-ii","techniques":["normal","variance_props","transformations"],"primary":"normal","difficulty":"medium","firm_style":["math"],
+  "hints":["X=e^Z, so Var(X⁴)=E[e^{8Z}]−(E[e^{4Z}])²; use the normal MGF E[e^{tZ}]=e^{t²/2}.",
+           "E[e^{8Z}]=e^{32}, (E[e^{4Z}])²=(e^8)²=e^{16}.",
+           "Var=e³²−e¹⁶ ⇒ a+b=48."],
+  "solution":"With $X=e^Z$, $\\mathrm{Var}(X^4)=\\mathbb{E}[e^{8Z}]-(\\mathbb{E}[e^{4Z}])^2$. Using $\\mathbb{E}[e^{tZ}]=e^{t^2/2}$: $e^{32}-(e^{8})^2=e^{32}-e^{16}$, so $a=32,b=16$ and $a+b=48.$","solution_verified":true},
+
+ {"slug":"sheep-sharing","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Alfred = 1.2·John and Alfred = 1.25·Charles.",
+           "Alfred = 1.2·3600 = 4320.",
+           "Charles = 4320/1.25 = 3456."],
+  "solution":"Alfred gets $1.2\\times3600=4320$. Since Alfred is $25\\%$ more than Charles, $\\text{Charles}=\\dfrac{4320}{1.25}=3456.$","solution_verified":true},
+
+ {"slug":"team-winners","techniques":["combinations","permutations","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Distinct win counts must be 0,1,…,31 (sum 496 = total games).",
+           "Such outcomes are the transitive tournaments: 32! of them, out of 2^{C(32,2)}=2^{496}.",
+           "32!/2^{496} ⇒ a+b=32+496=528."],
+  "solution":"Distinct win totals must be exactly $0,1,\\dots,31$, which forces a transitive ranking — there are $32!$ such outcomes out of $2^{\\binom{32}{2}}=2^{496}$. So $P=\\dfrac{32!}{2^{496}}$, giving $a+b=32+496=528.$","solution_verified":true},
+
+ {"slug":"over-3-heads","techniques":["calculus","optimal_strategy","binomial"],"primary":"calculus","difficulty":"medium","firm_style":["math"],
+  "hints":["List the 4-flip sequences with a maximal H-run of exactly 2: HHTT,THHT,TTHH (2 heads) and HHTH,HTHH (3 heads).",
+           "P(p)=3p²(1−p)²+2p³(1−p)=p²(1−p)(3−p); maximize.",
+           "2p²−6p+3=0 ⇒ p=(3−√3)/2 ⇒ a+b+c=3+3+2=8."],
+  "solution":"The qualifying sequences are $HHTT,THHT,TTHH$ (two heads) and $HHTH,HTHH$ (three heads), so $P(p)=3p^2(1-p)^2+2p^3(1-p)=p^2(1-p)(3-p)$. Setting $P'(p)=0$ gives $2p^2-6p+3=0$, so $p=\\dfrac{3-\\sqrt3}{2}$ and $a+b+c=8.$","solution_verified":true},
+
+ {"slug":"no-rock","techniques":["zero_sum","optimal_strategy","ev_betting"],"primary":"zero_sum","difficulty":"easy","firm_style":["games"],
+  "hints":["You never play paper; play rock w.p. a, scissors w.p. 1−a. Opponent plays paper w.p. b, scissors w.p. 1−b.",
+           "Payoff P(a,b)=a+b−3ab; find the equilibrium.",
+           "a=b=1/3 gives P=1/3."],
+  "solution":"Drop paper; let you play rock w.p. $a$, scissors $1-a$, and the opponent paper w.p. $b$, scissors $1-b$. Your payoff is $P(a,b)=a(1-2b)+(1-a)b=a+b-3ab$. The equilibrium $a=b=\\tfrac13$ gives $P=\\tfrac13+\\tfrac13-3\\cdot\\tfrac19=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"bus-wait-ii","techniques":["cond_expectation","uniform_cont","geometric"],"primary":"cond_expectation","difficulty":"medium","firm_style":["math"],
+  "hints":["Gaps are 10 min normally, 70 min if the driver refills (prob 0.1) — the inspection paradox applies.",
+           "E[wait]=E[L²]/(2E[L]) with L=10 (0.9) or 70 (0.1).",
+           "E[L]=16, E[L²]=580 ⇒ 580/32 = 145/8."],
+  "solution":"Inter-bus gaps are $L=10$ w.p. $0.9$ and $70$ w.p. $0.1$. Arriving at a random time, the expected wait (inspection paradox) is $\\dfrac{\\mathbb{E}[L^2]}{2\\mathbb{E}[L]}$. With $\\mathbb{E}[L]=16$ and $\\mathbb{E}[L^2]=580$, this is $\\dfrac{580}{32}=\\dfrac{145}{8}.$","solution_verified":true},
+
+ {"slug":"placing-dots","techniques":["conditional_prob","sample_space"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Each dot lands on one of 4 edges uniformly; want all distinct.",
+           "P=(4/4)(3/4)(2/4).",
+           "= 3/8."],
+  "solution":"The first dot is anywhere; the second avoids its edge ($\\tfrac34$) and the third avoids both ($\\tfrac24$): $P=\\tfrac44\\cdot\\tfrac34\\cdot\\tfrac24=\\tfrac38.$","solution_verified":true},
+
+ {"slug":"grid-filling-iii","techniques":["parity","casework","combinations"],"primary":"parity","difficulty":"medium","firm_style":["math"],
+  "hints":["Only parities matter: place five odds so every row, column, and diagonal has an odd count of odds.",
+           "The unique pattern is the central 'plus' (middle row + middle column).",
+           "1 valid placement of odds out of C(9,5)=126 ⇒ 1/126."],
+  "solution":"Each line needs an odd number of odd entries. Placing the five odd numbers in the central 'plus' (the middle row and middle column) makes every row, column, and both diagonals have an odd count — and it's the only such pattern. The odds occupy $1$ of $\\binom95=126$ position-sets, so $P=\\tfrac1{126}.$","solution_verified":true},
+
+ {"slug":"casted-shadow","techniques":["calculus"],"primary":"calculus","difficulty":"medium","firm_style":["math"],
+  "hints":["Similar triangles: lamp height/(x+s) = 6/s. Use the given x=10,s=15 to find the lamp height (10).",
+           "Then s = 1.5x, so ds/dt = 1.5·dx/dt.",
+           "= 1.5·40 = 60 ft/min."],
+  "solution":"Similar triangles give $\\dfrac{H}{x+s}=\\dfrac6s$; from $x=10,s=15$, $H=10$. Then $10s=6(x+s)\\Rightarrow s=\\tfrac32 x$, so $\\dfrac{ds}{dt}=\\tfrac32\\dfrac{dx}{dt}=\\tfrac32\\cdot40=60$ ft/min (independent of position).","solution_verified":true}
+]

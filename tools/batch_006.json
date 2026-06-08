@@ -1,0 +1,73 @@
+[
+ {"slug":"integer-polygon","techniques":["number_theory","basic_counting"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Write the interior angle of a regular n-gon in terms of n.",
+           "Interior angle = 180 − 360/n, an integer ⟺ n divides 360.",
+           "360=2³·3²·5 has 24 divisors; exclude n=1,2 → 22."],
+  "solution":"A regular $n$-gon has interior angle $\\dfrac{(n-2)180}{n}=180-\\dfrac{360}{n}$, which is an integer exactly when $n\\mid 360$. Since $360=2^3\\cdot3^2\\cdot5$ has $(3{+}1)(2{+}1)(1{+}1)=24$ divisors, and we need $n\\ge3$, we exclude $n=1,2$: $24-2=22.$","solution_verified":true},
+
+ {"slug":"rough-day","techniques":["markov_chain","law_total_exp","cond_expectation","geometric"],"primary":"law_total_exp","difficulty":"easy","firm_style":["math"],
+  "hints":["Set up expected-bagel equations conditioning on the next bagel's type (Markov chain G/B).",
+           "Let g = expected bagels to next B given last was G: g = 1 + (2/5)g ⇒ g = 5/3.",
+           "From the current B: a = 1 + (2/5)g = 1 + 2/3 = 5/3."],
+  "solution":"Let $g$ be the expected number of bagels until the next bad one given the last seen was good. From a good bagel, the next is good w.p. $\\tfrac25$ (continue) or bad w.p. $\\tfrac35$ (stop): $g=1+\\tfrac25 g\\Rightarrow g=\\tfrac53$. Starting from the current bad bagel, the next is bad w.p. $\\tfrac35$ (stop) or good w.p. $\\tfrac25$ (go to state $g$): expected $=1+\\tfrac25\\cdot\\tfrac53=1+\\tfrac23=\\tfrac53.$","solution_verified":true},
+
+ {"slug":"generational-wealth-i","techniques":["optimal_strategy","cond_expectation","uniform_cont"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["A redraw yields a fresh U(0,1) with mean ½, so keep the first number only if it beats ½.",
+           "E = P(first≥½)·E[first|first≥½] + P(first<½)·½.",
+           "= ½·¾ + ½·½ = 5/8."],
+  "solution":"Redrawing gives a fresh $U(0,1)$ with mean $\\tfrac12$, so the rational rule is: keep the first number iff it is $\\ge\\tfrac12$. Then\n$$\\mathbb{E}[\\text{payout}]=P(\\text{first}\\ge\\tfrac12)\\,\\mathbb{E}[\\text{first}\\mid \\text{first}\\ge\\tfrac12]+P(\\text{first}<\\tfrac12)\\cdot\\tfrac12=\\tfrac12\\cdot\\tfrac34+\\tfrac12\\cdot\\tfrac12=\\tfrac58.$$","solution_verified":true},
+
+ {"slug":"turducken-hunt","techniques":["optimal_strategy","zero_sum","backward_induction","algebra_manipulation"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["markets","brainteaser"],
+  "hints":["Shots are observed: if you fire and miss, the other waits to x=1 and hits for sure. So firing first at x wins w.p. your hit prob there.",
+           "The equilibrium firing point x* makes a player indifferent: m(x*) = 1 − r(x*), i.e. x = 1 − x².",
+           "x²+x−1=0 ⇒ x*=(√5−1)/2, which is Mordecai's win probability. a+b+c=5+1+2=8."],
+  "solution":"If a player fires and misses, the opponent simply waits until $x=1$ (where both hit surely) and wins. So firing first at position $x$ wins exactly with your hit probability there. The equilibrium point $x^*$ makes each indifferent between firing now and being pre-empted: $m(x^*)=1-r(x^*)$, i.e. $x=1-x^2$.\n\nSolving $x^2+x-1=0$ gives $x^*=\\dfrac{\\sqrt5-1}{2}$. At $x^*$ Mordecai (the higher-accuracy-at-low-x shooter) fires and wins with probability $m(x^*)=x^*=\\dfrac{\\sqrt5-1}{2}$. Hence $a=5,b=1,c=2$ and $a+b+c=8.$","solution_verified":true},
+
+ {"slug":"close-dice-ii","techniques":["markov_chain","first_step","cond_expectation","symmetry_prob"],"primary":"markov_chain","difficulty":"hard","firm_style":["math"],
+  "hints":["Let E_i be expected rolls to a |diff|≤1 pair given current face i; use symmetry E_1=E_6, E_2=E_5, E_3=E_4.",
+           "From i, success if the next face is within 1 (counts: 2 for i∈{1,6}, 3 otherwise); else continue.",
+           "Solving the 3×3 system gives a=288/115,b=246/115,c=252/115; E=1+(a+b+c)/3=377/115."],
+  "solution":"Let $E_i$ be the expected additional rolls to obtain consecutive faces differing by $\\le1$, given the current face is $i$. By the die's symmetry $a:=E_1=E_6,\\;b:=E_2=E_5,\\;c:=E_3=E_4$. A roll succeeds if the next face is within $1$ (2 faces for $i\\in\\{1,6\\}$, 3 otherwise):\n$$a=1+\\tfrac16(a+b+2c),\\quad b=1+\\tfrac16(a+b+c),\\quad c=1+\\tfrac16(2a+b).$$\nSolving gives $a=\\tfrac{288}{115},\\,b=\\tfrac{246}{115},\\,c=\\tfrac{252}{115}$. The first roll is uniform, so\n$$E=1+\\tfrac{1}{6}\\sum_i E_i=1+\\tfrac{a+b+c}{3}=1+\\tfrac{262}{115}=\\tfrac{377}{115}.$$","solution_verified":true},
+
+ {"slug":"consecutive-tails","techniques":["recursion","sequences_series","combinations"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Count valid sequences t_n where every tail run has length exactly 2.",
+           "A valid sequence ends in H (preceded by valid length n−1) or TT (preceded by valid n−2): t_n=t_{n−1}+t_{n−2}.",
+           "With t_0=1,t_1=1 this is Fibonacci: t_10=89, so probability 89/1024."],
+  "solution":"Let $t_n$ count length-$n$ sequences in which tails appear only in blocks of exactly two. Such a sequence ends in $H$ (preceded by any valid length-$(n-1)$ sequence) or in $TT$ (preceded by any valid length-$(n-2)$ one), so $t_n=t_{n-1}+t_{n-2}$ with $t_0=t_1=1$. This is Fibonacci: $1,1,2,3,5,8,13,21,34,55,89$, so $t_{10}=89$. The probability is $\\dfrac{89}{2^{10}}=\\dfrac{89}{1024}.$","solution_verified":true},
+
+ {"slug":"jellybean-jar-i","techniques":["conditional_prob","combinations","basic_counting"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Multiply the sequential draw probabilities without replacement.",
+           "(6/16)(5/15) for two reds, then (10/14)(9/13) for two blues.",
+           "= 2700/43680 = 45/728."],
+  "solution":"Drawing one at a time without replacement,\n$$P=\\frac{6}{16}\\cdot\\frac{5}{15}\\cdot\\frac{10}{14}\\cdot\\frac{9}{13}=\\frac{2700}{43680}=\\frac{45}{728}.$$","solution_verified":true},
+
+ {"slug":"integral-variance-i","techniques":["brownian","ito"],"primary":"brownian","difficulty":"medium","firm_style":["math"],
+  "hints":["∫_0^t W_s ds is Gaussian; its variance is the double integral of the covariance.",
+           "Var = ∫_0^t∫_0^t min(s,u) ds du.",
+           "= 2∫_0^t∫_0^u s ds du = ∫_0^t u² du = t³/3, so k=1/3."],
+  "solution":"$\\int_0^t W_s\\,ds$ is Gaussian with mean $0$, so its variance is\n$$\\mathrm{Var}\\Big(\\int_0^t W_s\\,ds\\Big)=\\int_0^t\\!\\!\\int_0^t \\mathrm{Cov}(W_s,W_u)\\,ds\\,du=\\int_0^t\\!\\!\\int_0^t \\min(s,u)\\,ds\\,du.$$\nBy symmetry this is $2\\int_0^t\\!\\int_0^u s\\,ds\\,du=\\int_0^t u^2\\,du=\\dfrac{t^3}{3}$, so $k=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"river-length","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser","speed"],
+  "hints":["Let v be the current speed and l the length; set up two equations for the two crossings.",
+           "Stationary: l = 6v. Swimming downstream at 3: l = 4(v+3).",
+           "6v = 4v+12 ⇒ v=6 ⇒ l=36."],
+  "solution":"Let $v$ be the current speed and $l$ the length carried downstream. Drifting: $l=6v$. Swimming downstream adds $3$ ft/s: $l=4(v+3)$. Setting equal, $6v=4v+12\\Rightarrow v=6$, so $l=6\\cdot6=36$ feet.","solution_verified":true},
+
+ {"slug":"odd-coin-flips","techniques":["symmetry_prob","parity","conditional_prob"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Condition on the first 99 coins and look at the last one.",
+           "Whatever the parity after 99 flips, the 100th flip makes the total odd with probability exactly ½.",
+           "So the answer is 1/2."],
+  "solution":"Condition on the outcome of the first $99$ coins. Whatever their number of heads, the last coin flips the parity of the total with probability $\\tfrac12$: if the first $99$ gave an even count, the total is odd iff the last is heads ($\\tfrac12$); if odd, the total is odd iff the last is tails ($\\tfrac12$). Either way the probability of an odd total is $\\tfrac12.$","solution_verified":true},
+
+ {"slug":"dollar-cent-switch-ii","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Let x = dollars and y = cents on entry; total = x + 0.01y. He leaves with half: x cents and y/2 dollars.",
+           "Set ½(x+0.01y) = y/2 + 0.01x ⇒ 0.98x = 0.99y ⇒ x=99k, y=98k.",
+           "Smallest positive: x=99, y=98 ⇒ entered with 99 + 0.98 = $99.98."],
+  "solution":"Let $x$ be his dollars and $y$ his cents on entry, so he had $x+0.01y$ dollars. He spent half, leaving $\\tfrac12(x+0.01y)$. On leaving he had $x$ cents and $\\tfrac{y}{2}$ dollars, i.e. $\\tfrac{y}{2}+0.01x$. Equating,\n$$\\tfrac12(x+0.01y)=\\tfrac{y}{2}+0.01x\\;\\Rightarrow\\; 0.98x=0.99y\\;\\Rightarrow\\; x=99k,\\ y=98k.$$\nThe smallest nonempty solution is $x=99,\\,y=98$, so he entered with $99+0.98=\\$99.98.$","solution_verified":true},
+
+ {"slug":"zero-appearance","techniques":["complementary_count","basic_counting"],"primary":"complementary_count","difficulty":"easy","firm_style":["math"],
+  "hints":["Count the complement: positive integers ≤10000 with NO digit 0.",
+           "No-zero counts: 9 (1-digit) + 9² + 9³ + 9⁴ = 7380 over 1..9999.",
+           "9999 − 7380 = 2619 have a zero; 10000 also has a zero ⇒ 2620."],
+  "solution":"Use complementary counting. Among $1$ to $9999$, numbers with no digit $0$ number $9+9^2+9^3+9^4=9+81+729+6561=7380$. So $9999-7380=2619$ of them contain a $0$. Finally $10000$ also contains a $0$, giving $2619+1=2620.$","solution_verified":true}
+]

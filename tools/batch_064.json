@@ -1,0 +1,61 @@
+[
+ {"slug":"first-quarter","techniques":["symmetry_teaser","optimal_strategy","invariants"],"primary":"symmetry_teaser","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["The table has a unique center point.",
+           "Play first at the exact center, then mirror every opponent move through the center.",
+           "You always have a reply ⇒ go first (answer 1)."],
+  "solution":"Place the first quarter exactly at the center, then mirror each opponent placement through the center. Every move they can make has a symmetric reply, so you never run out first — you should go first, answer $1.$","solution_verified":true},
+
+ {"slug":"inheritance-split","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Jack=n, Jill=100−n; (1/4)(100−n) − (1/3)n = 11.",
+           "25 − n/4 − n/3 = 11 ⇒ 7n/12 = 14.",
+           "n = 24."],
+  "solution":"With Jack $=n$ and Jill $=100-n$: $\\tfrac14(100-n)-\\tfrac13 n=11$, i.e. $25-\\tfrac{7n}{12}=11$, so $\\tfrac{7n}{12}=14$ and $n=24.$","solution_verified":true},
+
+ {"slug":"horse-arbitrage","techniques":["arbitrage","algebra_manipulation"],"primary":"arbitrage","difficulty":"easy","firm_style":["finance"],
+  "hints":["Bet bᵢ so payouts equalize: 2b₁=4b₂=6b₃=R, with b₁+b₂+b₃=1.",
+           "R(1/2+1/4+1/6)=R·11/12=1 ⇒ R=12/11.",
+           "Profit = R−1 = 1/11."],
+  "solution":"Choose bets so every outcome returns $R$: $b_1=\\tfrac R2,b_2=\\tfrac R4,b_3=\\tfrac R6$. Then $R\\big(\\tfrac12+\\tfrac14+\\tfrac16\\big)=\\tfrac{11}{12}R=1$, so $R=\\tfrac{12}{11}$ and the guaranteed profit is $R-1=\\tfrac1{11}.$","solution_verified":true},
+
+ {"slug":"card-turner","techniques":["linearity_exp","geometric","cond_expectation"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["With k pairs left (2k cards), a draw removes a pair w.p. 1/(2k−1).",
+           "So removing one pair takes a geometric mean of 2k−1 turns.",
+           "Σ_{k=1}^{10}(2k−1) = 100."],
+  "solution":"When $k$ pairs remain ($2k$ cards), a random draw of two matches with probability $\\dfrac{k}{\\binom{2k}{2}}=\\dfrac1{2k-1}$, so clearing that pair takes on average $2k-1$ turns. Summing, $\\mathbb{E}[T]=\\sum_{k=1}^{10}(2k-1)=100.$","solution_verified":true},
+
+ {"slug":"animal-farm","techniques":["number_theory","algebra_manipulation"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["100x₁+20x₂+x₃=2000 and x₁+x₂+x₃=100 ⇒ 99x₁+19x₂=1900.",
+           "Mod 99: 19x₂≡19 ⇒ x₂=1, then x₁=19, x₃=80.",
+           "Product = 19·1·80 = 1520."],
+  "solution":"Doubling the cost equation and subtracting the count equation gives $99x_1+19x_2=1900$. Reducing mod $99$, $x_2=1$, so $x_1=\\tfrac{1881}{99}=19$ and $x_3=80$. Thus $x_1x_2x_3=19\\cdot1\\cdot80=1520.$","solution_verified":true},
+
+ {"slug":"mean-cards-i","techniques":["optimal_strategy","cond_expectation","ev_betting"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["Threshold strategy: keep all cards ≥ k; f(k)=(100+k)/2 − (k−1).",
+           "f(k)=51 − k/2 is decreasing in k.",
+           "Best is k=1 (keep everything): f(1)=101/2."],
+  "solution":"Keeping all cards $\\ge k$ pays the mean $\\tfrac{100+k}{2}$ minus the $k-1$ discard costs: $f(k)=51-\\tfrac k2$, decreasing in $k$. So keep everything ($k=1$), giving $f(1)=\\tfrac{101}{2}.$","solution_verified":true},
+
+ {"slug":"binary-option","techniques":["option_basics","arbitrage"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Payoff = 2·1(S≥24) − 1; replicate with 2 binary calls at K=24 minus 1 bond.",
+           "Check: S≥24 → 2−1=1; S<24 → 0−1=−1.",
+           "Price = 2·0.73 − 0.9 = 0.56."],
+  "solution":"The payoff is $2\\cdot\\mathbf 1(S_T\\ge24)-1$, replicated by $2$ binary calls struck at $24$ minus one bond. The price is $2(0.73)-0.9=1.46-0.9=0.56.$","solution_verified":true},
+
+ {"slug":"distinct-date-i","techniques":["casework","construction","number_theory"],"primary":"casework","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Minimize the year first; months need a leading 0 or 1 and days need small digits.",
+           "Years 20XX consume 0 and 2, blocking valid all-distinct month/day combos.",
+           "The first workable year is 2345 (digits 2,3,4,5), with 06/17 → 06/17/2345."],
+  "solution":"All-distinct dates require the four year digits plus a valid month and day with no repeats. Years $20\\text{XX}$ tie up $0$ and $2$, leaving no room for a legal month/day, and the same obstruction rules out everything up to $2344$. The first feasible year is $2345$ (digits $2,3,4,5$), and the earliest month/day from the remaining $\\{0,1,6,7,8,9\\}$ is $06/17$. So the date is $06/17/2345$, i.e. $06172345.$","solution_verified":true},
+
+ {"slug":"18-sides","techniques":["algebra_manipulation","ev_betting"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["math"],
+  "hints":["With n sixes and 18−n threes, EV=(6n+3(18−n))/18.",
+           "Set equal to 4: 3n+54=72.",
+           "n=6."],
+  "solution":"$\\dfrac{6n+3(18-n)}{18}=4\\Rightarrow 3n+54=72\\Rightarrow n=6.$","solution_verified":true},
+
+ {"slug":"perfect-correlation-iii","techniques":["covariance","correlation","variance_props"],"primary":"covariance","difficulty":"medium","firm_style":["math"],
+  "hints":["Cov(X+Y,X−Y)=Var(X)−Var(Y)=σ_X²−σ_Y².",
+           "With ρ=−1: Var(X+Y)=(σ_X−σ_Y)², Var(X−Y)=(σ_X+σ_Y)².",
+           "Corr = (σ_X²−σ_Y²)/((σ_Y−σ_X)(σ_X+σ_Y)) = −1."],
+  "solution":"$\\mathrm{Cov}(X+Y,X-Y)=\\sigma_X^2-\\sigma_Y^2$. Since $\\rho=-1$, $\\mathrm{Cov}(X,Y)=-\\sigma_X\\sigma_Y$, giving $\\mathrm{Var}(X+Y)=(\\sigma_X-\\sigma_Y)^2$ and $\\mathrm{Var}(X-Y)=(\\sigma_X+\\sigma_Y)^2$. With $\\sigma_Y>\\sigma_X$, $\\mathrm{Corr}=\\dfrac{\\sigma_X^2-\\sigma_Y^2}{(\\sigma_Y-\\sigma_X)(\\sigma_X+\\sigma_Y)}=-1.$","solution_verified":true}
+]

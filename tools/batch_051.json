@@ -1,0 +1,71 @@
+[
+ {"slug":"multinomial-expansion","techniques":["stars_and_bars","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Each term is x₁^{e₁}…x₆^{e₆} with e₁+…+e₆=18.",
+           "Count nonnegative solutions: stars and bars.",
+           "C(18+5,5)=C(23,5)=33649."],
+  "solution":"Distinct terms correspond to exponent tuples with $e_1+\\dots+e_6=18$, of which there are $\\binom{18+5}{5}=\\binom{23}{5}=33649.$","solution_verified":true},
+
+ {"slug":"poisson-review-iv","techniques":["poisson"],"primary":"poisson","difficulty":"easy","firm_style":["math"],
+  "hints":["3 sq yd ~ Poisson(12).",
+           "P(≥1)=1−e^{−12}=1+(−1)/e^{12}.",
+           "a=−1, b=12 ⇒ a+b=11."],
+  "solution":"Over $3$ square yards imperfections are $\\mathrm{Poisson}(12)$, so $P(\\ge1)=1-e^{-12}=1+\\dfrac{-1}{e^{12}}$. Thus $a=-1,b=12$ and $a+b=11.$","solution_verified":true},
+
+ {"slug":"conditionally-normal","techniques":["symmetry_prob","normal","conditional_prob"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["By radial symmetry the angle is uniform; P(X+Y>0)=1/2.",
+           "X>0 and X+Y>0 is the angular wedge from −45° to 90° (135°).",
+           "(135/360)/(1/2)=3/4."],
+  "solution":"By radial symmetry the direction is uniform. $X+Y>0$ is a half-plane (prob $\\tfrac12$), and $X>0\\cap X+Y>0$ is the wedge of angles $(-45^\\circ,90^\\circ)$, i.e. $135^\\circ=\\tfrac38$ of the circle. So the conditional probability is $\\dfrac{3/8}{1/2}=\\dfrac34.$","solution_verified":true},
+
+ {"slug":"dangerous-doubles","techniques":["ev_betting","sample_space"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["List the 4 equally likely outcomes and their payoffs.",
+           "TT:0, HT:+2, TH:+2, HH:−7.",
+           "(0+2+2−7)/4 = −3/4."]},
+
+ {"slug":"magic-11","techniques":["number_theory"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["x³ ends in 11 ⟺ x³ ≡ 11 (mod 100); only x mod 100 matters.",
+           "Cubing is a bijection mod 25 (gcd(3,20)=1) and forces a unique residue mod 4, hence mod 100.",
+           "Exactly 1 of 100 residues works ⇒ 1/100 = 0.01."],
+  "solution":"We need $x^3\\equiv11\\pmod{100}$, which depends only on $x\\bmod100$. Mod $25$, cubing is a bijection (since $\\gcd(3,20)=1$), giving one solution; combined with the forced residue mod $4$, exactly one residue mod $100$ works. So the probability is $\\tfrac1{100}=0.01.$","solution_verified":true},
+
+ {"slug":"equal-flip-timer","techniques":["geometric","symmetry_prob","sequences_series"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["By symmetry P(B)=P(C), and P(B)+P(C)+P(E)=1, so we need P(E)=1/3.",
+           "P(E)=Σ p²(1−p)^{2(k−1)} = p²/(1−(1−p)²).",
+           "Set =1/3 ⇒ p=1/2."]},
+
+ {"slug":"uniform-product","techniques":["uniform_cont","cond_expectation","joint_cont"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["P(X>w)=1−w for w∈[0,1], so P(X>YZ)=E[1−YZ].",
+           "= 1 − E[Y]E[Z].",
+           "= 1 − (1/2)(1/2) = 3/4."],
+  "solution":"Since $P(X>w)=1-w$, $P(X>YZ)=\\mathbb{E}[1-YZ]=1-\\mathbb{E}[Y]\\mathbb{E}[Z]=1-\\tfrac12\\cdot\\tfrac12=\\tfrac34.$","solution_verified":true},
+
+ {"slug":"basic-eigenvalues","techniques":["linear_algebra"],"primary":"linear_algebra","difficulty":"easy","firm_style":["math"],
+  "hints":["Characteristic: λ²−(trace)λ+det=0; trace=−1, det=−6.",
+           "λ²+λ−6=0 ⇒ λ=2,−3.",
+           "a²+b²=4+9=13."],
+  "solution":"The characteristic equation is $\\lambda^2-(\\mathrm{tr})\\lambda+\\det=\\lambda^2+\\lambda-6=0$, so $\\lambda=2,-3$. Then $a^2+b^2=4+9=13.$","solution_verified":true},
+
+ {"slug":"colosseum-fight","techniques":["symmetry_prob","exponential","combinations"],"primary":"symmetry_prob","difficulty":"hard","firm_style":["games"],
+  "hints":["Model strength as balls (or Exp lifetimes); winner inheriting strength means the overall winner is decided by total strength.",
+           "Bob wins with probability (Bob's total)/(grand total).",
+           "30/(10+30) = 3/4."],
+  "solution":"Represent each unit of strength as a ball; the rule 'winner with prob $\\tfrac{a}{a+b}$ and inherits strength' makes the tournament equivalent to drawing balls so that the side owning the very last ball wins. That side is Bob with probability $\\dfrac{\\text{Bob's total}}{\\text{grand total}}=\\dfrac{30}{40}=\\dfrac34.$","solution_verified":true},
+
+ {"slug":"coin-streak","techniques":["gamblers_ruin","hitting_time"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["math"],
+  "hints":["Track heads−tails; it's a symmetric walk with absorbing barriers +10 and −7.",
+           "Expected time to hit a barrier from 0 is a·b.",
+           "= 10·7 = 70."],
+  "solution":"The difference heads$-$tails is a symmetric walk absorbed at $+10$ and $-7$. Starting at $0$, the expected time to hit a barrier is $a\\cdot b=10\\cdot7=70.$","solution_verified":true},
+
+ {"slug":"picking-candy","techniques":["optimal_strategy","conditional_prob","total_probability"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["games"],
+  "hints":["Put one good candy alone in a box; the rest (4 good, 5 bad) in the other.",
+           "P(good)=½·1 + ½·(4/9).",
+           "= 1/2 + 2/9 = 13/18."],
+  "solution":"Place a single good candy in one box and the other $4$ good $+5$ bad in the second. Then $P(\\text{good})=\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac49=\\tfrac9{18}+\\tfrac4{18}=\\tfrac{13}{18}.$","solution_verified":true},
+
+ {"slug":"covariance-review-iii","techniques":["covariance","normal"],"primary":"covariance","difficulty":"easy","firm_style":["math"],
+  "hints":["Cov(Z,Z²)=E[Z³]−E[Z]E[Z²].",
+           "All odd moments of a standard normal are 0.",
+           "= 0 − 0 = 0."],
+  "solution":"$\\mathrm{Cov}(Z,Z^2)=\\mathbb{E}[Z^3]-\\mathbb{E}[Z]\\mathbb{E}[Z^2]=0-0=0$ (odd moments of $N(0,1)$ vanish).","solution_verified":true}
+]

@@ -1,0 +1,73 @@
+[
+ {"slug":"digit-difference","techniques":["linearity_exp","basic_counting","number_theory"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Digits are independent: d₉∈{8,9}, d₀∈{0,1}, dᵢ∈{i−1,i,i+1} for i=1..8.",
+           "Average = Σ E[dᵢ]·10ⁱ with E[dᵢ]=i (i=1..8), E[d₉]=8.5, E[d₀]=0.5.",
+           "8.5·10⁹ + 876543210 + 0.5 = 9376543210.5 = 18753086421/2."],
+  "solution":"The digits are chosen independently with $\\mathbb{E}[d_i]=i$ for $i=1..8$, $\\mathbb{E}[d_9]=8.5$, $\\mathbb{E}[d_0]=0.5$. So the average is $8.5\\cdot10^9+\\sum_{i=1}^{8}i\\cdot10^i+0.5=8.5\\cdot10^9+876543210+0.5=\\dfrac{18753086421}{2}.$","solution_verified":true},
+
+ {"slug":"breaking-even","techniques":["gamblers_ruin","combinations","recursion"],"primary":"gamblers_ruin","difficulty":"medium","firm_style":["math"],
+  "hints":["Track Julie's net (start 0); break even = back to 0 in 8 steps without hitting ±4 (bankruptcy).",
+           "Paths 0→0 in 8 steps: C(8,4)=70; subtract those touching +4 or −4 (1 each by reflection).",
+           "(70−2)/2⁸ = 68/256 = 17/64."],
+  "solution":"Let the net change start at $0$; breaking even means returning to $0$ in $8$ steps without reaching $\\pm4$ (a bankruptcy). There are $\\binom84=70$ return paths; by reflection $1$ touches $+4$ and $1$ touches $-4$ (none both). So $70-2=68$ valid paths, giving $P=\\dfrac{68}{256}=\\dfrac{17}{64}.$","solution_verified":true},
+
+ {"slug":"contracts-and-pricing-i","techniques":["ev_betting","option_basics","cond_expectation"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["The contract is a call struck at 40; only acquisition outcomes can exceed 40.",
+           "E[payoff]=0.2[0.5·10 + 0.5·max(x−40,0)] = 1 + 0.1·max(x−40,0) = 15.",
+           "max(x−40,0)=140 ⇒ x=180."],
+  "solution":"The contract pays $\\max(\\text{price}-40,0)$. Only acquisition matters: $\\mathbb{E}=0.2\\big[0.5(10)+0.5\\max(x-40,0)\\big]=1+0.1\\max(x-40,0)$. Setting this to $15$ gives $\\max(x-40,0)=140$, so $x=180.$","solution_verified":true},
+
+ {"slug":"sheep-stealing","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Work backwards from 409, inverting each raid (took a fraction plus a fractional sheep).",
+           "Before 3rd: (4c/5 − 3/5)=409 ⇒ c=512; before 2nd: 683; before 1st: solve 2a/3−1/3=683.",
+           "a=1025."],
+  "solution":"Working backwards: after the third raid $\\tfrac{4c}5-\\tfrac35=409\\Rightarrow c=512$; before the second $\\tfrac{3b}4-\\tfrac14=512\\Rightarrow b=683$; before the first $\\tfrac{2a}3-\\tfrac13=683\\Rightarrow a=1025.$","solution_verified":true},
+
+ {"slug":"party-groups-ii","techniques":["linearity_exp","symmetry_prob","permutations"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Groups are the cycles of a random permutation; average group size = n / E[#cycles].",
+           "E[#cycles]=H_n; for n=50, H₅₀≈4.499.",
+           "50/4.499 ≈ 11.1."],
+  "solution":"The groups are cycles of a random permutation, so the average group size is $\\dfrac{n}{\\mathbb{E}[\\#\\text{cycles}]}=\\dfrac{50}{H_{50}}\\approx\\dfrac{50}{4.499}\\approx11.1.$","solution_verified":true},
+
+ {"slug":"limited-urns","techniques":["bayes","conditional_prob","sequences_series"],"primary":"bayes","difficulty":"hard","firm_style":["math"],
+  "hints":["P(red from urn k)=1/2^k; posterior on urn k after a red ∝ (1/2^k).",
+           "P(second red)=Σ(1/2^k)²/Σ(1/2^k).",
+           "→ (Σ1/4^k)/(Σ1/2^k)=(1/3)/1=1/3."],
+  "solution":"Urn $k$ gives red with probability $\\tfrac1{2^k}$. After a red, the posterior on urn $k$ is $\\propto\\tfrac1{2^k}$, so $P(\\text{2nd red})=\\dfrac{\\sum_k(1/2^k)^2}{\\sum_k 1/2^k}$. As $n\\to\\infty$ this is $\\dfrac{\\sum1/4^k}{\\sum1/2^k}=\\dfrac{1/3}{1}=\\dfrac13.$","solution_verified":true},
+
+ {"slug":"leaked-ip","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["P(says trader|trader)=2/3, P(says trader|researcher)=1/3; P(trader)=2/3.",
+           "P(says trader)=2/3·2/3+1/3·1/3=5/9.",
+           "P(trader|says)=(4/9)/(5/9)=4/5."],
+  "solution":"By Bayes, $P(\\text{trader}\\mid\\text{says trader})=\\dfrac{\\tfrac23\\cdot\\tfrac23}{\\tfrac23\\cdot\\tfrac23+\\tfrac13\\cdot\\tfrac13}=\\dfrac{4/9}{5/9}=\\dfrac45.$","solution_verified":true},
+
+ {"slug":"maximal-variance","techniques":["variance_props","optimal_strategy"],"primary":"variance_props","difficulty":"medium","firm_style":["math"],
+  "hints":["Variance is maximized by pushing all mass to the extremes of [−1,1].",
+           "Y=±1 each with probability 1/2 has mean 0.",
+           "Var=1."],
+  "solution":"Variance on $[-1,1]$ is largest when the mass sits entirely at the endpoints: $Y=\\pm1$ each w.p. $\\tfrac12$ gives mean $0$ and $\\mathrm{Var}(Y)=1$, which is the maximum.","solution_verified":true},
+
+ {"slug":"private-documents","techniques":["combinations","construction"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Every group of 3 must be missing some lock; assign one lock per 3-subset, held by the other 4.",
+           "n=C(7,3)=35 locks; each person holds locks for 3-subsets not containing them: m=C(6,3)=20.",
+           "10m+n=200+35=235."],
+  "solution":"For each of the $\\binom73=35$ triples, create a lock that none of those three can open (the other four hold its key). Then any $4$ people together cover all locks, but no $3$ do, so $n=35$. Each person holds keys for triples excluding them: $m=\\binom63=20$. Thus $10m+n=200+35=235.$","solution_verified":true},
+
+ {"slug":"tic-tac-toe","techniques":["combinations","casework"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["The number of winning lines in n×n×n is ((n+2)³−n³)/2.",
+           "For n=4: (6³−4³)/2.",
+           "= (216−64)/2 = 76."],
+  "solution":"Embedding the $n^3$ board in an $(n+2)^3$ cube, the number of lines is $\\dfrac{(n+2)^3-n^3}{2}$. For $n=4$: $\\dfrac{216-64}{2}=76.$","solution_verified":true},
+
+ {"slug":"familiar-neighbors","techniques":["indicator_vars","linearity_exp","combinations"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["For the person knowing i others, P(knows ≥1 neighbour)=1 − (N−1−i)(N−2−i)/((N−1)(N−2)), N=2m.",
+           "Average over i=0..N−1; the sum of (N−1−i)(N−2−i) telescopes via Σj(j−1)=N(N−1)(N−2)/3.",
+           "Average = 1 − 1/3 = 2/3."],
+  "solution":"Let $N=2m$. The person knowing $i$ others fails to know either neighbour with probability $\\dfrac{(N-1-i)(N-2-i)}{(N-1)(N-2)}$. Averaging over $i$, $\\dfrac1N\\sum_i\\dfrac{(N-1-i)(N-2-i)}{(N-1)(N-2)}=\\dfrac1N\\cdot\\dfrac{N(N-1)(N-2)/3}{(N-1)(N-2)}=\\dfrac13$. So the expected proportion knowing a neighbour is $1-\\tfrac13=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"mixed-set-i","techniques":["combinations"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Choose exactly 2 of {1,2,3}, then anything from the rest.",
+           "C(3,2) · 2^7.",
+           "= 3·128 = 384."],
+  "solution":"Pick $2$ of $\\{1,2,3\\}$ ($\\binom32=3$ ways) and any subset of the remaining $7$ elements ($2^7=128$): $3\\cdot128=384.$","solution_verified":true}
+]

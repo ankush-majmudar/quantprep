@@ -1,0 +1,73 @@
+[
+ {"slug":"sum-and-difference","techniques":["uniform_cont","symmetry_prob","joint_cont"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["Restrict to Y≥X and double; there |X−Y|=Y−X.",
+           "Condition X+Y≥2(Y−X) becomes Y≤3X.",
+           "Area of {X≤Y≤3X} in the unit square is 1/3; doubling gives 2/3."],
+  "solution":"By symmetry consider $Y\\ge X$ (then double). There $|X-Y|=Y-X$, and $X+Y\\ge2(Y-X)\\iff Y\\le3X$. The area of $\\{X\\le Y\\le 3X\\}$ in the unit square is $\\int_0^{1/3}2x\\,dx+\\int_{1/3}^1(1-x)\\,dx=\\tfrac19+\\tfrac29=\\tfrac13$. Doubling, $P=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"heaven-37","techniques":["number_theory"],"primary":"number_theory","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Only abc matters; note 10·(abc) ≡ (bca) mod 999 and 37 | 999.",
+           "So if 37 | abc then 37 also divides bca and cab automatically.",
+           "Count abc in 0..999 divisible by 37: ⌊999/37⌋+1 = 28."],
+  "solution":"Since $x=37000+\\overline{abc}$, the conditions are that $\\overline{abc},\\overline{bca},\\overline{cab}$ are all divisible by $37$. Because $10\\cdot\\overline{abc}\\equiv\\overline{bca}\\pmod{999}$ and $37\\mid999$, divisibility of $\\overline{abc}$ by $37$ forces the same for its cyclic shifts. So we just count $\\overline{abc}\\in\\{0,\\dots,999\\}$ divisible by $37$: $\\lfloor999/37\\rfloor+1=27+1=28.$","solution_verified":true},
+
+ {"slug":"power-digits","techniques":["number_theory","sequences_series"],"primary":"number_theory","difficulty":"medium","firm_style":["math"],
+  "hints":["Only the units digit of m matters: {1,3,5,7,9}. n ranges over 20 consecutive years.",
+           "Units-1 always works; 5 never; 3 and 7 need n≡0 mod4 (5/20 each); 9 needs n even (1/2).",
+           "Average: (1/5)(1+0+1/4+1/4+1/2)=2/5."],
+  "solution":"Only the units digit of $m$ matters: $\\{1,3,5,7,9\\}$, each with probability $\\tfrac15$; $n$ is uniform over $20$ consecutive integers. Units digit $1$: $m^n$ always ends in $1$. Units $5$: never. Units $3$ or $7$: ends in $1$ iff $n\\equiv0\\pmod4$ ($5/20=\\tfrac14$). Units $9$: iff $n$ even ($\\tfrac12$). So\n$$P=\\tfrac15\\Big(1+0+\\tfrac14+\\tfrac14+\\tfrac12\\Big)=\\tfrac15\\cdot2=\\tfrac25.$$","solution_verified":true},
+
+ {"slug":"specific-partition","techniques":["recursion","combinations","sequences_series"],"primary":"recursion","difficulty":"hard","firm_style":["math"],
+  "hints":["Arrange S as a 2×11 grid (rows 1–11 and 12–22); difference 1 = horizontal, 11 = vertical. Count domino tilings.",
+           "Plain 2×11 tilings = Fibonacci F(12)=144. But the pair {11,12} also differs by 1 (not a grid neighbor) — an extra option.",
+           "Using {11,12} forces the rest uniquely (+1), so total = 144+1 = 145."],
+  "solution":"Place $S$ in a $2\\times11$ grid (top row $1..11$, bottom $12..22$). Pairs differing by $1$ are horizontal neighbors and by $11$ are vertical neighbors, so most partitions are domino tilings of the grid: $F(12)=144$. The pair $\\{11,12\\}$ also differs by $1$ but is not a grid edge — an extra allowed pairing. Using it removes $11,12$ and forces every remaining pair uniquely, adding exactly $1$ partition. Total $=144+1=145.$","solution_verified":true},
+
+ {"slug":"exact-5","techniques":["geometric","conditional_prob"],"primary":"geometric","difficulty":"medium","firm_style":["math"],
+  "hints":["Ignore rolls that aren't 5 or 6; among those, 5 and 6 are equally likely.",
+           "P(exactly k fives before the first six)=(1/2)^k·(1/2).",
+           "k=4: (1/2)^5=1/32."],
+  "solution":"Only $5$s and $6$s matter, and conditioned on a relevant roll each is equally likely. The number of $5$s before the first $6$ is geometric: $P(\\text{exactly }k)=\\big(\\tfrac12\\big)^k\\cdot\\tfrac12$. For $k=4$, $P=\\big(\\tfrac12\\big)^5=\\tfrac1{32}.$","solution_verified":true},
+
+ {"slug":"sine-condition","techniques":["cond_expectation","symmetry_prob","uniform_cont"],"primary":"cond_expectation","difficulty":"medium","firm_style":["math"],
+  "hints":["Given sin(X)=s, X could be x or π−x, symmetric about π/2.",
+           "These two preimages are equally likely under the uniform law, so E[X | sin X] = π/2.",
+           "cos(π/2)=0."],
+  "solution":"For $X\\sim U[0,\\pi]$, a value $\\sin(X)=s$ corresponds to two equally likely points $x$ and $\\pi-x$, symmetric about $\\tfrac\\pi2$. Hence $\\mathbb{E}[X\\mid\\sin X]=\\tfrac{x+(\\pi-x)}2=\\tfrac\\pi2$ for every value, and $\\cos\\big(\\tfrac\\pi2\\big)=0.$","solution_verified":true},
+
+ {"slug":"delta-decay","techniques":["option_basics","time_value"],"primary":"option_basics","difficulty":"hard","firm_style":["finance"],
+  "hints":["The call is ITM (S₀=25>K=23); as expiry nears its delta drifts toward 1, while your static hedge stays at 0.74.",
+           "Approximate delta linearly from 0.74 (now) to 1 (expiry, 4h). At 2h: 0.74+½(1−0.74)=0.87.",
+           "Portfolio delta = 0.87 − 0.74 = 0.13."],
+  "solution":"The call is in-the-money, so as expiry approaches its delta drifts toward $1$; the hedge (short $0.74$ shares) is static. Approximating the delta linearly from $0.74$ now to $1$ at the $4$-hour expiry, after $2$ hours it is $0.74+\\tfrac12(1-0.74)=0.87$. The portfolio delta is $0.87-0.74=0.13.$","solution_verified":true},
+
+ {"slug":"good-grid-i","techniques":["sample_space","casework"],"primary":"sample_space","difficulty":"easy","firm_style":["math"],
+  "hints":["max{0,x}≥0 and min{0,y}≤0, so they're equal only if both are 0.",
+           "max{0,x}=0 ⟺ x≤0; min{0,y}=0 ⟺ y≥0.",
+           "P(x≤0)·P(y≥0)=(11/21)²=121/441."],
+  "solution":"$\\max\\{0,x\\}\\ge0$ and $\\min\\{0,y\\}\\le0$, so equality requires both to be $0$: $x\\le0$ and $y\\ge0$. Each of $x\\le0$ and $y\\ge0$ has $11$ of $21$ values, so $P=\\big(\\tfrac{11}{21}\\big)^2=\\tfrac{121}{441}.$","solution_verified":true},
+
+ {"slug":"simple-delta-hedge-ii","techniques":["option_basics"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Put delta = call delta − 1 = 0.25 − 1 = −0.75.",
+           "Selling 100 puts gives portfolio delta −100·(−0.75)=+75.",
+           "Hedge to 0 by selling 75 units ⇒ −75."],
+  "solution":"By put–call parity the put's delta is $0.25-1=-0.75$. Selling $100$ puts gives a position delta of $-100\\times(-0.75)=+75$. To neutralize it you sell $75$ units of the underlying, i.e. $-75.$","solution_verified":true},
+
+ {"slug":"cut-up-wood","techniques":["uniform_cont","inclusion_exclusion","order_statistics"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["At most one of the 6 pieces can exceed 1/2; compute P(some piece > 1/2).",
+           "For 5 uniform cuts (6 spacings), P(some spacing > t) = C(6,1)(1−t)^5 for t=1/2 (higher terms vanish).",
+           "= 6·(1/2)^5 = 3/16; so P(none) = 1 − 3/16 = 13/16."],
+  "solution":"At most one piece can exceed $\\tfrac12$. For $5$ uniform cuts (giving $6$ spacings), the probability some spacing exceeds $t$ is $\\binom{6}{1}(1-t)^5$ (the inclusion–exclusion terms with $1-2t\\le0$ vanish at $t=\\tfrac12$). So $P(\\text{some piece}>\\tfrac12)=6\\cdot(\\tfrac12)^5=\\tfrac{3}{16}$, and $P(\\text{none})=1-\\tfrac3{16}=\\tfrac{13}{16}.$","solution_verified":true},
+
+ {"slug":"poisson-review-ii","techniques":["poisson","variance_props"],"primary":"poisson","difficulty":"easy","firm_style":["math"],
+  "hints":["Arrivals N ~ Poisson(7); total service time T = (1/6)·N hours (10 min each).",
+           "Mean = (1/6)·7 = 7/6; Var = (1/6)²·7 = 7/36.",
+           "Sum = 7/6 + 7/36 = 49/36."],
+  "solution":"Arrivals $N\\sim\\mathrm{Poisson}(7)$, and each takes $\\tfrac16$ hour, so total time $T=\\tfrac16N$. Then $\\mathbb{E}[T]=\\tfrac16\\cdot7=\\tfrac76$ and $\\mathrm{Var}(T)=\\tfrac1{36}\\cdot7=\\tfrac7{36}$ (Poisson mean=variance). Their sum is $\\tfrac76+\\tfrac7{36}=\\tfrac{42+7}{36}=\\tfrac{49}{36}.$","solution_verified":true},
+
+ {"slug":"deriving-logprice-dynamics","techniques":["ito","brownian"],"primary":"ito","difficulty":"medium","firm_style":["math"],
+  "hints":["Apply Itô to X=ln(S) with dS=μS dt+σS dW (μ=3, σ=4).",
+           "dX = (μ − σ²/2)dt + σ dW = (3 − 8)dt + 4dW.",
+           "a=−5, b=4 ⇒ a²+b²=25+16=41."],
+  "solution":"By Itô's lemma for $X=\\ln S$ with $dS=3S\\,dt+4S\\,dW$: $dX=\\big(3-\\tfrac12\\cdot4^2\\big)dt+4\\,dW=-5\\,dt+4\\,dW$. So $a=-5,\\,b=4$ and $a^2+b^2=25+16=41.$","solution_verified":true}
+]

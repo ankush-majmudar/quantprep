@@ -1,0 +1,71 @@
+[
+ {"slug":"baby-boy","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["Let g be the number of girls; update on the doctor picking a boy.",
+           "P(pick boy | added boy)=4/(g+4), P(pick boy | added girl)=3/(g+4).",
+           "The (g+4) cancels: P=4/(4+3)=4/7, independent of g."]},
+
+ {"slug":"cat-dog-line","techniques":["markov_chain","algebra_manipulation"],"primary":"markov_chain","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Model the street as a Markov chain: from a cat, next is a dog w.p. 6/7; from a dog, next is a cat w.p. 1/4.",
+           "Find the stationary proportions π_c, π_d.",
+           "π_c·(6/7)=π_d·(1/4) ⇒ π_d=(24/7)π_c; with π_c+π_d=1, π_d=24/31."],
+  "solution":"Treat the sequence as a Markov chain: from a cat the next animal is a dog w.p. $\\tfrac67$; from a dog the next is a cat w.p. $\\tfrac14$. In steady state the flow cat→dog equals dog→cat:\n$$\\pi_c\\cdot\\tfrac67=\\pi_d\\cdot\\tfrac14\\;\\Rightarrow\\;\\pi_d=\\tfrac{24}{7}\\pi_c.$$\nWith $\\pi_c+\\pi_d=1$: $\\pi_c\\big(1+\\tfrac{24}{7}\\big)=1\\Rightarrow\\pi_c=\\tfrac{7}{31}$, so the proportion of dogs is $\\pi_d=\\tfrac{24}{31}.$","solution_verified":true},
+
+ {"slug":"log-comparison","techniques":["uniform_cont","sequences_series","independence"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["⌊log₂ X⌋ = −k exactly when X ∈ [2^{−k}, 2^{−(k−1)}), which has probability 2^{−k}.",
+           "Both floors equal −k with probability (2^{−k})² by independence.",
+           "Sum over k≥1: Σ 4^{−k} = 1/3."],
+  "solution":"For $k\\ge1$, $\\lfloor\\log_2 X\\rfloor=-k$ iff $X\\in[2^{-k},2^{-(k-1)})$, an interval of length $2^{-k}$. By independence the two floors agree at $-k$ with probability $(2^{-k})^2=4^{-k}$. Summing,\n$$P=\\sum_{k\\ge1}4^{-k}=\\frac{1/4}{1-1/4}=\\frac13.$$","solution_verified":true},
+
+ {"slug":"averaging-squares","techniques":["basic_counting","sequences_series"],"primary":"basic_counting","difficulty":"medium","firm_style":["math"],
+  "hints":["A has 4046 entries; the median averages the 2023rd and 2024th smallest.",
+           "For x≤2023, the count of entries ≤x is x + ⌊√x⌋ (linears plus small squares).",
+           "1979+⌊√1979⌋=2023, so the 2023rd is 1979 and the 2024th is 1980 ⇒ median 1979.5."],
+  "solution":"$A$ has $4046$ entries, so the median is the average of the $2023$rd and $2024$th smallest. For an integer $m\\le2023$, the number of entries $\\le m$ is $m+\\lfloor\\sqrt m\\rfloor$ (the linear terms $1..m$ plus squares $n^2\\le m$). Since $1979+\\lfloor\\sqrt{1979}\\rfloor=1979+44=2023$, the $2023$rd smallest entry is $1979$; the next is $1980$. Median $=\\tfrac{1979+1980}{2}=1979.5.$","solution_verified":true},
+
+ {"slug":"all-attainable-values","techniques":["combinations","casework","stars_and_bars"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Sums 2,3,11,12 force the faces 1,2,5,6 to be present; that leaves 2 free faces.",
+           "With {1,2,5,6} only sums 5 and 9 are missing; both are covered by having a 3 or a 4.",
+           "Count size-2 face multisets (C(7,2)=21) minus those avoiding 3 and 4 (C(5,2)=10): 11."],
+  "solution":"To realize sums $2,3,11,12$ the die must contain $1,2,5,6$, using $4$ of the $6$ faces. With just $\\{1,2,5,6\\}$ every target sum except $5$ and $9$ is attainable. Both $5$ (=$2{+}3$ or $1{+}4$) and $9$ (=$3{+}6$ or $4{+}5$) require a $3$ or a $4$, and either one alone supplies both.\n\nSo the two remaining faces (a size-2 multiset from $\\{1,...,6\\}$, $\\binom{7}{2}=21$ options) must include a $3$ or $4$. Subtract those drawn only from $\\{1,2,5,6\\}$ ($\\binom{5}{2}=10$): $21-10=11.$","solution_verified":true},
+
+ {"slug":"odd-stars","techniques":["stars_and_bars","algebra_manipulation"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Write each odd xᵢ=2yᵢ+1 with yᵢ≥0.",
+           "Substituting: 2(Σyᵢ)+6=96 ⇒ Σyᵢ=45.",
+           "Stars and bars: C(45+5,5)=C(50,5), so n=50,k=5, nk=250."],
+  "solution":"Each odd $x_i=2y_i+1$ with $y_i\\ge0$. Then $\\sum x_i=2\\sum y_i+6=96\\Rightarrow\\sum_{i=1}^6 y_i=45$. The number of nonnegative solutions is $\\binom{45+5}{5}=\\binom{50}{5}$, so $n=50,\\,k=5$ and $nk=250.$","solution_verified":true},
+
+ {"slug":"seating-drama","techniques":["casework","construction"],"primary":"casework","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Chain the 'immediately to the right of' constraints into a fixed block.",
+           "5,2,4 must appear consecutively (… 5 2 4 …); the remaining two seats hold 1 and 3.",
+           "1 can't sit next to 5, so 3 is on 5's left ⇒ answer: 3."]},
+
+ {"slug":"error-and-residual","techniques":["regression"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["SST = SSR + SSE.",
+           "SST = 80 + 120 = 200.",
+           "R² = SSR/SST = 80/200 = 2/5."],
+  "solution":"With $\\text{SST}=\\text{SSR}+\\text{SSE}=80+120=200$, the coefficient of determination is $R^2=\\dfrac{\\text{SSR}}{\\text{SST}}=\\dfrac{80}{200}=\\dfrac25.$","solution_verified":true},
+
+ {"slug":"coin-flipping-competition-i","techniques":["geometric","law_total_exp","independence"],"primary":"geometric","difficulty":"medium","firm_style":["math"],
+  "hints":["T,G ~ Geom(½) IID; condition on G. Note P(T≥t)=(½)^{t−1}.",
+           "P(T≥4G | G=g)=(½)^{4g−1}; multiply by P(G=g)=(½)^g and sum.",
+           "Σ (½)^{5g−1}=2·Σ(1/32)^g=2·(1/31)=2/31."],
+  "solution":"$T,G\\sim\\text{Geom}(\\tfrac12)$ with $P(T\\ge t)=(\\tfrac12)^{t-1}$. Conditioning on $G=g$, $P(T\\ge4g)=(\\tfrac12)^{4g-1}$. Then\n$$P(T\\ge4G)=\\sum_{g\\ge1}\\Big(\\tfrac12\\Big)^g\\Big(\\tfrac12\\Big)^{4g-1}=2\\sum_{g\\ge1}\\Big(\\tfrac1{32}\\Big)^g=2\\cdot\\frac{1/32}{1-1/32}=\\frac{2}{31}.$$","solution_verified":true},
+
+ {"slug":"bond-practice-i","techniques":["time_value"],"primary":"time_value","difficulty":"easy","firm_style":["finance"],
+  "hints":["PV = discounted coupons + discounted face value at 7%.",
+           "Coupon = 4%·3000 = 120/yr for 5 yrs; face 3000 at t=5.",
+           "120·(1−1.07⁻⁵)/0.07 + 3000·1.07⁻⁵ ≈ 492.02 + 2138.96 = 2630.98."],
+  "solution":"The annual coupon is $0.04\\times3000=120$. Discounting at $7\\%$ over $5$ years:\n$$PV=\\sum_{t=1}^{5}\\frac{120}{1.07^{t}}+\\frac{3000}{1.07^{5}}=120\\cdot\\frac{1-1.07^{-5}}{0.07}+3000\\cdot1.07^{-5}\\approx 492.02+2138.96=2630.98.$$","solution_verified":true},
+
+ {"slug":"circular-slice-i","techniques":["uniform_cont","symmetry_prob","joint_cont"],"primary":"uniform_cont","difficulty":"hard","firm_style":["math"],
+  "hints":["Fix the red arc of length θ₁; the blue arc of length θ₂ has a uniformly random start.",
+           "Given θ₁,θ₂, P(disjoint)=max(0, (2π−θ₁−θ₂)/2π). Let U=θ₁/2π, V=θ₂/2π ~ U(0,1).",
+           "P = E[max(0,1−U−V)] = ∫∫_{U+V<1}(1−U−V) = 1/6."],
+  "solution":"Fix the red arc of length $\\theta_1$. The blue arc of length $\\theta_2$ starts at the uniform angle $\\alpha$, so given $\\theta_1,\\theta_2$ it avoids the red arc with probability $\\max\\!\\big(0,\\tfrac{2\\pi-\\theta_1-\\theta_2}{2\\pi}\\big)$. Writing $U=\\theta_1/2\\pi,\\,V=\\theta_2/2\\pi\\sim U(0,1)$ independent,\n$$P=\\mathbb{E}\\big[\\max(0,1-U-V)\\big]=\\iint_{U+V<1}(1-U-V)\\,dU\\,dV=\\frac16.$$","solution_verified":true},
+
+ {"slug":"busted-6-ii","techniques":["optimal_strategy","recursion","cond_expectation","ev_betting"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets","math"],
+  "hints":["Stop once your running sum S is large enough; find the threshold by indifference.",
+           "Rolling from S, if you'd stop afterward, gives (1/6)[Σ_{d=1}^4(S+d) + S + 0]=(5S+10)/6; this equals S at S=10.",
+           "So roll while S<10; back-solve V(S)=(1/6)[ΣV(S+d)+S] down to V(0)≈3.03."],
+  "solution":"Let $V(S)$ be the optimal value at running sum $S$. Rolling gives $(1/6)\\big[\\sum_{d=1}^4 V(S{+}d)+S+0\\big]$ (faces $1$–$4$ continue, a $5$ cashes $S$, a $6$ busts). Assuming you stop right after, this is $(5S+10)/6$, which equals the stop value $S$ at $S=10$ — so the rule is: roll while $S<10$, stop at $S\\ge10$.\n\nWith $V(S)=S$ for $S\\ge10$ and $V(S)=\\tfrac16\\big[\\sum_{d=1}^4 V(S{+}d)+S\\big]$ for $S<10$, back-substituting from $S=9$ down to $0$ gives $V(0)=\\dfrac{183324769}{60466176}\\approx 3.03.$","solution_verified":true}
+]

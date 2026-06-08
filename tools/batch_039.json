@@ -1,0 +1,72 @@
+[
+ {"slug":"uniform-fix","techniques":["cond_expectation","geometric","uniform_cont"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on U=u: each X_n exceeds u with probability 1−u.",
+           "N|U=u ~ Geom(1−u), so E[N|U=u]=1/(1−u).",
+           "E[N]=∫₀¹ 1/(1−u) du diverges ⇒ infinite (−1)."],
+  "solution":"Given $U=u$, each $X_n>u$ with probability $1-u$, so $N\\mid U=u\\sim\\mathrm{Geom}(1-u)$ with mean $\\tfrac1{1-u}$. Then $\\mathbb{E}[N]=\\int_0^1\\tfrac1{1-u}\\,du=\\infty$, so the answer is $-1.$","solution_verified":true},
+
+ {"slug":"crossing-the-river","techniques":["construction","recursion","casework"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["The unit operation ferries one soldier across and returns both children to the start.",
+           "That cycle is 4 crossings: 2 kids over, 1 back, 1 soldier over, 1 kid back.",
+           "358 soldiers × 4 = 1432 crossings (children end with the boat)."],
+  "solution":"To move one soldier across while keeping both children available takes $4$ crossings: both children row over, one returns, a soldier crosses, the other child returns. Repeating for all $358$ soldiers gives $358\\times4=1432$ crossings, leaving the two children with the boat.","solution_verified":true},
+
+ {"slug":"missing-million-ii","techniques":["total_probability","conditional_prob","independence"],"primary":"total_probability","difficulty":"easy","firm_style":["math"],
+  "hints":["You miss the location only if neither spin reveals it: (2/5)²=4/25.",
+           "Otherwise you know it; if not, you guess 1/3.",
+           "P=21/25 + (4/25)(1/3)=63/75+4/75=67/75."],
+  "solution":"The wheel fails both times with probability $(\\tfrac25)^2=\\tfrac4{25}$. So $P(\\text{locate})=\\big(1-\\tfrac4{25}\\big)+\\tfrac4{25}\\cdot\\tfrac13=\\tfrac{63}{75}+\\tfrac4{75}=\\tfrac{67}{75}.$","solution_verified":true},
+
+ {"slug":"unfriendly","techniques":["combinations","complementary_count"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Total ways to pick 5 of 8 minus those with both enemies.",
+           "C(8,5)=56; both enemies in ⇒ choose 3 of remaining 6 = C(6,3)=20.",
+           "56 − 20 = 36."],
+  "solution":"Total invitations: $\\binom85=56$. Those including both enemies: $\\binom63=20$. So $56-20=36.$","solution_verified":true},
+
+ {"slug":"coin-pair-iv","techniques":["recursion","cond_expectation","binomial"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Track tails t; each round flips a pair of tails (2 flips), t→t−2,t−1,t with prob 1/4,1/2,1/4.",
+           "E_t=2+¼E_{t−2}+½E_{t−1}+¼E_t ⇒ E_2=8/3,E_3=40/9,E_4=176/27.",
+           "Add the 4 initial flips and average over t~Binom(4,½): total = 176/27."],
+  "solution":"Let $E_t$ be the expected additional flips with $t$ tails. Flipping a pair: $E_t=2+\\tfrac14E_{t-2}+\\tfrac12E_{t-1}+\\tfrac14E_t$, giving $E_2=\\tfrac83,E_3=\\tfrac{40}9,E_4=\\tfrac{176}{27}$. The initial $4$ flips plus the average over $t\\sim\\mathrm{Binom}(4,\\tfrac12)$ is $4+\\tfrac{68}{27}=\\tfrac{176}{27}.$","solution_verified":true},
+
+ {"slug":"better-in-red-v","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"medium","firm_style":["math"],
+  "hints":["Cube types: corner (8, 3 red faces), edge (12, 2), face (6, 1), center (1, 0). P(two reds)=(red/6)².",
+           "P(2 red): corner 1/4, edge 1/9, face 1/36, center 0.",
+           "P(corner|2 red)=(8/27·1/4)/[7/54]=(2/27)/(7/54)=4/7."],
+  "solution":"By type, $P(\\text{two reds})$ is $\\tfrac14$ (corner), $\\tfrac19$ (edge), $\\tfrac1{36}$ (face), $0$ (center), with priors $\\tfrac{8,12,6,1}{27}$. Total $=\\tfrac1{27}(8\\cdot\\tfrac14+12\\cdot\\tfrac19+6\\cdot\\tfrac1{36})=\\tfrac{7}{54}$, and corner contributes $\\tfrac{8}{27}\\cdot\\tfrac14=\\tfrac2{27}$. So $P(\\text{corner}\\mid\\text{2 red})=\\dfrac{2/27}{7/54}=\\dfrac47.$","solution_verified":true},
+
+ {"slug":"dollar-break","techniques":["casework","construction","number_theory"],"primary":"casework","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["You want the largest coin total with no subset summing to exactly 100¢.",
+           "Avoid being able to reach $1: 3 quarters + 4 dimes + 4 pennies.",
+           "75 + 40 + 4 = 119¢ = $1.19 (no subset makes 100¢)."],
+  "solution":"With $3$ quarters ($75$), $4$ dimes ($40$), and $4$ pennies ($4$) you hold $\\$1.19$, yet no subset sums to exactly $100$ cents (a $4$th quarter or proper dime combination is unavailable). Any more coins would enable change, so the maximum is $\\$1.19.$","solution_verified":true},
+
+ {"slug":"hidden-prisms","techniques":["combinations"],"primary":"combinations","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["A sub-box is fixed by choosing 2 of the 6 grid planes along each axis.",
+           "Count = [C(6,2)]³ for a 5×5×5.",
+           "15³ = 3375."],
+  "solution":"A rectangular prism is determined by choosing $2$ of the $6$ parallel cutting planes along each of the three axes: $\\binom62=15$ per axis. So the count is $15^3=3375.$","solution_verified":true},
+
+ {"slug":"particle-reach-v","techniques":["gamblers_ruin","recursion"],"primary":"gamblers_ruin","difficulty":"medium","firm_style":["math"],
+  "hints":["For p<1/2 the particle reaches +1 with probability <1 (here 1/2).",
+           "With positive probability it never arrives.",
+           "So the expected number of steps is infinite ⇒ −1."],
+  "solution":"For $p=\\tfrac13<\\tfrac12$, the walk reaches $+1$ only with probability $\\tfrac12<1$; with the remaining probability it drifts to $-\\infty$ and never arrives. Hence the expected number of steps is infinite, so the answer is $-1.$","solution_verified":true},
+
+ {"slug":"binomial-pricing-a-binary-call","techniques":["arbitrage","option_basics","binomial"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["Find the risk-neutral up-probability from u=1.9, d=0.7.",
+           "Enumerate the 2-step terminal prices and which exceed 2.",
+           "Price = risk-neutral probability that S_T > 2 (discounted)."]},
+
+ {"slug":"bowl-distributions","techniques":["stars_and_bars","inclusion_exclusion","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Each bowl gets 3 balls; let w_i be its whites (0–3), with Σw_i=7 (then blacks are forced).",
+           "Count solutions of w₁+…+w₅=7 with 0≤w_i≤3.",
+           "C(11,4) − 5·C(7,4) = 330 − 175 = 155."],
+  "solution":"Each bowl's white count $w_i\\in\\{0,1,2,3\\}$ with $\\sum w_i=7$ (blacks $3-w_i$ then sum to $8$). The number of capped solutions is $\\binom{11}{4}-5\\binom{7}{4}=330-175=155.$","solution_verified":true},
+
+ {"slug":"1-glove-off","techniques":["recursion","combinations","casework"],"primary":"recursion","difficulty":"hard","firm_style":["math"],
+  "hints":["Total pairings of 10 gloves: 10!/(2⁵5!)=945. Count valid ones (partners differ by ≤1).",
+           "Condition on the two value-n gloves: pair them (f(n−1)) or match both to the two (n−1)'s (2·f(n−2)).",
+           "f(n)=f(n−1)+2f(n−2), f(1)=1,f(2)=3 ⇒ f(5)=21; 21/945=1/45."],
+  "solution":"There are $\\dfrac{10!}{2^5 5!}=945$ pairings. Let $f(n)$ count valid pairings of two copies each of $1..n$. The two $n$'s either pair together (leaving $f(n-1)$) or both pair with the two $(n-1)$'s in $2$ ways (leaving $f(n-2)$): $f(n)=f(n-1)+2f(n-2)$ with $f(1)=1,f(2)=3$. So $f(5)=21$ and $P=\\tfrac{21}{945}=\\tfrac1{45}.$","solution_verified":true}
+]

@@ -1,0 +1,71 @@
+[
+ {"slug":"statistical-test-review-vi","techniques":["hypothesis_test","normal"],"primary":"hypothesis_test","difficulty":"easy","firm_style":["math"],
+  "hints":["One-sided test H₀:p=0.2 vs Hₐ:p<0.2; reject when Z≤−1.645.",
+           "Z=(p̂−0.2)/0.04 ≤ −1.645 ⇒ p̂ ≤ 0.2−0.0658=0.1342.",
+           "Max count = ⌊0.1342·100⌋ = 13."],
+  "solution":"Reject $H_0$ when $Z=\\dfrac{\\hat p-0.2}{0.04}\\le-1.645$, i.e. $\\hat p\\le0.2-1.645(0.04)=0.1342$. With $n=100$ that is at most $13.42$ people, so the maximum is $13.$","solution_verified":true},
+
+ {"slug":"valuable-hearts","techniques":["linearity_exp","sample_space"],"primary":"linearity_exp","difficulty":"easy","firm_style":["math"],
+  "hints":["Sum all 52 card values, then divide by 52.",
+           "Three non-heart suits: 3·(1+…+13)=273; hearts doubled: 2·91=182.",
+           "(273+182)/52 = 455/52 = 35/4."],
+  "solution":"Each suit's face values sum to $1+\\dots+13=91$. The three non-heart suits give $273$, and the doubled hearts give $182$, for a total of $455$. The expected value is $\\dfrac{455}{52}=\\dfrac{35}{4}.$","solution_verified":true},
+
+ {"slug":"rainbow-selection","techniques":["symmetry_prob","conditional_prob"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["The red−yellow imbalance doesn't affect the other 5 colors; combine red+yellow.",
+           "P(next is red or yellow)=2/7, so expected red+yellow remaining = (2/7)·70 = 20.",
+           "Yellow remaining − red remaining = 5 always ⇒ E[yellow rem]=12.5 ⇒ P=12.5/70=5/28."],
+  "solution":"Conditioning on the red−yellow difference leaves the other five colors exchangeable, so $P(\\text{next is red or yellow})=\\tfrac27$, giving $\\mathbb{E}[\\text{red}+\\text{yellow remaining}]=\\tfrac27\\cdot70=20$. Since $R-Y=5$ drawn means yellow-remaining exceeds red-remaining by exactly $5$, $\\mathbb{E}[\\text{yellow rem}]=\\tfrac{20+5}{2}=12.5$. Thus $P(71\\text{st yellow})=\\tfrac{12.5}{70}=\\tfrac{5}{28}.$","solution_verified":true},
+
+ {"slug":"triangular-partition","techniques":["uniform_cont","complementary_count","symmetry_prob"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["The three sub-triangle areas are P's barycentric coordinates (summing to the whole).",
+           "Complement: all three areas > 1/4 means all three barycentric coords > 1/4.",
+           "That region is a triangle scaled by 1/4 ⇒ area (1/4)²=1/16; answer 1−1/16=15/16."],
+  "solution":"The areas of $\\triangle ABP,\\triangle BCP,\\triangle CAP$ as fractions of $\\triangle ABC$ are exactly $P$'s barycentric coordinates $(a,b,c)$ with $a+b+c=1$. All three exceeding $\\tfrac14$ means $a,b,c>\\tfrac14$; substituting $a'=a-\\tfrac14$ etc. gives $a'+b'+c'=\\tfrac14$, a triangle scaled by $\\tfrac14$ with area $(\\tfrac14)^2=\\tfrac1{16}$. So the probability some area is $\\le\\tfrac14$ is $1-\\tfrac1{16}=\\tfrac{15}{16}.$","solution_verified":true},
+
+ {"slug":"contract-arbitrage","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["Rewrite the payoff: min(2S,4)=4−2·max(2−S,0)=4 bonds − 2 puts(K=2).",
+           "Fair value = 4·0.9 − 2·0.8 = 2.0, but V trades at 3.4 — overpriced.",
+           "Sell 1 V, buy 4 bonds, short 2 puts(K=2) (0 of put K=4): credit 1.4."],
+  "solution":"Note $\\min(2S_T,4)=4-2\\max(2-S_T,0)$, so $V$ is replicated by $4$ bonds minus $2$ puts at $K=2$, worth $4(0.9)-2(0.8)=2.0$. Since $V_0=3.4>2.0$, sell $1$ unit of $V$ and buy the replication ($+4$ bonds, $-2$ puts at $K=2$, $0$ puts at $K=4$), locking in $3.4-2.0=1.4$ risk-free.","solution_verified":true},
+
+ {"slug":"0dte-option","techniques":["option_basics","time_value"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Deep OTM (S=5, K=25) with minutes to expiry: Δ≈0 and Γ≈0, so the spot move barely matters.",
+           "The dominant change is rapid time decay, captured here by the charm term ≈ −0.04.",
+           "New price ≈ 0.3 − 0.04 = 0.26."],
+  "solution":"The option is deeply out-of-the-money with almost no time left, so $\\Delta\\approx0$ and $\\Gamma\\approx0$: the $\\$0.5$ spot move has negligible effect. The value is dominated by decay over the interval ($\\approx0.04$), giving $0.3-0.04=0.26.$","solution_verified":true},
+
+ {"slug":"cylindrical-cone","techniques":["uniform_cont","calculus"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["For a uniform point, the probability is a volume ratio.",
+           "Cone volume = (1/3)πr²h; cylinder = πr²h.",
+           "Ratio = 1/3."],
+  "solution":"For a uniformly random point the probability equals the volume ratio. The inscribed cone has volume $\\tfrac13\\pi r^2h$ versus the cylinder's $\\pi r^2h$, so the probability is $\\tfrac13.$","solution_verified":true},
+
+ {"slug":"derivative-difference","techniques":["calculus","algebra_manipulation"],"primary":"calculus","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["The RHS is a cubic, so f is a cubic; match coefficients of f−f'=(x+1)³.",
+           "f=x³+6x²+15x+16 satisfies it with f(0)=16.",
+           "f(9)=729+486+135+16=1366."],
+  "solution":"Since $(x+1)^3$ is cubic, try $f(x)=ax^3+bx^2+cx+d$. Then $f-f'=ax^3+(b-3a)x^2+(c-2b)x+(d-c)=x^3+3x^2+3x+1$, giving $a=1,b=6,c=15,d=16$ (and $f(0)=16$ ✓). So $f(x)=x^3+6x^2+15x+16$ and $f(9)=729+486+135+16=1366.$","solution_verified":true},
+
+ {"slug":"restack-rings","techniques":["recursion","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["This is the Tower of Hanoi with 10 disks.",
+           "Minimum moves for n disks is 2ⁿ−1.",
+           "2¹⁰−1 = 1023."],
+  "solution":"This is the Tower of Hanoi: moving $n$ disks takes $2^n-1$ moves (each step needs the smaller tower moved off and back). For $n=10$, that's $2^{10}-1=1023.$","solution_verified":true},
+
+ {"slug":"equal-money","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Let each boy give x to each girl and each girl give y to each boy; set everyone's end amount equal.",
+           "End-equal forces y−x=(G−B)/12, so G−B is a multiple of 12 cents.",
+           "Combine with non-negativity and the girls-richer condition to find the smallest feasible final amount."]},
+
+ {"slug":"digit-multiplication-i","techniques":["number_theory","construction"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Factor 10000=2⁴·5⁴; digits must multiply to this.",
+           "Condense factors into the fewest/largest digits, but to minimize the number use more, smaller digits arranged ascending.",
+           "Use four 5s and combine the 2s as 2 and 8: 255558."]},
+
+ {"slug":"expecting-heads","techniques":["cond_expectation","binomial","linearity_exp"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["Given the first and last differ, they contribute exactly 1 head between them.",
+           "The middle 3 flips are still fair: Binom(3,½), mean 1.5.",
+           "1 + 1.5 = 5/2."],
+  "solution":"Conditioning on the first and last being opposite, they contribute exactly $1$ head. The middle three flips are unaffected, $\\mathrm{Binom}(3,\\tfrac12)$ with mean $1.5$. So the expected total is $1+1.5=\\tfrac52.$","solution_verified":true}
+]

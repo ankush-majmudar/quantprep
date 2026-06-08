@@ -1,0 +1,61 @@
+[
+ {"slug":"probability-of-unfair-coin-i","techniques":["conditional_prob","total_probability","bayes"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["You're updating a belief after seeing evidence (10 heads). Which theorem inverts a conditional?",
+           "Use Bayes: P(unfair | 10 heads) = P(10 heads | unfair)·P(unfair) / P(10 heads).",
+           "P(10H|unfair)=1, P(unfair)=1/100. For the denominator add both ways to get 10 heads: 1·(1/100) + (1/2)^10·(99/100)."]},
+
+ {"slug":"greedy-pirates","techniques":["backward_induction","work_backwards","zero_sum"],"primary":"backward_induction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["You can't reason forward — the answer depends on what happens after each pirate is removed.",
+           "Work backwards: solve the 1-pirate case, then 2, 3, 4, and build up to 5.",
+           "With 5 pirates, the senior needs only 2 extra votes. Bribe the two who'd get nothing in the 4-pirate outcome (pirates 1 and 3) with 1 coin each."]},
+
+ {"slug":"2d-paths-i","techniques":["combinations","basic_counting"],"primary":"combinations","difficulty":"easy","firm_style":["math","speed"],
+  "hints":["Every path is a fixed number of steps — how many total, and of what kinds?",
+           "You take 12 steps: 6 ups and 6 rights, in some order.",
+           "Choose which 6 of the 12 steps are 'up': C(12,6)=924."]},
+
+ {"slug":"first-ace","techniques":["linearity_exp","symmetry_prob"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["The 4 aces split the other 48 cards into 5 gaps. Think about the gaps, not the positions.",
+           "By symmetry all 5 gaps have equal expected length; by linearity they sum to 48.",
+           "Each gap averages 48/5, and you flip that many non-aces plus the ace itself: 48/5 + 1 = 10.6."]},
+
+ {"slug":"resell-painting","techniques":["cond_expectation","ev_betting","uniform_cont"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["The catch: you only win when your bid beats the value — what does winning tell you about the value?",
+           "Given you win with bid x, the value is uniform on (0,x), so it averages x/2 (winner's curse).",
+           "You resell for 1.5·(x/2)=0.75x but paid x — a guaranteed loss, so bid $0."]},
+
+ {"slug":"local-maxima","techniques":["indicator_vars","linearity_exp","symmetry_prob"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["Don't count maxima directly — attach an indicator to each position.",
+           "Let I_j = 1 if position j is a local max; E[total] = Σ P(position j is a local max).",
+           "Interior spot: needs to beat 2 neighbours → prob 1/3 (×12). Each endpoint beats 1 neighbour → 1/2 (×2). Total = 12/3 + 2/2 = 5."]},
+
+ {"slug":"german-tanks","techniques":["order_statistics","estimation_stats","symmetry_prob"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["The max observed (120) is the 6th order statistic of draws from 1..N. What N makes 120 typical?",
+           "By symmetry the 6 tanks split 1..N into equal-length gaps (like First Ace).",
+           "Gap = (120−6)/6 = 19, so estimate N = 120 + 19 = 139."]},
+
+ {"slug":"expecting-hth","techniques":["law_total_exp","recursion","first_step"],"primary":"law_total_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Set up an expected-value equation by conditioning on the next toss(es).",
+           "Track progress toward HTH as states; from each state condition on the next flip.",
+           "With x = E[tosses], split on the first flips: x = ½(x+1) + ¼(x) + ⅛(x+3) + ⅛(3) ⇒ x = 10."]},
+
+ {"slug":"high-or-die","techniques":["cond_expectation","law_total_exp","geometric"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["The chance of stopping depends on the first roll — so condition on it.",
+           "Given first roll k, each later roll succeeds with prob (7−k)/6, so it's geometric: E=6/(7−k).",
+           "Average over k: E[N] = Σ_{k=1}^6 (1/6)·6/(7−k) = 49/20."]},
+
+ {"slug":"pick-your-urn-wisely","techniques":["cond_expectation","bayes","ev_betting"],"primary":"cond_expectation","difficulty":"medium","firm_style":["markets"],
+  "hints":["Drawing a $1 chip first is evidence about which urn you're holding — update on it.",
+           "P(urn A)=4/7, P(urn B)=3/7 (proportional to their $1-chip counts). Then compare stay vs switch.",
+           "Staying gives E=7·4/7+8·3/7=52/7; switching gives less, so stay → 52/7."]},
+
+ {"slug":"bakugan-and-beyblade","techniques":["exponential","binomial","symmetry_prob"],"primary":"exponential","difficulty":"medium","firm_style":["math"],
+  "hints":["Two equal-rate exponential machines — when *some* toy appears, which type is it?",
+           "By memorylessness + equal rates, each produced toy is independently 50/50 Bakugan/Beyblade.",
+           "So it's coin flips: want 3rd head before 2nd tail = ≥3 heads in first 4 flips = (4 choose 3 +1)/16 = 5/16."]},
+
+ {"slug":"minimax-box","techniques":["tail_sum","linearity_exp","geometric"],"primary":"tail_sum","difficulty":"hard","firm_style":["math"],
+  "hints":["For a nonneg integer RV, E[X] = Σ_{k≥1} P(X ≥ k). Define X as the smallest card sharing 100's box.",
+           "X ≥ k means cards 1..k−1 all landed in the *other* box: probability (1/2)^{k−1}.",
+           "E[X]=Σ_{k=1}^{100}(1/2)^{k−1}=2(1−2^{−100}) ⇒ a=2, b=100, ab=200."]}
+]

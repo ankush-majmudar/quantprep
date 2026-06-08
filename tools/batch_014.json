@@ -1,0 +1,73 @@
+[
+ {"slug":"3rd-head","techniques":["negbinom","geometric"],"primary":"negbinom","difficulty":"easy","firm_style":["math"],
+  "hints":["Waiting for r successes is negative binomial.",
+           "E[flips for r heads] = r/p.",
+           "3/(1/4) = 12."],
+  "solution":"The number of flips to get $3$ heads is $\\mathrm{NegBinom}(3,\\tfrac14)$ with mean $\\dfrac{r}{p}=\\dfrac{3}{1/4}=12.$","solution_verified":true},
+
+ {"slug":"kiddie-pool","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Add the fill rates and subtract the drain rate.",
+           "Net rate = 1/20 + 1/10 − 1/15 = 5/60 = 1/12 pool per minute.",
+           "Time = 12 minutes."],
+  "solution":"Net filling rate $=\\tfrac1{20}+\\tfrac1{10}-\\tfrac1{15}=\\tfrac{3+6-4}{60}=\\tfrac{5}{60}=\\tfrac1{12}$ pool per minute, so it takes $12$ minutes.","solution_verified":true},
+
+ {"slug":"digit-multiplier","techniques":["basic_counting","number_theory"],"primary":"basic_counting","difficulty":"easy","firm_style":["math"],
+  "hints":["Units digit in {1,3,7,9} means the product is odd and not a multiple of 5.",
+           "So every chosen number must be odd and not 5 ⇒ from {1,3,7,9}.",
+           "Each draw lands there w.p. 4/9 ⇒ (4/9)⁴ = 256/6561."],
+  "solution":"A units digit of $1,3,7,9$ means the product is odd and not divisible by $5$. That requires every factor to be odd and not equal to $5$, i.e. drawn from $\\{1,3,7,9\\}$ (probability $\\tfrac49$ each). So $P=\\big(\\tfrac49\\big)^4=\\dfrac{256}{6561}.$","solution_verified":true},
+
+ {"slug":"cube-rotation","techniques":["construction"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Imagine looking at a cube along its main diagonal.",
+           "Along the space diagonal the silhouette is a regular hexagon.",
+           "Maximum shadow has 6 sides."],
+  "solution":"Orient the cube so the light points along a space (corner-to-corner) diagonal. The silhouette is then a regular hexagon, which is the most sides achievable. So $n=6.$","solution_verified":true},
+
+ {"slug":"options-dice-iii","techniques":["make_market","ev_betting","option_basics"],"primary":"make_market","difficulty":"medium","firm_style":["markets"],
+  "hints":["Underlying X = product of two dice; the call pays max(X−19, 0). Compute its theoretical value.",
+           "E[max(X−19,0)] over 36 outcomes = 57/36 = 19/12.",
+           "A 2-wide market is centered at theo, so bid+ask = 2·theo = 19/6."],
+  "solution":"The underlying is $X=$ product of two dice; the call pays $\\max(X-19,0)$. Summing $(X-19)^+$ over the $36$ equally likely products gives $6+18+33=57$, so the theoretical value is $\\dfrac{57}{36}=\\dfrac{19}{12}$. A $2$-wide market is centered on theo, so $\\text{bid}+\\text{ask}=2\\cdot\\dfrac{19}{12}=\\dfrac{19}{6}.$","solution_verified":true},
+
+ {"slug":"3-card-straight","techniques":["combinations","sample_space","complementary_count"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["8 decks = 416 cards; choose 3 from C(416,3). Count 3-rank runs, then remove straight flushes.",
+           "There are 12 three-rank runs (A23 … JQK and QKA). Each rank has 32 cards, so 32³ per run; subtract 4·8³ same-suit.",
+           "12·(32768−2048)=368640 over C(416,3)=11912160 ⇒ 768/24817."],
+  "solution":"With $8$ decks there are $416$ cards and $\\binom{416}{3}=11{,}912{,}160$ ways to draw $3$. There are $12$ runs of three consecutive ranks (A23 through JQK, plus QKA). Each rank has $8\\cdot4=32$ cards, so a run gives $32^3$ ordered-rank combos; subtract same-suit straight flushes $4\\cdot8^3$. Per run: $32768-2048=30720$, times $12$ is $368{,}640$. Thus $P=\\dfrac{368640}{11912160}=\\dfrac{768}{24817}.$","solution_verified":true},
+
+ {"slug":"fresh-fruits","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Write the two balances as equations in apple a, pear p, plum values.",
+           "p+3a=10·plum and a+6·plum=p ⇒ a=p−6plum.",
+           "Substitute: 4p=28·plum ⇒ p=7 plums."],
+  "solution":"Let $a,p$ and a plum's weight be the variables. The conditions are $p+3a=10\\,\\text{plum}$ and $a+6\\,\\text{plum}=p$, so $a=p-6\\,\\text{plum}$. Substituting, $p+3(p-6\\,\\text{plum})=10\\,\\text{plum}\\Rightarrow 4p=28\\,\\text{plum}\\Rightarrow p=7$ plums.","solution_verified":true},
+
+ {"slug":"prime-sum","techniques":["combinations","parity","number_theory"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Primes ≤20: {2,3,5,7,11,13,17,19} — only 2 is even.",
+           "Sum is even iff both chosen primes are odd.",
+           "C(7,2)/C(8,2)=21/28=3/4."],
+  "solution":"The primes up to $20$ are $\\{2,3,5,7,11,13,17,19\\}$, of which only $2$ is even. The sum of two of them is even iff both are odd. So $P=\\dfrac{\\binom{7}{2}}{\\binom{8}{2}}=\\dfrac{21}{28}=\\dfrac34.$","solution_verified":true},
+
+ {"slug":"primes-and-composites","techniques":["ev_betting"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["List 2–10: primes {2,3,5,7} pay +n, composites {4,6,8,9,10} pay −n/2.",
+           "EV = (1/9)[(2+3+5+7) − (4+6+8+9+10)/2] = (1/9)(17 − 18.5).",
+           "EV = −1/6 < 0, so pay nothing ⇒ 0."],
+  "solution":"Over $2$–$10$ (9 equally likely values), primes $2,3,5,7$ pay $+n$ and composites $4,6,8,9,10$ pay $-\\tfrac n2$:\n$$\\mathbb{E}=\\tfrac19\\Big[(2+3+5+7)-\\tfrac12(4+6+8+9+10)\\Big]=\\tfrac19\\big(17-18.5\\big)=-\\tfrac16<0.$$\nThe game has negative value, so you should pay $\\$0.$","solution_verified":true},
+
+ {"slug":"expecting-jacks","techniques":["recursion","geometric","cond_expectation"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["With replacement, P(jack)=1/13; you want a run of 4.",
+           "Expected draws for a run of k successes = (p^{−k}−1)/(1−p).",
+           "(13⁴−1)/(1−1/13)=28560·13/12=30940."],
+  "solution":"Each draw is a jack with probability $p=\\tfrac{4}{52}=\\tfrac1{13}$. The expected number of draws to get a run of $k$ successes is $\\dfrac{p^{-k}-1}{1-p}$. With $k=4$: $\\dfrac{13^4-1}{1-\\tfrac1{13}}=\\dfrac{28560}{12/13}=28560\\cdot\\dfrac{13}{12}=30940.$","solution_verified":true},
+
+ {"slug":"three-riflemen","techniques":["geometric","sequences_series"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["X wins if the first hit happens on his turns: shots 1,4,7,… (≡1 mod 3).",
+           "P = Σ_{k≥0} (1/2)^{3k}·(1/2).",
+           "= (1/2)/(1−1/8) = 4/7."],
+  "solution":"X wins if the first successful shot occurs on one of his turns ($1,4,7,\\dots$), i.e. after $3k$ misses then X hits:\n$$P=\\sum_{k\\ge0}\\Big(\\tfrac12\\Big)^{3k}\\cdot\\tfrac12=\\frac{1/2}{1-1/8}=\\frac{4}{7}.$$","solution_verified":true},
+
+ {"slug":"casino-combo","techniques":["sample_space","conditional_prob","independence"],"primary":"sample_space","difficulty":"easy","firm_style":["math"],
+  "hints":["Common attainable values are 1–6 (die limits this).",
+           "For a fixed v∈{1..6}: P(die)=1/6, P(roulette)=1/38, P(card)=4/52=1/13.",
+           "Sum over 6 values: 6·(1/6)(1/38)(1/13)=1/494."],
+  "solution":"All three can simultaneously show only the values $1$–$6$ (limited by the die). For a fixed such value: $P(\\text{die})=\\tfrac16$, $P(\\text{roulette})=\\tfrac1{38}$, $P(\\text{card})=\\tfrac{4}{52}=\\tfrac1{13}$. Summing over the $6$ values,\n$$P=6\\cdot\\tfrac16\\cdot\\tfrac1{38}\\cdot\\tfrac1{13}=\\tfrac{1}{494}.$$","solution_verified":true}
+]

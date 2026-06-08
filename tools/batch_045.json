@@ -1,0 +1,72 @@
+[
+ {"slug":"hours-of-labor","techniques":["indicator_vars","linearity_exp","sequences_series"],"primary":"indicator_vars","difficulty":"medium","firm_style":["math"],
+  "hints":["Hours off = 24n × (number of days with at least one birthday).",
+           "E[off days]=365(1−(364/365)ⁿ) → 365, so E[hours off]≈24n·365 grows with n.",
+           "Unbounded in n ⇒ infinite ⇒ −1."],
+  "solution":"On a day with at least one birthday all $n$ employees get $24$ hours off, so expected hours off $=24n\\cdot365\\big(1-(\\tfrac{364}{365})^n\\big)$. As $n\\to\\infty$ the bracket $\\to1$ and the expression grows like $24\\cdot365\\,n\\to\\infty$. There is no maximizer, so the answer is $-1.$","solution_verified":true},
+
+ {"slug":"optimal-marbles-ii","techniques":["optimal_strategy","ev_betting","zero_sum"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["games"],
+  "hints":["Now it's zero-sum: X's payoff is [x(100−x) − y(100−y)]/(x+y).",
+           "At the symmetric equilibrium x=y, ∂/∂x of the numerator gives (100−2x)(2x)=0.",
+           "x=50."],
+  "solution":"X's expected payoff is $U(x,y)=\\dfrac{x(100-x)-y(100-y)}{x+y}$ (X gains when its token is drawn, pays when Y's is). At the symmetric equilibrium $x=y$, $\\partial_x U=0$ reduces to $(100-2x)(2x)=0$, so $x=50.$","solution_verified":true},
+
+ {"slug":"infected-dinner-i","techniques":["sequences_series","construction"],"primary":"sequences_series","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["In the best case the sick count doubles each minute.",
+           "Need 2ᵗ ≥ 1000.",
+           "2¹⁰=1024 ⇒ 10 minutes."],
+  "solution":"At best every sick person infects a new healthy one each minute, so the count doubles: $1,2,4,\\dots,2^t$. We need $2^t\\ge1000$, giving $t=10$ (since $2^{10}=1024$).","solution_verified":true},
+
+ {"slug":"deviating-sums","techniques":["variance_props","sample_space"],"primary":"variance_props","difficulty":"easy","firm_style":["math"],
+  "hints":["Each card is uniform on {0,1,2,3,4}: variance (5²−1)/12=2.",
+           "Independent sum ⇒ variance adds: 2+2=4.",
+           "SD=√4=2."],
+  "solution":"Each card is uniform on $\\{0,\\dots,4\\}$ with variance $\\tfrac{5^2-1}{12}=2$. The independent sum has variance $2+2=4$, so the standard deviation is $2.$","solution_verified":true},
+
+ {"slug":"rainbow-trains","techniques":["combinations","symmetry_prob","casework"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["The allowed moves are cyclic rotations, so only the cyclic order matters.",
+           "Of the 6 orderings, the 3 in RGB's cyclic class can be rotated to RGB.",
+           "3/6 = 1/2."],
+  "solution":"Moving the back car to the front is a cyclic rotation, which preserves cyclic order. Of the $6$ arrangements, exactly the $3$ in the same cyclic class as $RGB$ can be rotated into rainbow order, so $P=\\tfrac36=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"the-last-airbender","techniques":["symmetry_prob","conditional_prob"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The earth card is irrelevant; consider only air, water, fire.",
+           "You win iff fire is last among these three.",
+           "P(fire last of 3)=1/3."]},
+
+ {"slug":"car-crash","techniques":["indicator_vars","linearity_exp","sequences_series"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["A car leads its own cluster iff it's the slowest among all cars ahead of it (a 'record' from the front).",
+           "P(car ranked i-th from front leads)=1/i, so E[K]=Σ_{i=1}^{N} 1/i = H_N.",
+           "H_10 = 7381/2520."],
+  "solution":"A car heads its own cluster exactly when no car ahead of it is slower — i.e. it is a left-to-right minimum of speeds. The $i$-th car from the front is such a record with probability $\\tfrac1i$, so $\\mathbb{E}[K]=\\sum_{i=1}^{N}\\tfrac1i=H_N$. For $N=10$, $H_{10}=\\tfrac{7381}{2520}.$","solution_verified":true},
+
+ {"slug":"multiple-divisors-i","techniques":["number_theory","combinations","sample_space"],"primary":"number_theory","difficulty":"easy","firm_style":["math"],
+  "hints":["10^99=2^99·5^99 has 100·100 divisors.",
+           "Divisible by 10^80 needs both exponents in {80,…,99}: 20·20=400.",
+           "400/10000 = 1/25."],
+  "solution":"$10^{99}=2^{99}5^{99}$ has $100\\cdot100=10000$ divisors. Being divisible by $10^{80}=2^{80}5^{80}$ requires each exponent in $\\{80,\\dots,99\\}$: $20\\cdot20=400$ divisors. So $P=\\tfrac{400}{10000}=\\tfrac1{25}.$","solution_verified":true},
+
+ {"slug":"exponential-brownian-motion","techniques":["martingale","ito","brownian"],"primary":"martingale","difficulty":"easy","firm_style":["math"],
+  "hints":["By Itô, d(Wⁿ)=nW^{n−1}dW + (n(n−1)/2)W^{n−2}dt; martingale needs zero drift.",
+           "Drift vanishes only for n=0 and n=1.",
+           "0! + 1! = 2."],
+  "solution":"By Itô, $d(W_t^n)=nW_t^{n-1}dW_t+\\tfrac{n(n-1)}2 W_t^{n-2}dt$, which is driftless (a martingale) only for $n=0$ and $n=1$. The sum of factorials is $0!+1!=2.$","solution_verified":true},
+
+ {"slug":"second-moment","techniques":["variance_props"],"primary":"variance_props","difficulty":"easy","firm_style":["math"],
+  "hints":["E[X²]=Var(X)+(E[X])².",
+           "= 25 + 9.",
+           "= 34."],
+  "solution":"$\\mathbb{E}[X^2]=\\mathrm{Var}(X)+(\\mathbb{E}[X])^2=25+9=34.$","solution_verified":true},
+
+ {"slug":"strike-vega","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Vega ∝ S·√T·φ(d₁); for ATM options it grows with the price level.",
+           "Higher strike means higher underlying (ATM), hence larger vega.",
+           "K=30."],
+  "solution":"For ATM options, vega $\\approx S\\sqrt T\\,\\varphi(d_1)$ scales with the price level $S=K$. The largest strike $K=30$ therefore has the greatest vega.","solution_verified":true},
+
+ {"slug":"pairwise-digit-sums-i","techniques":["construction","number_theory","combinations"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Distinct pairwise digit sums means the digits form a Sidon (B₂) set within {0,…,9}.",
+           "The largest Sidon subset of {0,…,9} has size 5 (e.g. {0,1,2,6,9}).",
+           "So n=5."],
+  "solution":"All pairwise sums distinct means the digits form a Sidon set. The largest Sidon subset of $\\{0,\\dots,9\\}$ has size $5$ (for instance $\\{0,1,2,6,9\\}$ has all $\\binom52=10$ pairwise sums distinct), so the largest such number has $n=5$ digits.","solution_verified":true}
+]

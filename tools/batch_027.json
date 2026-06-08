@@ -1,0 +1,72 @@
+[
+ {"slug":"longest-rope-ii","techniques":["uniform_cont","variance_props","order_statistics"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["The longer piece is L=max(X,1−X) with X~U(0,1).",
+           "L is uniform on (1/2, 1).",
+           "Var of U(1/2,1) = (1/2)²/12 = 1/48."],
+  "solution":"The longer piece $L=\\max(X,1-X)$ ranges over $(\\tfrac12,1)$ and is uniformly distributed there (each value $\\ell$ comes from $X=\\ell$ or $X=1-\\ell$). A uniform on an interval of length $\\tfrac12$ has variance $\\dfrac{(1/2)^2}{12}=\\dfrac1{48}.$","solution_verified":true},
+
+ {"slug":"secrets","techniques":["recursion","conditional_prob","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Set up p_i = p·p_{i−1} + (1−p)(1−p_{i−1}).",
+           "Find the fixed point of this affine recursion.",
+           "L = 2pL+1−p−L ⇒ L=1/2 (regardless of p)."],
+  "solution":"The recursion is $p_i=p\\,p_{i-1}+(1-p)(1-p_{i-1})$. A fixed point $L$ satisfies $L=pL+(1-p)(1-L)$, i.e. $2L(1-p)=1-p$, giving $L=\\tfrac12$. Since $|2p-1|<1$ the recursion converges, so $\\lim p_n=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"missing-7","techniques":["combinations","conditional_prob","inclusion_exclusion"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Condition on nobody picking 7: all picks from {1..6}, 6⁷ equally likely.",
+           "7 is the ONLY missing value ⟺ the 7 picks cover all of {1..6} (a surjection).",
+           "Surjections of 7 onto 6 = C(7,2)·6! = 15120; /6⁷ = 35/648."],
+  "solution":"Given nobody picked $7$, the $7$ picks are uniform over $\\{1,\\dots,6\\}$ ($6^7$ outcomes). For $7$ to be the only missing value, every value $1$–$6$ must appear, i.e. the picks form a surjection onto $6$ values — one value used twice, the rest once: $\\binom72\\cdot6!=15120$ ways. So $P=\\dfrac{15120}{6^7}=\\dfrac{35}{648}.$","solution_verified":true},
+
+ {"slug":"summed-brownians","techniques":["brownian","covariance"],"primary":"brownian","difficulty":"easy","firm_style":["math"],
+  "hints":["Independent BMs contribute 0 covariance; only the shared B₂ matters.",
+           "Cov(B₂(1), B₂(2)) = min(1,2) = 1.",
+           "Total = 1."],
+  "solution":"Since $B_1,B_2,B_3$ are independent, only the common $B_2$ term contributes: $\\mathrm{Cov}(B_2(1),B_2(2))=\\min(1,2)=1$. All cross terms vanish, so the covariance is $1.$","solution_verified":true},
+
+ {"slug":"overlapping-data","techniques":["correlation","covariance","variance_props"],"primary":"correlation","difficulty":"medium","firm_style":["math"],
+  "hints":["Let A,B,C be the three block sums (each variance 50), independent.",
+           "U=3A+B, V=B+3C; Cov(U,V)=Var(B)=50; Var(U)=Var(V)=9·50+50=500.",
+           "Corr=50/500=1/10."],
+  "solution":"Let $A,B,C$ be the sums over indices $1$–$50$, $51$–$100$, $101$–$150$, each with variance $50$ and mutually independent. Then $U=3A+B$, $V=B+3C$, so $\\mathrm{Cov}(U,V)=\\mathrm{Var}(B)=50$ and $\\mathrm{Var}(U)=\\mathrm{Var}(V)=9(50)+50=500$. Hence $\\mathrm{Corr}=\\dfrac{50}{500}=\\dfrac1{10}.$","solution_verified":true},
+
+ {"slug":"red-blue-equality","techniques":["conditional_prob","combinations","algebra_manipulation"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["P(both red)=C(3,2)/C(n+3,2)=1/2.",
+           "6/((n+3)(n+2))=1/2 ⇒ (n+3)(n+2)=12.",
+           "n²+5n−6=0 ⇒ n=1."],
+  "solution":"$P(\\text{both red})=\\dfrac{\\binom32}{\\binom{n+3}2}=\\dfrac{6}{(n+3)(n+2)}=\\dfrac12$ gives $(n+3)(n+2)=12$, i.e. $n^2+5n-6=0=(n+6)(n-1)$, so $n=1.$","solution_verified":true},
+
+ {"slug":"life-support","techniques":["sequences_series","algebra_manipulation"],"primary":"sequences_series","difficulty":"easy","firm_style":["math"],
+  "hints":["Let k=t/54. Population=2·4^k, capacity=16384·2^k.",
+           "Set equal: 2·2^{2k}=2^{14}·2^k ⇒ 2k+1=14+k ⇒ k=13.",
+           "t=13·54=702 years."],
+  "solution":"With $k=t/54$, population $=2\\cdot4^{k}=2^{2k+1}$ and capacity $=16384\\cdot2^{k}=2^{14+k}$. Equating exponents, $2k+1=14+k\\Rightarrow k=13$, so $t=13\\cdot54=702$ years.","solution_verified":true},
+
+ {"slug":"russian-roulette-ii","techniques":["geometric","conditional_prob","recursion"],"primary":"geometric","difficulty":"medium","firm_style":["math"],
+  "hints":["Re-spinning makes each pull an independent 1/6 chance of firing.",
+           "You win if the friend fires on his turn before you fire on yours.",
+           "q=1/6+(5/6)²q ⇒ q=6/11."],
+  "solution":"With a re-spin each turn, every pull fires with probability $\\tfrac16$ independently. You win if the friend (who goes first) fires before you do: $q=\\tfrac16+\\big(\\tfrac56\\big)^2 q$ (friend safe and you safe returns to start). So $q\\big(1-\\tfrac{25}{36}\\big)=\\tfrac16\\Rightarrow q=\\tfrac{6}{11}.$","solution_verified":true},
+
+ {"slug":"investment-arbitrage","techniques":["arbitrage","algebra_manipulation"],"primary":"arbitrage","difficulty":"easy","firm_style":["finance"],
+  "hints":["Hold x stock units and y down-bets; up pays 100x−100y, down pays −50x+100y.",
+           "Make payoffs equal (riskless): 100x−100y=−50x+100y ⇒ 3x=4y.",
+           "Minimal integers x=4,y=3 give a guaranteed 100x−100y=100."],
+  "solution":"Buy $x$ stock units and place $y$ casino bets on a decline. Up: $100x-100y$; down: $-50x+100y$. For a riskless profit set these equal: $100x-100y=-50x+100y\\Rightarrow 3x=4y$. The smallest integers are $x=4,y=3$ (7 units total), yielding a guaranteed profit of $100\\cdot4-100\\cdot3=\\$100$ in either outcome.","solution_verified":true},
+
+ {"slug":"goat-search","techniques":["cond_expectation","geometric","law_total_exp"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the first goat's gender.",
+           "After a male, waiting for a female is Geom(1/4) (mean 4); after a female, Geom(3/4) (mean 4/3).",
+           "E[N]=(3/4)(1+4)+(1/4)(1+4/3)=13/3."]},
+
+ {"slug":"coin-duel","techniques":["geometric","symmetry_prob"],"primary":"geometric","difficulty":"medium","firm_style":["math"],
+  "hints":["Both first-heads times are Geom(1/3); use symmetry plus the tie probability.",
+           "P(tie)=Σ(2/3)^{2(k−1)}(1/3)²=1/5.",
+           "P(Bill<Bob)=(1−1/5)/2=2/5."],
+  "solution":"Both wait Geom$(\\tfrac13)$ for the first head. The probability they tie is $\\sum_{k\\ge1}\\big(\\tfrac23\\big)^{2(k-1)}\\big(\\tfrac13\\big)^2=\\tfrac{1/9}{1-4/9}=\\tfrac15$. By symmetry $P(\\text{Bill}<\\text{Bob})=\\tfrac{1-1/5}{2}=\\tfrac25.$","solution_verified":true},
+
+ {"slug":"put-call-futures-parity","techniques":["option_basics","arbitrage"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Put–call parity on a future: P − C = K − F (undiscounted here).",
+           "P = C + (K − F) = 3 + (120 − 110).",
+           "= 13."],
+  "solution":"For options on a future, $P-C=K-F$ (ignoring discounting), so $P=C+(K-F)=3+(120-110)=13.$","solution_verified":true}
+]

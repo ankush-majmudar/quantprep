@@ -1,0 +1,73 @@
+[
+ {"slug":"leg-count","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Let x cows ⇒ 2x chickens ⇒ 4x spiders.",
+           "Legs: 4x + 2(2x) + 8(4x) = 40x = 440.",
+           "x=11, spiders=4x=44."],
+  "solution":"With $x$ cows, $2x$ chickens, $4x$ spiders, the legs total $4x+2(2x)+8(4x)=40x=440$, so $x=11$ and there are $4x=44$ spiders.","solution_verified":true},
+
+ {"slug":"tricky-bob-i","techniques":["ev_betting","optimal_strategy","algebra_manipulation"],"primary":"ev_betting","difficulty":"medium","firm_style":["markets"],
+  "hints":["Bob's EV = 11p₁p₂ + 9(1−p₁)(1−p₂) − 5, linear in p₂.",
+           "Bob picks p₂∈{0,1}; need 11p₁−5≤0 and 4−9p₁≤0.",
+           "p₁∈[4/9, 5/11] ⇒ b−a = 5/11−4/9 = 1/99."],
+  "solution":"Bob's expected value is $11p_1p_2+9(1-p_1)(1-p_2)-5$, linear in $p_2$, so he chooses $p_2=1$ (needing $11p_1-5\\le0$) or $p_2=0$ (needing $4-9p_1\\le0$). Both hold iff $p_1\\in[\\tfrac49,\\tfrac5{11}]$, so $b-a=\\tfrac5{11}-\\tfrac49=\\tfrac1{99}.$","solution_verified":true},
+
+ {"slug":"sum-exceedance-iv","techniques":["recursion","cond_expectation"],"primary":"recursion","difficulty":"hard","firm_style":["math"],
+  "hints":["Let R(s) be expected rolls to reach total ≥5 from s; R(4)=1.",
+           "R(s)=1+(1/5)Σ_{j=1}^{5}R(s+j), with R(≥5)=0.",
+           "R(0)=1+671/625=1296/625."],
+  "solution":"Let $R(s)$ be the expected rolls to reach $\\ge5$ from total $s$. Then $R(4)=1$, $R(3)=\\tfrac65$, $R(2)=\\tfrac{36}{25}$, $R(1)=\\tfrac{216}{125}$, and $R(0)=1+\\tfrac15\\big(\\tfrac{216}{125}+\\tfrac{36}{25}+\\tfrac65+1\\big)=1+\\tfrac{671}{625}=\\tfrac{1296}{625}.$","solution_verified":true},
+
+ {"slug":"ping-pong-tournament-ii","techniques":["conditional_prob","casework","symmetry_prob"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Player 49 only loses to 50; survival depends on whether 49 and 50 get involved early.",
+           "Casework: 49 not yet played by round 11, or 49 plays but 50 stays out of the first 10 rounds.",
+           "The probability works out to 234/245."],
+  "solution":"Competitor $49$ is eliminated in the first $10$ rounds only by meeting $50$. Accounting for the cases where $49$ has not yet entered, or has entered while $50$ stays out, the survival probability is $\\dfrac{234}{245}$ (confirmed by simulation).","solution_verified":true},
+
+ {"slug":"fireball-thrower","techniques":["exponential","order_statistics","joint_cont"],"primary":"exponential","difficulty":"medium","firm_style":["math"],
+  "hints":["P(M>m)=2e^{−m}−e^{−2m}; f_L(y)=4e^{−2y}−4e^{−4y}.",
+           "Integrate P(M>2y)·f_L(y) over y.",
+           "∫(8e^{−4y}−12e^{−6y}+4e^{−8y})dy = 2−2+1/2 = 1/2."],
+  "solution":"With $P(M>m)=2e^{-m}-e^{-2m}$ and $f_L(y)=4e^{-2y}-4e^{-4y}$, $P(M>2L)=\\int_0^\\infty(2e^{-2y}-e^{-4y})(4e^{-2y}-4e^{-4y})\\,dy=\\int_0^\\infty(8e^{-4y}-12e^{-6y}+4e^{-8y})\\,dy=2-2+\\tfrac12=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"simple-delta-hedge-i","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Portfolio delta = 100·0.33 = 33.",
+           "The underlying has delta 1, so hedge by selling 33 units.",
+           "Answer: −33."],
+  "solution":"The $100$ calls carry delta $100\\times0.33=33$. To neutralize it, sell $33$ units of the underlying (delta $1$ each), i.e. $-33.$","solution_verified":true},
+
+ {"slug":"voter-mayhem-ii","techniques":["combinations","gamblers_ruin","recursion"],"primary":"combinations","difficulty":"hard","firm_style":["math"],
+  "hints":["This is the ballot problem with ties allowed (A never behind).",
+           "Q(n,m) = (n−m+1)/(n+1).",
+           "(100−80+1)/(100+1) = 21/101."],
+  "solution":"The probability that A is never behind (ties allowed) is the ballot result $Q(n,m)=\\dfrac{n-m+1}{n+1}$. For $n=100,m=80$: $\\dfrac{21}{101}.$","solution_verified":true},
+
+ {"slug":"2030-die-split-i","techniques":["cond_expectation","casework","ev_betting"],"primary":"cond_expectation","difficulty":"medium","firm_style":["markets"],
+  "hints":["Payout = +A if A>B, −B if A≤B (ties go to Bob); A~U{1..30}, B~U{1..20}.",
+           "Sum over all 600 outcomes: the A>20 block alone gives +5100.",
+           "Total/600 = 163/20 = 8.15."],
+  "solution":"Alice receives $A$ when $A>B$ and pays $B$ when $A\\le B$ (ties to Bob). Summing over the $30\\times20=600$ equally likely outcomes gives a net of $4890$, so $\\mathbb{E}[\\text{payout}]=\\dfrac{4890}{600}=\\dfrac{163}{20}=8.15.$","solution_verified":true},
+
+ {"slug":"dot-removal","techniques":["symmetry_prob","conditional_prob","casework"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Decreasing a face flips its parity; the total even-count averages back to 3.",
+           "P(even)=E[#even faces]/6.",
+           "= 3/6 = 1/2."],
+  "solution":"Subtracting $1$ flips one face's parity. Whether an even face (count $\\to2$) or odd face (count $\\to4$) is chosen, the expected number of even faces stays $3$, so $P(\\text{even})=\\tfrac36=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"standing-table","techniques":["symmetry_prob","uniform_cont","combinations"],"primary":"symmetry_prob","difficulty":"hard","firm_style":["math"],
+  "hints":["The table stands iff the center (center of mass) lies inside the triangle of the 3 legs.",
+           "P(center of circle inside triangle of 3 uniform circumference points) = 1/4.",
+           "Answer: 1/4."],
+  "solution":"The table stands iff its center of mass (the disk's center) lies within the triangle formed by the three legs. For three uniform points on a circle, the center is inside their triangle with probability $\\tfrac14.$","solution_verified":true},
+
+ {"slug":"tennis-deuces-ii","techniques":["combinations","casework","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["To reach 4-4 the game must pass through 3-3.",
+           "Ways to reach 3-3: C(6,3)=20; then from 3-3 to 4-4 there are 2 paths (4-3→4-4 or 3-4→4-4).",
+           "20·2 = 40."],
+  "solution":"Reaching $4$-$4$ requires first reaching $3$-$3$, which happens in $\\binom63=20$ ways. From $3$-$3$, the only routes to $4$-$4$ are via $4$-$3$ or $3$-$4$ ($2$ ways). So $20\\times2=40.$","solution_verified":true},
+
+ {"slug":"integral-variance-v","techniques":["ito","brownian"],"primary":"ito","difficulty":"easy","firm_style":["math"],
+  "hints":["For a deterministic integrand, ∫₀ᵗ f(s)dB_s is N(0, ∫₀ᵗ f²ds) (Itô isometry).",
+           "Var = ∫₀ᵗ s² ds.",
+           "= t³/3, so k=1/3."],
+  "solution":"By the Itô isometry, $\\mathrm{Var}(X_t)=\\int_0^t s^2\\,ds=\\dfrac{t^3}{3}$, so $k=\\dfrac13.$","solution_verified":true}
+]

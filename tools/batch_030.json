@@ -1,0 +1,72 @@
+[
+ {"slug":"specific-card-pull-ii","techniques":["combinations","conditional_prob","symmetry_prob"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Only the 13 'interesting' cards matter: the 2♥ plus 4 kings, 4 queens, 4 jacks.",
+           "Need exactly 3 cards before the 2♥, one of each rank: 2♥ at position 4 of the 13 (prob 1/13).",
+           "Given 3 cards before, P(one K,Q,J)=C(4,1)³/C(12,3)=64/220=16/55; total 16/715."],
+  "solution":"Discard all cards except the $2\\heartsuit$ and the $4$ kings, $4$ queens, $4$ jacks ($13$ cards). We need exactly one of each rank before the $2\\heartsuit$, i.e. exactly $3$ cards before it (so the $2\\heartsuit$ is $4$th of the $13$: probability $\\tfrac1{13}$) and those three are one K, one Q, one J: $\\dfrac{\\binom41^3}{\\binom{12}{3}}=\\dfrac{64}{220}=\\dfrac{16}{55}$. Thus $P=\\tfrac1{13}\\cdot\\tfrac{16}{55}=\\dfrac{16}{715}.$","solution_verified":true},
+
+ {"slug":"taxman","techniques":["optimal_strategy","casework","number_theory"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Each pick must leave the taxman at least one divisor; take primes early (while 1 is available) and order carefully.",
+           "Aim to give the taxman only {1,2,3,4,5} and keep {6,7,8,9,10}.",
+           "Order 7,9,6,10,8 works: taxman gets 1,3,2,5,4 ⇒ you score 40."],
+  "solution":"Pick in the order $7,9,6,10,8$: the taxman takes $1$ (from $7$), $3$ (from $9$), $2$ (from $6$), $5$ (from $10$), $4$ (from $8$) — each pick legal since a divisor is always still present. You keep $7+9+6+10+8=40$ while the taxman gets $1+2+3+4+5=15$. That's the maximum, so the answer is $40.$","solution_verified":true},
+
+ {"slug":"careful-side-choice","techniques":["optimal_strategy","ev_betting","cond_expectation"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["games"],
+  "hints":["At the symmetric Nash both pick the same number of sides; test s=5.",
+           "With both rolling 1..5, payout E = (1/5)Σ_x x·P(Y≤7−x).",
+           "= (1/5)(49/5)=49/25, and s=5 ⇒ sp=5·49/25=49/5."],
+  "solution":"At the symmetric equilibrium both choose $5$ sides. With $X,Y$ uniform on $1$–$5$, your payout is $\\mathbb{E}[X\\mathbf 1\\{X+Y\\le7\\}]=\\tfrac15\\sum_{x=1}^5 x\\,P(Y\\le7-x)=\\tfrac15\\big(1+2+\\tfrac{12}5+\\tfrac{12}5+2\\big)=\\tfrac15\\cdot\\tfrac{49}5=\\tfrac{49}{25}$. With $s=5$, $sp=5\\cdot\\tfrac{49}{25}=\\tfrac{49}{5}.$","solution_verified":true},
+
+ {"slug":"random-bivariate","techniques":["cond_variance","exponential","variance_props"],"primary":"cond_variance","difficulty":"medium","firm_style":["math"],
+  "hints":["Given M,S: E[Y|M,S]=M and Var(Y|M,S)=S².",
+           "Law of total variance: Var(Y)=E[S²]+Var(M).",
+           "E[S²]=2 (Exp(1)), Var(M)=1 ⇒ Var(Y)=3."],
+  "solution":"Conditionally, $\\mathbb{E}[Y\\mid M,S]=M$ and $\\mathrm{Var}(Y\\mid M,S)=S^2$. By the law of total variance, $\\mathrm{Var}(Y)=\\mathbb{E}[S^2]+\\mathrm{Var}(M)$. For $\\mathrm{Exp}(1)$, $\\mathbb{E}[S^2]=2$ and $\\mathrm{Var}(M)=1$, so $\\mathrm{Var}(Y)=2+1=3.$","solution_verified":true},
+
+ {"slug":"bowl-of-cherries-iv","techniques":["total_probability","conditional_prob"],"primary":"total_probability","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the colour of the transferred cherry.",
+           "Transfer red (4/9): B has 7/10 red; transfer purple (5/9): B has 6/10 red.",
+           "(4/9)(7/10)+(5/9)(6/10)=58/90=29/45."],
+  "solution":"Condition on the transferred cherry. With probability $\\tfrac49$ it's red, making B $7$ red of $10$; with probability $\\tfrac59$ it's purple, making B $6$ of $10$. So $P(\\text{red})=\\tfrac49\\cdot\\tfrac7{10}+\\tfrac59\\cdot\\tfrac6{10}=\\tfrac{58}{90}=\\tfrac{29}{45}.$","solution_verified":true},
+
+ {"slug":"graph-search-ii","techniques":["linearity_exp","markov_chain","geometric"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["This is the cover time of the complete graph K₁₁ (each step moves to a uniform other node).",
+           "With k nodes seen, the chance the next step is new is (11−k)/10, so expected wait (10)/(11−k).",
+           "Sum these waits over k to get the expected number of steps."]},
+
+ {"slug":"forming-a-triangle","techniques":["uniform_cont","symmetry_prob","joint_cont"],"primary":"uniform_cont","difficulty":"hard","firm_style":["math"],
+  "hints":["Let the two break points be x,y ~ U(0,1); plot the unit square.",
+           "A triangle forms iff no piece exceeds 1/2; this carves out triangular regions.",
+           "Total favorable area = 1/4."],
+  "solution":"Let the breaks be at $x,y\\sim U(0,1)$. The three pieces form a triangle iff each is $<\\tfrac12$ (no piece exceeds the sum of the others). Mapping the conditions onto the unit square gives two small triangles of total area $\\tfrac14$, so the probability is $\\tfrac14.$","solution_verified":true},
+
+ {"slug":"random-subsets","techniques":["independence","complementary_count","combinations"],"primary":"independence","difficulty":"hard","firm_style":["math"],
+  "hints":["Each element falls in one of 4 equally likely categories: A only, B only, both, neither.",
+           "A⊆B forbids 'A only' for every element: probability 3/4 each.",
+           "(3/4)^5 = 243/1024."],
+  "solution":"For each of the $5$ elements, its membership in $(A,B)$ is uniform over $\\{$A only, B only, both, neither$\\}$. $A\\subseteq B$ requires no element to be 'A only', probability $\\tfrac34$ each, so $P=(\\tfrac34)^5=\\tfrac{243}{1024}.$","solution_verified":true},
+
+ {"slug":"particle-reach-i","techniques":["gamblers_ruin","recursion","conditional_prob"],"primary":"gamblers_ruin","difficulty":"medium","firm_style":["math"],
+  "hints":["Let r=P(ever reach +1 from 0); by translation it's the same from any level.",
+           "For a downward-drifting walk (p<1/2), r=p/(1−p).",
+           "p=1/3 ⇒ r=(1/3)/(2/3)=1/2."],
+  "solution":"Let $r$ be the probability of ever moving up by $1$. Conditioning on the first step, $r=p+(1-p)r^2$ (a down step needs two net up-crossings). The relevant root for $p<\\tfrac12$ is $r=\\dfrac{p}{1-p}$. With $p=\\tfrac13$, $r=\\dfrac{1/3}{2/3}=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"putcall-parity-i","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["Put–call parity (no dividends, r≈0): C − P = S − K.",
+           "C = P + (S − K) = 2 + (110 − 100) = 12.",
+           "Arbitrage exists if the call trades under 12, not 14 — so the threshold is 12."],
+  "solution":"By put–call parity $C-P=S-K$, so the fair call price is $C=P+(S-K)=2+(110-100)=12$. There's an arbitrage only if the call is below $12$ (your friend's $14$ is too high), so the answer is $12.$","solution_verified":true},
+
+ {"slug":"squares-on-a-chess-board","techniques":["sequences_series","combinations"],"primary":"sequences_series","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Count k×k squares for each size k=1..8.",
+           "There are (9−k)² of size k, so total = Σ_{k=1}^8 k² (reindexed).",
+           "1²+…+8² = 204."],
+  "solution":"A $k\\times k$ square can be placed in $(9-k)^2$ positions, so the total is $\\sum_{k=1}^{8}(9-k)^2=\\sum_{j=1}^{8}j^2=\\dfrac{8\\cdot9\\cdot17}{6}=204.$","solution_verified":true},
+
+ {"slug":"matching-die-pair","techniques":["conditional_prob","casework","sample_space"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Match the unordered pair of values; split on whether the first roll was a double.",
+           "First a double (prob 1/6): re-match prob 1/36. First distinct (5/6): re-match prob 2/36.",
+           "(1/6)(1/36)+(5/6)(2/36)=11/216."],
+  "solution":"Condition on the first roll. If it was a double (probability $\\tfrac6{36}=\\tfrac16$), the second matches with probability $\\tfrac1{36}$; if it was two distinct values (probability $\\tfrac56$), the second matches (either order) with probability $\\tfrac2{36}$. So $P=\\tfrac16\\cdot\\tfrac1{36}+\\tfrac56\\cdot\\tfrac2{36}=\\tfrac{1+10}{216}=\\tfrac{11}{216}.$","solution_verified":true}
+]

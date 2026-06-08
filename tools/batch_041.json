@@ -1,0 +1,72 @@
+[
+ {"slug":"128-showoff","techniques":["optimal_strategy","cond_expectation"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["The 12-sided die averages 6.5, so keep the d8 only if it beats 6.5 (a 7 or 8).",
+           "Keep 7,8 (prob 2/8); else reroll for 6.5.",
+           "(7+8)/8 + (6/8)·6.5 = 27/4."]},
+
+ {"slug":"silly-sde","techniques":["ito","brownian","martingale"],"primary":"ito","difficulty":"hard","firm_style":["math"],
+  "hints":["Apply Itô to e^{κt}X_t; the drift becomes κθe^{κt}dt and the noise is a mean-zero Itô integral.",
+           "Taking expectations: E[X_T]=θ+(x−θ)e^{−κT}.",
+           "T=10,κ=0.2: 2+(5−2)e^{−2} ⇒ A=2,B=3,C=−2, ABC=−12."],
+  "solution":"By Itô, $d(e^{\\kappa t}X_t)=e^{\\kappa t}(\\kappa\\theta\\,dt-\\sigma\\sqrt{X_t}\\,dW_t)$. Taking expectations (the Itô integral has mean $0$): $e^{\\kappa T}\\mathbb{E}[X_T]-x=\\theta(e^{\\kappa T}-1)$, so $\\mathbb{E}[X_T]=\\theta+(x-\\theta)e^{-\\kappa T}$. With the given values, $2+3e^{-2}$, giving $A=2,B=3,C=-2$ and $ABC=-12.$","solution_verified":true},
+
+ {"slug":"make-a-market-ii","techniques":["make_market"],"primary":"make_market","difficulty":"medium","firm_style":["markets"],
+  "hints":["For A−B: your bid = bid_A − ask_B, your ask = ask_A − bid_B.",
+           "Bid = 4−12 = −8, Ask = 5−10 = −5.",
+           "Y²−X² = (−5)² − (−8)² = 25 − 64 = −39."],
+  "solution":"Quoting $A-B$: bid $=$ bid$_A-$ask$_B=4-12=-8$ and ask $=$ ask$_A-$bid$_B=5-10=-5$. So $X=-8,Y=-5$ and $Y^2-X^2=25-64=-39.$","solution_verified":true},
+
+ {"slug":"sequence-terminator","techniques":["conditional_prob","geometric","cond_expectation"],"primary":"conditional_prob","difficulty":"hard","firm_style":["math"],
+  "hints":["The final length is a run of evens ending in a 1, conditioned on no 3 or 5 occurring in that run.",
+           "P(length=k, success)=(1/2)^{k−1}(1/6); P(success)=1/3.",
+           "E[length | success]=Σ k(1/2)^{k−1}(1/6) ÷ (1/3)=2."],
+  "solution":"The final sequence is the successful run: evens then a terminating $1$, with no $3$/$5$. $P(\\text{length}=k,\\text{success})=(\\tfrac12)^{k-1}\\tfrac16$ and $P(\\text{success})=\\tfrac13$. So $\\mathbb{E}[\\text{length}\\mid\\text{success}]=\\dfrac{\\tfrac16\\sum_k k(\\tfrac12)^{k-1}}{1/3}=\\dfrac{(1/6)\\cdot4}{1/3}=2.$","solution_verified":true},
+
+ {"slug":"number-concatenate","techniques":["number_theory","calculus"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Digits(m)=⌊log₁₀ m⌋+1. Find digit counts of 2^1000 and 5^1000.",
+           "⌊1000·0.30103⌋+1=302 and ⌊1000·0.69897⌋+1=699.",
+           "302+699=1001 (consistent with 2^1000·5^1000=10^1000 having 1001 digits)."],
+  "solution":"The digit count is $\\lfloor\\log_{10}m\\rfloor+1$: $2^{1000}$ has $\\lfloor1000\\log_{10}2\\rfloor+1=302$ digits and $5^{1000}$ has $699$. Concatenated, $n$ has $302+699=1001$ digits (matching $2^{1000}5^{1000}=10^{1000}$).","solution_verified":true},
+
+ {"slug":"soccer-practice","techniques":["symmetry_prob","recursion","conditional_prob"],"primary":"symmetry_prob","difficulty":"hard","firm_style":["math"],
+  "hints":["This is a Pólya urn: starting 1 made, 1 missed, the success rule makes the made-count uniform.",
+           "The final number of goals is uniform over its 99 possible values (1 to 99).",
+           "P(exactly 66)=1/99."],
+  "solution":"Starting with one make and one miss, the rule 'score with probability = current fraction made' is a Pólya urn, under which the final number of goals is uniformly distributed over its possible values $1,\\dots,99$. Hence $P(\\text{exactly }66)=\\tfrac1{99}.$","solution_verified":true},
+
+ {"slug":"coin-pair-iii","techniques":["recursion","cond_expectation","binomial"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Track expected final tails h_t; h_t=¼h_{t−2}+½h_{t−1}+¼h_t with h_0=0,h_1=1.",
+           "h_2=2/3, h_3=7/9, h_4=20/27; average over t~Binom(4,½): E[final tails]=20/27.",
+           "E[heads]=4 − 20/27 = 88/27."],
+  "solution":"Let $h_t$ be expected final tails from $t$ tails: $h_t=\\tfrac14h_{t-2}+\\tfrac12h_{t-1}+\\tfrac14h_t$, giving $h_2=\\tfrac23,h_3=\\tfrac79,h_4=\\tfrac{20}{27}$. Averaging over $t\\sim\\mathrm{Binom}(4,\\tfrac12)$ gives $\\mathbb{E}[\\text{final tails}]=\\tfrac{20}{27}$, so $\\mathbb{E}[\\text{heads}]=4-\\tfrac{20}{27}=\\tfrac{88}{27}.$","solution_verified":true},
+
+ {"slug":"modified-deck-pair","techniques":["combinations","conditional_prob","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["After removing a pair: one rank has 2 cards, nine ranks have 4 each (38 total).",
+           "Favorable pairs: 1 (depleted rank) + 9·C(4,2)=54.",
+           "55/C(38,2)=55/703."],
+  "solution":"After removing a matched pair, the deck has $38$ cards: one rank with $2$, nine ranks with $4$. The number of matching-pair draws is $\\binom22+9\\binom42=1+54=55$ out of $\\binom{38}{2}=703$, so $P=\\tfrac{55}{703}.$","solution_verified":true},
+
+ {"slug":"least-multiple-of-15","techniques":["number_theory","construction"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Multiple of 15 ⇒ divisible by 5 (ends in 0) and by 3 (digit sum divisible by 3).",
+           "Digits are 0/1, so the digit sum (number of 1s) must be a multiple of 3 — at least three 1s.",
+           "Smallest: 1110."],
+  "solution":"It must end in $0$ (divisible by $5$) and have digit sum divisible by $3$; with only $1$s and $0$s that means at least three $1$s. The smallest such number is $1110.$","solution_verified":true},
+
+ {"slug":"precise-n-sum","techniques":["stars_and_bars","sequences_series","uniform_cont"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Count solutions of X₁+X₂+X₃=N with each in {0,…,N}: C(N+2,2) (caps don't bind).",
+           "p_N = C(N+2,2)/(N+1)³.",
+           "N·p_N = N(N+2)/(2(N+1)²) → 1/2."],
+  "solution":"The number of ways to write $X_1+X_2+X_3=N$ with each in $\\{0,\\dots,N\\}$ is $\\binom{N+2}{2}$, so $p_N=\\dfrac{\\binom{N+2}{2}}{(N+1)^3}=\\dfrac{N+2}{2(N+1)^2}$. Then $Np_N\\to\\dfrac12.$","solution_verified":true},
+
+ {"slug":"colorful-line","techniques":["permutations","combinations"],"primary":"permutations","difficulty":"easy","firm_style":["math"],
+  "hints":["Arrangements of a multiset = 19!/(3!·7!·9!).",
+           "Compute the multinomial coefficient.",
+           "= 11085360."],
+  "solution":"The number of distinct arrangements is the multinomial $\\dfrac{19!}{3!\\,7!\\,9!}=11085360.$","solution_verified":true},
+
+ {"slug":"multinomial-sum","techniques":["combinations","basic_counting"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Σ over compositions of n into k parts of the multinomial = k^n (assign each of n items to one of k bins).",
+           "Here k=4, n=7.",
+           "4⁷ = 16384."],
+  "solution":"Summing all multinomials $\\binom{7}{b_1,b_2,b_3,b_4}$ counts all ways to place $7$ distinct items into $4$ boxes, which is $4^7=16384.$","solution_verified":true}
+]

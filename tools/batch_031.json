@@ -1,0 +1,72 @@
+[
+ {"slug":"covariance-review-i","techniques":["covariance","joint_cont","pdf_cdf"],"primary":"covariance","difficulty":"medium","firm_style":["math"],
+  "hints":["First normalize: ∫∫c(1−x₂)=c/6=1 ⇒ c=6.",
+           "Compute E[X₁X₂]=3/20, and marginals give E[X₂]=1/2, E[X₁]=1/4.",
+           "Cov=3/20 − (1/4)(1/2)=1/40."],
+  "solution":"Normalizing, $\\int_0^1\\int_0^{x_2}c(1-x_2)\\,dx_1dx_2=c\\int_0^1 x_2(1-x_2)dx_2=\\tfrac{c}{6}=1\\Rightarrow c=6$. Then $\\mathbb{E}[X_1X_2]=3\\int_0^1 x_2^3(1-x_2)dx_2=\\tfrac3{20}$. The marginals give $\\mathbb{E}[X_2]=\\tfrac12$ and $f_{X_1}(x_1)=3(1-x_1)^2$ so $\\mathbb{E}[X_1]=\\tfrac14$. Hence $\\mathrm{Cov}=\\tfrac3{20}-\\tfrac14\\cdot\\tfrac12=\\tfrac1{40}.$","solution_verified":true},
+
+ {"slug":"nested-root","techniques":["algebra_manipulation","sequences_series"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Let x equal the whole expression; it appears again inside.",
+           "x=√(6+x) ⇒ x²−x−6=0.",
+           "(x−3)(x+2)=0 ⇒ x=3."],
+  "solution":"Let $x=\\sqrt{6+\\sqrt{6+\\cdots}}$, so $x=\\sqrt{6+x}$, giving $x^2-x-6=0=(x-3)(x+2)$. Taking the positive root, $x=3.$","solution_verified":true},
+
+ {"slug":"windless-mile","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Work in miles per minute: with wind r+x=1/3, against r−x=1/4.",
+           "Add: 2r=1/3+1/4=7/12 ⇒ r=7/24 mi/min.",
+           "Time for 1 mile = 1/r = 24/7 minutes."],
+  "solution":"Let $r$ be his speed and $x$ the wind, in miles/min. Then $r+x=\\tfrac13$ and $r-x=\\tfrac14$, so $2r=\\tfrac7{12}$, $r=\\tfrac7{24}$. With no wind one mile takes $\\tfrac1r=\\tfrac{24}{7}$ minutes.","solution_verified":true},
+
+ {"slug":"exact-bills","techniques":["construction","number_theory","casework"],"primary":"construction","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Cover the units gap with 1s, then 5s, then 20s, then a 100.",
+           "Four 1s (0–4), three 5s (→0–19), four 20s (→0–99), one 100.",
+           "4+3+4+1 = 12 bills."],
+  "solution":"Use four $\\$1$ bills (subset sums $0$–$4$), three $\\$5$ bills (extending to $0$–$19$), four $\\$20$ bills (to $0$–$99$), and one $\\$100$. Every value $1$–$100$ is a subset sum, and this uses $4+3+4+1=12$ bills.","solution_verified":true},
+
+ {"slug":"bullseye","techniques":["complementary_count","geometric"],"primary":"complementary_count","difficulty":"easy","firm_style":["math"],
+  "hints":["P(at least one hit)=1−0.9ⁿ ≥ 0.9 ⇒ 0.9ⁿ ≤ 0.1.",
+           "n ≥ ln(0.1)/ln(0.9) ≈ 21.85.",
+           "Smallest integer n = 22."],
+  "solution":"Require $1-0.9^n\\ge0.9$, i.e. $0.9^n\\le0.1$, so $n\\ge\\dfrac{\\ln0.1}{\\ln0.9}\\approx21.85$. The smallest integer is $n=22.$","solution_verified":true},
+
+ {"slug":"ancient-births","techniques":["algebra_manipulation","casework"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["The span from C's birth to B's death is 129 years; combined lifespans total 100, so there's a 29-year gap where neither lived.",
+           "Thus B was born 29 years after C died (the lives don't overlap).",
+           "C died 30 BC, so B was born 29 years later = 1 BC ⇒ −1."],
+  "solution":"From C's birth to B's death is $129$ years, while their lifespans total $100$, leaving a $29$-year gap with neither alive — so C died, then $29$ years passed, then B was born. C died in $30$ BC, so B was born $29$ years later, in $1$ BC, i.e. $-1.$","solution_verified":true},
+
+ {"slug":"defining-regression","techniques":["regression","covariance"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["OLS slope a = Cov(X,Y)/Var(X) = 0 since Cov=0.",
+           "Intercept b = E[Y] − a·E[X] = 8.",
+           "a+b = 0+8 = 8."],
+  "solution":"With $\\mathrm{Cov}=0$, the OLS slope is $a=\\dfrac{\\mathrm{Cov}(X,Y)}{\\mathrm{Var}(X)}=0$, and the intercept is $b=\\mathbb{E}[Y]-a\\,\\mathbb{E}[X]=8$. So $a+b=8.$","solution_verified":true},
+
+ {"slug":"identical-hands","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Total deals of 12 distinct cards into four hands of 3: 12!/(3!)⁴.",
+           "Favorable: assign the 4 of each rank one-per-player: (4!)³.",
+           "(4!)³ / (12!/(3!)⁴) = 13824/369600 = 72/1925."],
+  "solution":"There are $\\dfrac{12!}{(3!)^4}=369600$ ways to deal four distinct hands of $3$. For each player to get one K, one Q, one J, assign each rank's four cards one per player: $(4!)^3=13824$ ways. So $P=\\dfrac{13824}{369600}=\\dfrac{72}{1925}.$","solution_verified":true},
+
+ {"slug":"car-bidding-i","techniques":["geometric","exponential"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["A bid exceeds 9000 with probability e^{−9000/5000}=e^{−9/5}.",
+           "The number of bids until the first success is Geom(p), mean 1/p.",
+           "E[N]=e^{9/5}, so a=9/5."],
+  "solution":"Each bid exceeds $\\$9000$ with probability $p=e^{-9000/5000}=e^{-9/5}$. The number of bids until the first such bid is geometric with mean $1/p=e^{9/5}$, so $a=\\tfrac95.$","solution_verified":true},
+
+ {"slug":"brownian-bridge","techniques":["brownian","cond_expectation","normal"],"primary":"brownian","difficulty":"medium","firm_style":["math"],
+  "hints":["For a Brownian bridge, Cov(X_s,X_t)=s(1−t) for s≤t.",
+           "E[X_s | X_t=v] = v·Cov(X_s,X_t)/Var(X_t) = v·s/t.",
+           "v=3, s=1/2, t=3/4 ⇒ 3·(1/2)/(3/4)=2."],
+  "solution":"The Brownian bridge has $\\mathrm{Cov}(X_s,X_t)=s(1-t)$ for $s\\le t$, so $\\mathbb{E}[X_s\\mid X_t=v]=v\\dfrac{s(1-t)}{t(1-t)}=v\\dfrac st$. With $v=3,s=\\tfrac12,t=\\tfrac34$: $\\mathbb{E}=3\\cdot\\dfrac{1/2}{3/4}=2.$","solution_verified":true},
+
+ {"slug":"probability-discussion","techniques":["uniform_cont","joint_cont","casework"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["G~U(30,60), S~U(0,60); meeting iff |G−S|≤10. Sample area = 30·60 = 1800.",
+           "Favorable area: ∫_{30}^{50}20 dG + ∫_{50}^{60}(70−G)dG = 400+150 = 550.",
+           "P = 550/1800 = 11/36."],
+  "solution":"With $G\\sim U(30,60)$, $S\\sim U(0,60)$, the meeting occurs iff $|G-S|\\le10$ over a sample rectangle of area $1800$. For $G\\in[30,50]$ the feasible $S$-length is $20$; for $G\\in[50,60]$ it is $70-G$. Favorable area $=20\\cdot20+\\int_{50}^{60}(70-G)\\,dG=400+150=550$, so $P=\\tfrac{550}{1800}=\\tfrac{11}{36}.$","solution_verified":true},
+
+ {"slug":"maximum-volatility","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Consider how a call's value behaves as σ grows without bound.",
+           "Write the call as S·Φ(d₁) − Ke^{−rT}Φ(d₂) and let σ→∞.",
+           "Examine what Φ(d₁) and Φ(d₂) tend to in that limit."]}
+]

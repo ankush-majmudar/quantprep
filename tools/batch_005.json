@@ -1,0 +1,70 @@
+[
+ {"slug":"coin-pair-v","techniques":["recursion","first_step","cond_expectation","binomial"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["Track the number of tails t; each iteration costs 2 movements (one deterministic turn-over + one random re-flip).",
+           "With ≥2 tails: turn one tail to a head and re-flip another tail. With exactly 1 tail: turn it to a head and re-flip a head (which may revert).",
+           "Let E_t be extra movements: E_1=4, E_t=2+½E_{t-1}+½E_{t-2}; t~Binom(4,½), add the 4 initial flips."],
+  "solution":"Each iteration is $2$ movements: deterministically turn one coin and randomly re-flip another. Let $E_t$ = expected extra movements from $t$ tails.\n\nWith $t\\ge2$: turn one tail $\\to$ head, re-flip another tail (heads w.p. ½). So $E_t=2+\\tfrac12E_{t-1}+\\tfrac12E_{t-2}$. With $t=1$: turn the tail $\\to$ head, but must re-flip a head (reverts w.p. ½): $E_1=2+\\tfrac12E_1\\Rightarrow E_1=4$. Then $E_2=2+\\tfrac12(4)=4$, $E_3=2+\\tfrac12(4)+\\tfrac12(4)=6$, $E_4=2+\\tfrac12(6)+\\tfrac12(4)=7$.\n\nThe initial $4$ flips cost $4$ movements and give $t\\sim\\mathrm{Binom}(4,\\tfrac12)$. Total $=4+\\frac{1}{16}\\big(4{\\cdot}4+6{\\cdot}4+4{\\cdot}6+1{\\cdot}7\\big)=4+\\frac{71}{16}=\\frac{135}{16}.$","solution_verified":true},
+
+ {"slug":"minimal-flipping","techniques":["geometric","order_statistics","independence"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["'None flips more than twice' = max(X₁,X₂,X₃) ≤ 2, and the Xᵢ are IID.",
+           "Xᵢ ~ Geom(0.75) (tails ends it); P(Xᵢ≤2)=¾+¾·¼=15/16.",
+           "Cube it: (15/16)³ = 3375/4096."]},
+
+ {"slug":"unknown-baby","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["The added baby is a boy (B) or girl with prob ½ each; update on selecting a boy (S).",
+           "P(S|added boy)=3/6=½; P(S|added girl)=2/6=⅓.",
+           "P(B|S)=(½·½)/(½·½+½·⅓)=(¼)/(5/12)=3/5."],
+  "solution":"Let $B$ = added baby is a boy ($P(B)=\\tfrac12$). After adding, there are $6$ babies. $P(\\text{pick boy}\\mid B)=\\tfrac{3}{6}=\\tfrac12$ and $P(\\text{pick boy}\\mid B^c)=\\tfrac{2}{6}=\\tfrac13$. By Bayes,\n$$P(B\\mid S)=\\frac{\\tfrac12\\cdot\\tfrac12}{\\tfrac12\\cdot\\tfrac12+\\tfrac12\\cdot\\tfrac13}=\\frac{1/4}{5/12}=\\frac{3}{5}.$$","solution_verified":true},
+
+ {"slug":"mathematical-birthday","techniques":["number_theory","algebra_manipulation","casework"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Each statement gives birth year = year − age. All must agree and fall in the 1800s/1900s.",
+           "From '2m in year 2m²': m=31 → year 1922, age 62, born 1860. From '3n in 3n⁴': n=5 → year 1875, age 15, born 1860.",
+           "Match born 1860 for x⁴+y⁴−(x²+y²): x=6,y=5 gives 1921−61=1860. So xymn=6·5·31·5=4650."],
+  "solution":"Each clue gives birth year = (year) − (age), and all must coincide in the 1800s/1900s.\n\n• $2m$ in year $2m^2$: birth $=2m^2-2m$. Taking $m=31$: year $1922$, age $62$, born $1860$.\n• $3n$ in year $3n^4$: birth $=3n^4-3n$. Taking $n=5$: year $1875$, age $15$, born $1860$.\n• $x^2+y^2$ in year $x^4+y^4$: need $x^4+y^4-(x^2+y^2)=1860$. Trying $x=6,y=5$: $1296+625-(36+25)=1921-61=1860.$ ✓\n\nSo $x=6,\\,y=5,\\,m=31,\\,n=5$ and $xymn=6\\cdot5\\cdot31\\cdot5=4650.$","solution_verified":true},
+
+ {"slug":"60-heads","techniques":["lln_clt","normal","binomial"],"primary":"lln_clt","difficulty":"easy","firm_style":["math","speed"],
+  "hints":["X = #heads ~ Binom(100,½): mean 50, variance 25, sd 5.",
+           "Standardize: P(X≥60)≈P(Z≥(60−50)/5)=P(Z≥2).",
+           "1−Φ(2)=0.02275."],
+  "solution":"$X\\sim\\mathrm{Binom}(100,\\tfrac12)$ has mean $50$ and variance $25$ (sd $5$). By the CLT (no continuity correction),\n$$P(X\\ge60)\\approx P\\!\\left(Z\\ge\\frac{60-50}{5}\\right)=P(Z\\ge2)=1-\\Phi(2)\\approx0.02275.$$","solution_verified":true},
+
+ {"slug":"wandering-ant-i","techniques":["markov_chain","first_step","gamblers_ruin","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Only the 8 interior non-origin points matter; by symmetry there are two types: edge points like (1,0) and corner points like (1,1).",
+           "p_E = ¼·1 + ¼·0 + ½p_C (neighbours: origin, boundary, two corners); p_C = ½p_E (two edge neighbours, two boundary).",
+           "Solve: p_E = ¼ + ¼p_E ⇒ p_E = 1/3; the first step lands on an edge point, so the answer is 1/3."],
+  "solution":"Interior non-origin points come in two symmetry classes: edge points $E=(\\pm1,0),(0,\\pm1)$ and corner points $C=(\\pm1,\\pm1)$. Let $p_E,p_C$ be the probabilities of reaching the origin before the boundary.\n\nFrom $E=(1,0)$: neighbours are origin (success), $(2,0)$ (boundary, fail), and two corners: $p_E=\\tfrac14(1)+\\tfrac14(0)+\\tfrac12 p_C$. From $C=(1,1)$: neighbours are two edge points and two boundary points: $p_C=\\tfrac12 p_E$.\n\nSubstituting, $p_E=\\tfrac14+\\tfrac14 p_E\\Rightarrow p_E=\\tfrac13$. The ant's first step always lands on an edge point, so the answer is $p(0,0)=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"square-ratio","techniques":["uniform_cont","sequences_series","pdf_cdf"],"primary":"uniform_cont","difficulty":"hard","firm_style":["math"],
+  "hints":["⌈Y/X⌉=m ⟺ (m−1)X < Y ≤ mX. Find P(⌈Y/X⌉=m) via the area under slope-c lines in the unit square.",
+           "Area under y=cx clipped to the unit square is c/2 (c≤1) or 1−1/(2c) (c>1); take differences for each m=k².",
+           "Sum over k: 1/2 + ½Σ_{k≥2}[1/(k²−1)−1/k²] = 11/8 − π²/12 ⇒ q=11/8, a=12, aq=33/2."],
+  "solution":"$\\lceil Y/X\\rceil=m \\iff (m-1)X<Y\\le mX$. With $A(c)$ = area of $\\{y\\le cx\\}$ in the unit square $=c/2$ if $c\\le1$ and $1-\\tfrac1{2c}$ if $c>1$, we have $P(\\lceil Y/X\\rceil=m)=A(m)-A(m-1)$.\n\nFor perfect squares $m=k^2$: the $k=1$ term is $A(1)-A(0)=\\tfrac12$. For $k\\ge2$ (so $c>1$): $A(k^2)-A(k^2-1)=\\tfrac12\\big(\\tfrac{1}{k^2-1}-\\tfrac{1}{k^2}\\big)$. Then\n$$P=\\tfrac12+\\tfrac12\\sum_{k\\ge2}\\Big(\\tfrac{1}{k^2-1}-\\tfrac1{k^2}\\Big)=\\tfrac12+\\tfrac12\\Big(\\tfrac34-(\\tfrac{\\pi^2}{6}-1)\\Big)=\\tfrac{11}{8}-\\tfrac{\\pi^2}{12}.$$\nSo $q=\\tfrac{11}{8},\\,a=12$ and $aq=\\tfrac{33}{2}.$","solution_verified":true},
+
+ {"slug":"picture-day","techniques":["combinations","basic_counting"],"primary":"combinations","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["The two tallest take the two center spots (2 ways). Heights must strictly descend going outward on each side.",
+           "Of the remaining 8 students, choose which 4 go on the left; their order (and the right's) is then forced.",
+           "2·C(8,4)=2·70=140."],
+  "solution":"The two tallest fill the two center positions in $2$ ways. The remaining $8$ students split into a left group of $4$ and a right group of $4$; within each side the order is forced (strictly descending outward). So we only choose which $4$ of the $8$ go left: $\\binom{8}{4}=70$. Total $=2\\cdot70=140.$","solution_verified":true},
+
+ {"slug":"ace-distribution","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Place the 4 aces among 52 cards split into four 13-card hands; want one ace per hand.",
+           "Favorable ace-placements: 13 choices per hand = 13⁴; total = C(52,4).",
+           "13⁴/C(52,4) = 28561/270725 = 2197/20825."],
+  "solution":"Consider where the $4$ aces fall among the $52$ cards, which are partitioned into four hands of $13$. The number of ways to place the aces is $\\binom{52}{4}=270725$; favorable placements put exactly one ace in each hand, i.e. one of $13$ slots per hand: $13^4=28561$. So\n$$P=\\frac{13^4}{\\binom{52}{4}}=\\frac{28561}{270725}=\\frac{2197}{20825}.$$","solution_verified":true},
+
+ {"slug":"colorful-cube","techniques":["combinations","sample_space","symmetry_prob"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Fix one of red/green/blue on a face, then ask where the other two land.",
+           "There are 8 corners; count colorings where R,G,B meet at a corner vs all 6! colorings.",
+           "8·3!·3!/6! = 2/5."]},
+
+ {"slug":"side-add","techniques":["cond_expectation","law_total_exp","uniform_discrete"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on the first roll k; the second die is fair with 6+k sides.",
+           "E[second | first=k] = (7+k)/2; average over k with E[k]=7/2.",
+           "E = 7/2 + ½·7/2 = 21/4."]},
+
+ {"slug":"dicecoin-paradigm","techniques":["law_total_exp","geometric","conditional_prob"],"primary":"law_total_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Condition on N = flips to first heads (N~Geom(½)); given N=n you roll the die n times.",
+           "P(see a 1 in n rolls)=1−(5/6)ⁿ, so P=Σ(½)ⁿ[1−(5/6)ⁿ]=1−Σ(5/12)ⁿ.",
+           "Σ_{n≥1}(5/12)ⁿ=5/7, so P=1−5/7=2/7."],
+  "solution":"Condition on $N$, the flips to the first heads, with $P(N=n)=(\\tfrac12)^n$. Given $N=n$, the chance of seeing at least one '1' in $n$ die rolls is $1-(\\tfrac56)^n$. Thus\n$$P=\\sum_{n\\ge1}\\Big(\\tfrac12\\Big)^n\\Big(1-(\\tfrac56)^n\\Big)=\\sum_{n\\ge1}\\Big(\\tfrac12\\Big)^n-\\sum_{n\\ge1}\\Big(\\tfrac{5}{12}\\Big)^n=1-\\frac{5/12}{7/12}=1-\\frac57=\\frac27.$$","solution_verified":true}
+]

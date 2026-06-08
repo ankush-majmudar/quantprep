@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta name="theme-color" content="#0e1117" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="QuantPrep" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icon-180.png" />
+<title>QuantPrep</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">⟁ QuantPrep</div>
+    <div class="topbar-right">
+      <span id="streakBadge" class="badge" title="Day streak">🔥 0</span>
+      <span id="readinessBadge" class="badge readiness" title="Interview readiness">— </span>
+    </div>
+  </header>
+
+  <main id="view"><!-- views render here --></main>
+
+  <nav id="tabbar">
+    <button data-tab="home"     class="tab active"><span class="ico">◧</span><span>Home</span></button>
+    <button data-tab="practice" class="tab"><span class="ico">✎</span><span>Practice</span></button>
+    <button data-tab="roadmap"  class="tab"><span class="ico">⌗</span><span>Roadmap</span></button>
+    <button data-tab="drills"   class="tab"><span class="ico">⚡</span><span>Drills</span></button>
+    <button data-tab="stats"    class="tab"><span class="ico">▦</span><span>Stats</span></button>
+  </nav>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>

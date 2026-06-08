@@ -1,0 +1,71 @@
+[
+ {"slug":"show-the-face","techniques":["conditional_prob","geometric","cond_expectation"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Don't just remove 5 from the sample space — conditioning changes the distribution of N.",
+           "P(N=n and 6 before 5)=(4/6)^{n−1}(1/6); P(6 before 5)=1/2.",
+           "E[N | 6 before 5]=Σ n(2/3)^{n−1}/6 ÷ (1/2)=3."],
+  "solution":"Let $N$ be the roll of the first $6$. For both $N=n$ and '6 before 5', the first $n-1$ rolls must be in $\\{1,2,3,4\\}$: $P(N=n,\\,6\\text{ first})=(\\tfrac46)^{n-1}\\tfrac16$. Summing gives $P(6\\text{ before }5)=\\tfrac12$. Then $\\mathbb{E}[N\\mid 6\\text{ before }5]=\\dfrac{\\sum_n n(\\tfrac23)^{n-1}\\tfrac16}{1/2}=\\tfrac13\\cdot\\dfrac1{(1-2/3)^2}=3.$","solution_verified":true},
+
+ {"slug":"ant-in-a-hurry","techniques":["construction","calculus"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Unfold the cube into a flat net so the path becomes a straight line.",
+           "The opposite corner unfolds to a point 1 across and 2 along.",
+           "d=√(1²+2²)=√5, so d²=5."],
+  "solution":"Unfolding two adjacent faces into a plane, the far corner lies at horizontal distance $2$ and vertical distance $1$ from the start, so the shortest surface path is the straight segment of length $\\sqrt{1^2+2^2}=\\sqrt5$. Thus $d^2=5.$","solution_verified":true},
+
+ {"slug":"complex-circle","techniques":["symmetry_prob","uniform_cont","calculus"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Write Z=e^{iθ} with θ~U(0,2π).",
+           "Z²=e^{2iθ}; average it over the circle.",
+           "(1/2π)∫₀^{2π} e^{2iθ}dθ = 0."],
+  "solution":"With $Z=e^{i\\theta}$, $\\theta\\sim U(0,2\\pi)$, we have $\\mathbb{E}[Z^2]=\\mathbb{E}[e^{2i\\theta}]=\\dfrac1{2\\pi}\\int_0^{2\\pi}e^{2i\\theta}\\,d\\theta=0.$","solution_verified":true},
+
+ {"slug":"beer-barrel-i","techniques":["construction","casework","number_theory"],"primary":"construction","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["You need exactly 1 quart in each of the 7- and 5-quart containers simultaneously.",
+           "Repeatedly wasting full 7-quart pours reduces the barrel toward a remainder you can split.",
+           "Combine the bulk-wasting phase with the classic 7/5 water-pouring measure steps and count transactions."]},
+
+ {"slug":"family-ties","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Grandmother's age = 10x+y where x,y are the grandchildren's ages (digits).",
+           "Sum: (10x+y)+x+y=98 ⇒ 11x+2y=98.",
+           "x=8 gives y=5, so grandmother is 85."],
+  "solution":"Let the grandmother be $10x+y$ with grandchildren aged $x$ and $y$. Then $(10x+y)+x+y=98\\Rightarrow11x+2y=98$. The digit solution is $x=8,y=5$, giving grandmother's age $85$ (and $85+8+5=98$).","solution_verified":true},
+
+ {"slug":"bank-arbitrage","techniques":["arbitrage","time_value"],"primary":"arbitrage","difficulty":"easy","firm_style":["finance"],
+  "hints":["Borrow at the lower rate (3%) and lend at the higher rate (5%) — a rate arbitrage.",
+           "Split your $200 so you both borrow and lend, then compare the year-end cash flows.",
+           "The locked-in profit is the spread applied to the committed amount."]},
+
+ {"slug":"statistical-test-review-vii","techniques":["hypothesis_test","normal"],"primary":"hypothesis_test","difficulty":"medium","firm_style":["math"],
+  "hints":["Reject H₀ (p=0.2) when p̂ ≤ 0.2 − 1.645·√(0.2·0.8/100)=0.1342.",
+           "β = P(fail to reject | true p=0.15) = P(p̂ > 0.1342 under p=0.15), sd=√(0.15·0.85/100)=0.0357.",
+           "β=P(Z > (0.1342−0.15)/0.0357)=Φ(0.4425)≈0.671."],
+  "solution":"The rejection region is $\\hat p\\le0.2-1.645\\sqrt{\\tfrac{0.2\\cdot0.8}{100}}=0.1342$. Under the alternative $p=0.15$, $\\hat p\\approx N(0.15,\\tfrac{0.15\\cdot0.85}{100})$ with sd $0.0357$. Then $\\beta=P(\\hat p>0.1342)=P\\!\\big(Z>\\tfrac{0.1342-0.15}{0.0357}\\big)=\\Phi(0.4425)\\approx0.671.$","solution_verified":true},
+
+ {"slug":"extrinsic-value-i","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["Intrinsic value of a call = max(S−K,0).",
+           "I=max(5−2,0)=3; E=C₀−I=4.7−3=1.7.",
+           "I²+E²=9+2.89=11.89."],
+  "solution":"The call is in-the-money: intrinsic $I=\\max(5-2,0)=3$, extrinsic $E=4.7-3=1.7$. So $I^2+E^2=9+2.89=11.89.$","solution_verified":true},
+
+ {"slug":"magic-doors","techniques":["cond_expectation","recursion","geometric"],"primary":"cond_expectation","difficulty":"easy","firm_style":["math"],
+  "hints":["Each try is uniform over 5 doors; freedom doors end, loop doors add distance and restart.",
+           "E = (1/5)(2+5) + (1/5)(1+E)+(1/5)(3+E)+(1/5)(4+E).",
+           "E = 3 + (3/5)E ⇒ E = 15/2."],
+  "solution":"Each attempt picks a uniform door. Summing distances: $E=\\tfrac15(2+5)+\\tfrac15(1+E)+\\tfrac15(3+E)+\\tfrac15(4+E)=\\tfrac{15}5+\\tfrac35E=3+\\tfrac35E$, so $\\tfrac25E=3\\Rightarrow E=\\tfrac{15}{2}.$","solution_verified":true},
+
+ {"slug":"prepped-offer","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["Let light users get an offer with rate r; heavy 2r, non-users r/2.",
+           "P(offer)=0.25(2r)+0.30(r)+0.45(r/2)=1.025r; P(heavy∩offer)=0.5r.",
+           "P(heavy|offer)=0.5/1.025=20/41."],
+  "solution":"Let a light user get an offer with probability $r$; then heavy $=2r$, non-user $=r/2$. $P(\\text{offer})=0.25(2r)+0.30(r)+0.45(\\tfrac r2)=1.025r$ and $P(\\text{heavy}\\cap\\text{offer})=0.25(2r)=0.5r$. So $P(\\text{heavy}\\mid\\text{offer})=\\tfrac{0.5}{1.025}=\\tfrac{20}{41}.$","solution_verified":true},
+
+ {"slug":"existent-mgf","techniques":["inequalities","variance_props"],"primary":"inequalities","difficulty":"medium","firm_style":["math"],
+  "hints":["M(4)=E[e^{4X}]=E[(e^X)^4]; apply Jensen with the convex function t↦t⁴.",
+           "E[(e^X)^4] ≥ (E[e^X])^4.",
+           "= 7⁴ = 2401, attained when X is constant."],
+  "solution":"Since $t\\mapsto t^4$ is convex, Jensen gives $M(4)=\\mathbb{E}[(e^X)^4]\\ge(\\mathbb{E}[e^X])^4=7^4=2401$, with equality when $X$ is constant. So the smallest possible value is $2401.$","solution_verified":true},
+
+ {"slug":"rebuy-gambler","techniques":["gamblers_ruin","conditional_prob"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["math"],
+  "hints":["Bob loses unless Alice goes bankrupt twice; compute P(Alice bankrupt) each phase by gambler's ruin.",
+           "Phase 1 (15 of 25): P(ruin)=1−15/25=2/5. Phase 2 (15 of 40): P=1−15/40=5/8.",
+           "P(Alice loses)=(2/5)(5/8)=1/4 ⇒ P(Bob loses)=3/4."],
+  "solution":"Bob loses unless Alice is bankrupted twice. First phase (Alice $15$ of $25$ total): $P(\\text{ruin})=1-\\tfrac{15}{25}=\\tfrac25$. After rebuy (Alice $15$ of $40$): $P(\\text{ruin})=1-\\tfrac{15}{40}=\\tfrac58$. So $P(\\text{Alice loses})=\\tfrac25\\cdot\\tfrac58=\\tfrac14$, giving $P(\\text{Bob loses})=1-\\tfrac14=\\tfrac34.$","solution_verified":true}
+]

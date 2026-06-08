@@ -1,0 +1,73 @@
+[
+ {"slug":"rotation-matrix-ranked","techniques":["linear_algebra"],"primary":"linear_algebra","difficulty":"medium","firm_style":["math"],
+  "hints":["Rotations are isometries, hence invertible.",
+           "So rank=3 and nullity=0.",
+           "3² + 0² = 9."],
+  "solution":"A rotation in $\\mathbb{R}^3$ is an isometry and therefore invertible, so $\\mathrm{rank}=3$ and $\\mathrm{null}=0$. Thus $3^2+0^2=9.$","solution_verified":true},
+
+ {"slug":"party-groups","techniques":["permutations","linearity_exp","indicator_vars"],"primary":"permutations","difficulty":"hard","firm_style":["math"],
+  "hints":["The groups are the cycles of a random permutation of 50.",
+           "Expected number of cycles = H₅₀ = 1+1/2+…+1/50.",
+           "≈ 4.499 → 4.5."],
+  "solution":"Each guest points to the name drawn, forming a random permutation whose cycles are the groups. The expected number of cycles is $H_{50}=\\sum_{i=1}^{50}\\tfrac1i\\approx4.499$, so about $4.5$ groups.","solution_verified":true},
+
+ {"slug":"odd-coefficients","techniques":["combinations","sequences_series","number_theory"],"primary":"combinations","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["For odd n, Σ over odd k of C(n,k) = 2^{n−1}.",
+           "Sum over odd n=1..999: 2⁰+2²+…+2⁹⁹⁸ = (4⁵⁰⁰−1)/3 = (2¹⁰⁰⁰−1)/3.",
+           "a=2,b=1000,c=1,d=3 ⇒ abcd=6000."],
+  "solution":"For odd $n$, $\\sum_{k\\text{ odd}}\\binom nk=2^{n-1}$. Summing over odd $n\\le999$: $\\sum_{j=0}^{499}4^j=\\dfrac{4^{500}-1}{3}=\\dfrac{2^{1000}-1}{3}$. With $b$ maximal, $a=2,b=1000,c=1,d=3$, so $abcd=6000.$","solution_verified":true},
+
+ {"slug":"win-by-2","techniques":["gamblers_ruin","sequences_series"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["A larger margin N favors the stronger player (law of large numbers).",
+           "With p>1/2, the win probability → 1 as N→∞.",
+           "Answer: 1."],
+  "solution":"As the required margin $N$ grows, randomness averages out and the stronger player (with $p=0.6>0.5$) almost surely gets ahead, so the probability A wins tends to $1.$","solution_verified":true},
+
+ {"slug":"visible-number-of-heads","techniques":["indicator_vars","linearity_exp"],"primary":"indicator_vars","difficulty":"easy","firm_style":["math"],
+  "hints":["Person i is visible iff they're the tallest of the first i, probability 1/i.",
+           "E[X]=Σ_{i=1}^{20} 1/i = H₂₀.",
+           "≈ 3.598 → 3.6."],
+  "solution":"Person $i$ is visible iff tallest among the first $i$, with probability $\\tfrac1i$. By linearity $\\mathbb{E}[X]=\\sum_{i=1}^{20}\\tfrac1i=H_{20}\\approx3.6.$","solution_verified":true},
+
+ {"slug":"head-tail-sequence","techniques":["conditional_prob","combinations"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["Given exactly 3 heads, all arrangements are equally likely.",
+           "There are C(5,3)=10 such sequences.",
+           "P = 1/10."],
+  "solution":"Conditioned on $3$ heads, each of the $\\binom53=10$ equally likely arrangements has probability $\\tfrac1{10}$, including THHTH.","solution_verified":true},
+
+ {"slug":"coin-toss-game-ii","techniques":["markov_chain","geometric","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Each player needs 2 heads; Alice's j-th flip is turn 2j−1, Bob's k-th is turn 2k.",
+           "Alice wins iff j ≤ k, with j,k ~ NegBinom(2,1/2).",
+           "Summing gives 16/27."],
+  "solution":"Each player's flips to reach $2$ heads are $\\mathrm{NegBinom}(2,\\tfrac12)$: $P(\\text{flips}=m)=\\tfrac{m-1}{2^m}$. Alice (going first) wins iff her count $j$ satisfies $j\\le k$ for Bob's count $k$. Summing $\\sum_j\\tfrac{j-1}{2^j}\\sum_{k\\ge j}\\tfrac{k-1}{2^k}$ gives $\\tfrac{16}{27}.$","solution_verified":true},
+
+ {"slug":"split-100","techniques":["combinations","conditional_prob"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Place 6 and 66; they're in different groups if one is in the 30-set and the other in the 70-set.",
+           "P = 2·(30·70)/(100·99).",
+           "= 4200/9900 = 14/33."],
+  "solution":"Treating $6$ and $66$ as two random distinct positions, they land in different groups with probability $\\dfrac{2\\cdot30\\cdot70}{100\\cdot99}=\\dfrac{4200}{9900}=\\dfrac{14}{33}.$","solution_verified":true},
+
+ {"slug":"cubic-sum","techniques":["number_theory","algebra_manipulation"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Factor 147 out: 441,588,735 = 147·(3,4,5).",
+           "3³+4³+5³ = 216 = 6³.",
+           "x = 147·6 = 882."],
+  "solution":"Since $441,588,735=147\\cdot(3,4,5)$ and $3^3+4^3+5^3=216=6^3$, we get $x^3=147^3\\cdot6^3=(882)^3$, so $x=882.$","solution_verified":true},
+
+ {"slug":"4-and-5-sum","techniques":["number_theory","casework"],"primary":"number_theory","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["The non-representable positive integers (sums of 4s and 5s) are 1,2,3,6,7,11 (Frobenius number 11).",
+           "That's 6 exceptions.",
+           "1000 − 6 = 994."],
+  "solution":"With parts $4$ and $5$, the only positive integers not expressible are $1,2,3,6,7,11$ (the Frobenius number is $11$). Removing these $6$ exceptions from $1$–$1000$ leaves $1000-6=994.$","solution_verified":true},
+
+ {"slug":"gamma-review-iii","techniques":["exponential","calculus"],"primary":"exponential","difficulty":"easy","firm_style":["math"],
+  "hints":["For Gamma(shape k, scale θ): E[Xⁿ]=θⁿ·(k+n−1)!/(k−1)!.",
+           "k=2, θ=4, n=6: 4⁶·7!/1! = 4⁶·7!.",
+           "a=4,b=6,c=7 ⇒ a+b+c=17."],
+  "solution":"For $X\\sim\\mathrm{Gamma}(k=2,\\theta=4)$, $\\mathbb{E}[X^n]=\\theta^n\\dfrac{(k+n-1)!}{(k-1)!}$. With $n=6$: $4^6\\cdot\\dfrac{7!}{1!}=4^6\\cdot7!$. So $a=4,b=6,c=7$ and $a+b+c=17.$","solution_verified":true},
+
+ {"slug":"bread-slicer-i","techniques":["uniform_cont","geometric"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["Pieces are 5, X, 8−X with X~U(0,8); triangle inequalities give 3/2 < X < 13/2.",
+           "That interval has length 5.",
+           "P = 5/8."],
+  "solution":"With pieces $5,X,8-X$ ($X\\sim U(0,8)$), the triangle inequalities reduce to $\\tfrac32<X<\\tfrac{13}2$, an interval of length $5$. So $P=\\tfrac58.$","solution_verified":true}
+]

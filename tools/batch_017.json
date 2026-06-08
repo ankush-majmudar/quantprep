@@ -1,0 +1,72 @@
+[
+ {"slug":"2030-die-split-iii","techniques":["optimal_strategy","cond_expectation","conditional_prob"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["math"],
+  "hints":["Bob rerolls when keeping b is worse than a fresh roll. A fresh roll beats Alice w.p. 7/20.",
+           "Keep b iff P(A≤b)=b/30 ≥ 7/20 ⇒ b≥11.",
+           "P(Bob wins)=Σ_{11}^{20}(1/20)(b/30)+ (10/20)(7/20)=13/30 ⇒ Alice 17/30."],
+  "solution":"A fresh $d20$ beats Alice (ties to Bob) with probability $\\frac1{30}\\sum_{a=1}^{20}\\frac{21-a}{20}=\\frac{210}{600}=\\frac{7}{20}$. So Bob keeps a value $b$ iff $P(A\\le b)=\\frac{b}{30}\\ge\\frac7{20}$, i.e. $b\\ge11$. Then\n$$P(\\text{Bob wins})=\\sum_{b=11}^{20}\\tfrac1{20}\\cdot\\tfrac{b}{30}+\\tfrac{10}{20}\\cdot\\tfrac7{20}=\\tfrac{155}{600}+\\tfrac{105}{600}=\\tfrac{13}{30}.$$\nHence $P(\\text{Alice wins})=1-\\tfrac{13}{30}=\\tfrac{17}{30}.$","solution_verified":true},
+
+ {"slug":"partial-derivatives","techniques":["stars_and_bars","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["By equality of mixed partials, only the count of times each variable is differentiated matters.",
+           "Count multisets of size 5 from 10 variables: stars and bars.",
+           "C(10+5−1, 5)=C(14,5)=2002."],
+  "solution":"Since mixed partials commute, a $5$th-order partial is determined by how many times each of the $10$ variables is differentiated — a multiset of size $5$ from $10$ types. By stars and bars there are $\\binom{10+5-1}{5}=\\binom{14}{5}=2002.$","solution_verified":true},
+
+ {"slug":"busted-6-i","techniques":["cond_expectation","geometric","linearity_exp"],"primary":"cond_expectation","difficulty":"medium","firm_style":["math"],
+  "hints":["Rolls of 1–4 accumulate; the game ends on a 5 (cash sum) or 6 (zero), each equally likely.",
+           "Expected accumulated sum E[S]=E[#(1–4 rolls)]·2.5 = 2·2.5 = 5.",
+           "Payout = S only if it ends on 5 (prob 1/2): E=5·(1/2)=5/2."],
+  "solution":"Before stopping, each roll is a $1$–$4$ (continue) with prob $\\tfrac46$ or a $5/6$ (stop) with prob $\\tfrac26$. The number of accumulating rolls is geometric with mean $\\tfrac{2/3}{1/3}=2$, each averaging $2.5$, so $\\mathbb{E}[S]=5$. The game ends on a $5$ (cash $S$) vs a $6$ (zero) with equal probability, independent of $S$, so $\\mathbb{E}[\\text{payout}]=5\\cdot\\tfrac12=\\tfrac52.$","solution_verified":true},
+
+ {"slug":"doubly-stochastic","techniques":["markov_chain","linear_algebra"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["For a doubly stochastic matrix the uniform distribution is stationary (columns sum to 1).",
+           "So π_i = 1/100 for all i.",
+           "‖π‖ = √(100·(1/100)²) = 1/10."],
+  "solution":"Because every column of $P$ sums to $1$, the uniform vector satisfies $\\pi P=\\pi$, so the stationary distribution is $\\pi_i=\\tfrac1{100}$. Then $\\|\\pi\\|=\\sqrt{\\sum_{i=1}^{100}(\\tfrac1{100})^2}=\\sqrt{\\tfrac{1}{100}}=\\tfrac1{10}.$","solution_verified":true},
+
+ {"slug":"heads-and-tails-i","techniques":["law_total_exp","recursion","cond_expectation"],"primary":"law_total_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["First reach a head, then wait for the next tail.",
+           "E[flips to first H]=2; from a head, E[flips to a T]=2 (each flip ends w.p. ½, else stays in 'have H').",
+           "Total = 2+2 = 4."],
+  "solution":"You need a head followed by a tail. Expected flips to the first head is $2$. Once you have a head, each further flip ends the game if it's a tail (prob $\\tfrac12$) and otherwise keeps you in the 'just saw H' state, so the wait for the tail is also $2$. Total $\\mathbb{E}=2+2=4.$","solution_verified":true},
+
+ {"slug":"child-births","techniques":["bayes","estimation_stats"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["Gamma is conjugate to Poisson; posterior is Gamma(a+ΣX, b+n).",
+           "Posterior mean = (a+ΣX)/(b+n) = (32+100)/(10+34).",
+           "= 132/44 = 3."],
+  "solution":"For a Poisson likelihood with a $\\mathrm{Gamma}(a,b)$ (shape–rate) prior, the posterior is $\\mathrm{Gamma}(a+\\sum x_i,\\,b+n)$ with mean $\\dfrac{a+\\sum x_i}{b+n}$. Here $\\dfrac{32+100}{10+34}=\\dfrac{132}{44}=3.$","solution_verified":true},
+
+ {"slug":"take-and-roll-i","techniques":["optimal_strategy","cond_expectation","geometric"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Roll until the first value ≥ n, then take it for the remaining actions.",
+           "Settled value averages (20+n)/2; expected rolls to reach ≥n is 20/(21−n).",
+           "Maximize ((20+n)/2)(100 − 20/(21−n)); n=18 gives 19·(100−20/3)=5320/3."],
+  "solution":"With threshold $n$, you roll until the first value $\\ge n$ (expected $\\frac{20}{21-n}$ rolls), settling on a value averaging $\\frac{20+n}{2}$, then take it for the remaining actions. Expected payout $\\approx\\frac{20+n}{2}\\big(100-\\frac{20}{21-n}\\big)$. Maximizing over $n$ gives $n=18$: $\\frac{38}{2}\\big(100-\\frac{20}{3}\\big)=19\\cdot\\frac{280}{3}=\\frac{5320}{3}.$","solution_verified":true},
+
+ {"slug":"gamma-review-iv","techniques":["variance_props","pdf_cdf"],"primary":"variance_props","difficulty":"medium","firm_style":["math"],
+  "hints":["Var(e^X)=E[e^{2X}]−(E[e^X])² uses the Gamma MGF M(θ)=(1−θ/3)^{−8}.",
+           "E[e^X]=M(1)=(2/3)^{−8}=(3/2)^8; E[e^{2X}]=M(2)=(1/3)^{−8}=3^8.",
+           "Var=3^8−(3/2)^{16}: a=3,b=8,c=16 ⇒ abc=384."],
+  "solution":"Using the Gamma MGF $M_X(\\theta)=(1-\\theta/3)^{-8}$, we get $\\mathbb{E}[e^X]=M(1)=(2/3)^{-8}=(3/2)^8$ and $\\mathbb{E}[e^{2X}]=M(2)=(1/3)^{-8}=3^8$. Then\n$$\\mathrm{Var}(e^X)=3^8-\\big((3/2)^8\\big)^2=3^8-(3/2)^{16},$$\nso $a=3,b=8,c=16$ and $abc=384.$","solution_verified":true},
+
+ {"slug":"100-factorial-digits","techniques":["approximation","calculus","sequences_series"],"primary":"approximation","difficulty":"medium","firm_style":["math"],
+  "hints":["Number of digits = ⌊log₁₀(100!)⌋ + 1.",
+           "log₁₀(100!)=Σ_{k=1}^{100} log₁₀ k ≈ 157.97 (or use Stirling).",
+           "⌊157.97⌋+1 = 158."],
+  "solution":"The digit count of $N$ is $\\lfloor\\log_{10}N\\rfloor+1$. Here $\\log_{10}(100!)=\\sum_{k=1}^{100}\\log_{10}k\\approx157.97$ (consistent with Stirling), so $100!$ has $\\lfloor157.97\\rfloor+1=158$ digits.","solution_verified":true},
+
+ {"slug":"rain-chance-ii","techniques":["inclusion_excl_prob","conditional_prob"],"primary":"inclusion_excl_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["No rain = neither event; bound P(neither) above.",
+           "P(no rain) ≤ min(P(not Sat), P(not Sun)) = min(0.6, 0.3).",
+           "= 0.3."],
+  "solution":"No rain means neither day rains, so $P(\\text{no rain})\\le P(\\text{no rain Sunday})=1-0.7=0.3$ (it also can't exceed $1-0.4=0.6$). The tightest upper bound is $\\min(0.6,0.3)=0.3$, attained when the dry days are nested.","solution_verified":true},
+
+ {"slug":"beta-difference","techniques":["lln_clt","normal","variance_props"],"primary":"lln_clt","difficulty":"easy","firm_style":["math"],
+  "hints":["Beta(1,2): mean 1/3, variance 1/18. Sum 324 of them by CLT.",
+           "S,T each ~ N(108, 18); S−T ~ N(0, 36), sd 6.",
+           "P(S−T>10)=P(Z>10/6)=Φ(−5/3) ⇒ a=−5/3."],
+  "solution":"$\\mathrm{Beta}(1,2)$ has mean $\\tfrac13$ and variance $\\tfrac{1\\cdot2}{3^2\\cdot4}=\\tfrac1{18}$. By the CLT, $S_{324},T_{324}\\approx N(108,18)$, so $S-T\\approx N(0,36)$ (sd $6$). Then $P(S-T>10)=P\\!\\big(Z>\\tfrac{10}{6}\\big)=1-\\Phi(\\tfrac53)=\\Phi\\!\\big(-\\tfrac53\\big)$, giving $a=-\\tfrac53.$","solution_verified":true},
+
+ {"slug":"lucky-genie","techniques":["ev_betting","optimal_strategy"],"primary":"ev_betting","difficulty":"easy","firm_style":["markets"],
+  "hints":["Compute expected return per dollar staked on each side.",
+           "Even: bet 4 to win 6, ½ chance ⇒ return 3 on 4. Odd: bet 6 to win 9, ½ ⇒ 4.5 on 6. Both = 3/4 of stake.",
+           "Expected value is 0.75× the stake (a loss), so bet $0."]}
+]

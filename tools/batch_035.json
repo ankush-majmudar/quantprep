@@ -1,0 +1,73 @@
+[
+ {"slug":"distinct-date-ii","techniques":["casework","number_theory","construction"],"primary":"casework","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Maximize the year first; years 2000s fail because the month needs a leading 0 or 1 that clashes.",
+           "The latest distinct-digit year that admits a valid MM/DD is 1987 (1988,1989 repeat digits).",
+           "Remaining digits {0,2,3,4,5,6}: max month 06, max day ≤30 from {2,3,4,5} is 25 ⇒ 06/25/1987."],
+  "solution":"For a $20XY$ year the digits $2,0$ are used, leaving no way to write a valid month (which needs a leading $0$ or $1$), so we look in the $1900$s. The latest year with all-distinct digits that still allows a valid date is $1987$ ($1988,1989$ repeat). With $\\{0,2,3,4,5,6\\}$ left, the largest month is $06$ and then the largest day $\\le30$ from $\\{2,3,4,5\\}$ is $25$. So the date is $06/25/1987$.","solution_verified":true},
+
+ {"slug":"discrete-walker","techniques":["gamblers_ruin","symmetry_prob"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["math"],
+  "hints":["Symmetric walk with absorbing barriers 0 and 10.",
+           "P(reach 10 first) = start/total.",
+           "6/10 = 3/5."],
+  "solution":"For a symmetric walk absorbed at $0$ and $10$, the probability of hitting $10$ first from position $k$ is $k/10$. From $6$ that's $\\tfrac{6}{10}=\\tfrac35.$","solution_verified":true},
+
+ {"slug":"valid-expressions","techniques":["basic_counting","combinations"],"primary":"basic_counting","difficulty":"easy","firm_style":["math"],
+  "hints":["Between consecutive digits there are 8 gaps.",
+           "Each gap is one of: +, *, or nothing (concatenate).",
+           "3⁸ = 6561."],
+  "solution":"There are $8$ gaps between the digits $1$–$9$, and each can hold $+$, $*$, or nothing (joining digits). So there are $3^8=6561$ expressions.","solution_verified":true},
+
+ {"slug":"fancy-factorial","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Cancel 6! from 10!.",
+           "10!/6! = 10·9·8·7 = 5040.",
+           "5040 = 7! ⇒ n=7."],
+  "solution":"$\\dfrac{10!}{6!}=10\\cdot9\\cdot8\\cdot7=5040=7!$, so $n=7.$","solution_verified":true},
+
+ {"slug":"2d-paths-iii","techniques":["inclusion_exclusion","combinations"],"primary":"inclusion_exclusion","difficulty":"medium","firm_style":["math"],
+  "hints":["Count paths through (2,3) and through (4,6) separately, then subtract those through both.",
+           "|P₁|=C(5,2)C(7,4)=350; |P₂|=C(10,4)C(2,2)=210; |P₁∩P₂|=10·10·1=100.",
+           "|P₁∪P₂|=350+210−100=460."],
+  "solution":"Paths through $(2,3)$: $\\binom52\\binom74=350$. Through $(4,6)$: $\\binom{10}{4}\\binom22=210$. Through both: $\\binom52\\binom52\\binom22=100$. By inclusion–exclusion, $350+210-100=460.$","solution_verified":true},
+
+ {"slug":"consecutive-1s","techniques":["inclusion_exclusion","combinations","sample_space"],"primary":"inclusion_exclusion","difficulty":"easy","firm_style":["math"],
+  "hints":["Count sequences containing '111' (three consecutive 1s) among 6⁵.",
+           "Let B_i be 1s at positions i,i+1,i+2 (i=1,2,3); inclusion–exclusion.",
+           "3·36 − (6+6+1) + 1 = 96; 96/7776 = 1/81."],
+  "solution":"Count length-$5$ die sequences with three consecutive $1$s. Let $B_i$ force $1$s at positions $i,i+1,i+2$: $|B_i|=6^2=36$. Overlaps: $|B_1\\cap B_2|=|B_2\\cap B_3|=6$, $|B_1\\cap B_3|=1$, triple $=1$. Inclusion–exclusion gives $108-13+1=96$, so $P=\\tfrac{96}{6^5}=\\tfrac{96}{7776}=\\tfrac1{81}.$","solution_verified":true},
+
+ {"slug":"square-shade","techniques":["combinations","complementary_count","sample_space"],"primary":"combinations","difficulty":"hard","firm_style":["math"],
+  "hints":["A rectangle is chosen by 2 of 2024 horizontal lines and 2 of 2024 vertical lines; it misses the shaded full row iff its row-span avoids row 1012.",
+           "Avoiding pairs: both horizontal lines in {0..1011} or both in {1012..2023}: 2·C(1012,2).",
+           "P(contain)=1 − 2C(1012,2)/C(2024,2)=1 − 1011/2023 = 1012/2023."],
+  "solution":"Choosing a rectangle uses $2$ of $2024$ horizontal lines (and any verticals). It avoids the shaded row $1012$ iff both horizontal lines lie in $\\{0,\\dots,1011\\}$ or both in $\\{1012,\\dots,2023\\}$ ($1012$ lines each): $2\\binom{1012}{2}$ ways out of $\\binom{2024}{2}$. That ratio is $\\dfrac{1012\\cdot1011}{1012\\cdot2023}=\\dfrac{1011}{2023}$, so $P(\\text{contains shaded})=1-\\dfrac{1011}{2023}=\\dfrac{1012}{2023}.$","solution_verified":true},
+
+ {"slug":"gamma-review-i","techniques":["calculus","sequences_series"],"primary":"calculus","difficulty":"easy","firm_style":["math"],
+  "hints":["Use Γ(a+1)=aΓ(a) to step Γ(9/4) down toward Γ(1/4).",
+           "Γ(9/4)=(5/4)Γ(5/4)=(5/4)(1/4)Γ(1/4).",
+           "Ratio = (5/4)(1/4)=5/16."],
+  "solution":"By $\\Gamma(a+1)=a\\Gamma(a)$: $\\Gamma(\\tfrac94)=\\tfrac54\\Gamma(\\tfrac54)=\\tfrac54\\cdot\\tfrac14\\Gamma(\\tfrac14)$. So $\\dfrac{\\Gamma(9/4)}{\\Gamma(1/4)}=\\tfrac54\\cdot\\tfrac14=\\tfrac5{16}.$","solution_verified":true},
+
+ {"slug":"statistical-test-review-v","techniques":["hypothesis_test"],"primary":"hypothesis_test","difficulty":"easy","firm_style":["math"],
+  "hints":["The Z statistic uses the known population variance and a normal sampling distribution of the mean.",
+           "Conditions 1 (variance known), 2 (random sample), 3 (mean ~ normal) are required; n≥30 is not strictly necessary if normality holds.",
+           "Answer: 123."],
+  "solution":"The $Z$ statistic $\\dfrac{\\bar X-\\mu_0}{\\sigma/\\sqrt n}$ requires a known population variance (1), a random sample (2), and an approximately normal sampling distribution of the mean (3). A size of at least $30$ (4) is not strictly required when normality already holds. So the answer is $123.$","solution_verified":true},
+
+ {"slug":"10-die-sum","techniques":["combinations","sample_space","stars_and_bars"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Count ordered triples (1–6 each) summing to 10.",
+           "There are 27 such ordered outcomes.",
+           "27/216 = 1/8."],
+  "solution":"The number of ordered triples of dice summing to $10$ is $27$ (e.g. from the unordered partitions $(1,3,6),(1,4,5),(2,2,6),(2,3,5),(2,4,4),(3,3,4)$, weighted by their arrangements). So $P=\\tfrac{27}{216}=\\tfrac18.$","solution_verified":true},
+
+ {"slug":"same-side","techniques":["independence","basic_counting"],"primary":"independence","difficulty":"easy","firm_style":["math"],
+  "hints":["The first flip sets the target side; the next three must match.",
+           "Each match has probability 1/2.",
+           "(1/2)³ = 1/8."],
+  "solution":"The first flip is free; the remaining three must match it, each with probability $\\tfrac12$. So $P=(\\tfrac12)^3=\\tfrac18.$","solution_verified":true},
+
+ {"slug":"prime-pair","techniques":["number_theory","parity","sample_space"],"primary":"number_theory","difficulty":"easy","firm_style":["math"],
+  "hints":["Faces are 2,3,5,7,11,13; a prime sum >2 must be odd, so exactly one die shows the only even face, 2.",
+           "Then need 2+p prime: works for p=3,5,11 (sum 5,7,13) but not 7,13.",
+           "Favorable ordered outcomes: 2·3=6 of 36 ⇒ 1/6."],
+  "solution":"The faces are $\\{2,3,5,7,11,13\\}$. A prime sum greater than $2$ is odd, so exactly one die must show the only even face $2$, and then $2+p$ must be prime: this holds for $p=3,5,11$ (giving $5,7,13$) but not $7,13$. That's $2\\times3=6$ ordered outcomes of $36$, so $P=\\tfrac16.$","solution_verified":true}
+]

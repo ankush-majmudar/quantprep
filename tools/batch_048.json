@@ -1,0 +1,73 @@
+[
+ {"slug":"rolls-in-a-row","techniques":["recursion","cond_expectation","geometric"],"primary":"recursion","difficulty":"easy","firm_style":["math"],
+  "hints":["Expected rolls for a run of k successes with prob p is (p^{−k}−1)/(1−p).",
+           "Here p=1/6, k=2.",
+           "(36−1)/(5/6)=35·6/5=42."],
+  "solution":"The expected number of rolls for two consecutive $6$s is $\\dfrac{p^{-2}-1}{1-p}=\\dfrac{36-1}{5/6}=42.$","solution_verified":true},
+
+ {"slug":"doubly-5-ii","techniques":["markov_chain","conditional_prob","casework"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Only 4,5,6 matter (each 1/3); stop at two 5s (win) or both a 4 and a 6 (lose).",
+           "Track (number of 5s, whether one of {4,6} seen); solve the win-probability equations.",
+           "w=1/3·(2/3)+2/3·(1/4)=2/9+1/6=7/18."],
+  "solution":"Conditioning on rolls in $\\{4,5,6\\}$ (each $\\tfrac13$), track the number of $5$s and whether a $4$ or $6$ has appeared. Solving the win-probability system gives state values $w_C=\\tfrac12,\\,w_A=\\tfrac23,\\,w_B=\\tfrac14$, so from the start $w=\\tfrac13\\cdot\\tfrac23+\\tfrac23\\cdot\\tfrac14=\\tfrac{7}{18}.$","solution_verified":true},
+
+ {"slug":"confused-ant-ii","techniques":["markov_chain","hitting_time","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["The walk on the cube's 8 vertices is symmetric (regular degree 3), so the stationary distribution is uniform.",
+           "Expected return time to a state = 1/(stationary probability).",
+           "= 1/(1/8) = 8."],
+  "solution":"The walk on the cube is on $8$ vertices, each of degree $3$, so the stationary distribution is uniform with $\\pi_v=\\tfrac18$. The mean return time to the start is $1/\\pi_v=8.$","solution_verified":true},
+
+ {"slug":"die-rank","techniques":["order_statistics","variance_props","cond_expectation"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["E[X₁X₂]=3.5²=12.25; E[X₁²]=91/6≈15.17.",
+           "The median has mean 3.5 but smaller variance than a single die, so E[median²]=12.25+Var(median) lies between the two.",
+           "Order: b > c > a ⇒ 231."],
+  "solution":"$\\mathbb{E}[X_1X_2]=3.5^2=12.25$ (a) and $\\mathbb{E}[X_1^2]=\\tfrac{91}{6}\\approx15.17$ (b). The median has the same mean $3.5$ but smaller variance, so $\\mathbb{E}[X_{(3)}^2]=12.25+\\mathrm{Var}(X_{(3)})$ lies strictly between $12.25$ and $15.17$ (c). Thus $b>c>a$, i.e. $231.$","solution_verified":true},
+
+ {"slug":"bombing-campaign","techniques":["uniform_cont","sample_space"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["The target dies iff the bomb lands within 1/2 mile of the center.",
+           "That area ratio is (1/2)²/1² = 1/4.",
+           "Unharmed: 1 − 1/4 = 3/4."],
+  "solution":"The target is hit iff the bomb lands within $\\tfrac12$ mile of the center, probability $\\dfrac{(1/2)^2}{1^2}=\\tfrac14$. So it survives with probability $1-\\tfrac14=\\tfrac34.$","solution_verified":true},
+
+ {"slug":"independent-children","techniques":["independence","conditional_prob","algebra_manipulation"],"primary":"independence","difficulty":"easy","firm_style":["math"],
+  "hints":["P(X)=1−2^{1−n}, P(Y)=(n+1)/2ⁿ, P(X∩Y)=n/2ⁿ (exactly one girl).",
+           "Independence: n/2ⁿ = (1−2^{1−n})(n+1)/2ⁿ ⇒ 2(n+1)=2ⁿ.",
+           "n=3 (2·4=8)."],
+  "solution":"Here $P(X)=1-2^{1-n}$, $P(Y)=\\tfrac{n+1}{2^n}$, and $P(X\\cap Y)=\\tfrac{n}{2^n}$ (exactly one girl). Independence requires $\\tfrac{n}{2^n}=\\big(1-2^{1-n}\\big)\\tfrac{n+1}{2^n}$, i.e. $2(n+1)=2^n$, satisfied uniquely by $n=3.$","solution_verified":true},
+
+ {"slug":"empty-urn","techniques":["inclusion_exclusion","geometric","sequences_series"],"primary":"inclusion_exclusion","difficulty":"hard","firm_style":["math"],
+  "hints":["P(k balls)=(1/2)^k; P(no empty bin | k)=(3^k−3·2^k+3)/3^k.",
+           "Sum: Σ(1/2)^k −3Σ(1/3)^k +3Σ(1/6)^k.",
+           "= 1 − 3/2 + 3/5 = 1/10."],
+  "solution":"With $P(k)=(\\tfrac12)^k$ and $P(\\text{no empty}\\mid k)=\\tfrac{3^k-3\\cdot2^k+3}{3^k}$ (inclusion–exclusion), the total is $\\sum_k(\\tfrac12)^k-3\\sum_k(\\tfrac13)^k+3\\sum_k(\\tfrac16)^k=1-\\tfrac32+\\tfrac35=\\tfrac1{10}.$","solution_verified":true},
+
+ {"slug":"bond-practice-iii","techniques":["time_value"],"primary":"time_value","difficulty":"easy","firm_style":["finance"],
+  "hints":["Semiannual coupon = 30, 10 periods, period rate 2.5%.",
+           "PV = 30·(1−1.025⁻¹⁰)/0.025 + 1000·1.025⁻¹⁰.",
+           "≈ 262.56 + 781.20 = 1043.76."],
+  "solution":"With semiannual coupons of $30$ over $10$ periods at $2.5\\%$ per period: $PV=30\\cdot\\dfrac{1-1.025^{-10}}{0.025}+1000\\cdot1.025^{-10}\\approx262.56+781.20=1043.76.$","solution_verified":true},
+
+ {"slug":"exact-bills-ii","techniques":["construction","casework","number_theory"],"primary":"construction","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Change is 100−x ∈ {1,…,99}; you need bills to make any value 1–99 as a subset sum.",
+           "Four 1s (0–4), three 5s (→0–19), four 20s (→0–99).",
+           "4+3+4 = 11."],
+  "solution":"The change is some value $1$–$99$, so you need subset sums covering $1$–$99$: four $\\$1$ (to $0$–$4$), three $\\$5$ (to $0$–$19$), four $\\$20$ (to $0$–$99$). That's $4+3+4=11$ bills.","solution_verified":true},
+
+ {"slug":"poker-hands-i","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Four-of-a-kind: 13 ranks × 48 choices for the 5th card.",
+           "p = 13·48/C(52,5) = 624/2598960.",
+           "1/p = 2598960/624 = 4165."],
+  "solution":"There are $13\\cdot48=624$ four-of-a-kind hands out of $\\binom{52}{5}=2598960$, so $p=\\tfrac{624}{2598960}$ and $\\tfrac1p=4165.$","solution_verified":true},
+
+ {"slug":"salah-goal","techniques":["binomial","combinations","algebra_manipulation"],"primary":"binomial","difficulty":"easy","firm_style":["math"],
+  "hints":["Forward +2, back −1, 9 motions, net 0: 2f−b=0 with f+b=9.",
+           "Gives f=3, b=6.",
+           "C(9,3)(1/2)⁹ = 84/512 = 21/128."],
+  "solution":"To return to start with $9$ motions, $2f-b=0$ and $f+b=9$ give $f=3$ forwards, $b=6$ backs. So $P=\\binom93(\\tfrac12)^9=\\tfrac{84}{512}=\\tfrac{21}{128}.$","solution_verified":true},
+
+ {"slug":"double-data-trouble-ii","techniques":["regression","variance_props","linear_algebra"],"primary":"regression","difficulty":"easy","firm_style":["math"],
+  "hints":["Duplicating points gives X'ᵀX' = 2XᵀX, so (X'ᵀX')⁻¹ = (1/2)(XᵀX)⁻¹.",
+           "σ² is unchanged (same response values, same error variance).",
+           "Var(β')=(1/2)Var(β) ⇒ c=1/2."],
+  "solution":"Duplicating each point gives $X'^TX'=2X^TX$, so $(X'^TX')^{-1}=\\tfrac12(X^TX)^{-1}$, while $\\sigma^2$ is unchanged. Hence $\\mathrm{Var}(\\hat\\beta')=\\tfrac12\\mathrm{Var}(\\hat\\beta)$ and $c=\\tfrac12.$","solution_verified":true}
+]

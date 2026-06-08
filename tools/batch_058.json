@@ -1,0 +1,73 @@
+[
+ {"slug":"fibonacci-limit-ii","techniques":["sequences_series","algebra_manipulation"],"primary":"sequences_series","difficulty":"medium","firm_style":["math"],
+  "hints":["F_{n+2}/F_n = (F_{n+1}+F_n)/F_n → φ+1 = φ².",
+           "φ² = (3+√5)/2.",
+           "a=3,b=5,c=2 ⇒ abc=30."],
+  "solution":"$\\dfrac{F_{n+2}}{F_n}=\\dfrac{F_{n+1}+F_n}{F_n}\\to\\varphi+1=\\varphi^2=\\dfrac{3+\\sqrt5}{2}$. So $a=3,b=5,c=2$ and $abc=30.$","solution_verified":true},
+
+ {"slug":"replacement-orbs","techniques":["geometric","cond_expectation","linearity_exp"],"primary":"geometric","difficulty":"easy","firm_style":["math"],
+  "hints":["From 1 blue (2 red), a draw turns a red blue w.p. 2/3 ⇒ mean 3/2 draws.",
+           "From 2 blue (1 red), success w.p. 1/3 ⇒ mean 3 draws.",
+           "Total = 3/2 + 3 = 9/2."],
+  "solution":"Going from $1$ to $2$ blue requires drawing one of the $2$ reds (prob $\\tfrac23$), a geometric mean of $\\tfrac32$ draws. From $2$ to $3$ blue needs the last red (prob $\\tfrac13$), mean $3$. Total $=\\tfrac32+3=\\tfrac92.$","solution_verified":true},
+
+ {"slug":"shopping-habits","techniques":["hypothesis_test","normal","variance_props"],"primary":"hypothesis_test","difficulty":"hard","firm_style":["stats"],
+  "hints":["Pooled variance s_p²=(19·22²+19·20²)/38=442, so s_p≈21.02.",
+           "t=(78−67)/(s_p√(1/20+1/20))=11/6.65≈1.655 with 38 df.",
+           "Two-tailed p ≈ 0.106."],
+  "solution":"Pooled variance $s_p^2=\\dfrac{19(22^2)+19(20^2)}{38}=442$, so $s_p\\approx21.02$ and the standard error is $21.02\\sqrt{\\tfrac1{20}+\\tfrac1{20}}\\approx6.65$. Then $t=\\dfrac{78-67}{6.65}\\approx1.655$ on $38$ df, giving a two-tailed $p\\approx0.106.$","solution_verified":true},
+
+ {"slug":"cats-and-mice","techniques":["number_theory","casework"],"primary":"number_theory","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Factor 999919 = 991 × 1009 (both prime).",
+           "Cats × mice-per-cat with both >1 and mice-per-cat > cats.",
+           "991 cats each killing 1009 mice (1009 > 991)."],
+  "solution":"$999919=991\\times1009$, both prime. With more than one cat, each killing more than one mouse and more mice than there are cats, the only fit is $991$ cats each killing $1009$ mice ($1009>991$). So there were $991$ cats.","solution_verified":true},
+
+ {"slug":"full-solutions","techniques":["number_theory","algebra_manipulation"],"primary":"number_theory","difficulty":"easy","firm_style":["math"],
+  "hints":["7y≡10000 (mod 3) ⇒ y≡1, so minimal positive b=1.",
+           "Then 3x=10000−7=9993 ⇒ x=3331=a.",
+           "ab = 3331·1 = 3331."],
+  "solution":"Reducing mod $3$, $y\\equiv1$, so the minimal positive value is $b=1$. Then $3x=10000-7=9993$ gives $x=a=3331$. Hence $ab=3331.$","solution_verified":true},
+
+ {"slug":"correlation---variance","techniques":["covariance","correlation","variance_props"],"primary":"covariance","difficulty":"easy","firm_style":["stats"],
+  "hints":["σ²_{X+Y}=σ²_X+σ²_Y+2ρσ_Xσ_Y.",
+           "121 = 16 + 49 + 2ρ(28).",
+           "56 = 56ρ ⇒ ρ=1."],
+  "solution":"From $\\sigma_{X+Y}^2=\\sigma_X^2+\\sigma_Y^2+2\\rho\\sigma_X\\sigma_Y$: $121=16+49+56\\rho$, so $56\\rho=56$ and $\\rho=1.$","solution_verified":true},
+
+ {"slug":"delayed-ruin","techniques":["gamblers_ruin","hitting_time","combinations"],"primary":"gamblers_ruin","difficulty":"hard","firm_style":["math"],
+  "hints":["First passage to 0 from n in m=n+2k steps uses k up and n+k down moves.",
+           "f=(n/m)·C(m,k)·pᵏ(1−p)^{n+k} (ballot/hitting-time formula).",
+           "n=5,k=3,p=1/3: (5/11)·165·(1/27)·(256/6561) ≈ 0.1084."],
+  "solution":"Reaching $0$ for the first time in $m=n+2k$ steps requires $k$ wins and $n+k$ losses, and the ballot formula gives $f=\\dfrac{n}{m}\\binom{m}{k}p^k(1-p)^{n+k}$. For $n=5,k=3,p=\\tfrac13$: $\\dfrac5{11}\\binom{11}{3}\\big(\\tfrac13\\big)^3\\big(\\tfrac23\\big)^8\\approx0.1084.$","solution_verified":true},
+
+ {"slug":"graph-search","techniques":["linearity_exp","geometric","markov_chain"],"primary":"linearity_exp","difficulty":"medium","firm_style":["math"],
+  "hints":["Each step lands on a uniform node — identical to a 10-sided die (coupon collector).",
+           "Expected steps to see all 10 = 10·H₁₀.",
+           "10(1+1/2+…+1/10) ≈ 29.29 → 29."],
+  "solution":"Each step jumps to a uniformly random node, exactly the coupon-collector setup with $10$ coupons, so the expected number of steps is $10H_{10}=10\\big(1+\\tfrac12+\\cdots+\\tfrac1{10}\\big)\\approx29.29\\approx29.$","solution_verified":true},
+
+ {"slug":"sticky-strike","techniques":["option_basics"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Sticky-strike: implied vol is pinned to the strike, independent of spot moves.",
+           "The K=13 vol doesn't change when S moves to 15.",
+           "σ stays 0.3."],
+  "solution":"Under a sticky-strike model the implied volatility is a function of the strike alone and does not move with the underlying. So the $K=13$ option keeps $\\sigma=0.3.$","solution_verified":true},
+
+ {"slug":"sock-drawer-ii","techniques":["conditional_prob","combinations","casework"],"primary":"conditional_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Need no match Mon, no match Tue, match Wed.",
+           "Count favorable splits over all C(10,2)C(8,2)C(6,2) ordered selections.",
+           "= 26/315."],
+  "solution":"Requiring mismatched draws Monday and Tuesday and a matched draw Wednesday, counting favorable selections over all $\\binom{10}{2}\\binom82\\binom62$ ordered triples gives $P=\\dfrac{26}{315}.$","solution_verified":true},
+
+ {"slug":"segment-traversal","techniques":["indicator_vars","linearity_exp","symmetry_prob"],"primary":"indicator_vars","difficulty":"hard","firm_style":["math"],
+  "hints":["Two chords with 4 distinct endpoints cross w.p. 1/3; adjacent segments share a vertex and can't cross interior.",
+           "Non-adjacent segment pairs: C(n,2) − n.",
+           "E=(C(n,2)−n)/3; n=12: (66−12)/3 = 18."],
+  "solution":"Two segments on distinct endpoints intersect inside with probability $\\tfrac13$; the $n$ adjacent pairs share a vertex and don't. With $\\binom n2-n$ eligible pairs, $\\mathbb{E}=\\dfrac{\\binom n2-n}{3}$. For $n=12$: $\\dfrac{66-12}{3}=18.$","solution_verified":true},
+
+ {"slug":"true-statement","techniques":["casework","invariants","construction"],"primary":"casework","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Statement n ('at most n−1 true') is true iff the true-count T ≤ n−1.",
+           "So exactly the statements n=T+1..100 are true: 100−T of them.",
+           "Set 100−T = T ⇒ T=50."],
+  "solution":"Statement $n$ is true exactly when the number of true statements $T$ satisfies $T\\le n-1$, i.e. for $n\\ge T+1$. That makes $100-T$ statements true, so $100-T=T$ and $T=50.$","solution_verified":true}
+]

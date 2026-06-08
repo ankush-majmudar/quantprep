@@ -1,0 +1,15 @@
+{
+  "name": "QuantPrep — Quant Interview Trainer",
+  "short_name": "QuantPrep",
+  "description": "Adaptive quant trading interview prep: 764 questions, technique mastery, roadmap, mental-math drills. Works offline.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1117",
+  "theme_color": "#0e1117",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

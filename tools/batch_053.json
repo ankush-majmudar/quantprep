@@ -1,0 +1,72 @@
+[
+ {"slug":"convergent-intervals","techniques":["uniform_cont","variance_props","sequences_series"],"primary":"uniform_cont","difficulty":"medium","firm_style":["math"],
+  "hints":["The limit point is the sum of the independent left-endpoint increments at each step.",
+           "Step k adds an independent U(0,(1/2)ᵏ), with variance ((1/2)ᵏ)²/12.",
+           "Σ_{k≥1}(1/4)ᵏ/12 = (1/12)(1/3) = 1/36."],
+  "solution":"The convergence point is $P=\\sum_{k\\ge1}U_k$ where $U_k\\sim U(0,(1/2)^k)$ are independent, with $\\mathrm{Var}(U_k)=\\dfrac{(1/4)^k}{12}$. Summing, $\\mathrm{Var}(P)=\\dfrac1{12}\\sum_{k\\ge1}(1/4)^k=\\dfrac1{12}\\cdot\\dfrac13=\\dfrac1{36}.$","solution_verified":true},
+
+ {"slug":"car-crashes","techniques":["independence","complementary_count","poisson"],"primary":"independence","difficulty":"easy","firm_style":["math"],
+  "hints":["Split the hour into two independent 30-minute halves with crash probability p each.",
+           "No crash in the hour = no crash in both halves: (1−p)²=1/9.",
+           "1−p=1/3 ⇒ p=2/3."],
+  "solution":"Let $p$ be the probability of a crash in $30$ minutes. The two halves are independent, so $(1-p)^2=P(\\text{no crash in hour})=\\tfrac19$, giving $1-p=\\tfrac13$ and $p=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"leap-frog","techniques":["recursion","sequences_series"],"primary":"recursion","difficulty":"medium","firm_style":["math"],
+  "hints":["p_k = ½p_{k−1} + ½p_{k−2}, with p_0=1.",
+           "Solve: p_k = 2/3 + (1/3)(−1/2)ᵏ.",
+           "Largest is at k=2: 2/3 + 1/12 = 3/4."],
+  "solution":"Position $k$ is reached from $k-1$ or $k-2$, so $p_k=\\tfrac12p_{k-1}+\\tfrac12p_{k-2}$ with $p_0=1$. The solution is $p_k=\\tfrac23+\\tfrac13(-\\tfrac12)^k$, maximized at $k=2$: $p_2=\\tfrac23+\\tfrac1{12}=\\tfrac34.$","solution_verified":true},
+
+ {"slug":"statistical-test-review-ii","techniques":["hypothesis_test","binomial","normal"],"primary":"hypothesis_test","difficulty":"easy","firm_style":["stats"],
+  "hints":["β = P(accept H₀ | p=0.7) = P(X not in rejection region).",
+           "Acceptance region |x−18|<4 means 15 ≤ X ≤ 21, with X~Bin(36,0.7).",
+           "Σ_{k=15}^{21} C(36,k)(0.7)ᵏ(0.3)^{36−k} ≈ 0.0915."],
+  "solution":"$\\beta$ is the probability of accepting $H_0$ when $p=0.7$, i.e. $X\\in\\{15,\\dots,21\\}$ for $X\\sim\\mathrm{Bin}(36,0.7)$. Summing, $\\beta=\\sum_{k=15}^{21}\\binom{36}{k}(0.7)^k(0.3)^{36-k}\\approx0.0915.$","solution_verified":true},
+
+ {"slug":"keg-of-wine","techniques":["algebra_manipulation","sequences_series"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Each draw-and-refill multiplies the wine fraction by (10−x)/10.",
+           "After two days: ((10−x)/10)² = 1/2 ⇒ 10−x = 5√2.",
+           "x = 10 − 5√2, so a=10,b=5,c=2 and a+b+c=17."],
+  "solution":"Each ladle-and-refill scales the wine fraction by $\\tfrac{10-x}{10}$, so after two days $\\big(\\tfrac{10-x}{10}\\big)^2=\\tfrac12$, giving $10-x=5\\sqrt2$ and $x=10-5\\sqrt2$. With $a=10,b=5,c=2$ (and $a=bc$), $a+b+c=17.$","solution_verified":true},
+
+ {"slug":"weird-die","techniques":["calculus","algebra_manipulation"],"primary":"calculus","difficulty":"easy","firm_style":["math"],
+  "hints":["P(sum 7)=2[p₁p₆+p₂p₅+p₃p₄] as a function of x.",
+           "Differentiate the bracket: −1/6 + (3/10 − 4x) = 0.",
+           "x = 1/30."],
+  "solution":"$P(7)=2\\big[\\tfrac1{36}+\\tfrac{1/5-x}{6}+(\\tfrac1{10}+2x)(\\tfrac15-x)\\big]$. Differentiating the bracket gives $-\\tfrac16+(\\tfrac3{10}-4x)=0$, so $\\tfrac2{15}=4x$ and $x=\\tfrac1{30}.$","solution_verified":true},
+
+ {"slug":"consecutive-children","techniques":["number_theory","algebra_manipulation","sequences_series"],"primary":"number_theory","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["With middle age m and spacing s, Σ(m+is)² for i=−4..4 = 9m²+60s².",
+           "Need 9m²+60s² = d² with d ≤ 60.",
+           "d=48: 2304 = 9m²+60s² has m=14, s=3 (ages 2..26)."],
+  "solution":"The nine ages are $m+is$, $i=-4..4$, with $\\sum(m+is)^2=9m^2+60s^2=d^2$. Searching $d\\le60$, $d=48$ works: $2304=9(14)^2+60(3)^2$, i.e. $m=14,s=3$ giving ages $2,5,\\dots,26$. The father is $48.$","solution_verified":true},
+
+ {"slug":"intersecting-intervals","techniques":["combinations","symmetry_prob","order_statistics"],"primary":"combinations","difficulty":"hard","firm_style":["math"],
+  "hints":["All intervals share a point ⟺ every left endpoint precedes every right endpoint.",
+           "With n=5 intervals and 10 points, this forces the 5 smallest points to be the lefts: matchings = n!, total = (2n−1)!!.",
+           "P = 5!/9!! = 120/945 = 8/63 ⇒ p+q = 71."],
+  "solution":"A common point exists iff $\\max(\\text{lefts})<\\min(\\text{rights})$, i.e. the $5$ smallest of the $10$ points are all left endpoints. Such pairings number $5!$ out of $(2\\cdot5-1)!!=945$ matchings, so $P=\\dfrac{120}{945}=\\dfrac{8}{63}$ and $p+q=71.$","solution_verified":true},
+
+ {"slug":"sticky-delta","techniques":["option_basics","calculus"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["First find the Δ of the K=6 call (use Γ to move from the ATM Δ≈0.5).",
+           "Plug that Δ into σ(x)=(x−0.5)²+0.3.",
+           "The implied vol rounds to 0.31."]},
+
+ {"slug":"colorful-socks-i","techniques":["conditional_prob","combinations"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["The first sock is any color; only the second matters.",
+           "Of the 19 remaining socks, exactly 1 matches.",
+           "1/19."],
+  "solution":"After drawing any first sock, exactly $1$ of the remaining $19$ socks matches its color, so $P=\\tfrac1{19}.$","solution_verified":true},
+
+ {"slug":"paired-pumpkins","techniques":["linear_algebra","algebra_manipulation"],"primary":"linear_algebra","difficulty":"easy","firm_style":["math"],
+  "hints":["Adding all pair sums gives 2(w₁+w₂+w₃)=19+21+28=68, so the total is 34.",
+           "Each weight = 34 − (the pair sum excluding it): 15, 13, 6.",
+           "15²+13²+6² = 225+169+36 = 430."],
+  "solution":"Summing the pair masses, $2(w_1+w_2+w_3)=68$, so the total is $34$. Each weight is $34$ minus the opposite pair: $15,13,6$. Then $w_1^2+w_2^2+w_3^2=225+169+36=430.$","solution_verified":true},
+
+ {"slug":"3-heads-3-tails-ii","techniques":["markov_chain","hitting_time","cond_expectation"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Set up states by the current trailing run; let μ be expected additional flips.",
+           "Solve μ_H=1+½μ_T+½μ_HH etc.; by symmetry the post-first-flip expectation is 6.",
+           "Add the first flip: 7."],
+  "solution":"With states for the current trailing run, $\\mu_H=1+\\tfrac12\\mu_T+\\tfrac12\\mu_{HH}$, $\\mu_{HH}=1+\\tfrac12\\mu_T$, and symmetric equations for tails. Solving gives $\\mu_H=\\mu_T=6$, so after the first flip $6$ more are expected; total $=7.$","solution_verified":true}
+]

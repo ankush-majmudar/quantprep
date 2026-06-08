@@ -1,0 +1,73 @@
+[
+ {"slug":"lollipop-mix","techniques":["permutations","combinations"],"primary":"permutations","difficulty":"easy","firm_style":["math"],
+  "hints":["The repeated letters are L(3), O(2), P(2); only these can be both ends.",
+           "Fix two equal letters at the ends, then arrange the remaining 6.",
+           "L: 6!/(1!2!2!)=180; O: 6!/(3!2!)=60; P: 60. Total 300."],
+  "solution":"LOLLIPOP has $L\\times3, O\\times2, P\\times2, I\\times1$. Only $L,O,P$ can occupy both ends. Fixing two equal letters at the ends and arranging the other six:\n• $L$: remaining $L,O,O,P,P,I\\Rightarrow \\tfrac{6!}{2!2!}=180$,\n• $O$: remaining $L,L,L,P,P,I\\Rightarrow\\tfrac{6!}{3!2!}=60$,\n• $P$: $60$.\nTotal $=180+60+60=300.$","solution_verified":true},
+
+ {"slug":"compound-interest-i","techniques":["time_value","approximation"],"primary":"time_value","difficulty":"easy","firm_style":["speed"],
+  "hints":["Value = 100·(1.01)^{100}.",
+           "(1.01)^{100} ≈ e^{100·0.00995} ≈ e^{0.995} ≈ 2.70.",
+           "≈ $270."],
+  "solution":"The balance is $100(1.01)^{100}$. Using $\\ln(1.01)\\approx0.00995$, $(1.01)^{100}\\approx e^{0.995}\\approx2.705$, so the amount is about $\\$270.$","solution_verified":true},
+
+ {"slug":"random-angle-ii","techniques":["uniform_cont","calculus","joint_cont"],"primary":"uniform_cont","difficulty":"easy","firm_style":["math"],
+  "hints":["θ is opposite leg A, so tan θ = A/B; θ>π/3 ⟺ A>√3·B.",
+           "P(A>√3 B)=∫_0^{1/√3}(1−√3 b)db.",
+           "= 1/(2√3): a=1,b=2,c=3 ⇒ abc=6."],
+  "solution":"With legs $A,B$, the angle opposite $A$ has $\\tan\\theta=A/B$, so $\\theta>\\tfrac\\pi3\\iff A>\\sqrt3\\,B$. Then\n$$P=\\int_0^{1/\\sqrt3}(1-\\sqrt3\\,b)\\,db=\\frac1{\\sqrt3}-\\frac{\\sqrt3}{6}=\\frac{1}{2\\sqrt3}.$$\nSo $a=1,b=2,c=3$ and $abc=6.$","solution_verified":true},
+
+ {"slug":"no-adjacent-evens","techniques":["combinations","permutations"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Place the 4 odds first; they create 5 gaps for the 3 evens.",
+           "Choose 3 of the 5 gaps for evens: C(5,3); then arrange evens 3! and odds 4!.",
+           "10·6·24 = 1440."],
+  "solution":"Arrange the $4$ odd numbers ($4!$ ways), creating $5$ gaps. Place the $3$ even numbers in distinct gaps so none are adjacent: choose $3$ of $5$ gaps ($\\binom53=10$) and order them ($3!$). Total $=4!\\cdot\\binom53\\cdot3!=24\\cdot10\\cdot6=1440.$","solution_verified":true},
+
+ {"slug":"fair-match","techniques":["symmetry_prob","number_theory"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Sums of symmetric dice are symmetric about their means (3.5m and 4.5n).",
+           "P(S<T)=P(S>T) iff S−T is symmetric about 0, i.e. means equal: 3.5m=4.5n ⇒ 7m=9n.",
+           "Smallest: m=9, n=7 ⇒ product 63."],
+  "solution":"Each die's distribution is symmetric about its mean, so $S_m$ is symmetric about $3.5m$ and $T_n$ about $4.5n$; thus $S_m-T_n$ is symmetric about $3.5m-4.5n$. We get $P(S<T)=P(S>T)$ exactly when this center is $0$: $3.5m=4.5n\\Rightarrow 7m=9n$. The smallest solution is $m=9,n=7$, so $m^*n^*=63.$","solution_verified":true},
+
+ {"slug":"dice-order-i","techniques":["order_statistics","complementary_count","sample_space"],"primary":"order_statistics","difficulty":"medium","firm_style":["math"],
+  "hints":["P(max=4)=P(max≤4)−P(max≤3).",
+           "P(max≤k)=(k/6)² for two dice.",
+           "(4/6)²−(3/6)²=16/36−9/36=7/36."],
+  "solution":"$P(\\max=4)=P(\\max\\le4)-P(\\max\\le3)=\\big(\\tfrac46\\big)^2-\\big(\\tfrac36\\big)^2=\\tfrac{16-9}{36}=\\tfrac{7}{36}.$","solution_verified":true},
+
+ {"slug":"power-to-the-matrix","techniques":["linear_algebra","sequences_series"],"primary":"linear_algebra","difficulty":"medium","firm_style":["math"],
+  "hints":["Diagonalize: eigenvalues solve λ²−6λ+5=0 ⇒ 5 and 1, eigenvectors [1,2] and [1,−2].",
+           "Write v=[3,2]=2·[1,2]+1·[1,−2]; apply A^10 (scales by 5^10 and 1).",
+           "A^10 v=[2·5^10+1, 4·5^10−2]: a=2,b=5,p=10,c=1,d=4,g=2 ⇒ bp+a+c+d+g=50+9=59."],
+  "solution":"$A$ has eigenvalues $5,1$ (from $\\lambda^2-6\\lambda+5=0$) with eigenvectors $[1,2]^T,[1,-2]^T$. Writing $v=[3,2]^T=2[1,2]^T+1[1,-2]^T$,\n$$A^{10}v=2\\cdot5^{10}[1,2]^T+1\\cdot1^{10}[1,-2]^T=\\begin{bmatrix}2\\cdot5^{10}+1\\\\4\\cdot5^{10}-2\\end{bmatrix}.$$\nSo $a=2,b=5,p=10,c=1,d=4,g=2$ and $bp+a+c+d+g=50+2+1+4+2=59.$","solution_verified":true},
+
+ {"slug":"pass-the-ball","techniques":["markov_chain","first_step","symmetry_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Let f_i be your win probability when the ball is at distance i; each turn: keep (1/3, ends) or move (1/3 each).",
+           "f_0=1/3+(2/3)f_1, f_1=(1/3)f_0+(1/3)f_2, f_2=f_1/2 (by symmetry on 5 seats).",
+           "Solve: f_0 = 5/11."],
+  "solution":"Let $f_i$ be the probability you keep the ball given it's currently $i$ seats away (you are $0$). Each turn the holder keeps (prob $\\tfrac13$, you win only if $i=0$) or moves either way. With $5$ seats, symmetry gives $f_1=f_4,\\,f_2=f_3$:\n$$f_0=\\tfrac13+\\tfrac23 f_1,\\quad f_1=\\tfrac13 f_0+\\tfrac13 f_2,\\quad f_2=\\tfrac13 f_1+\\tfrac13 f_2\\Rightarrow f_2=\\tfrac{f_1}{2}.$$\nThen $f_1=\\tfrac25 f_0$ and $f_0=\\tfrac13+\\tfrac23\\cdot\\tfrac25 f_0\\Rightarrow f_0=\\tfrac{5}{11}.$","solution_verified":true},
+
+ {"slug":"black-or-yellow","techniques":["optimal_strategy","cond_expectation","recursion"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["Guess the majority color; expected reward at a state (b,y) works out to max(b,y).",
+           "E(b,y)=max(b,y)+ (b/(b+y))E(b−1,y)+(y/(b+y))E(b,y−1).",
+           "Build up: E(1,1)=2, E(2,1)=13/3, E(2,2)=2+13/3=19/3."],
+  "solution":"Always guess the majority color. The expected reward at state $(b,y)$ is $(b+y)\\cdot\\frac{\\max(b,y)}{b+y}=\\max(b,y)$, so\n$$E(b,y)=\\max(b,y)+\\tfrac{b}{b+y}E(b-1,y)+\\tfrac{y}{b+y}E(b,y-1).$$\nWith $E(b,0)=\\tfrac{b(b+1)}2$: $E(1,1)=2$, $E(2,1)=2+\\tfrac23\\cdot2+\\tfrac13\\cdot3=\\tfrac{13}3$, and $E(2,2)=2+\\tfrac12\\cdot\\tfrac{13}3+\\tfrac12\\cdot\\tfrac{13}3=\\tfrac{19}{3}.$","solution_verified":true},
+
+ {"slug":"fair-load","techniques":["total_probability","conditional_prob","parity"],"primary":"total_probability","difficulty":"easy","firm_style":["math"],
+  "hints":["Loaded die: P(face i)=i/21, so P(odd)=9/21=3/7, P(even)=4/7. Fair die is 1/2 each.",
+           "Odd sum = (fair odd, loaded even) or (fair even, loaded odd).",
+           "½·4/7 + ½·3/7 = ½."],
+  "solution":"The loaded die has $P(i)=\\tfrac{i}{21}$, so $P(\\text{odd})=\\tfrac{1+3+5}{21}=\\tfrac37$ and $P(\\text{even})=\\tfrac47$; the fair die is $\\tfrac12$ each. An odd sum needs exactly one odd:\n$$P=\\tfrac12\\cdot\\tfrac47+\\tfrac12\\cdot\\tfrac37=\\tfrac12.$$","solution_verified":true},
+
+ {"slug":"atm-implied-volatility","techniques":["option_basics"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Use the ATM Black–Scholes approximation C ≈ 0.3989·S·σ·√T (Brenner–Subrahmanyam).",
+           "Solve σ = C/(0.3989·S·√T) with T=0.25, √T=0.5.",
+           "σ = 2.3/(0.3989·12·0.5) ≈ 0.961."],
+  "solution":"For an ATM option, $C\\approx\\dfrac{1}{\\sqrt{2\\pi}}S\\sigma\\sqrt T\\approx0.3989\\,S\\sigma\\sqrt T$ (Brenner–Subrahmanyam). Solving, $\\sigma=\\dfrac{C}{0.3989\\,S\\sqrt T}=\\dfrac{2.3}{0.3989\\cdot12\\cdot0.5}\\approx0.961.$","solution_verified":true},
+
+ {"slug":"log-square","techniques":["ito","brownian"],"primary":"ito","difficulty":"medium","firm_style":["math"],
+  "hints":["Method 2 correctly applies Itô to ln(M²): d ln M² = 2σ dW − σ² dt.",
+           "Method 1 computes dM² correctly but then wrongly sets d ln M² = dM²/M² (ignoring Itô's correction).",
+           "So Method 1 is wrong at its last (5th) line: a=1, l=5 ⇒ 100·1+5 = 105."],
+  "solution":"Method 2 applies Itô's lemma to $\\ln M^2$ correctly, giving $d\\ln M^2=2\\sigma\\,dW-\\sigma^2\\,dt$. Method 1 is fine through $\\frac{dM^2}{M^2}=2\\sigma\\,dW+\\sigma^2\\,dt$, but its final step equates $d\\ln M^2$ with $\\frac{dM^2}{M^2}$ — invalid, since the log has its own Itô correction. So Method 1 is incorrect at its $5$th line: $a=1,\\,l=5$, giving $100a+l=105.$","solution_verified":true}
+]

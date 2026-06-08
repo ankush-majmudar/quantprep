@@ -1,0 +1,72 @@
+[
+ {"slug":"minecraft-mine","techniques":["cond_expectation","linearity_exp","recursion"],"primary":"cond_expectation","difficulty":"medium","firm_style":["math"],
+  "hints":["Split T given N=n into the n−1 wrong choices plus the final escape; B_n is an unconditional sum (Wald).",
+           "Given a wrong path, E[time]=(2+4)/2=3; the escape adds 8. Unconditionally E[X_i]=(2+4+8)/3=14/3.",
+           "A_n=3(n−1)+8, B_n=14n/3, so the ratio → 3/(14/3)=9/14."],
+  "solution":"Given $N=n$, the first $n-1$ choices were wrong paths (each equally likely path 1 or 2, mean $\\tfrac{2+4}{2}=3$) and the $n$-th is the escape (8): $A_n=3(n-1)+8$.\n\n$B_n=\\mathbb{E}\\big[\\sum_{k=1}^n X_i\\big]$ uses the unconditional mean $\\mathbb{E}[X_i]=\\tfrac{2+4+8}{3}=\\tfrac{14}{3}$, so $B_n=\\tfrac{14}{3}n$ (Wald's identity).\n\nThus $\\lim_{n\\to\\infty}\\dfrac{A_n}{B_n}=\\dfrac{3n}{\\frac{14}{3}n}=\\dfrac{9}{14}.$","solution_verified":true},
+
+ {"slug":"poor-odds","techniques":["gamblers_ruin","casework","binomial"],"primary":"gamblers_ruin","difficulty":"easy","firm_style":["math"],
+  "hints":["In units of $10: start at 3; a loss is −1, a win is +7 (pay 1, receive 8). One win + ten losses nets −3 → ends at 0 after 11 games.",
+           "She can survive at most 3 straight losses before going broke, so the single win must land in game 1, 2, or 3.",
+           "Exactly 3 valid orderings, each with probability 0.1·0.9^{10}: 3·0.1·0.9^{10}≈0.105."],
+  "solution":"Work in units of \\$10: she starts at $3$. A loss changes her by $-1$; a win by $+7$ (pay $1$, receive $8$). To finish broke with exactly one win she plays $g$ games with $30-10g+80=0\\Rightarrow g=11$ (one win, ten losses, net $-3$).\n\nShe must stay solvent (≥1 unit before each game). With only losses she'd hit $0$ before game $4$, so the lone win must occur in game $1$, $2$, or $3$ — each gives a valid trajectory that never goes broke early and ends exactly at $0$. That's $3$ orderings, each of probability $0.1\\cdot0.9^{10}$.\n\n$P=3\\cdot0.1\\cdot0.9^{10}\\approx 0.105.$","solution_verified":true},
+
+ {"slug":"integral-variance-ii","techniques":["ito","brownian","martingale"],"primary":"ito","difficulty":"medium","firm_style":["math"],
+  "hints":["By Itô, d(W_t^2/2)=W_t dW_t + ½dt, so ∫_0^t W_s dW_s = (W_t^2 − t)/2.",
+           "Or use Itô isometry: Var(∫_0^t W_s dW_s)=E[∫_0^t W_s^2 ds].",
+           "Either way you get ∫_0^t s ds = t²/2, so k=1/2."],
+  "solution":"By Itô's lemma, $d\\!\\left(\\tfrac{W_t^2}{2}\\right)=W_t\\,dW_t+\\tfrac12 dt$, hence $\\int_0^t W_s\\,dW_s=\\tfrac{W_t^2-t}{2}$. Then\n$$\\mathrm{Var}\\!\\left(\\tfrac{W_t^2-t}{2}\\right)=\\tfrac14\\mathrm{Var}(W_t^2)=\\tfrac14\\cdot 2t^2=\\tfrac{t^2}{2},$$\nsince $W_t\\sim N(0,t)$ gives $\\mathrm{Var}(W_t^2)=2t^2$. (Equivalently, Itô isometry gives $\\mathbb{E}\\!\\int_0^t W_s^2\\,ds=\\int_0^t s\\,ds=\\tfrac{t^2}{2}$.) So $k=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"orthogonal-cosine","techniques":["linear_algebra"],"primary":"linear_algebra","difficulty":"easy","firm_style":["math"],
+  "hints":["An orthogonal matrix preserves inner products and lengths.",
+           "(Ax)·(Ay)=xᵀAᵀAy=xᵀy and ‖Ax‖=‖x‖, ‖Ay‖=‖y‖.",
+           "So the cosine — and the angle — are unchanged: 75°."],
+  "solution":"An orthogonal matrix satisfies $A^\\top A=I$, so it preserves inner products and norms: $(Ax)\\cdot(Ay)=x^\\top A^\\top A y=x\\cdot y$, and $\\|Ax\\|=\\|x\\|$, $\\|Ay\\|=\\|y\\|$. Therefore $\\cos\\theta'=\\dfrac{(Ax)\\cdot(Ay)}{\\|Ax\\|\\,\\|Ay\\|}=\\dfrac{x\\cdot y}{\\|x\\|\\,\\|y\\|}=\\cos 75^\\circ$, so the angle is still $75^\\circ.$","solution_verified":true},
+
+ {"slug":"cheater","techniques":["bayes","conditional_prob","total_probability"],"primary":"bayes","difficulty":"easy","firm_style":["math"],
+  "hints":["You want P(knew | correct) — invert with Bayes.",
+           "P(correct|knew)=1, P(correct|guess)=1/5; P(knew)=0.6, P(guess)=0.4.",
+           "P(correct)=0.6+0.4·0.2=0.68, so P(knew|correct)=0.6/0.68=15/17."],
+  "solution":"Let $K$=knew, $C$=correct. Then $P(C\\mid K)=1$, $P(C\\mid K^c)=\\tfrac15$, $P(K)=0.6$. By total probability $P(C)=0.6\\cdot1+0.4\\cdot\\tfrac15=0.68$. By Bayes,\n$$P(K\\mid C)=\\frac{P(C\\mid K)P(K)}{P(C)}=\\frac{0.6}{0.68}=\\frac{15}{17}.$$","solution_verified":true},
+
+ {"slug":"points-on-a-circle-iii","techniques":["combinations","sample_space"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Total ways: choose 4 of the C(8,2)=28 chords.",
+           "A convex quadrilateral ⇔ the 4 chords are exactly the 4 'sides' coming from 4 of the points... actually each set of 4 points yields exactly one convex quadrilateral.",
+           "P = C(8,4)/C(28,4) = 2/585."]},
+
+ {"slug":"ship-stops","techniques":["linearity_exp","indicator_vars"],"primary":"linearity_exp","difficulty":"easy","firm_style":["math"],
+  "hints":["Write total time as 12 + sum of delays, then take expectations termwise.",
+           "Checks 1–4: each adds 1 min w.p. 0.25 → E=0.25 each. Check 5: adds 4 w.p. 0.75 → E=3.",
+           "E[T]=12 + 4(0.25) + 3 = 16."],
+  "solution":"Let $T=12+\\sum_{i=1}^5 X_i$ where $X_i$ is the delay from check $i$. By linearity, $\\mathbb{E}[T]=12+\\sum\\mathbb{E}[X_i]$. For checks $1$–$4$, $\\mathbb{E}[X_i]=0.25\\cdot1=0.25$ (total $1$); for check $5$, $\\mathbb{E}[X_5]=0.75\\cdot4=3$. So $\\mathbb{E}[T]=12+1+3=16$ minutes.","solution_verified":true},
+
+ {"slug":"doubling-bacterium","techniques":["sequences_series"],"primary":"sequences_series","difficulty":"easy","firm_style":["speed","brainteaser"],
+  "hints":["How much time passes, and how many doublings is that?",
+           "95−55 = 40 min = 4 doublings.",
+           "200·2^4 = 200·16 = 3200."],
+  "solution":"From $t_1=55$ to $t_2=95$ is $40$ minutes, i.e. $40/10=4$ doublings. So the population is $200\\cdot2^{4}=200\\cdot16=3200.$","solution_verified":true},
+
+ {"slug":"straddle-arbitrage","techniques":["arbitrage","option_basics"],"primary":"arbitrage","difficulty":"medium","firm_style":["finance"],
+  "hints":["A straddle = one call + one put at the same strike, so its fair price is C₀+P₀.",
+           "Here C₀+P₀=1.4+4.2=5.6 but the straddle trades at 5.4 — it's underpriced by 0.2.",
+           "Buy the cheap straddle and sell the call and the put: +1 Straddle, −1 Call, −1 Put (0 Stock, 0 Bonds), locking in 0.2 risk-free."],
+  "solution":"A straddle is exactly one call plus one put at the same strike, so it must cost $C_0+P_0=1.4+4.2=5.6$. It trades at $V_0=5.4$, so it is underpriced by $0.2$.\n\nArbitrage: buy the straddle and sell the synthetic (sell the call and the put). Position: $0$ Stock $-1$ Call $-1$ Put $+0$ Bonds $+1$ Straddle. Cash flow now $=-5.4+1.4+4.2=+0.2$; at expiry the straddle payoff exactly cancels the short call+put, so the $0.2$ is a risk-free profit.","solution_verified":true},
+
+ {"slug":"covariance-review-ii","techniques":["covariance","correlation"],"primary":"covariance","difficulty":"easy","firm_style":["math"],
+  "hints":["Cov is maximized when correlation is +1.",
+           "Max Cov = σ₁σ₂ = √Var₁·√Var₂.",
+           "√24·√6 = √144 = 12."],
+  "solution":"Since $\\rho=\\dfrac{\\mathrm{Cov}(X_1,X_2)}{\\sigma_1\\sigma_2}\\le 1$, the covariance is largest when $\\rho=1$, giving $\\mathrm{Cov}_{\\max}=\\sigma_1\\sigma_2=\\sqrt{24}\\cdot\\sqrt{6}=\\sqrt{144}=12.$ (The means are irrelevant.)","solution_verified":true},
+
+ {"slug":"elliptical-area","techniques":["exponential","pdf_cdf","joint_cont"],"primary":"exponential","difficulty":"easy","firm_style":["math"],
+  "hints":["Circle has diameter A ⇒ radius A/2 ⇒ area πA²/4; ellipse area πAB. Compare.",
+           "πA²/4 > πAB ⇔ B < A/4.",
+           "P(B<A/4)=∫₀^∞ e^{-a}(1−e^{-a/4})da = 1 − 4/5 = 1/5."],
+  "solution":"The circle has diameter $A$, hence radius $A/2$ and area $\\pi A^2/4$; the ellipse has area $\\pi AB$. Circle larger $\\iff \\pi A^2/4>\\pi AB \\iff B<A/4$. With $A,B\\sim\\mathrm{Exp}(1)$ independent,\n$$P(B<A/4)=\\int_0^\\infty e^{-a}\\big(1-e^{-a/4}\\big)\\,da=1-\\frac{1}{1+\\tfrac14}=1-\\frac{4}{5}=\\frac{1}{5}.$$","solution_verified":true},
+
+ {"slug":"binary-string","techniques":["inclusion_exclusion","basic_counting"],"primary":"inclusion_exclusion","difficulty":"easy","firm_style":["math"],
+  "hints":["Use |S∪O| = |S| + |O| − |S∩O|.",
+           "Starts with 1: 2^7=128. Ends with 00: 2^6=64. Both: 2^5=32.",
+           "128 + 64 − 32 = 160."],
+  "solution":"Let $S$ = starts with $1$ and $O$ = ends with $00$. Then $|S|=2^{7}=128$, $|O|=2^{6}=64$, and $|S\\cap O|=2^{5}=32$. By inclusion–exclusion $|S\\cup O|=128+64-32=160.$","solution_verified":true}
+]

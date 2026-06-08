@@ -1,0 +1,73 @@
+[
+ {"slug":"optimal-ball-draw","techniques":["optimal_strategy","cond_expectation","recursion"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Let V(w,b) be the optimal expected gain with w white, b black left; you can always stop (value 0).",
+           "V(w,b)=max(0, (w/(w+b))(1+V(w−1,b)) + (b/(w+b))(−1+V(w,b−1))).",
+           "Building up: V(2,3)=2/5·(1)+3/5·(−1+2/3)=1/5."],
+  "solution":"Let $V(w,b)$ be the optimal expected gain with $w$ white and $b$ black left, with the option to stop ($0$): $V(w,b)=\\max\\!\\big(0,\\tfrac{w}{w+b}(1+V(w-1,b))+\\tfrac{b}{w+b}(-1+V(w,b-1))\\big)$. Computing up from $V(1,1)=\\tfrac12$, $V(2,1)=\\tfrac43$, $V(1,2)=0$, $V(2,2)=\\tfrac23$, $V(1,3)=0$, we get $V(2,3)=\\tfrac25(1)+\\tfrac35(-1+\\tfrac23)=\\tfrac25-\\tfrac15=\\tfrac15.$","solution_verified":true},
+
+ {"slug":"exponent-reverse","techniques":["calculus","inequalities"],"primary":"calculus","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Compare via logs: e^π vs π^e ⟺ π vs e·ln π.",
+           "The function ln(x)/x is decreasing for x>e, so ln(e)/e > ln(π)/π.",
+           "That gives π > e·ln π, so e^π > π^e ⇒ answer 2."],
+  "solution":"Taking logs, $e^\\pi\\gtrless\\pi^e\\iff \\pi\\gtrless e\\ln\\pi$. Since $g(x)=\\tfrac{\\ln x}{x}$ is decreasing for $x>e$, $\\tfrac{\\ln e}{e}>\\tfrac{\\ln\\pi}{\\pi}$, i.e. $\\pi>e\\ln\\pi$. Hence $e^\\pi>\\pi^e$: answer $2.$","solution_verified":true},
+
+ {"slug":"fibonacci-ratio","techniques":["sequences_series","recursion"],"primary":"sequences_series","difficulty":"easy","firm_style":["math"],
+  "hints":["Use Σ_{n=1}^{N} F_n = F_{N+2}−1 for the numerator.",
+           "And Σ_{k=1}^{m} F_{3k} = (F_{3m+2}−1)/2 for the denominator.",
+           "Both equal (F_302−1) up to the factor 2 ⇒ ratio = 2."],
+  "solution":"The numerator is $\\sum_{n=1}^{300}F_n=F_{302}-1$. For the every-third sum, $\\sum_{k=1}^{100}F_{3k}=\\tfrac{F_{302}-1}{2}$. Their ratio is $\\dfrac{F_{302}-1}{(F_{302}-1)/2}=2.$","solution_verified":true},
+
+ {"slug":"77-multiple-ii","techniques":["number_theory"],"primary":"number_theory","difficulty":"easy","firm_style":["math","speed"],
+  "hints":["Divide 700000 by 77 and round up.",
+           "700000/77 ≈ 9090.9, so take 9091.",
+           "77·9091 = 700007."],
+  "solution":"$700000/77\\approx9090.9$, so the next multiple uses $9091$: $77\\cdot9091=700007.$","solution_verified":true},
+
+ {"slug":"reciprocal-sde","techniques":["ito","brownian"],"primary":"ito","difficulty":"medium","firm_style":["math"],
+  "hints":["Let Y=1/X with dY=Y(2dt−dB); apply Itô to X=1/Y.",
+           "dX=−Y^{−2}dY + Y^{−3}d[Y], with d[Y]=Y²dt.",
+           "Simplifies to dX=X(−dt+dB) ⇒ a=−1,b=1,ab=−1."],
+  "solution":"Let $Y=1/X$, so $dY=Y(2dt-dB)$ and $d[Y,Y]=Y^2dt$. By Itô on $X=1/Y$: $dX=-Y^{-2}dY+Y^{-3}d[Y,Y]=-\\tfrac1{Y^2}\\,Y(2dt-dB)+\\tfrac1{Y}dt=\\tfrac1Y(-2dt+dB+dt)=X(-dt+dB).$ So $a=-1,b=1$ and $ab=-1.$","solution_verified":true},
+
+ {"slug":"balanced-beans-ii","techniques":["casework","construction"],"primary":"casework","difficulty":"hard","firm_style":["brainteaser"],
+  "hints":["Each weighing has 3 outcomes (left heavy / right heavy / balance), so k weighings distinguish 3^k cases.",
+           "12 beans × 2 (heavy or light) = 24 possibilities; need 3^k ≥ 24.",
+           "3²=9<24, 3³=27≥24, and a known 3-weighing scheme works ⇒ 3."],
+  "solution":"Each weighing yields one of $3$ outcomes, so $k$ weighings distinguish at most $3^k$ cases. There are $12\\times2=24$ possibilities (which bean, heavier or lighter), and $3^2=9<24\\le27=3^3$. A standard adaptive scheme achieves it in $3$, so the minimum is $3.$","solution_verified":true},
+
+ {"slug":"color-swap","techniques":["total_probability","conditional_prob","linearity_exp"],"primary":"total_probability","difficulty":"medium","firm_style":["math"],
+  "hints":["Find the expected number of orange in Y after the transfer.",
+           "Expected orange moved from X = 300·(400/500)=240; Y starts with 100 orange.",
+           "P(orange)=(100+240)/800=340/800=17/40."],
+  "solution":"Moving $300$ of X's $500$ balls brings an expected $300\\cdot\\tfrac{400}{500}=240$ orange. Urn Y then has $100+240=340$ expected orange out of $800$, so $P(\\text{orange})=\\tfrac{340}{800}=\\tfrac{17}{40}.$","solution_verified":true},
+
+ {"slug":"random-scale","techniques":["combinations","casework","symmetry_prob"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Subtract 200: weights become 1–6. The 206-side has 6 plus two others.",
+           "6-side heavier ⟺ 6+a+b > 15−(a+b) ⟺ a+b ≥ 5 (a,b from {1..5}).",
+           "Of C(5,2)=10 pairs, only {1,2},{1,3} fail ⇒ 8/10 = 4/5."],
+  "solution":"Reduce to weights $1$–$6$. The side with $6$ holds $6+a+b$ with $a,b$ from $\\{1,\\dots,5\\}$, the other side $15-(a+b)$. It's heavier iff $6+a+b>15-(a+b)$, i.e. $a+b\\ge5$. Only the pairs $\\{1,2\\}$ and $\\{1,3\\}$ fail, so the probability is $\\tfrac{8}{10}=\\tfrac45.$","solution_verified":true},
+
+ {"slug":"the-orchard-problem","techniques":["algebra_manipulation","number_theory"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["He had n² planted +146 spare; enlarging to (n+1)² needed 31 more trees.",
+           "(n+1)² = n²+146+31 ⇒ 2n+1=177 ⇒ n=88.",
+           "Final orchard = 89² = 7921."],
+  "solution":"With $n^2$ trees planted and $146$ spare, enlarging to $(n+1)^2$ required $31$ extra trees: $(n+1)^2=n^2+146+31$, so $2n+1=177\\Rightarrow n=88$. The finished orchard has $(n+1)^2=89^2=7921$ trees.","solution_verified":true},
+
+ {"slug":"basic-dice-game-i","techniques":["optimal_strategy","cond_expectation"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["markets"],
+  "hints":["A reroll is worth 3.5, so keep any roll above 3.5 (i.e. 4,5,6).",
+           "E = (1/6)[3·3.5 + (4+5+6)].",
+           "= (10.5+15)/6 = 4.25."],
+  "solution":"The reroll has expected value $3.5$, so keep the first roll iff it's $4,5,6$ and otherwise reroll. Then $E=\\tfrac16\\big(3\\cdot3.5+4+5+6\\big)=\\tfrac{25.5}{6}=4.25.$","solution_verified":true},
+
+ {"slug":"picky-casino","techniques":["recursion","ev_betting","optimal_strategy"],"primary":"recursion","difficulty":"medium","firm_style":["markets"],
+  "hints":["Expected flips to get two consecutive heads with P(H)=x is (1+x)/x².",
+           "The dealer makes the player lose by setting this expected time to d+1=30.",
+           "(1+x)/x²=30 ⇒ 30x²−x−1=0 ⇒ x=1/5."],
+  "solution":"The expected number of flips to obtain two consecutive heads with head-probability $x$ is $\\dfrac{1+x}{x^2}$. To make the player's net expected profit non-positive at $d=29$, the dealer sets this expected time to $30$: $\\dfrac{1+x}{x^2}=30\\Rightarrow30x^2-x-1=0\\Rightarrow x=\\dfrac{1+11}{60}=\\dfrac15.$ The maximum such probability is $\\tfrac15.$","solution_verified":true},
+
+ {"slug":"cow-goat-and-goose","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Write eating rates: cow+goat=1/45, cow+goose=1/60, goat+goose=1/90.",
+           "Add all three: 2(c+g+go)=1/45+1/60+1/90=1/20.",
+           "c+g+go=1/40 ⇒ together they finish in 40 days."],
+  "solution":"Let rates (field per day) satisfy $c+g=\\tfrac1{45}$, $c+\\text{go}=\\tfrac1{60}$, $g+\\text{go}=\\tfrac1{90}$. Adding, $2(c+g+\\text{go})=\\tfrac1{45}+\\tfrac1{60}+\\tfrac1{90}=\\tfrac1{20}$, so $c+g+\\text{go}=\\tfrac1{40}$. All three together finish in $40$ days.","solution_verified":true}
+]

@@ -1,0 +1,73 @@
+[
+ {"slug":"smallest-factorizaiton","techniques":["number_theory"],"primary":"number_theory","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Factorize: 1234567890 = 2·3²·5·3607·3803; the closest factor pair splits the two big primes.",
+           "Put 3607 and 3803 on opposite sides and balance with the small factors (product 90).",
+           "3607·10=36070 and 3803·9=34227 are closest ⇒ a*+b*=70297."],
+  "solution":"With $1234567890=2\\cdot3^2\\cdot5\\cdot3607\\cdot3803$, a balanced factorization keeps the two large primes apart and splits the small factors (product $90$) to equalize. Setting $a=3607\\cdot10=36070$ and $b=3803\\cdot9=34227$ gives the smallest gap, so $a^*+b^*=36070+34227=70297.$","solution_verified":true},
+
+ {"slug":"delta-decay-ii","techniques":["option_basics","time_value"],"primary":"option_basics","difficulty":"hard","firm_style":["finance"],
+  "hints":["Straddle delta = call Δ + put Δ = 0.72 − 0.28 = 0.44; you're short 0.44 shares.",
+           "ITM call → 1 and OTM put → 0 by expiry; decay linearly over the hour. At 30 min: call 0.86, put −0.14.",
+           "New straddle delta 0.72; you must sell 0.72−0.44 = 0.28 more ⇒ −0.28."],
+  "solution":"The straddle's delta is $0.72+(-0.28)=0.44$, hedged by shorting $0.44$ shares. As expiry nears the ITM call's delta $\\to1$ and the OTM put's $\\to0$; decaying linearly over the hour, after $30$ minutes the call is $0.86$ and the put $-0.14$, giving straddle delta $0.72$. To re-hedge you short an extra $0.72-0.44=0.28$ shares, i.e. $-0.28.$","solution_verified":true},
+
+ {"slug":"primitive-preference","techniques":["symmetry_prob","independence"],"primary":"symmetry_prob","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Each birth is independently 50/50 regardless of any stopping rule.",
+           "Stopping rules can't change the sex ratio of births.",
+           "The proportion of boys → 50% (0.5)."],
+  "solution":"Each birth is an independent fair coin flip; a family's decision to stop after a boy doesn't change the odds of any individual birth. So across all births boys and girls remain equally likely, and the percentage of boys approaches $50\\%$ ($0.5$).","solution_verified":true},
+
+ {"slug":"10-left","techniques":["conditional_prob","combinations"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["A drew 5 of the 7 even chips; chip 12 is even. First, did A take 12?",
+           "P(A took 12)=5/7, so chip 12 is still available with prob 2/7.",
+           "If available, B draws 5 of the remaining 10: P=1/2. Total = (2/7)(1/2)=1/7."],
+  "solution":"There are $7$ even chips; A took $5$ of them, so chip $12$ was taken by A with probability $\\tfrac57$, leaving it available with probability $\\tfrac27$. If available, it's among the $10$ remaining chips and B draws $5$, so $P(\\text{B gets it})=\\tfrac{5}{10}=\\tfrac12$. Thus $P=\\tfrac27\\cdot\\tfrac12=\\tfrac17.$","solution_verified":true},
+
+ {"slug":"russian-roulette-i","techniques":["sample_space","symmetry_prob"],"primary":"sample_space","difficulty":"medium","firm_style":["math"],
+  "hints":["One spin fixes the bullet's chamber uniformly among 6; friend fires chambers 1,3,5 and you 2,4,6.",
+           "You win if the bullet is in one of the friend's chambers.",
+           "P = 3/6 = 1/2."],
+  "solution":"After the single spin the bullet is equally likely in any of the $6$ chambers. The friend (first) pulls chambers $1,3,5$ and you pull $2,4,6$. You win iff the bullet sits in a friend's chamber, probability $\\tfrac{3}{6}=\\tfrac12.$","solution_verified":true},
+
+ {"slug":"deriving-put-call-parity-ii","techniques":["option_basics","arbitrage","time_value"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["Put–call parity: C − P = S₀ − K·e^{−rT}.",
+           "For K=10: C = 3.2 + 8 − 10·e^{−0.02}.",
+           "= 11.2 − 9.802 ≈ 1.40."],
+  "solution":"By put–call parity $C-P=S_0-Ke^{-rT}$. For $K=10$: $C=P+S_0-Ke^{-rT}=3.2+8-10e^{-0.02}=11.2-9.802\\approx1.40.$","solution_verified":true},
+
+ {"slug":"breakeven-price","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["A long call profits once the stock clears the strike by the premium paid.",
+           "Breakeven = strike + premium.",
+           "4 + 3 = 7."],
+  "solution":"A long call breaks even when the payoff $S_T-K$ equals the premium, i.e. $S_T=K+\\text{premium}=4+3=7.$","solution_verified":true},
+
+ {"slug":"integral-variance-iv","techniques":["ito","brownian","calculus"],"primary":"ito","difficulty":"medium","firm_style":["math"],
+  "hints":["Mean is 0; by Itô isometry Var=E[∫_0^2 t e^{W_t²/4} dt].",
+           "E[e^{W_t²/4}]=1/√(1−t/2) (Gaussian quadratic exponential).",
+           "∫_0^2 t/√(1−t/2) dt = 16/3."],
+  "solution":"The Itô integral has mean $0$, so by Itô's isometry $\\mathrm{Var}(X)=\\mathbb{E}\\!\\int_0^2 t\\,e^{W_t^2/4}dt=\\int_0^2 t\\,\\mathbb{E}[e^{W_t^2/4}]dt$. Since $W_t\\sim N(0,t)$, $\\mathbb{E}[e^{W_t^2/4}]=\\dfrac{1}{\\sqrt{1-t/2}}$. Substituting $u=1-t/2$,\n$$\\int_0^2\\frac{t}{\\sqrt{1-t/2}}dt=4\\int_0^1\\frac{1-u}{\\sqrt u}du=4\\Big(2-\\tfrac23\\Big)=\\frac{16}{3}.$$","solution_verified":true},
+
+ {"slug":"positive-brownian-ii","techniques":["brownian","normal","calculus"],"primary":"brownian","difficulty":"hard","firm_style":["math"],
+  "hints":["(B₂,B₈) is bivariate normal with correlation ρ=Cov/√(2·8)=2/4=1/2.",
+           "For mean-zero bivariate normal, P(both>0)=1/4 + arcsin(ρ)/(2π).",
+           "=1/4 + (π/6)/(2π)=1/4+1/12=1/3."],
+  "solution":"$(B_2,B_8)$ is jointly normal with $\\mathrm{Cov}(B_2,B_8)=2$, so correlation $\\rho=\\tfrac{2}{\\sqrt{2\\cdot8}}=\\tfrac12$. For a mean-zero bivariate normal, $P(B_2>0,B_8>0)=\\tfrac14+\\tfrac{\\arcsin\\rho}{2\\pi}=\\tfrac14+\\tfrac{\\pi/6}{2\\pi}=\\tfrac14+\\tfrac1{12}=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"bakery-boxes","techniques":["stars_and_bars","cond_expectation","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["For a given k, baskets of k items from k types (repetition allowed) = C(2k−1, k).",
+           "Average over k=1..4 uniformly.",
+           "(1+3+10+35)/4 = 49/4."],
+  "solution":"For a chosen $k$, the number of size-$k$ multisets from $k$ types is $\\binom{2k-1}{k}$. These are $1,3,10,35$ for $k=1,2,3,4$. Averaging uniformly, $\\mathbb{E}=\\tfrac14(1+3+10+35)=\\tfrac{49}{4}.$","solution_verified":true},
+
+ {"slug":"4-die-sum","techniques":["combinations","stars_and_bars","symmetry_prob"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["By symmetry sum=20 has the same count as sum=8 (reflect each die x→7−x).",
+           "Count x₁+…+x₄=8 with 1≤xᵢ≤6: stars and bars gives C(7,3)=35 (no value exceeds 6).",
+           "P=35/1296."],
+  "solution":"By the reflection $x_i\\mapsto7-x_i$, the number of ways to total $20$ equals the number to total $8$. For $x_1+\\dots+x_4=8$ with each $\\ge1$, stars and bars gives $\\binom{7}{3}=35$ (and no die exceeds $6$). So $P=\\dfrac{35}{1296}.$","solution_verified":true},
+
+ {"slug":"big-bubble-ii","techniques":["calculus"],"primary":"calculus","difficulty":"easy","firm_style":["math"],
+  "hints":["dV/dt = 4πr²·dr/dt; solve for r when dV/dt=36 with dr/dt=9/(4π).",
+           "4πr²·9/(4π)=9r²=36 ⇒ r=2.",
+           "dS/dt=8πr·dr/dt=8π·2·9/(4π)=36."],
+  "solution":"$\\frac{dV}{dt}=4\\pi r^2\\frac{dr}{dt}$. With $\\frac{dr}{dt}=\\frac{9}{4\\pi}$ and $\\frac{dV}{dt}=36$: $9r^2=36\\Rightarrow r=2$. Then $\\frac{dS}{dt}=8\\pi r\\frac{dr}{dt}=8\\pi\\cdot2\\cdot\\frac{9}{4\\pi}=36$ square inches per second.","solution_verified":true}
+]

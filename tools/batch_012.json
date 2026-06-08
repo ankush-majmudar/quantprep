@@ -1,0 +1,73 @@
+[
+ {"slug":"writing-to-recruiters","techniques":["indicator_vars","linearity_exp","permutations"],"primary":"indicator_vars","difficulty":"easy","firm_style":["math"],
+  "hints":["Attach an indicator to each letter: 1 if it lands at the right firm.",
+           "Each letter is correct with probability 1/X; there are X of them.",
+           "E = X·(1/X) = 1 (true for any X)."],
+  "solution":"Let $I_i=1$ if letter $i$ goes to its correct firm. Under a uniform random assignment $P(I_i=1)=\\tfrac1X$, and by linearity $\\mathbb{E}[\\sum_i I_i]=X\\cdot\\tfrac1X=1.$ (The expected number of fixed points of a random permutation is always $1$.)","solution_verified":true},
+
+ {"slug":"9-digit-sum","techniques":["permutations","basic_counting"],"primary":"permutations","difficulty":"medium","firm_style":["math"],
+  "hints":["Each digit lands in each of the 9 positions in 8! of the numbers.",
+           "Sum = 8!·(1+…+9)·(111111111) = 8!·45·(10⁹−1)/9.",
+           "45/9=5, so = 5·8!·(10⁹−1): k=5,a=8,b=9 ⇒ abk=360."],
+  "solution":"Each digit occupies each of the $9$ positions in exactly $8!$ of the permutations, so\n$$\\text{sum}=8!\\,(1+2+\\dots+9)\\,\\underbrace{111111111}_{(10^9-1)/9}=8!\\cdot45\\cdot\\frac{10^9-1}{9}=5\\cdot 8!\\,(10^9-1).$$\nThus $k=5,\\,a=8,\\,b=9$ and $abk=360.$","solution_verified":true},
+
+ {"slug":"sharpe-marbles","techniques":["variance_props","ev_betting","cond_expectation"],"primary":"variance_props","difficulty":"medium","firm_style":["math"],
+  "hints":["Outcomes: both blue (1/4) Alice +1; both red (1/4) Alice +3; else (1/2) Bob +2.",
+           "Alice: E=1, Var=2.5−1=1.5 ⇒ A_r=1/1.5=2/3. Bob: E=1, Var=2−1=1 ⇒ B_r=1.",
+           "B_r − A_r = 1 − 2/3 = 1/3."],
+  "solution":"Each sibling shows blue/red with probability $\\tfrac12$, independently. So both-blue and both-red each have probability $\\tfrac14$, and Bob wins otherwise (prob $\\tfrac12$).\n\nAlice's payoff is $1,3,0$ with probabilities $\\tfrac14,\\tfrac14,\\tfrac12$: $\\mathbb{E}=1$, $\\mathbb{E}[A^2]=\\tfrac{1+9}{4}=2.5$, $\\mathrm{Var}=1.5$, so $A_r=\\tfrac{1}{1.5}=\\tfrac23$. Bob's payoff is $2$ w.p. $\\tfrac12$ else $0$: $\\mathbb{E}=1$, $\\mathrm{Var}=2-1=1$, so $B_r=1$. Hence $B_r-A_r=1-\\tfrac23=\\tfrac13.$","solution_verified":true},
+
+ {"slug":"nonzero-eigenvalue","techniques":["linear_algebra","sequences_series"],"primary":"linear_algebra","difficulty":"hard","firm_style":["math"],
+  "hints":["A_n = x x^T is rank 1, so its only nonzero eigenvalue equals the trace = xᵀx.",
+           "xᵀx = 1²+2²+…+n² = n(n+1)(2n+1)/6 ~ n³/3.",
+           "So λ_n/n^k → finite nonzero when k=3."],
+  "solution":"$A_n=x_nx_n^T$ has rank $1$, so its single nonzero eigenvalue equals $\\mathrm{tr}(A_n)=x_n^Tx_n=\\sum_{i=1}^n i^2=\\dfrac{n(n+1)(2n+1)}{6}\\sim\\dfrac{n^3}{3}.$ Therefore $\\lambda_n/n^k$ converges to a finite nonzero limit exactly for $k=3.$","solution_verified":true},
+
+ {"slug":"missing-million-i","techniques":["total_probability","conditional_prob"],"primary":"total_probability","difficulty":"easy","firm_style":["math"],
+  "hints":["Condition on whether the wheel reveals the door.",
+           "Reveals (3/5): you win for sure. No info (2/5): guess 1/3.",
+           "P = 3/5·1 + 2/5·1/3 = 11/15."],
+  "solution":"Condition on the wheel: with probability $\\tfrac35$ it reveals the door (you win for sure); with probability $\\tfrac25$ you guess uniformly among $3$ (win $\\tfrac13$). So $P=\\tfrac35\\cdot1+\\tfrac25\\cdot\\tfrac13=\\tfrac9{15}+\\tfrac2{15}=\\tfrac{11}{15}.$","solution_verified":true},
+
+ {"slug":"ronaldos-house","techniques":["conditional_prob","casework","combinations"],"primary":"conditional_prob","difficulty":"easy","firm_style":["math"],
+  "hints":["122577 has repeated digits (two 2s, two 7s). Two tiles fall (C(6,2)=15 equally likely pairs).",
+           "If the two fallen tiles are identical, any reinsertion restores it (prob 1); otherwise only 1 of 2 orders works (prob 1/2).",
+           "Same-digit pairs: {the two 2s},{the two 7s}=2; rest 13. P=(2·1+13·½)/15=17/30."],
+  "solution":"The number $122577$ has digits $\\{1,2,2,5,7,7\\}$. Two positions fall (uniformly among $\\binom62=15$ pairs), and he reinserts the two tiles in one of $2$ orders. If the two fallen tiles show the same digit, either order restores the number (prob $1$); if different, only one order works (prob $\\tfrac12$). The same-digit pairs are the two $2$'s and the two $7$'s ($2$ pairs); the other $13$ are different. So\n$$P=\\frac{2\\cdot1+13\\cdot\\tfrac12}{15}=\\frac{8.5}{15}=\\frac{17}{30}.$$","solution_verified":true},
+
+ {"slug":"highlow","techniques":["optimal_strategy","ev_betting","cond_expectation"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Given first roll x, compare expected payout of betting 'second ≥ x' vs 'second < x'.",
+           "Bet-lower payout ∝ Σ_{y<x} y = (x−1)x/2; bet-higher ∝ Σ_{y≥x} y = 5050 − (x−1)x/2.",
+           "Guess lower once (x−1)x > 5050 ⇒ x ≥ 72."],
+  "solution":"After the first roll $x$, betting 'second $\\ge x$' has expected payout $\\propto\\sum_{y=x}^{100}y=5050-\\tfrac{(x-1)x}{2}$, while betting 'second $<x$' has $\\propto\\sum_{y=1}^{x-1}y=\\tfrac{(x-1)x}{2}$. You guess lower once the latter is bigger: $(x-1)x>5050$, i.e. $x^2-x-5050>0\\Rightarrow x>\\tfrac{1+\\sqrt{20201}}{2}\\approx71.6$. The smallest such integer is $t=72.$","solution_verified":true},
+
+ {"slug":"triangular-selection-ii","techniques":["combinations","complementary_count"],"primary":"combinations","difficulty":"easy","firm_style":["math"],
+  "hints":["Complement: their triangles are disjoint only if Bob picks exactly the 3 points Alice didn't.",
+           "Given Alice's 3 points, Bob has C(6,3)=20 choices, only 1 fully disjoint.",
+           "P(share)=1 − 1/20 = 19/20."],
+  "solution":"Use the complement. Given Alice's $3$ points, the triangles are disjoint only if Bob picks exactly the other $3$ points — $1$ of his $\\binom63=20$ equally likely choices. So $P(\\text{disjoint})=\\tfrac1{20}$ and $P(\\text{share a vertex})=\\tfrac{19}{20}.$","solution_verified":true},
+
+ {"slug":"matrix-editor","techniques":["markov_chain","first_step","cond_expectation","linear_algebra"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Track states up to symmetry: I (identity) and P (a diagonal-1 matrix with one off-diagonal flipped to 1). Both have det=1.",
+           "From I: 2/4 flips give a singular matrix, 2/4 go to P. From P: 3/4 give singular, 1/4 returns to I.",
+           "E_I=1+½E_P, E_P=1+¼E_I ⇒ E_I=12/7."],
+  "solution":"From $I_2$, flipping a diagonal $1\\to0$ makes it singular (2 of 4 moves); the other 2 moves set an off-diagonal to $1$, reaching a state $P$ (e.g. $\\begin{smallmatrix}1&1\\\\0&1\\end{smallmatrix}$), still $\\det=1$. From such a $P$, $3$ of the $4$ flips give $\\det=0$ and $1$ returns to $I$. Let $E_I,E_P$ be expected steps:\n$$E_I=1+\\tfrac12E_P,\\qquad E_P=1+\\tfrac14E_I.$$\nSubstituting, $E_I=1+\\tfrac12(1+\\tfrac14E_I)=\\tfrac32+\\tfrac18E_I\\Rightarrow E_I=\\tfrac{12}{7}.$","solution_verified":true},
+
+ {"slug":"basic-die-game-vi","techniques":["optimal_strategy","recursion","cond_expectation","ev_betting"],"primary":"optimal_strategy","difficulty":"medium","firm_style":["markets"],
+  "hints":["Let V be the game value; rerolling (cost $1) is worth V−1, so keep a roll k iff k ≥ V−1.",
+           "Guess the threshold and solve self-consistently.",
+           "V = (1/6)[3(V−1) + (4+5+6)] ⇒ V=4 (keep 4,5,6; reroll 1,2,3)."],
+  "solution":"Let $V$ be the value of the game. A reroll costs $\\$1$ and returns you to the same situation, so its value is $V-1$; you keep a roll $k$ iff $k\\ge V-1$. Solving self-consistently with threshold $4$ (reroll on $1,2,3$):\n$$V=\\tfrac16\\big[3(V-1)+(4+5+6)\\big]=\\tfrac{V}{2}+2\\;\\Rightarrow\\;V=4.$$\nThis is consistent (reroll value $3$, so keep $4,5,6$), giving expected payout $\\$4.$","solution_verified":true},
+
+ {"slug":"mean-babysitter","techniques":["stars_and_bars","combinations"],"primary":"stars_and_bars","difficulty":"medium","firm_style":["math"],
+  "hints":["Choose the 4 fed children, then distribute 12 units among them with each ≥1.",
+           "C(10,4)=210; positive solutions of x₁+…+x₄=12 ⇒ C(11,3)=165.",
+           "210·165 = 34650."],
+  "solution":"Choose which $4$ children are fed: $\\binom{10}{4}=210$. Then distribute $12$ units among them with each $\\ge1$: setting $y_i=x_i-1$ gives $\\sum y_i=8$, with $\\binom{8+3}{3}=\\binom{11}{3}=165$ solutions. Total $=210\\cdot165=34650.$","solution_verified":true},
+
+ {"slug":"paired-values-ii","techniques":["casework","combinations"],"primary":"casework","difficulty":"medium","firm_style":["math"],
+  "hints":["There are 15 ways to pair {1,…,6} into three pairs; compute each sum of products.",
+           "List the resulting sums and remove duplicates.",
+           "The distinct sums are {28,29,31,32,35,37,40,41,44} — 9 of them."],
+  "solution":"There are $15$ perfect matchings of $\\{1,\\dots,6\\}$ into three pairs. Computing $ab+cd+ef$ for each yields the values $44,41,40,41,37,35,40,32,31,35,31,29,32,29,28$. The distinct sums are $\\{28,29,31,32,35,37,40,41,44\\}$, so there are $9$ unique sums.","solution_verified":true}
+]

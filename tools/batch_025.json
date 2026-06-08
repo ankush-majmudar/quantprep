@@ -1,0 +1,73 @@
+[
+ {"slug":"put-fly-i","techniques":["option_basics","arbitrage"],"primary":"option_basics","difficulty":"medium","firm_style":["finance"],
+  "hints":["A butterfly has the same price whether built from calls or puts (put–call parity makes the linear terms cancel).",
+           "Compute the call butterfly: C(10) − 2C(15) + C(20).",
+           "8.1 − 2·4.2 + 1.4 = 1.1."],
+  "solution":"A $10/15/20$ butterfly costs the same with puts or calls (the stock and bond terms from put–call parity cancel in the $1{:}{-}2{:}1$ combination). Using calls: $C_{10}-2C_{15}+C_{20}=8.1-8.4+1.4=1.1.$","solution_verified":true},
+
+ {"slug":"optimal-marbles-i","techniques":["optimal_strategy","ev_betting","calculus"],"primary":"optimal_strategy","difficulty":"hard","firm_style":["games"],
+  "hints":["Per draw, A earns (100−a)·a/(a+b). Find the symmetric Nash equilibrium a=b.",
+           "∂/∂a=0 gives a²+2ab−100b=0; at a=b: 3a²=100a ⇒ a=100/3.",
+           "Payout per draw = (1/2)(100−100/3)=100/3; two draws ⇒ 200/3 ≈ 67."],
+  "solution":"Per draw A's expected payout is $A(a,b)=\\dfrac{a}{a+b}(100-a)$. Setting $\\partial_a A=0$ gives $a^2+2ab-100b=0$; at the symmetric equilibrium $a=b$ this is $3a^2=100a\\Rightarrow a=\\tfrac{100}{3}$. Each draw then pays $\\tfrac12(100-\\tfrac{100}3)=\\tfrac{100}{3}$, and with two draws A's total is $2\\cdot\\tfrac{100}{3}=\\tfrac{200}{3}\\approx67.$","solution_verified":true},
+
+ {"slug":"expected-increase","techniques":["tail_sum","symmetry_prob","permutations"],"primary":"tail_sum","difficulty":"medium","firm_style":["math"],
+  "hints":["N≥k means the first k−1 values are non-increasing.",
+           "P(X_1≥…≥X_{k-1})=1/(k−1)! (all orderings equally likely).",
+           "E[N]=Σ_{k≥1}1/(k−1)!=e, so ln(E[N])=1."],
+  "solution":"$N\\ge k$ exactly when $X_1\\ge X_2\\ge\\dots\\ge X_{k-1}$, which for continuous IID values has probability $\\tfrac1{(k-1)!}$. Then $\\mathbb{E}[N]=\\sum_{k\\ge1}P(N\\ge k)=\\sum_{k\\ge1}\\tfrac1{(k-1)!}=e$, so $\\ln\\mathbb{E}[N]=1.$","solution_verified":true},
+
+ {"slug":"comparing-flips-ii","techniques":["markov_chain","recursion","conditional_prob"],"primary":"markov_chain","difficulty":"medium","firm_style":["math"],
+  "hints":["Once you see HH, the next T completes HHT (friend) before any HTH is possible.",
+           "Track states; let q=P(friend wins) from state 'just saw H'.",
+           "q=½·1+½·(½·0+½·q) ⇒ q=2/3."],
+  "solution":"Friend wins if HHT appears before HTH. From the state 'last flip H': a further H reaches HH, from which the next T gives HHT before any HTH can form (friend wins for sure); a T reaches HT, from which H gives HTH (you win) and T returns to needing an H. Letting $q$ be the friend's win probability from 'saw H': $q=\\tfrac12\\cdot1+\\tfrac12\\big(\\tfrac12\\cdot0+\\tfrac12 q\\big)$, so $\\tfrac34 q=\\tfrac12\\Rightarrow q=\\tfrac23.$","solution_verified":true},
+
+ {"slug":"slippery-snail","techniques":["sequences_series","casework"],"primary":"sequences_series","difficulty":"easy","firm_style":["brainteaser"],
+  "hints":["Net progress is +2 ft/hour, but the snail eats the instant it reaches 30 (before the wind).",
+           "After 13 hours it's at 26 ft; in hour 14 it climbs +4 to reach 30.",
+           "14 hours."],
+  "solution":"Each hour the snail gains $4$ then loses $2$ (net $+2$), but reaches the food the instant it touches $30$ — before the gust. After $13$ hours it sits at $2\\cdot13=26$ ft; in the $14$th hour it climbs $+4$ to $30$ and eats. So it takes $14$ hours.","solution_verified":true},
+
+ {"slug":"ship-meeting","techniques":["algebra_manipulation"],"primary":"algebra_manipulation","difficulty":"medium","firm_style":["brainteaser"],
+  "hints":["Let t be the time before the 1PM meeting; after meeting the ships take 4h and 9h to finish.",
+           "A standard relation gives t=√(t₁·t₂)=√(4·9).",
+           "t=6h before 1PM ⇒ 7:00 AM ⇒ 700."],
+  "solution":"If $t$ is the travel time to the meeting, the post-meeting times satisfy $t=\\sqrt{t_1 t_2}=\\sqrt{4\\cdot9}=6$ hours (each ship covers the other's pre-meeting distance). So they left $6$ hours before $1{:}00$ PM, i.e. $7{:}00$ AM $=700.$","solution_verified":true},
+
+ {"slug":"circular-hop","techniques":["hitting_time","gamblers_ruin","markov_chain"],"primary":"hitting_time","difficulty":"medium","firm_style":["math"],
+  "hints":["On the circle, point 0 is reached by hitting either 0 or 100 on the unrolled line (100≡0).",
+           "Starting at 1 with absorbing boundaries 0 and 100, expected time = position·(100−position).",
+           "1·99 = 99."],
+  "solution":"Unroll the circle to a line with absorbing points $0$ and $100$ (which are the same point). Starting at $1$, the expected time for a symmetric walk to hit $\\{0,100\\}$ is $1\\cdot(100-1)=99.$","solution_verified":true},
+
+ {"slug":"lead-count","techniques":["symmetry_prob","binomial"],"primary":"symmetry_prob","difficulty":"medium","firm_style":["math"],
+  "hints":["Fix the first flip as heads; it leads iff there are >5 heads total, i.e. ≥5 heads in the remaining 9.",
+           "For Binom(9,½), P(X≥5)=P(X≤4)=1/2 by symmetry.",
+           "So the probability is 1/2."],
+  "solution":"Say the first flip is heads. It is 'leading' after $10$ flips iff heads strictly exceed $5$, i.e. at least $5$ heads occur in the remaining $9$ flips. For $\\mathrm{Binom}(9,\\tfrac12)$, $P(X\\ge5)=P(X\\le4)=\\tfrac12$ by symmetry, so the answer is $\\tfrac12.$","solution_verified":true},
+
+ {"slug":"plane-partition","techniques":["combinations","recursion"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["The n-th line crosses the previous n−1, adding n new regions.",
+           "L_n = 1 + n + C(n,2) = 1 + n(n+1)/2.",
+           "n=10: 1+55=56."],
+  "solution":"Each new line meets all previous ones, adding as many regions as it has pieces. This gives $L_n=1+n+\\binom n2=1+\\tfrac{n(n+1)}2$. For $n=10$: $1+55=56.$","solution_verified":true},
+
+ {"slug":"number-50","techniques":["combinations","number_theory"],"primary":"combinations","difficulty":"medium","firm_style":["math"],
+  "hints":["Digits are prime {2,3,5,7}; product 100000=2⁵·5⁵ has no factor 3 or 7.",
+           "So digits must be only 2s and 5s, with exactly five 2s and five 5s.",
+           "Arrangements: 10!/(5!5!)=252."],
+  "solution":"The product $100000=2^5\\cdot5^5$ has no factor of $3$ or $7$, so the prime digits used can only be $2$ and $5$. To get $2^5\\cdot5^5$ we need exactly five $2$s and five $5$s among the ten digits. The number of arrangements is $\\dfrac{10!}{5!\\,5!}=252.$","solution_verified":true},
+
+ {"slug":"straddle-gamma","techniques":["option_basics"],"primary":"option_basics","difficulty":"easy","firm_style":["finance"],
+  "hints":["A call and put with the same strike/expiry have equal gamma.",
+           "Straddle = call + put, so its gamma is double.",
+           "2·0.03 = 0.06."],
+  "solution":"By put–call parity the put and call (same strike/expiry) have identical gamma, so a straddle's gamma is twice the call's: $2\\times0.03=0.06.$","solution_verified":true},
+
+ {"slug":"captive-marbles","techniques":["optimal_strategy","conditional_prob","ev_betting"],"primary":"optimal_strategy","difficulty":"easy","firm_style":["games"],
+  "hints":["Put a single white ball in one urn and everything else in the other.",
+           "That urn gives survival 1; the other gives 49/99. You pick an urn at 50/50.",
+           "½·1 + ½·(49/99) = 74/99."],
+  "solution":"Place one white ball alone in urn 1 and the remaining $49$ white $+50$ black in urn 2. Urn 1 guarantees a white; urn 2 gives $\\tfrac{49}{99}$. Picking an urn at random, survival is $\\tfrac12\\cdot1+\\tfrac12\\cdot\\tfrac{49}{99}=\\tfrac{74}{99}.$","solution_verified":true}
+]
