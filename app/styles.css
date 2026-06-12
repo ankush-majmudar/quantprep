@@ -117,3 +117,38 @@ input,select,textarea{font-family:inherit}
 .verdict.no{background:rgba(248,81,73,.12);border:1px solid rgba(248,81,73,.45);color:#ff7b72}
 .verdict.warn{background:rgba(210,153,34,.12);border:1px solid rgba(210,153,34,.4);color:#e3b341}
 .grade.suggest{border-color:var(--ac);box-shadow:0 0 0 2px rgba(79,141,253,.35) inset}
+
+/* ===== v2: coverage-first UI ===== */
+.h1{font-size:22px;font-weight:800;letter-spacing:-.3px}
+.hero .cov-line{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px;font-size:13px;color:var(--tx2)}
+.bar.big{height:10px}
+.btn.xl{padding:17px;font-size:16px;border-radius:14px}
+
+/* difficulty segmented control */
+.seg{display:flex;gap:6px;background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:4px;margin-top:6px}
+.seg-b{flex:1;padding:9px;border:none;background:transparent;color:var(--tx2);font-weight:700;font-size:13px;border-radius:9px;cursor:pointer}
+.seg-b.on{background:var(--ac);color:#fff}
+
+/* two-layer coverage/comfort bar */
+.bar2{position:relative;height:8px;background:var(--bg3);border-radius:999px;overflow:hidden}
+.bar2 i{position:absolute;left:0;top:0;height:100%;border-radius:999px}
+.bar2 i.cov{background:#33405a}
+.bar2 i.comfy{background:linear-gradient(90deg,#2a6b3f,#3fb950)}
+
+/* feel buttons (2-up) */
+.feel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.feel{padding:16px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg3);font-weight:700;cursor:pointer;text-align:center}
+.feel.comfy{color:#56d364}.feel.shaky{color:#e3b341}
+.feel small{display:block;font-weight:500;color:var(--tx3);font-size:11px;margin-top:3px}
+.feel.suggest{border-color:var(--ac);box-shadow:0 0 0 2px rgba(79,141,253,.35) inset}
+
+/* calculator */
+.calc{margin-top:6px}
+.calc-in{width:100%;font-size:15px;padding:11px 12px;background:var(--bg3);border:1px solid var(--line);border-radius:10px;color:var(--tx);font-weight:600}
+.calc-in:focus{outline:none;border-color:var(--ac)}
+.calc-keys{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px}
+.ck{padding:11px 0;background:var(--bg3);border:1px solid var(--line);border-radius:9px;color:var(--tx);font-weight:700;font-size:14px;cursor:pointer}
+.ck:active{background:var(--ac);color:#fff}
+.ck.wide{grid-column:span 1}
+.calc-out{margin-top:10px;font-size:18px;font-weight:800;color:#56d364;min-height:22px}
+.topic-row{cursor:pointer}
